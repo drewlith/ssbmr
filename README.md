@@ -6,7 +6,7 @@ Download: (Prerelease) [SSBM Randomizer.zip](https://github.com/drewlith/ssbmr/f
 
 Try out your favorite 1P modes but with a new twist! You may find yourself using characters you wouldn't normally, or find that a 'low-tier' character is now an unstoppable behemoth!
 
-To play with friends on Slippi: Select the same game mode and the input the same seed, then both players should run Slippi using the randomized iso and play like normal. This will work whether or not you have the Community Mod Pack installed. Don't try unranked when using a randomized iso, you'll get desyncs unless you choose "Slippi Unranked Mode".
+To play with friends on Slippi: Select the same game mode and then input the same seed, then both players should run Slippi using the randomized iso and play like normal. This will work whether or not you have the Community Mod Pack installed. Don't try unranked when using a randomized iso, you'll get desyncs unless you choose "Slippi Unranked Mode".
 
 Community Mod Pack Download (~1GB): https://drive.google.com/file/d/1TZLGM9KIU5_0cF84mVqBJDO2tSoes6Je/view?usp=sharing
 
