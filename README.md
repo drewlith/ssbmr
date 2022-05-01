@@ -4,7 +4,7 @@ A randomizer for Super Smash Bros. Melee. It randomizes hitbox data, character a
  
 Download: (Prerelease) [SSBM Randomizer.zip](https://github.com/drewlith/ssbmr/files/8599838/SSBM.Randomizer.zip)
 
-Try out your favorite 1P modes but with a new twist! You may find yourself using characters you wouldn't normally, or find that a 'low-tier' character is now an unstoppable behemoth!
+Try out your favorite 1P modes but with a new twist! You may find yourself using moves you wouldn't normally, or find that a 'low-tier' character is now an unstoppable behemoth!
 
 To play with friends on Slippi: Select the same game mode and then input the same seed, then both players should run Slippi using the randomized iso and play like normal. This will work whether or not you have the Community Mod Pack installed. Don't try unranked when using a randomized iso, you'll get desyncs unless you choose "Slippi Unranked Mode".
 
