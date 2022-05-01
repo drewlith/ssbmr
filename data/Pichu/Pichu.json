@@ -1,0 +1,284 @@
+{
+   "Jab": {
+      "Type": 0,
+      "Strength": 2,
+      "Hitbox 0": {
+         "Offset": 16648
+      },
+      "Hitbox 1": {
+         "Offset": 16668
+      }
+   },
+   "Dash Attack": {
+      "Type": 0,
+      "Strength": 4,
+      "Hitbox 0": {
+         "Offset": 16772
+      }
+   },
+   "F-Tilt": {
+      "Type": 0,
+      "Strength": 4,
+      "Hitbox 0": {
+         "Offset": 16916
+      },
+      "Hitbox 1": {
+         "Offset": 16936
+      },
+      "Hitbox 2": {
+         "Offset": 16956
+      },
+      "Hitbox 3": {
+         "Offset": 17020
+      },
+      "Hitbox 4": {
+         "Offset": 17040
+      },
+      "Hitbox 5": {
+         "Offset": 17060
+      },
+      "Hitbox 6": {
+         "Offset": 17124
+      },
+      "Hitbox 7": {
+         "Offset": 17144
+      },
+      "Hitbox 8": {
+         "Offset": 17164
+      }
+   },
+   "Up-Tilt": {
+      "Type": 0,
+      "Strength": 5,
+      "Hitbox 0": {
+         "Offset": 17224
+      },
+      "Hitbox 1": {
+         "Offset": 17244
+      },
+      "Hitbox 2": {
+         "Offset": 17264
+      }
+   },
+   "Down-Tilt": {
+      "Type": 0,
+      "Strength": 5,
+      "Hitbox 0": {
+         "Offset": 17348
+      },
+      "Hitbox 1": {
+         "Offset": 17368
+      },
+      "Hitbox 2": {
+         "Offset": 17388
+      }
+   },
+   "F-Smash 1": {
+      "Type": 0,
+      "Strength": 1,
+      "Hitbox 0": {
+         "Offset": 17620
+      },
+      "Hitbox 1": {
+         "Offset": 17640
+      },
+      "Hitbox 2": {
+         "Offset": 17660
+      }
+   },
+   "F-Smash 2": {
+      "Type": 0,
+      "Strength": 8,
+      "Hitbox 0": {
+         "Offset": 17692
+      },
+      "Hitbox 1": {
+         "Offset": 17712
+      },
+      "Hitbox 2": {
+         "Offset": 17732
+      }
+   },
+   "Up-Smash": {
+      "Type": 0,
+      "Strength": 8,
+      "Hitbox 0": {
+         "Offset": 17880
+      },
+      "Hitbox 1": {
+         "Offset": 17900
+      }
+   },
+   "Down-Smash": {
+      "Type": 0,
+      "Strength": 8,
+      "Hitbox 0": {
+         "Offset": 18060
+      },
+      "Hitbox 1": {
+         "Offset": 18080
+      },
+      "Hitbox 2": {
+         "Offset": 18100
+      }
+   },
+   "N-air 1": {
+      "Type": 0,
+      "Strength": 6,
+      "Hitbox 0": {
+         "Offset": 18208
+      },
+      "Hitbox 1": {
+         "Offset": 18228
+      },
+      "Hitbox 2": {
+         "Offset": 18248
+      }
+   },
+   "N-air 2": {
+      "Type": 0,
+      "Strength": 4,
+      "Hitbox 0": {
+         "Offset": 18288
+      },
+      "Hitbox 1": {
+         "Offset": 18308
+      },
+      "Hitbox 2": {
+         "Offset": 18328
+      }
+   },
+   "F-air": {
+      "Type": 1,
+      "Strength": 3,
+      "Hitbox 0": {
+         "Offset": 18412
+      },
+      "Hitbox 1": {
+         "Offset": 18432
+      }
+   },
+   "B-air": {
+      "Type": 0,
+      "Strength": 5,
+      "Hitbox 0": {
+         "Offset": 18512
+      },
+      "Hitbox 1": {
+         "Offset": 18532
+      },
+      "Hitbox 2": {
+         "Offset": 18552
+      },
+      "Hitbox 3": {
+         "Offset": 18576
+      },
+      "Hitbox 4": {
+         "Offset": 18596
+      },
+      "Hitbox 5": {
+         "Offset": 18616
+      }
+   },
+   "Up-Air": {
+      "Type": 0,
+      "Strength": 4,
+      "Hitbox 0": {
+         "Offset": 18688
+      },
+      "Hitbox 1": {
+         "Offset": 18708
+      },
+      "Hitbox 2": {
+         "Offset": 18728
+      },
+      "Hitbox 3": {
+         "Offset": 18752
+      },
+      "Hitbox 4": {
+         "Offset": 18772
+      },
+      "Hitbox 5": {
+         "Offset": 18792
+      }
+   },
+   "D-air": {
+      "Type": 0,
+      "Strength": 6,
+      "Hitbox 0": {
+         "Offset": 18936
+      },
+      "Hitbox 1": {
+         "Offset": 18956
+      }
+   },
+   "Thunder 1": {
+      "Type": 3,
+      "Strength": 1,
+      "Hitbox 0": {
+         "Offset": 15592
+      }
+   },
+   "Thunder 2": {
+      "Type": 2,
+      "Strength": 2,
+      "Hitbox 0": {
+         "Offset": 14912
+      }
+   },
+   "Thunder Jolt": {
+      "Type": 4,
+      "Strength": 2,
+      "Hitbox 0": {
+         "Offset": 15204
+      }
+   },
+   "Side-B": {
+      "Type": 2,
+      "Strength": 1,
+      "Hitbox 0": {
+         "Offset": 14280
+      }
+   },
+   "Forward Throw": {
+      "Throw": {
+         "Offset": 23392
+      }
+   },
+   "Forward Throw Loop": {
+      "Type": 5,
+      "Strength": 1,
+      "Hitbox 0": {
+         "Offset": 23480
+      }
+   },
+   "Back Throw": {
+      "Throw": {
+         "Offset": 23612
+      }
+   },
+   "Up Throw": {
+      "Throw": {
+         "Offset": 23780
+      }
+   },
+   "Up Throw Hitbox": {
+      "Type": 5,
+      "Strength": 0,
+      "Hitbox 0": {
+         "Offset": 23824
+      }
+   },
+   "Down Throw": {
+      "Throw": {
+         "Offset": 23952
+      }
+   },
+   "Down Throw Hitbox": {
+      "Type": 5,
+      "Strength": 0,
+      "Hitbox 0": {
+         "Offset": 24000
+      }
+   }
+}

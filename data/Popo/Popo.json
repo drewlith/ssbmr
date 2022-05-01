@@ -1,0 +1,213 @@
+{
+   "Jab 1": {
+      "Type": 0,
+      "Strength": 2,
+      "Hitbox 0": {
+         "Offset": 16716
+      },
+      "Hitbox 1": {
+         "Offset": 16736
+      }
+   },
+   "Jab 2": {
+      "Type": 0,
+      "Strength": 2,
+      "Hitbox 0": {
+         "Offset": 16812
+      },
+      "Hitbox 1": {
+         "Offset": 16832
+      }
+   },
+   "Dash Attack": {
+      "Type": 0,
+      "Strength": 5,
+      "Hitbox 0": {
+         "Offset": 16908
+      },
+      "Hitbox 1": {
+         "Offset": 16928
+      }
+   },
+   "F-Tilt": {
+      "Type": 0,
+      "Strength": 4,
+      "Hitbox 0": {
+         "Offset": 17036
+      },
+      "Hitbox 1": {
+         "Offset": 17056
+      }
+   },
+   "Up-Tilt 1": {
+      "Type": 1,
+      "Strength": 1,
+      "Hitbox 0": {
+         "Offset": 17148
+      },
+      "Hitbox 1": {
+         "Offset": 17168
+      }
+   },
+   "Up-Tilt 2": {
+      "Type": 0,
+      "Strength": 5,
+      "Hitbox 0": {
+         "Offset": 17208
+      },
+      "Hitbox 1": {
+         "Offset": 17228
+      }
+   },
+   "Down-Tilt": {
+      "Type": 0,
+      "Strength": 4,
+      "Hitbox 0": {
+         "Offset": 17292
+      },
+      "Hitbox 1": {
+         "Offset": 17312
+      }
+   },
+   "F-Smash": {
+      "Type": 0,
+      "Strength": 8,
+      "Hitbox 0": {
+         "Offset": 17440
+      },
+      "Hitbox 1": {
+         "Offset": 17460
+      }
+   },
+   "Up-Smash": {
+      "Type": 0,
+      "Strength": 8,
+      "Hitbox 0": {
+         "Offset": 17652
+      },
+      "Hitbox 1": {
+         "Offset": 17672
+      }
+   },
+   "Down-Smash": {
+      "Type": 0,
+      "Strength": 8,
+      "Hitbox 0": {
+         "Offset": 17792
+      },
+      "Hitbox 1": {
+         "Offset": 17812
+      }
+   },
+   "N-air": {
+      "Type": 0,
+      "Strength": 5,
+      "Hitbox 0": {
+         "Offset": 17928
+      },
+      "Hitbox 1": {
+         "Offset": 17948
+      }
+   },
+   "F-air Spike": {
+      "Type": 0,
+      "Strength": 5,
+      "Hitbox 0": {
+         "Offset": 18048
+      }
+   },
+   "F-air": {
+      "Type": 0,
+      "Strength": 6,
+      "Hitbox 0": {
+         "Offset": 18068
+      },
+      "Hitbox 1": {
+         "Offset": 18088
+      }
+   },
+   "B-air": {
+      "Type": 0,
+      "Strength": 4,
+      "Hitbox 0": {
+         "Offset": 18164
+      },
+      "Hitbox 1": {
+         "Offset": 18184
+      }
+   },
+   "Up-Air 1": {
+      "Type": 0,
+      "Strength": 4,
+      "Hitbox 0": {
+         "Offset": 18256
+      },
+      "Hitbox 1": {
+         "Offset": 18276
+      }
+   },
+   "Up-Air 2": {
+      "Type": 0,
+      "Strength": 3,
+      "Hitbox 0": {
+         "Offset": 18300
+      },
+      "Hitbox 1": {
+         "Offset": 18320
+      }
+   },
+   "D-air": {
+      "Type": 0,
+      "Strength": 3,
+      "Hitbox 0": {
+         "Offset": 18392
+      },
+      "Hitbox 1": {
+         "Offset": 18412
+      }
+   },
+   "Ice Block": {
+      "Type": 4,
+      "Strength": 2,
+      "Hitbox 0": {
+         "Offset": 15152
+      }
+   },
+   "Forward Throw": {
+      "Throw": {
+         "Offset": 22656
+      }
+   },
+   "Forward Throw Hitbox": {
+      "Type": 5,
+      "Strength": 0,
+      "Hitbox 0": {
+         "Offset": 22716
+      }
+   },
+   "Back Throw": {
+      "Throw": {
+         "Offset": 22812
+      }
+   },
+   "Up Throw": {
+      "Throw": {
+         "Offset": 22932
+      }
+   },
+   "Up Throw Hitbox": {
+      "Type": 5,
+      "Strength": 0,
+      "Hitbox 0": {
+         "Offset": 22976
+      },
+      "Hitbox 1": {
+         "Offset": 22996
+      }
+   },
+   "Down Throw": {
+      "Throw": {
+         "Offset": 23076
+      }
+   }
+}

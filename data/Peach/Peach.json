@@ -1,0 +1,364 @@
+{
+   "Jab 1": {
+      "Type": 0,
+      "Strength": 2,
+      "Hitbox 0": {
+         "Offset": 18756
+      },
+      "Hitbox 1": {
+         "Offset": 18776
+      },
+      "Hitbox 2": {
+         "Offset": 18796
+      },
+      "Hitbox 3": {
+         "Offset": 18816
+      }
+   },
+   "Jab 2": {
+      "Type": 0,
+      "Strength": 3,
+      "Hitbox 0": {
+         "Offset": 18948
+      },
+      "Hitbox 1": {
+         "Offset": 18968
+      },
+      "Hitbox 2": {
+         "Offset": 18988
+      },
+      "Hitbox 3": {
+         "Offset": 19008
+      }
+   },
+   "Dash Attack 1": {
+      "Type": 0,
+      "Strength": 6,
+      "Hitbox 0": {
+         "Offset": 19132
+      },
+      "Hitbox 1": {
+         "Offset": 19152
+      }
+   },
+   "Dash Attack 2": {
+      "Type": 0,
+      "Strength": 3,
+      "Hitbox 0": {
+         "Offset": 19200
+      },
+      "Hitbox 1": {
+         "Offset": 19220
+      }
+   },
+   "F-Tilt 1": {
+      "Type": 0,
+      "Strength": 4,
+      "Hitbox 0": {
+         "Offset": 19276
+      },
+      "Hitbox 1": {
+         "Offset": 19296
+      },
+      "Hitbox 2": {
+         "Offset": 19316
+      },
+      "Hitbox 3": {
+         "Offset": 19460
+      },
+      "Hitbox 4": {
+         "Offset": 19480
+      },
+      "Hitbox 5": {
+         "Offset": 19500
+      }
+   },
+   "F-Tilt 2": {
+      "Type": 0,
+      "Strength": 4,
+      "Hitbox 0": {
+         "Offset": 19344
+      },
+      "Hitbox 1": {
+         "Offset": 19364
+      },
+      "Hitbox 2": {
+         "Offset": 19384
+      },
+      "Hitbox 3": {
+         "Offset": 19528
+      },
+      "Hitbox 4": {
+         "Offset": 19548
+      },
+      "Hitbox 5": {
+         "Offset": 19568
+      }
+   },
+   "F-Smash Golfclub": {
+      "Type": 0,
+      "Strength": 8,
+      "Hitbox 0": {
+         "Offset": 20236
+      },
+      "Hitbox 1": {
+         "Offset": 20256
+      },
+      "Hitbox 2": {
+         "Offset": 20276
+      }
+   },
+   "F-Smash Golfclub Sweetspot": {
+      "Type": 0,
+      "Strength": 9,
+      "Hitbox 0": {
+         "Offset": 20296
+      }
+   },
+   "F-Smash Frypan": {
+      "Type": 0,
+      "Strength": 8,
+      "Hitbox 0": {
+         "Offset": 20564
+      },
+      "Hitbox 1": {
+         "Offset": 20584
+      },
+      "Hitbox 2": {
+         "Offset": 20604
+      }
+   },
+   "F-Smash Tennis Racket": {
+      "Type": 0,
+      "Strength": 8,
+      "Hitbox 0": {
+         "Offset": 20872
+      },
+      "Hitbox 1": {
+         "Offset": 20892
+      },
+      "Hitbox 2": {
+         "Offset": 20912
+      }
+   },
+   "Up-Tilt": {
+      "Type": 0,
+      "Strength": 6,
+      "Hitbox 0": {
+         "Offset": 19676
+      }
+   },
+   "Down-Tilt": {
+      "Type": 0,
+      "Strength": 3,
+      "Hitbox 0": {
+         "Offset": 19784
+      },
+      "Hitbox 1": {
+         "Offset": 19804
+      },
+      "Hitbox 2": {
+         "Offset": 19824
+      },
+      "Hitbox 3": {
+         "Offset": 19844
+      }
+   },
+   "Up-Smash Strong": {
+      "Type": 0,
+      "Strength": 8,
+      "Hitbox 0": {
+         "Offset": 21060
+      },
+      "Hitbox 1": {
+         "Offset": 21080
+      }
+   },
+   "Up-Smash Weak": {
+      "Type": 0,
+      "Strength": 4,
+      "Hitbox 0": {
+         "Offset": 21100
+      }
+   },
+   "Down-Smash": {
+      "Type": 0,
+      "Strength": 5,
+      "Hitbox 0": {
+         "Offset": 21308
+      },
+      "Hitbox 1": {
+         "Offset": 21328
+      },
+      "Hitbox 2": {
+         "Offset": 21348
+      },
+      "Hitbox 3": {
+         "Offset": 21368
+      }
+   },
+   "N-air 1": {
+      "Type": 0,
+      "Strength": 6,
+      "Hitbox 0": {
+         "Offset": 21476
+      },
+      "Hitbox 1": {
+         "Offset": 21496
+      },
+      "Hitbox 2": {
+         "Offset": 21516
+      }
+   },
+   "N-air 2": {
+      "Type": 0,
+      "Strength": 4,
+      "Hitbox 0": {
+         "Offset": 21540
+      },
+      "Hitbox 1": {
+         "Offset": 21560
+      },
+      "Hitbox 2": {
+         "Offset": 21580
+      }
+   },
+   "F-air": {
+      "Type": 0,
+      "Strength": 7,
+      "Hitbox 0": {
+         "Offset": 21688
+      },
+      "Hitbox 1": {
+         "Offset": 21708
+      }
+   },
+   "B-air 1": {
+      "Type": 0,
+      "Strength": 4,
+      "Hitbox 0": {
+         "Offset": 21812
+      }
+   },
+   "B-air 2": {
+      "Type": 0,
+      "Strength": 3,
+      "Hitbox 0": {
+         "Offset": 21836
+      }
+   },
+   "Up-Air": {
+      "Type": 0,
+      "Strength": 6,
+      "Hitbox 0": {
+         "Offset": 21908
+      },
+      "Hitbox 1": {
+         "Offset": 21928
+      },
+      "Hitbox 2": {
+         "Offset": 21948
+      }
+   },
+   "D-Air 1": {
+      "Type": 1,
+      "Strength": 1,
+      "Hitbox 0": {
+         "Offset": 22024
+      },
+      "Hitbox 1": {
+         "Offset": 22044
+      }
+   },
+   "D-Air 2": {
+      "Type": 0,
+      "Strength": 2,
+      "Hitbox 0": {
+         "Offset": 22092
+      },
+      "Hitbox 1": {
+         "Offset": 22112
+      }
+   },
+   "Parasol First Hit": {
+      "Type": 2,
+      "Strength": 3,
+      "Hitbox 0": {
+         "Offset": 15496
+      },
+      "Hitbox 1": {
+         "Offset": 15516
+      }
+   },
+   "Parasol Loop": {
+      "Type": 3,
+      "Strength": 1,
+      "Hitbox 0": {
+         "Offset": 15592
+      },
+      "Hitbox 1": {
+         "Offset": 15612
+      },
+      "Hitbox 2": {
+         "Offset": 15648
+      },
+      "Hitbox 3": {
+         "Offset": 15668
+      }
+   },
+   "Parasol Re-open": {
+      "Type": 2,
+      "Strength": 1,
+      "Hitbox 0": {
+         "Offset": 30992
+      }
+   },
+   "Forward Throw": {
+      "Throw": {
+         "Offset": 28044
+      }
+   },
+   "Forward Throw Hitbox": {
+      "Type": 5,
+      "Strength": 1,
+      "Hitbox 0": {
+         "Offset": 28072
+      }
+   },
+   "Back Throw": {
+      "Throw": {
+         "Offset": 28168
+      }
+   },
+   "Back Throw Hitbox": {
+      "Type": 5,
+      "Strength": 1,
+      "Hitbox 0": {
+         "Offset": 28204
+      }
+   },
+   "Up Throw": {
+      "Throw": {
+         "Offset": 28316
+      }
+   },
+   "Up Throw Hitbox": {
+      "Type": 5,
+      "Strength": 0,
+      "Hitbox 0": {
+         "Offset": 28356
+      }
+   },
+   "Down Throw": {
+      "Throw": {
+         "Offset": 28432
+      }
+   },
+   "Down Throw Hitbox": {
+      "Type": 5,
+      "Strength": 0,
+      "Hitbox 0": {
+         "Offset": 28464
+      }
+   }
+}

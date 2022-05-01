@@ -1,0 +1,333 @@
+{
+   "Jab 1": {
+      "Type": 0,
+      "Strength": 2,
+      "Hitbox 0": {
+         "Offset": 17752
+      },
+      "Hitbox 1": {
+         "Offset": 17772
+      }
+   },
+   "Jab 2": {
+      "Type": 0,
+      "Strength": 2,
+      "Hitbox 0": {
+         "Offset": 17852
+      },
+      "Hitbox 1": {
+         "Offset": 17872
+      }
+   },
+   "Dash Attack 1": {
+      "Type": 0,
+      "Strength": 5,
+      "Hitbox 0": {
+         "Offset": 18116
+      },
+      "Hitbox 1": {
+         "Offset": 18136
+      }
+   },
+   "Dash Attack 2": {
+      "Type": 0,
+      "Strength": 3,
+      "Hitbox 0": {
+         "Offset": 18196
+      },
+      "Hitbox 1": {
+         "Offset": 18216
+      }
+   },
+   "F-Tilt": {
+      "Type": 0,
+      "Strength": 4,
+      "Hitbox 0": {
+         "Offset": 18260
+      },
+      "Hitbox 1": {
+         "Offset": 18280
+      },
+      "Hitbox 2": {
+         "Offset": 18300
+      }
+   },
+   "Up-Tilt": {
+      "Type": 0,
+      "Strength": 6,
+      "Hitbox 0": {
+         "Offset": 18424
+      },
+      "Hitbox 1": {
+         "Offset": 18444
+      },
+      "Hitbox 2": {
+         "Offset": 18464
+      },
+      "Hitbox 3": {
+         "Offset": 18484
+      }
+   },
+   "Down-Tilt": {
+      "Type": 0,
+      "Strength": 5,
+      "Hitbox 0": {
+         "Offset": 18572
+      },
+      "Hitbox 1": {
+         "Offset": 18592
+      },
+      "Hitbox 2": {
+         "Offset": 18612
+      }
+   },
+   "F-Smash 1": {
+      "Type": 0,
+      "Strength": 8,
+      "Hitbox 0": {
+         "Offset": 18764
+      },
+      "Hitbox 1": {
+         "Offset": 18784
+      },
+      "Hitbox 2": {
+         "Offset": 18804
+      }
+   },
+   "F-Smash 2": {
+      "Type": 0,
+      "Strength": 6,
+      "Hitbox 0": {
+         "Offset": 18844
+      },
+      "Hitbox 1": {
+         "Offset": 18864
+      },
+      "Hitbox 2": {
+         "Offset": 18884
+      }
+   },
+   "Up-Smash 1": {
+      "Type": 0,
+      "Strength": 8,
+      "Hitbox 0": {
+         "Offset": 19008
+      },
+      "Hitbox 1": {
+         "Offset": 19028
+      }
+   },
+   "Up-Smash 2": {
+      "Type": 0,
+      "Strength": 6,
+      "Hitbox 0": {
+         "Offset": 19092
+      },
+      "Hitbox 1": {
+         "Offset": 19112
+      }
+   },
+   "Down-Smash": {
+      "Type": 0,
+      "Strength": 8,
+      "Hitbox 0": {
+         "Offset": 19236
+      },
+      "Hitbox 1": {
+         "Offset": 19256
+      },
+      "Hitbox 2": {
+         "Offset": 19276
+      },
+      "Hitbox 3": {
+         "Offset": 19296
+      }
+   },
+   "N-air 1": {
+      "Type": 0,
+      "Strength": 6,
+      "Hitbox 0": {
+         "Offset": 19440
+      },
+      "Hitbox 1": {
+         "Offset": 19460
+      },
+      "Hitbox 2": {
+         "Offset": 19480
+      }
+   },
+   "N-air 2": {
+      "Type": 0,
+      "Strength": 4,
+      "Hitbox 0": {
+         "Offset": 19520
+      },
+      "Hitbox 1": {
+         "Offset": 19540
+      },
+      "Hitbox 2": {
+         "Offset": 19560
+      }
+   },
+   "F-air": {
+      "Type": 0,
+      "Strength": 5,
+      "Hitbox 0": {
+         "Offset": 19652
+      },
+      "Hitbox 1": {
+         "Offset": 19672
+      },
+      "Hitbox 2": {
+         "Offset": 19720
+      },
+      "Hitbox 3": {
+         "Offset": 19740
+      },
+      "Hitbox 4": {
+         "Offset": 19808
+      },
+      "Hitbox 5": {
+         "Offset": 19828
+      },
+      "Hitbox 6": {
+         "Offset": 19876
+      },
+      "Hitbox 7": {
+         "Offset": 19896
+      },
+      "Hitbox 8": {
+         "Offset": 19968
+      },
+      "Hitbox 9": {
+         "Offset": 19988
+      }
+   },
+   "B-air 1": {
+      "Type": 0,
+      "Strength": 6,
+      "Hitbox 0": {
+         "Offset": 20060
+      },
+      "Hitbox 1": {
+         "Offset": 20080
+      },
+      "Hitbox 2": {
+         "Offset": 20100
+      }
+   },
+   "B-air 2": {
+      "Type": 0,
+      "Strength": 4,
+      "Hitbox 0": {
+         "Offset": 20140
+      },
+      "Hitbox 1": {
+         "Offset": 20160
+      },
+      "Hitbox 2": {
+         "Offset": 20180
+      }
+   },
+   "Up-Air 1": {
+      "Type": 0,
+      "Strength": 3,
+      "Hitbox 0": {
+         "Offset": 20236
+      },
+      "Hitbox 1": {
+         "Offset": 20256
+      },
+      "Hitbox 2": {
+         "Offset": 20276
+      }
+   },
+   "Up-Air 2": {
+      "Type": 0,
+      "Strength": 6,
+      "Hitbox 0": {
+         "Offset": 20324
+      },
+      "Hitbox 1": {
+         "Offset": 20344
+      },
+      "Hitbox 2": {
+         "Offset": 20364
+      }
+   },
+   "D-air": {
+      "Type": 1,
+      "Strength": 1,
+      "Hitbox 0": {
+         "Offset": 20448
+      },
+      "Hitbox 1": {
+         "Offset": 20468
+      }
+   },
+   "Laser": {
+      "Type": 4,
+      "Strength": 0,
+      "Hitbox 0": {
+         "Offset": 16092
+      }
+   },
+   "Phantasm": {
+      "Type": 2,
+      "Strength": 5,
+      "Hitbox 0": {
+         "Offset": 16580
+      },
+      "Hitbox 1": {
+         "Offset": 16608
+      }
+   },
+   "Firefox Flames": {
+      "Type": 3,
+      "Strength": 1,
+      "Hitbox 0": {
+         "Offset": 15244
+      }
+   },
+   "Firefox": {
+      "Type": 2,
+      "Strength": 5,
+      "Hitbox 0": {
+         "Offset": 15364
+      }
+   },
+   "Shine": {
+      "Type": 2,
+      "Strength": 5,
+      "Hitbox 0": {
+         "Offset": 15516
+      }
+   },
+   "Forward Throw": {
+      "Throw": {
+         "Offset": 24868
+      }
+   },
+   "Forward Throw Hitbox": {
+      "Type": 5,
+      "Strength": 1,
+      "Hitbox": {
+         "Offset": 24896
+      }
+   },
+   "Back Throw": {
+      "Throw": {
+         "Offset": 25004
+      }
+   },
+   "Up Throw": {
+      "Throw": {
+         "Offset": 25192
+      }
+   },
+   "Down Throw": {
+      "Throw": {
+         "Offset": 25312
+      }
+   }
+}

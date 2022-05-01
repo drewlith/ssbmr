@@ -1,0 +1,312 @@
+{
+   "Jab 1": {
+      "Type": 0,
+      "Strength": 2,
+      "Hitbox 0": {
+         "Offset": 17108
+      },
+      "Hitbox 1": {
+         "Offset": 17128
+      }
+   },
+   "Dash Attack 1": {
+      "Type": 0,
+      "Strength": 4,
+      "Hitbox 0": {
+         "Offset": 17444
+      },
+      "Hitbox 1": {
+         "Offset": 17464
+      },
+      "Hitbox 2": {
+         "Offset": 17484
+      }
+   },
+   "Dash Attack 2": {
+      "Type": 0,
+      "Strength": 3,
+      "Hitbox 0": {
+         "Offset": 17564
+      },
+      "Hitbox 1": {
+         "Offset": 17584
+      },
+      "Hitbox 2": {
+         "Offset": 17604
+      }
+   },
+   "F-Tilt Sweetspot": {
+      "Type": 0,
+      "Strength": 5,
+      "Hitbox 0": {
+         "Offset": 17660
+      },
+      "Hitbox 1": {
+         "Offset": 17680
+      },
+      "Hitbox 2": {
+         "Offset": 17788
+      },
+      "Hitbox 3": {
+         "Offset": 17808
+      },
+      "Hitbox 4": {
+         "Offset": 17936
+      },
+      "Hitbox 5": {
+         "Offset": 17956
+      }
+   },
+   "F-Tilt Weak": {
+      "Type": 0,
+      "Strength": 3,
+      "Hitbox 0": {
+         "Offset": 17700
+      },
+      "Hitbox 1": {
+         "Offset": 17828
+      },
+      "Hitbox 2": {
+         "Offset": 17976
+      }
+   },
+   "Up-Tilt Weak": {
+      "Type": 0,
+      "Strength": 3,
+      "Hitbox 0": {
+         "Offset": 18068
+      },
+      "Hitbox 1": {
+         "Offset": 18128
+      }
+   },
+   "Up-Tilt Sweetspot": {
+      "Type": 0,
+      "Strength": 6,
+      "Hitbox 0": {
+         "Offset": 18088
+      },
+      "Hitbox 1": {
+         "Offset": 18108
+      }
+   },
+   "Down-Tilt": {
+      "Type": 0,
+      "Strength": 6,
+      "Hitbox 0": {
+         "Offset": 18288
+      },
+      "Hitbox 1": {
+         "Offset": 18308
+      },
+      "Hitbox 2": {
+         "Offset": 18328
+      }
+   },
+   "F-Smash": {
+      "Type": 0,
+      "Strength": 8,
+      "Hitbox 0": {
+         "Offset": 18524
+      },
+      "Hitbox 1": {
+         "Offset": 18544
+      }
+   },
+   "Up-Smash Loop": {
+      "Type": 1,
+      "Strength": 1,
+      "Hitbox 0": {
+         "Offset": 18800
+      },
+      "Hitbox 1": {
+         "Offset": 18820
+      },
+      "Hitbox 2": {
+         "Offset": 18840
+      },
+      "Hitbox 3": {
+         "Offset": 18860
+      }
+   },
+   "Up-Smash Hit": {
+      "Type": 0,
+      "Strength": 6,
+      "Hitbox 0": {
+         "Offset": 18896
+      },
+      "Hitbox 1": {
+         "Offset": 18916
+      },
+      "Hitbox 2": {
+         "Offset": 18936
+      },
+      "Hitbox 3": {
+         "Offset": 18956
+      }
+   },
+   "Down-Smash": {
+      "Type": 0,
+      "Strength": 8,
+      "Hitbox 0": {
+         "Offset": 19080
+      },
+      "Hitbox 1": {
+         "Offset": 19100
+      }
+   },
+   "N-air 1": {
+      "Type": 1,
+      "Strength": 1,
+      "Hitbox 0": {
+         "Offset": 19276
+      },
+      "Hitbox 1": {
+         "Offset": 19296
+      },
+      "Hitbox 2": {
+         "Offset": 19316
+      },
+      "Hitbox 3": {
+         "Offset": 19336
+      }
+   },
+   "N-air 2": {
+      "Type": 0,
+      "Strength": 5,
+      "Hitbox 0": {
+         "Offset": 19424
+      }
+   },
+   "F-air": {
+      "Type": 0,
+      "Strength": 6,
+      "Hitbox 0": {
+         "Offset": 19520
+      },
+      "Hitbox 1": {
+         "Offset": 19540
+      }
+   },
+   "B-air": {
+      "Type": 0,
+      "Strength": 4,
+      "Hitbox 0": {
+         "Offset": 19640
+      },
+      "Hitbox 1": {
+         "Offset": 19660
+      },
+      "Hitbox 2": {
+         "Offset": 19680
+      }
+   },
+   "Up-Air": {
+      "Type": 0,
+      "Strength": 6,
+      "Hitbox 0": {
+         "Offset": 19768
+      },
+      "Hitbox 1": {
+         "Offset": 19788
+      },
+      "Hitbox 2": {
+         "Offset": 19808
+      }
+   },
+   "D-air": {
+      "Type": 0,
+      "Strength": 5,
+      "Hitbox 0": {
+         "Offset": 19916
+      },
+      "Hitbox 1": {
+         "Offset": 19936
+      },
+      "Hitbox 2": {
+         "Offset": 19956
+      }
+   },
+   "Shadow Ball Charge": {
+      "Type": 2,
+      "Strength": 1,
+      "Hitbox 0": {
+         "Offset": 14740
+      }
+   },
+   "Shadow Ball Full Charge": {
+      "Type": 2,
+      "Strength": 2,
+      "Hitbox 0": {
+         "Offset": 14804
+      }
+   },
+   "Shadow Ball Stage 1": {
+      "Type": 4,
+      "Strength": 1,
+      "Hitbox 0": {
+         "Offset": 15828
+      }
+   },
+   "Shadow Ball Stage 2": {
+      "Type": 4,
+      "Strength": 2,
+      "Hitbox 0": {
+         "Offset": 15884
+      }
+   },
+   "Shadow Ball Stage 3": {
+      "Type": 2,
+      "Strength": 3,
+      "Hitbox 0": {
+         "Offset": 15940
+      }
+   },
+   "Shadow Ball Stage 4": {
+      "Type": 2,
+      "Strength": 8,
+      "Hitbox 0": {
+         "Offset": 16024
+      }
+   },
+   "Disable": {
+      "Type": 2,
+      "Strength": 0,
+      "Hitbox 0": {
+         "Offset": 15616
+      }
+   },
+   "Forward Throw": {
+      "Throw": {
+         "Offset": 24284
+      }
+   },
+   "Back Throw": {
+      "Throw": {
+         "Offset": 24448
+      }
+   },
+   "Up Throw": {
+      "Throw": {
+         "Offset": 24620
+      }
+   },
+   "Down Throw": {
+      "Throw": {
+         "Offset": 24776
+      }
+   },
+   "Down Throw Hitboxes": {
+      "Type": 5,
+      "Strength": 1,
+      "Hitbox 0": {
+         "Offset": 24804
+      },
+      "Hitbox 1": {
+         "Offset": 24824
+      },
+      "Hitbox 2": {
+         "Offset": 24844
+      }
+   }
+}
