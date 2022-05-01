@@ -12,7 +12,7 @@ Community Mod Pack Download (~1GB): https://drive.google.com/file/d/1TZLGM9KIU5_
 
 To install the mod pack: Unzip the file and merge the 'data/' folder with the SSBM Randomizer 'data/' folder.
 
-Adds a large amount of mods which the randomizer will randomly apply to the game to make modifications to the looks of the character skins, stages, character select screen, stage select screen, and music. You can also play Slippi unranked using these mods, just select the "Slippi Unranked Mode" game mode in the application and it should change anything except the visuals, allowing it to be compatible with vanilla melee on Slippi.
+Adds a large amount of mods which the randomizer will randomly apply to the game to make modifications to the looks of the character skins, stages, character select screen, stage select screen, and music. You can also play Slippi unranked using these mods, just select the "Slippi Unranked Mode" game mode in the application and it won't change anything except the visuals, allowing it to be compatible with vanilla melee on Slippi.
 
 SSBMr Discord: https://discord.gg/2bC5xNk9pp
 
