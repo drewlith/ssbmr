@@ -2,13 +2,13 @@
 
 A randomizer for Super Smash Bros. Melee. It randomizes hitbox data, character attributes, various visual elements, and music. Some modes will apply a logic to the randomization keeping moves similar in power to how they are normally which makes things relatively competitive. Chaos modes are also offered, for a truly wild and nonsensical fun time.
  
-Download: (Prerelease, updated 5/8/2022 (fixed unranked mode)): [SSBM Randomizer.zip](https://github.com/drewlith/ssbmr/files/8648790/SSBM.Randomizer.zip)
+Download: (Prerelease, updated 5/8/2022 fixed unranked mode): [SSBM Randomizer.zip](https://github.com/drewlith/ssbmr/files/8648790/SSBM.Randomizer.zip)
 
 Try out your favorite 1P modes but with a new twist! You may find yourself using moves you wouldn't normally, or find that a 'low-tier' character is now an unstoppable behemoth!
 
 To play with friends on Slippi: Select the same game mode and then input the same seed, then both players should run Slippi using the randomized iso and play like normal. This will work whether or not you have the Community Mod Pack installed. Don't try unranked when using a randomized iso, you'll get desyncs unless you choose "Slippi Unranked Mode".
 
-Community Mod Pack Download (~1GB): https://drive.google.com/file/d/1TZLGM9KIU5_0cF84mVqBJDO2tSoes6Je/view?usp=sharing
+Community Mod Pack Download (updated) (~1GB): https://drive.google.com/file/d/1LA2KxjN85aK67eu-ejb4f1eXOeNjDfwd/view?usp=sharing
 
 To install the mod pack: Unzip the file and merge the 'data/' folder with the SSBM Randomizer 'data/' folder.
 
