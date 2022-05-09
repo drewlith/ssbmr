@@ -122,7 +122,7 @@ def replace_file(name, new_file_path):
         file.set_file_length(len(new_file_data))
 
         offset_adjustment = old_length - file.get_file_length() # Calculate offset adjustment
-        offset_adjustment += offset_adjustment % 4
+        offset_adjustment += offset_adjustment % 0x20
 
         for f in fst_files:
             if f.get_file_offset() > old_offset: # For any offset greater than thi
@@ -372,6 +372,7 @@ def start(iso_path):
     replace_file(b'MvHowto.mth', "data/none.mth") # Delete Movies
     replace_file(b'MvOmake15.mth', "data/none.mth")
     #custom_content_test() # Comment in build
+    print(custom_only)
     if not custom_only:
         get_fighter_data()
 

@@ -1,6 +1,6 @@
 import hitbox, util
 
-path = "PlDk.dat"
+path = "PlKp.dat"
 elements = ["Normal", "Fire", "Electric", "Slash", "Coin", "Ice", "Sleep", "Sleep", "Grounded", "Grounded", "Cape", "None", "Disable", "Dark", "Screw Attack", "Flower", "None"]
 
 data = bytearray(open(path, "rb").read())

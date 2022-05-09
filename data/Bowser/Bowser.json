@@ -204,9 +204,15 @@
       "Type": 2,
       "Strength": 5,
       "Hitbox 0": {
-         "Offset": 14780
+         "Offset": 14740
       },
       "Hitbox 1": {
+         "Offset": 14760
+      },
+      "Hitbox 2": {
+         "Offset": 14780
+      },
+      "Hitbox 3": {
          "Offset": 14800
       }
    },
@@ -267,9 +273,6 @@
       "Strength": 1,
       "Hitbox 0": {
          "Offset": 16656
-      },
-      "Hitbox 1": {
-         "Offset": 16676
       }
    },
    "Ground Pound": {

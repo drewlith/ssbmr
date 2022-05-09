@@ -65,13 +65,13 @@ def start_randomizer():
 
     if game_mode.get() in "Standard":
         randomizer.chaos = 5
-        randomizer.random_percent = 20
+        randomizer.random_percent = 50
         randomizer.balance_percent = 100
         randomizer.inclusion_percent = 80
         randomizer.attributes = True
         randomizer.a_floor = 0.9
         randomizer.a_ceiling = 1.1
-        randomizer.customs_only = False
+        randomizer.custom_only = False
 
     if game_mode.get() in "Competitive":
         randomizer.chaos = 0
@@ -87,7 +87,7 @@ def start_randomizer():
         randomizer.balance_percent = 0
         randomizer.inclusion_percent = 100
         randomizer.attributes = False
-        randomizer.customs_only = False
+        randomizer.custom_only = False
 
     if game_mode.get() in "All Random":
         randomizer.chaos = 0
@@ -95,7 +95,7 @@ def start_randomizer():
         randomizer.balance_percent = 0
         randomizer.inclusion_percent = 100
         randomizer.attributes = False
-        randomizer.customs_only = False
+        randomizer.custom_only = False
 
     if game_mode.get() in "Shuffle Balanced":
         randomizer.chaos = 0
@@ -103,7 +103,7 @@ def start_randomizer():
         randomizer.balance_percent = 100
         randomizer.inclusion_percent = 100
         randomizer.attributes = False
-        randomizer.customs_only = False
+        randomizer.custom_only = False
 
     if game_mode.get() in "Random Balanced":
         randomizer.chaos = 0
@@ -111,7 +111,7 @@ def start_randomizer():
         randomizer.balance_percent = 100
         randomizer.inclusion_percent = 100
         randomizer.attributes = False
-        randomizer.customs_only = False
+        randomizer.custom_only = False
 
     if game_mode.get() in "Chaotic":
         randomizer.chaos = 50
@@ -121,7 +121,7 @@ def start_randomizer():
         randomizer.a_floor = 0.8
         randomizer.a_ceiling = 1.25
         randomizer.attributes = True
-        randomizer.customs_only = False
+        randomizer.custom_only = False
 
     if game_mode.get() in "True Chaos":
         randomizer.chaos = 100
@@ -131,10 +131,10 @@ def start_randomizer():
         randomizer.a_floor = 0.5
         randomizer.a_ceiling = 1.5
         randomizer.attributes = True
-        randomizer.customs_only = False
+        randomizer.custom_only = False
 
     if game_mode.get() in "Slippi Unranked Mode":
-        randomizer.customs_only = True
+        randomizer.custom_only = True
         
     randomizer.main(iso_path, out_path + "\SSBM_Randomizer_v1.0-" + seed + ".iso")
     

@@ -1,17 +1,38 @@
 import random, melee
 from os import listdir
+from os.path import exists
+
+all_credits = ""
 
 def randomize(path, file):
-    customs = listdir(path)
+    global all_credits
+    files = listdir(path)
+    customs = []
+    credits_file_path = ""
+    for i in range(len(files)):
+        if ".hps" or ".usd" or ".dat" in files[i]:
+            if ".txt" not in files[i]:
+                customs.append(files[i])
+    if len (customs) == 0: return
     rng = random.randint(0, len(customs)-1)
+    credits_file_path = customs[rng] + ".txt"
     melee.replace_file(file, path + "/" + customs[rng])
+    if exists(path + "/" + credits_file_path):
+        credits_file = open(path + "/" + credits_file_path, "r")
+        all_credits += credits_file.read() + "\n\n"
+        credits_file.close()
     
-def random_all(seed):
+def random_all(seed, output_dir):
     random.seed(seed)
     random_textures()
     random_stages()
     random_music()
     random_misc()
+    if len (all_credits) == 0: return
+    path = output_dir.replace(".iso", "-credits.txt")
+    credits_output = open(path, "w")
+    credits_output.write(all_credits)
+    credits_output.close()
 
 def random_textures():
     randomize("data/Bowser/Black", b'PlKpBk.dat') # Bowser

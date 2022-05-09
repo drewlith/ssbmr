@@ -12,6 +12,9 @@ a_ceiling = 1.1 # Attribute Multiplier Ceiling
 customs = True
 custom_only = False
 
+elements = ["Normal", "Fire", "Electric", "Slash", "Coin", "Ice", "Sleep", "Sleep", "Grounded", "Grounded", "Cape", "None", "Disable", "Dark", "Screw Attack", "Flower", "None"]
+sfx = [65, 70, 66, 34, 67, 35, 72, 40, 5, 33, 69, 1, 2, 38, 39, 37, 18, 76, 8, 168, 71, 36, 42, 10, 3, 74, 6, 167, 24, 17, 11, 135, 68, 7, 146, 44, 12]
+
 def percent_chance(chance): # Util, enter chance in %
     rng = random.randint(0,99)
     if rng < chance:
@@ -22,10 +25,12 @@ def percent_chance(chance): # Util, enter chance in %
 def random_damage(attack, target, balance = False): # Damage
     if attack.random: # Random
         if balance:
-            attack.damage = random.randint(attack.strength+3,attack.strength*2+4)
+            attack.damage = random.randint(attack.strength+1,attack.strength*2+2)
+            if attack.strength >= 4:
+                attack.damage += attack.strength-3
         else:
-            attack.damage = random.randint(1,20)
-            if percent_chance(1):
+            attack.damage = random.randint(1,22)
+            if percent_chance(2):
                 attack.damage += 10
     else: # Shuffle
         temp = attack.damage
@@ -56,18 +61,18 @@ def random_shield(attack, target, balance = False): # Shield Damage
 
 def random_angle(attack, target): # Angle
     if attack.random:
-        if percent_chance(30): # Sakurai
+        if percent_chance(40): # Sakurai
             angle = 361
-        elif percent_chance(30): # Star KO
+        elif percent_chance(40): # Star KO
             angle = random.randint(60,85)
         elif percent_chance(30): # Send out to side
             angle = random.randint(35,60)
 
         elif percent_chance(4): # Meteor
             angle = random.randint(250,270)
-        elif percent_chance(4): # Semi-Spike/Side KO
+        elif percent_chance(7): # Semi-Spike/Side KO
             angle = random.randint(25,32)
-        elif percent_chance(4): # Spike
+        elif percent_chance(10): # Spike
             angle = random.randint(290,300)
         else:
             angle = random.randint(0,360) # Random
@@ -86,15 +91,15 @@ def random_angle(attack, target): # Angle
 def random_kb(attack, target, balance = False): # Knockback growth/base
     if attack.random:
         if balance:
-            if percent_chance(50):
-                attack.growth = random.randint((attack.strength+1)*10,attack.strength*15+14)
-                attack.base = random.randint(attack.strength*4,attack.strength*6)
+            if percent_chance(40):
+                attack.growth = random.randint((attack.strength+1)*10+10,attack.strength*16+35)
+                attack.base = random.randint(attack.strength*2,attack.strength*6)
             else:
-                attack.growth = random.randint(attack.strength*4,attack.strength*8)
+                attack.growth = random.randint(attack.strength*5,attack.strength*12)
                 attack.base = random.randint(attack.strength*10,attack.strength*14)
         else:
-            attack.growth = random.randint(40,160)
-            attack.base = random.randint(0,80)
+            attack.growth = random.randint(70,160)
+            attack.base = random.randint(10,100)
     else:
         temp = attack.growth
         attack.growth = target.growth
@@ -143,7 +148,7 @@ def random_element(attack, target, throw = False): # Element
 
 def random_sfx(attack, target): # SFX
     if attack.random:
-        attack.sfx = random.randint(0,255)
+        attack.sfx = sfx[random.randint(0,len(sfx)-1)]
     else:
         temp = attack.sfx
         attack.sfx = target.sfx
@@ -246,39 +251,54 @@ def random_landing(_fighter):
             values[i] = float(random.randint(12,22)) # L-Cancel. Laggy moves will be buffed
     _fighter.set_landing_lags(values)
     _fighter.swaps[6] = "Random"
+
+def randomize_attacks(attacks):
+    for a in attacks:
+        if percent_chance(balance_percent):
+            t = attacks[random.randint(0,len(attacks)-1)]
+            a.balance = True
+        else:
+            t = melee.attacks[random.randint(0,len(melee.attacks)-1)]
+            
+        if percent_chance(inclusion_percent):
+            random_damage(a,t,a.balance)
+            random_shield(a,t,a.balance)
+            random_angle(a,t)
+            random_kb(a,t,a.balance)
+            random_wdsk(a,t)
+            random_element(a,t)
+            random_sfx(a,t)
+            #random_size(a,t)
+
+        if not a.random:
+            temp = a.shuffled_with
+            a.shuffled_with = t.shuffled_with
+            t.shuffled_with = temp
         
 def randomize():
     tiers = [[],[],[],[],[],[],[],[],[],[],[]]
+    item_tiers = [[],[],[],[],[],[],[],[],[],[],[]]
     for attack in melee.attacks:
         attack.get_parameters_from_reference_hitbox()
-        tiers[attack.strength].append(attack)
-        if percent_chance(random_percent):
-            attack.random = True
+        if attack.type == 6:
+            item_tiers[attack.strength].append(attack)
+            if percent_chance(random_percent):
+                attack.random = True
+        else:
+            tiers[attack.strength].append(attack)
+            if percent_chance(random_percent):
+                attack.random = True
             
     for tier in tiers:
-        for a in tier:
-            if percent_chance(balance_percent):
-                t = tier[random.randint(0,len(tier)-1)]
-                a.balance = True
-            else:
-                t = melee.attacks[random.randint(0,len(melee.attacks)-1)]
-            if percent_chance(inclusion_percent):
-                random_damage(a,t,a.balance)
-                random_shield(a,t,a.balance)
-                random_angle(a,t)
-                random_kb(a,t,a.balance)
-                random_wdsk(a,t)
-                random_element(a,t)
-                random_sfx(a,t)
-                #random_size(a,t)
+        randomize_attacks(tier)
 
-                if not a.random:
-                    temp = a.shuffled_with
-                    a.shuffled_with = t.shuffled_with
-                    t.shuffled_with = temp
+    for item in item_tiers:
+        randomize_attacks(item)
 
     for throw in melee.throws:
         throw.get_parameters()
+        if percent_chance(random_percent):
+            throw.random = True
 
     for throw in melee.throws:
         t = melee.throws[random.randint(0,len(melee.throws)-1)]
@@ -319,33 +339,89 @@ def randomize():
 def log_spoilers(log):
     for f in melee.fighters:
         log.write("\n=====" + f.name + "=====\n")
-        log.write("--Attributes:\n")
-        if len(f.swaps[0]) > 0: log.write("Weight >>> " + f.swaps[0] + "\n")
-        if len(f.swaps[1]) > 0: log.write("Scale >>> " + f.swaps[1] + "\n")
-        if len(f.swaps[2]) > 0: log.write("Shield Size >>> " + f.swaps[2] + "\n")
-        if len(f.swaps[3]) > 0: log.write("Air Speed >>> " + f.swaps[3] + "\n")
-        if len(f.swaps[4]) > 0: log.write("Ground Speed >>> " + f.swaps[4] + "\n")
-        if len(f.swaps[5]) > 0: log.write("Jump Properties >>> " + f.swaps[5] + "\n")
-        if len(f.swaps[6]) > 0: log.write("Landing Frames >>> " + f.swaps[6] + "\n")
-        log.write("--Attacks:\n")
+        log.write("\n--Attributes:\n")
+        if len(f.swaps[0]) > 0: log.write("\nWeight >>> " + f.swaps[0] + " (" + str(f.get_weight()) + ")" + "\n")
+        if len(f.swaps[1]) > 0: log.write("\nScale >>> " + f.swaps[1] + " (" + str(f.get_scale()) + ")"+ "\n")
+        if len(f.swaps[2]) > 0: log.write("\nShield Size >>> " + f.swaps[2] + " (" + str(f.get_shield_size()) + ")" + "\n")
+        if len(f.swaps[3]) > 0:
+            log.write("\nAir Speed >>> " + f.swaps[3] + "\n")
+            values = f.get_air_attributes()
+            log.write("Gravity: " + str(values[0]) + "\n")
+            log.write("Terminal Velocity: " + str(values[1]) + "\n")
+            log.write("Mobility A: " + str(values[2]) + "\n")
+            log.write("Mobility B: " + str(values[3]) + "\n")
+            log.write("Horizontal T. Velocity: " + str(values[4]) + "\n")
+            log.write("Air Friction: " + str(values[5]) + "\n")
+            log.write("Fast Fall T. Velocity: " + str(values[6]) + "\n")
+        if len(f.swaps[4]) > 0:
+            log.write("\nGround Speed >>> " + f.swaps[4] + "\n")
+            values = f.get_ground_attributes()
+            log.write("Walk Initial Velocity: " + str(values[0]) + "\n")
+            log.write("Walk Max Velocity: " + str(values[2]) + "\n")
+            log.write("Friction: " + str(values[6]) + "\n")
+            log.write("Dash Initial Velocity: " + str(values[7]) + "\n")
+            log.write("Dash/Run Terminal Velocity: " + str(values[10]) + "\n")
+        if len(f.swaps[5]) > 0:
+            log.write("\nJump Properties >>> " + f.swaps[5] + "\n")
+            values = f.get_jump_attributes()
+            log.write("Jumpsquat: " + str(values[0]) + "\n")
+            log.write("Initial H Velocity: " + str(values[1]) + "\n")
+            log.write("Initial V Velocity: " + str(values[2]) + "\n")
+            log.write("Ground to Air Multiplier: " + str(values[3]) + "\n")
+            log.write("Max H Velocity: " + str(values[4]) + "\n")
+            log.write("Shorthop V Velocity: " + str(values[5]) + "\n")
+            log.write("Air Jump Multiplier: " + str(values[6]) + "\n")
+            log.write("Double Jump Momentum: " + str(values[7]) + "\n")
+        if len(f.swaps[6]) > 0:
+            log.write("\nLanding Frames >>> " + f.swaps[6] + "\n")
+            values = f.get_landing_lags()
+            log.write("Landing Lag: " + str(values[0]) + "\n")
+            log.write("N-air Lag: " + str(values[1]) + "\n")
+            log.write("F-air Lag: " + str(values[2]) + "\n")
+            log.write("B-air Lag: " + str(values[3]) + "\n")
+            log.write("U-air Lag: " + str(values[4]) + "\n")
+            log.write("D-air Lag: " + str(values[5]) + "\n")
+
+        log.write("\n--Attacks:\n")
         for a in f.attacks:
             log_string = ""
             if a.chaos: log_string += "[Chaos] "
             if a.balance: log_string += "[Balanced] "
             log_string += a.attack_name
-            if a.random: log_string += " >>> Random!!"
-            else: log_string += " >>> " + a.shuffled_with
-            log_string += "\n"
+            if a.random:
+                log_string += " >>> Random \n"
+            else:
+                log_string += " >>> " + a.shuffled_with + " \n"
+            log_string += "DAM: " + str(a.hitboxes[0].get_damage()) + " | "
+            log_string += "SHD: " + str(a.hitboxes[0].get_shield()) + " | "
+            log_string += "ANG: " + str(a.hitboxes[0].get_angle()) + " | "
+            log_string += "KBG: " + str(a.hitboxes[0].get_growth()) + " | "
+            log_string += "BKB: " + str(a.hitboxes[0].get_base()) + " | "
+            log_string += "SET: " + str(a.hitboxes[0].get_set()) + " | "
+            log_string += "SFX: " + str(a.hitboxes[0].get_sfx()) + " | "
+            log_string += "STR: " + str(a.strength) + " | "
+            log_string += "ELE: " + elements[a.hitboxes[0].get_element()] + " | "
+            log_string += "OFF: " + str(a.hitboxes[0].offset)
+            log_string += "\n\n"
             log.write(log_string)
-        log.write("--Throws:\n")
+        log.write("\n--Throws:\n")
         for t in f.throws:
             log_string = ""
             if t.chaos: log_string += "[Chaos] "
             if t.balance: log_string += "[Balanced] "
             log_string += t.name
-            if t.random: log_string += " >>> Random!!"
-            else: log_string += " >>> " + t.original_owner + " " + t.shuffled_with
-            log_string += "\n"
+            if t.random:
+                log_string += " >>> Random \n"
+            else:
+                log_string += " >>> " + t.original_owner + " " + t.shuffled_with + " \n"
+            log_string += "DAM: " + str(t.get_damage()) + " | "
+            log_string += "ANG: " + str(t.get_angle()) + " | "
+            log_string += "KBG: " + str(t.get_growth()) + " | "
+            log_string += "BKB: " + str(t.get_base()) + " | "
+            log_string += "SET: " + str(t.get_set()) + " | "
+            log_string += "ELE: " + str(t.get_element()) + " | "
+            log_string += "OFF: " + str(t.offset)
+            log_string += "\n\n"
             log.write(log_string)
 
 def failsafes():
@@ -361,6 +437,10 @@ def failsafes():
     melee.fighters[5].attacks[20].hitboxes[0].set_base(0)
     melee.fighters[5].attacks[20].hitboxes[0].set_set(0)
 
+    for t in melee.throws:
+        if t.get_base() > 50:
+            t.set_base(50) # Base Knockback cap for throws so they don't immediately kill.
+
 def main(iso_path = None, output_path = None):
     if iso_path == None: iso_path = sys.argv[0]
     if output_path == None: output_path = sys.argv[1]
@@ -373,11 +453,13 @@ def main(iso_path = None, output_path = None):
     melee.custom_only = custom_only
         
     melee.start(iso_path)
+
+    print(custom_only)
     
     if not custom_only: randomize()
     
     if customs or custom_only:
-        custom.random_all(seed)
+        custom.random_all(seed, output_path)
 
     log_spoilers(spoiler)
 
