@@ -1,5 +1,3 @@
-# Super Smash Bros. Melee Randomizer
-
 ![banner](https://user-images.githubusercontent.com/74074951/169642233-f38a7c83-582e-429a-aaa5-5e4ba47b1557.png)
 
 A randomizer for Super Smash Bros. Melee. It randomizes hitbox data, character attributes, various visual elements, and music. Some modes will apply a logic to the randomization keeping moves similar in power to how they are normally which makes things relatively competitive. Chaos modes are also offered, for a truly wild and nonsensical fun time.
