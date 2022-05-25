@@ -20,7 +20,5 @@ SSBMr Discord: https://discord.gg/2bC5xNk9pp
 Support the developer!
 
 Twitch: https://twitch.tv/drewlith
-
 Twitter: https://twitter.com/drewlith
 
-Donate: https://www.paypal.com/donate/?hosted_button_id=S2Z2ZUVXKUEW2
