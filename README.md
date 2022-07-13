@@ -9,10 +9,3 @@ Try out your favorite 1P modes but with a new twist! You may find yourself using
 To play with friends on Slippi: Select the same game mode and then input the same seed, then both players should run Slippi using the randomized iso and play like normal.
 
 SSBMr Discord: https://discord.gg/2bC5xNk9pp
-
-Support the developer!
-
-Twitch: https://twitch.tv/drewlith
-
-Twitter: https://twitter.com/drewlith
-
