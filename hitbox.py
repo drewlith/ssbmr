@@ -2,6 +2,7 @@ import util
 
 class Hitbox():
     def __init__(self, name):
+        self.name = name
         self.data = []
         self.offset = 0
 

@@ -1,3 +1,5 @@
+import random
+
 MASK = [1, 2, 4, 8, 16, 32, 64, 128]
 CLEAR_MASK = [254, 253, 251, 247, 239, 223, 191, 127]
 
@@ -66,4 +68,16 @@ def merge_sort(array):
     return merge(
         left=merge_sort(array[:midpoint]),
         right=merge_sort(array[midpoint:]))
+
+def percent_chance(chance): # Util, enter chance in %
+    rng = random.randint(0,99)
+    if rng < chance:
+        return True
+    else:
+        return False
+
+def get_string_between(string, start, end):
+    start_index = string.find(start)+len(start)
+    end_index = string[start_index:].find(end)+start_index
+    return string[start_index:end_index]
 

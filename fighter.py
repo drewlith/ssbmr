@@ -9,12 +9,7 @@ class Fighter():
         self.json_data = {}
         self.attacks = []
         self.throws = []
-        self.shuffled_with = self.name
-
-        self.shield_min = 0
-        self.shield_max = 0
-
-        self.swaps = ["","","","","","",""]
+        self.shuffle_target = self
 
     def get_json_data(self):
         f = open("data/" + self.name + "/" + self.name + ".json")
@@ -108,11 +103,15 @@ class Fighter():
             data.append(struct.pack('>f', float_values[i]))
             self.set_bytes_at_index(data[i],228+(i*4))
 
-    def set_thresholds(self):
-        self.scale_max = self.get_scale() * 1.2
-        self.scale_min = self.get_scale() * 0.8
-        self.shield_max = self.get_shield_size() * 1.3
-        self.shield_min = self.get_shield_size() * 0.7
+    def find_attack(self, name):
+        for attack in self.attacks:
+            if attack.attack_name == name:
+                return attack
+
+    def find_throw(self, name):
+        for throw in self.throws:
+            if throw.name == name:
+                return throw
         
 
 

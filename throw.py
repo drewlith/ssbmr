@@ -1,21 +1,12 @@
 import util
 
 class Throw():
-    def __init__(self, name):
+    def __init__(self, name, fighter):
+        self.fighter = fighter
         self.name = name
-        self.shuffled_with = self.name
-        self.original_owner = ""
+        self.shuffle_target = self
         self.data = []
-        self.offset = 0
-        self.damage = 0
-        self.angle = 0
-        self.growth = 0
-        self.base = 0
-        self.wdsk = 0
-        self.element = 0
-        self.random = False
-        self.chaos = False
-        self.balance = False
+        self.notes = []
 
     def get_damage(self): #b2 and b3
         return util.get_value(self.data, 64, 9)
@@ -53,28 +44,4 @@ class Throw():
     def set_element(self, value):
         self.data = util.set_value(self.data, 19, 4, value)
 
-    def get_parameters(self):
-        if len(self.data) == 0: return
-        self.damage = self.get_damage()
-        self.angle = self.get_angle()
-        self.growth = self.get_growth()
-        self.set = self.get_set()
-        self.base = self.get_base()
-        self.element = self.get_element()
 
-    def set_parameters(self):
-        if len(self.data) == 0: return
-        self.set_damage(self.damage)
-        self.set_angle(self.angle)
-        self.set_growth(self.growth)
-        self.set_set(self.set)
-        self.set_base(self.base)
-        self.set_element(self.element)
-
-    def decode_throw(self):
-        print("Damage: ", self.get_damage())
-        print("Angle: ", self.get_angle())
-        print("KBG: ", self.get_growth())
-        print("Set KB: ", self.get_set())
-        print("Base KB: ", self.get_base())
-        print("Element: ", self.get_element())

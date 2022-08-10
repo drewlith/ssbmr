@@ -313,6 +313,13 @@
          "Offset": 30992
       }
    },
+   "Turnip": {
+      "Type": 2,
+      "Strength": 1,
+      "Hitbox 0": {
+         "Offset": 17168
+      }
+   },
    "Forward Throw": {
       "Throw": {
          "Offset": 28044
