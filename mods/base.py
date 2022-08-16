@@ -1,6 +1,5 @@
 # Random/Shuffled Base Knockback mod by drewlith.
 # Shuffle Percent: Amount of attacks to shuffle (as opposed to randomize)
-# Balance Percent: Amount of attacks to balance
 import melee, random
 from util import percent_chance
 
@@ -29,11 +28,11 @@ def random_balance(attack):
     for hb in attack.hitboxes:
         hb.set_base(kb)
 
-def start_mod(shuffle_percent, balance_percent):
+def start_mod(shuffle_percent):
     for tier in melee.attack_tiers: # Normal Attacks
         for attack in tier:
             if percent_chance(shuffle_percent): # Shuffle
-                if percent_chance(balance_percent): # If balance, shuffle within tier
+                if attack.balance: # If balance, shuffle within tier
                     shuffle(attack, attack.shuffle_target_balanced)
                     attack.notes.append("Base Knockback shuffled with " +
                                         attack.shuffle_target_balanced.fighter.name + " " +
@@ -47,7 +46,7 @@ def start_mod(shuffle_percent, balance_percent):
                                         attack.shuffle_target_unbalanced.attack_name +
                                         " to " + str(attack.hitboxes[0].get_base()) + ". (Unbalanced)")
             else: # Randomize
-                if percent_chance(balance_percent):
+                if attack.balance:
                     random_balance(attack)
                     attack.notes.append("Base Knockback randomized to " +
                                         str(attack.hitboxes[0].get_base()) + ". (Balanced)")
@@ -59,7 +58,7 @@ def start_mod(shuffle_percent, balance_percent):
     for tier in melee.item_tiers: # Items
         for item in tier:
             if percent_chance(shuffle_percent):
-                if percent_chance(balance_percent):
+                if item.balance:
                     shuffle(item, item.shuffle_target_balanced)
                     item.notes.append("Base Knockback shuffled with " +
                                         item.shuffle_target_balanced.fighter.name + " " +
@@ -72,7 +71,7 @@ def start_mod(shuffle_percent, balance_percent):
                                         item.shuffle_target_unbalanced.attack_name +
                                         " to " + str(item.hitboxes[0].get_base()) + ". (Unbalanced)")
             else:
-                if percent_chance(balance_percent):
+                if item.balance:
                     random_balance(item)
                     item.notes.append("Base Knockback randomized to " +
                                       str(item.hitboxes[0].get_base()) + ". (Balanced)")

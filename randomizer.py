@@ -2,7 +2,7 @@ import melee, sys, random, util, string
 from mods import (damage, angle, growth, base, wdsk, element, shield_damage, sfx,
                   hitbox_size, throws, weight, scale, shield_size, movement, jump,
                   landing, chaos, music, log, vanilla, no_bosses, better_low_tiers,
-                  harder_bosses, soul_bond, turnips)
+                  harder_bosses, soul_bond, turnips, balance)
 
 def start(iso_path = None, output_path = None, flags = ""):
     seed = ""
@@ -44,25 +44,30 @@ def start(iso_path = None, output_path = None, flags = ""):
 
     # Anything that doesn't exclude data from the randomizer goes below here.
     
-    if "-damage" in flags: # "-damage S.B"
+    if "-balance" in flags: # "-balance %"
+        print("Applying balance mod...")
+        p = get_values_from_string(flags, "-balance ", " -", ".") # p stands for Parameters
+        balance.start_mod(p[0])
+
+    if "-damage" in flags: # "-damage S%"
         print("Applying damage mod...")
         p = get_values_from_string(flags, "-damage ", " -", ".") # p stands for Parameters
-        damage.start_mod(p[0],p[1])
+        damage.start_mod(p[0])
 
-    if "-angle" in flags: # "-angle S.B"
+    if "-angle" in flags: # "-angle S%"
         print("Applying angle mod...")
         p = get_values_from_string(flags, "-angle ", " -", ".")
-        angle.start_mod(p[0],p[1])
+        angle.start_mod(p[0])
 
-    if "-kbg" in flags: # "-kbg S.B"
+    if "-growth" in flags: # "-growth S%"
         print("Applying knockback growth mod...")
-        p = get_values_from_string(flags, "-kbg ", " -", ".")
-        growth.start_mod(p[0],p[1])
+        p = get_values_from_string(flags, "-growth ", " -", ".")
+        growth.start_mod(p[0])
 
-    if "-bkb" in flags: # "-bkb S.B"
+    if "-base_knockback" in flags: # "-base_knockback S%"
         print("Applying base knockback mod...")
-        p = get_values_from_string(flags, "-bkb ", " -", ".")
-        base.start_mod(p[0],p[1])
+        p = get_values_from_string(flags, "-base_knockback ", " -", ".")
+        base.start_mod(p[0])
         
     if "-wdsk" in flags: # "-wdsk %"
         print("Applying weight-dependent set knockback mod...")
@@ -74,27 +79,27 @@ def start(iso_path = None, output_path = None, flags = ""):
         p = get_values_from_string(flags, "-element ", " -", ".")
         element.start_mod(p[0])
         
-    if "-shield_damage" in flags: # "-shield_damage S.B"
+    if "-shield_damage" in flags: # "-shield_damage S%"
         print("Applying shield damage mod...")
         p = get_values_from_string(flags, "-shield_damage ", " -", ".")
-        shield_damage.start_mod(p[0],p[1])
+        shield_damage.start_mod(p[0])
         
-    if "-sfx" in flags: # "-sfx S"
+    if "-sfx" in flags: # "-sfx S%"
         print("Applying sound effect mod...")
         p = get_values_from_string(flags, "-sfx ", " -", ".")
         sfx.start_mod(p[0])
         
-    if "-hitbox_size" in flags: # "-hitbox_size S"
+    if "-hitbox_size" in flags: # "-hitbox_size S%"
         print("Applying hitbox size mod...")
         p = get_values_from_string(flags, "-hitbox_size ", " -", ".")
         hitbox_size.start_mod(p[0])
 
-    if "-throws" in flags: # "-throws S"
+    if "-throws" in flags: # "-throws S%"
         print("Applying throw mod...")
         p = get_values_from_string(flags, "-throws ", " -", ".")
         throws.start_mod(p[0])
 
-    if "-weight" in flags: # "-weight S"
+    if "-weight" in flags: # "-weight S%"
         print("Applying weight mod...")
         p = get_values_from_string(flags, "-weight ", " -", ".")
         weight.start_mod(p[0])
@@ -151,7 +156,7 @@ def start(iso_path = None, output_path = None, flags = ""):
         p = get_values_from_string(flags, "-harder_bosses ", " -", ".")
         harder_bosses.start_mod(p[0])
 
-    if "-blt" in flags: # "-blt"
+    if "-better_low_tiers" in flags: # "-better_low_tiers"
         print("Applying better low tiers mod...")
         better_low_tiers.start_mod()
 
@@ -177,4 +182,5 @@ def start(iso_path = None, output_path = None, flags = ""):
         
     melee.end(iso_path, output_path)
 
-start()
+if __name__ == '__main__':
+    start()

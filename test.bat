@@ -1,2 +1,0 @@
-randomizer.py "C:\Users\Drew\Desktop\SSBM\SSBM v1-02.iso" "C:\Users\Drew\Desktop\SSBM\Randomizer Seeds" "-damage 0.100 -angle 0.100 -kbg 0.100 -bkb 0.100 -element 4 -shield_damage 98.100 -sfx 50 -hitbox_size 50 -throws 50 -weight 50 -scale 5 -shield_size 5 -movement 10 -jump 10 -landing 5 -turnips 0 -harder_bosses 3 -blt -soul_bond -log"
-pause
