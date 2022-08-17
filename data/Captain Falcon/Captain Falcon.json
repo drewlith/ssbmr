@@ -271,7 +271,7 @@
    },
    "D-air": {
       "Type": 0,
-      "Strength": 5,
+      "Strength": 6,
       "Hitbox 0": {
          "Offset": 20704
       },

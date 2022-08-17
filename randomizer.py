@@ -12,11 +12,12 @@ def start(iso_path = None, output_path = None, flags = ""):
     if len(flags) == 0: flags = sys.argv[3]
 
     flags += " -" # This is just for delimiting.
-    
+
     if "-seed" in flags:
         seed = util.get_string_between(flags, "-seed ", " -")
     else:
         seed = ''.join(random.choices(string.digits + string.ascii_lowercase, k=8))
+        flags = "-seed " + seed + " " + flags
 
     old_path = output_path
     output_path += "\SSBMr-" + seed + ".iso"
@@ -84,10 +85,9 @@ def start(iso_path = None, output_path = None, flags = ""):
         p = get_values_from_string(flags, "-shield_damage ", " -", ".")
         shield_damage.start_mod(p[0])
         
-    if "-sfx" in flags: # "-sfx S%"
+    if "-sfx" in flags: # "-sfx"
         print("Applying sound effect mod...")
-        p = get_values_from_string(flags, "-sfx ", " -", ".")
-        sfx.start_mod(p[0])
+        sfx.start_mod()
         
     if "-hitbox_size" in flags: # "-hitbox_size S%"
         print("Applying hitbox size mod...")

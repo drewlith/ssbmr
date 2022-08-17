@@ -25,8 +25,8 @@ def random_balance(attack):
 def start_mod(shuffle_percent):
     for tier in melee.attack_tiers: # Normal Attacks
         for attack in tier:
-            if attack.balance: # Shuffle
-                if percent_chance(balance_percent): # If balance, shuffle within tier
+            if percent_chance(shuffle_percent): # Shuffle
+                if attack.balance: # If balance, shuffle within tier
                     shuffle(attack, attack.shuffle_target_balanced)
                     attack.notes.append("Shield Damage shuffled with " +
                                         attack.shuffle_target_balanced.fighter.name + " " +
