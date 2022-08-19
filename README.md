@@ -20,4 +20,6 @@ When generating an ISO with the app, copy the flag set in the "Flags" box and pa
 
 `randomizer.py "iso_path" "output_directory" "flags"`
 
-SSBMr Discord: https://discord.gg/2bC5xNk9pp
+## Discord
+
+https://discord.gg/2bC5xNk9pp
