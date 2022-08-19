@@ -6,7 +6,7 @@ The infinite fighting game just got even more insane! SSBMr will apply a variety
 
 ### Install
 
-Save the .zip file to your computer, and "extract" the contents to a directory of your choosing (Typically can be done via a right-click on the zip file). Run "SSBM Randomizer.exe" to start the application.
+Save the .zip file from the download link above to your computer, and "extract" the contents to a directory of your choosing (Typically can be done via a right-click on the zip file). Run "SSBM Randomizer.exe" to start the application.
 
 ### Multiplayer
 
