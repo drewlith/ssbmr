@@ -4,6 +4,10 @@ The infinite fighting game just got even more insane! SSBMr will apply a variety
 
 ### Application Download: [SSBM Randomizer.zip](https://github.com/drewlith/ssbmr/files/9383944/SSBM.Randomizer.zip)
 
+## Install
+
+Save the .zip file to your computer, and "extract" the contents to a directory of your choosing (Typically can be done via a right-click on the zip file). Run "SSBM Randomizer.exe" to start the application.
+
 ### Custom Music Pack: Coming soon!
 
 ### Custom Texture Pack: Coming soon!
