@@ -58,6 +58,7 @@ class ApplicationMain():
         self.seed_var.trace("w", self.update_flags_box)
         self.seed_creator = tk.Entry(master,width=58,textvariable=self.seed_var)
         self.seed_creator.place(x=130,y=107)
+        self.seed_creator.bind('<Enter>', self.show_seed_tip)
         # Preset Chooser
         #tk.Label(master,fg='white',bg=bg_color,text="Preset",font=ui_font_medium).place(x=35,y=141)
         self.presets_menu = ttk.Combobox(master,value=self.preset_keys,width=55)
@@ -65,6 +66,7 @@ class ApplicationMain():
         self.presets_menu.current(0)
         self.presets_menu['state'] = 'readonly'
         self.presets_menu.bind("<<ComboboxSelected>>", self.update_preset_text)
+        self.presets_menu.bind("<Enter>", self.show_preset_tip)
         tk.Button(master, text="Customize",font=ui_font_small, width=8,command=lambda:self.open_custom_window()).place(x=495,y=140)
         # Preset Description
         preset_info =tk.Label(master,fg='white',bg=bg_color,textvariable=self.description,font=ui_font_small,wraplength=360)
@@ -75,6 +77,7 @@ class ApplicationMain():
         self.flag_text_box = scrolledtext.ScrolledText(master,width=53,height=6)
         self.flag_text_box.place(x=130,y=242)
         self.flag_text_box.frame.bind("<<Modified>>", self.update_seed)
+        self.flag_text_box.bind("<Enter>", self.show_seed_tip)
         # Copy Button
         tk.Button(master, text="Copy",font=ui_font_small, width=8,command=lambda:self.copy_flags()).place(x=23,y=270)
         # Paste Button
@@ -157,10 +160,13 @@ class ApplicationMain():
         self.update_information("Randomizing... Please wait")
         self.randomizing = True
         self.randomize_btn['state'] = 'disabled'
-        randomizer.start(iso_path, output_path, flags)
+        new_flags = randomizer.start(iso_path, output_path, flags)
         self.randomizing = False
         self.update_information("ISO generated! Path: " + self.output_path.get())
         self.randomize_btn['state'] = 'normal'
+        self.flag_text_box.delete("1.0", tk.END)
+        self.flag_text_box.insert(tk.INSERT, new_flags)
+        self.update_seed()
 
     def generate_iso(self):
         if self.randomizing: return
@@ -173,9 +179,14 @@ class ApplicationMain():
         for arg in args:
             if len(arg) <= 0:
                 print("Error: Invalid argument: " + arg)
-                return
+        if len(args[0]) < 1:
+            self.update_information("Error: No ISO Path chosen. Please select a v1.02 Melee ISO!")
+            return
         if ".iso" not in args[0]:
             self.update_information("Error: Chosen path is not an .iso")
+            return
+        if len(args[1]) < 1:
+            self.update_information("Error: No Output Path chosen. This is where the ISO will be saved.")
             return
         # Start a Thread so App doesn't hang
         r = threading.Thread(target=self.randomize,args=(args))
@@ -196,12 +207,19 @@ class ApplicationMain():
         if self.randomizing: return
         self.information.set(string)
 
+    def show_seed_tip(self, event):
+        self.information.set("ISOs generated with the same seed and flags will be identical.")
+
+    def show_preset_tip(self, event):
+        self.information.set("Presets are a collection of flags to start with. Click 'Customize' to make changes!")
+
 class Tab():
     def __init__(self, master, c_menu, menu, x_pos, y_pos, text = "", default=False):
         self.master = master
         self.menu = menu
         self.c_menu = c_menu
         self.c_menu.tabs.append(self)
+        self.tooltip = ""
         ui_font_large = font.Font(family="data/Folk.otf",size=22)
         ui_font_medium = font.Font(family="data/Folk.otf",size=16)
         ui_font_small = font.Font(family="data/Folk.otf",size=12)
@@ -217,6 +235,8 @@ class Tab():
         if type(self.c_menu.active_menu) == self.menu:
             return
         self.tab.configure(fg="white")
+        if len(self.tooltip) > 0:
+            self.c_menu.update_information(self.tooltip)
 
     def on_leave(self, event):
         if type(self.c_menu.active_menu) == self.menu:
@@ -246,7 +266,10 @@ class ApplicationCustom():
         self.hitbox_flags = ""
         self.attribute_flags = ""
         self.misc_flags = ""
-        self.seed = util.get_string_between(self.flags, "-seed ", " -")
+        if "-seed " in self.flags: 
+            self.seed = util.get_string_between(self.flags, "-seed ", " -")
+        else:
+            self.seed = ""
         self.active_menu = None
         self.information = tk.StringVar()
         self.information.set("Activate and adjust flags to change what gets randomized!")
@@ -263,10 +286,14 @@ class ApplicationCustom():
         self.tabs = []
 
         # Tabs
-        Tab(self.master,self,HitboxMenu,50,60,"Hitboxes",True)
-        Tab(self.master,self,AttributeMenu,180,60,"Attributes")
-        Tab(self.master,self,MiscMenu,310,60,"Misc.")
-        Tab(self.master,self,PresetMenu,440,60,"Preset")
+        hitbox_tab = Tab(self.master,self,HitboxMenu,50,60,"Hitboxes",True)
+        hitbox_tab.tooltip = "Hitboxes control the effects of attacks when they land."
+        attribute_tab = Tab(self.master,self,AttributeMenu,180,60,"Attributes")
+        attribute_tab.tooltip = "Attributes will change how a character moves, and more!"
+        misc_tab = Tab(self.master,self,MiscMenu,310,60,"Misc.")
+        misc_tab.tooltip = "Other miscellaneous flags can be enabled here!"
+        preset_tab = Tab(self.master,self,PresetMenu,440,60,"Preset")
+        preset_tab.tooltip = "Like your flagset? Save it for future use!"
 
         # Initialize
         a = AttributeMenu(self.master, self)
@@ -291,6 +318,8 @@ class ApplicationCustom():
             self.flags = "-seed " + self.seed + " " + self.flags
 
     def update_information(self, string):
+        if len(string) == 0:
+            return
         self.information.set(string)
 
 class OneOptionFlag():
@@ -298,6 +327,7 @@ class OneOptionFlag():
         self.master = master
         self.menu = menu
         self.flag_name = flag_name
+        self.tooltip = ""
         ui_font_large = font.Font(family="data/Folk.otf",size=22)
         ui_font_medium = font.Font(family="data/Folk.otf",size=16)
         ui_font_small = font.Font(family="data/Folk.otf",size=12)
@@ -305,50 +335,85 @@ class OneOptionFlag():
         self.check = tk.Checkbutton(self.master, fg='white',bg=bg_color, font=ui_font_small, selectcolor=bg_color,
                             text=name, onvalue=1, offvalue=0, variable=self.flag_var, command=menu.determine_flags)
         self.check.place(x=x_pos,y=y_pos)
+        self.check.bind('<Enter>', self.update_information)
+        self.check.focus_set()
         menu.my_widgets.append(self.check)
+        
+    def update_information(self, event):
+        self.menu.custom_menu.update_information(self.tooltip)
         
 class TwoOptionFlag():
     def __init__(self, master, menu, name, flag_name, x_pos, y_pos, label = "Shuffle %"):
         self.master = master
         self.menu = menu
         self.flag_name = flag_name
+        self.tooltip = ""
         ui_font_large = font.Font(family="data/Folk.otf",size=22)
         ui_font_medium = font.Font(family="data/Folk.otf",size=16)
         ui_font_small = font.Font(family="data/Folk.otf",size=12)
         self.flag_var = tk.IntVar()
+        self.flag_var.trace("w", self.update_state)
         self.magnitude = tk.IntVar()
         self.check = tk.Checkbutton(self.master, fg='white',bg=bg_color, font=ui_font_small, selectcolor=bg_color,
                             text=name, onvalue=1, offvalue=0, variable=self.flag_var, command=menu.determine_flags)
         self.check.place(x=x_pos,y=y_pos)
+        self.check.bind('<Enter>', self.update_information)
         self.scale = tk.Scale(self.master, label=label,length=100, from_=0, to=100, orient=tk.HORIZONTAL, fg='white', bg=bg_color,
                      variable=self.magnitude,command=menu.determine_flags)
         self.scale.place(x=x_pos+115,y=y_pos-15)
+        self.scale.bind('<Enter>', self.update_information)
         menu.my_widgets.append(self.check)
         menu.my_widgets.append(self.scale)
-
+        self.update_state()
+        
+    def update_information(self, event):
+        self.menu.custom_menu.update_information(self.tooltip)
+        
+    def update_state(self, *args):
+        if self.flag_var.get() == 0:
+            self.scale['state'] = 'disabled'
+            self.scale.configure(fg='gray', bg='black')
+            return
+        self.scale['state'] = 'normal'
+        self.scale.configure(fg='white', bg=bg_color)
+        
 class TwoOptionFlagDropdown():
     def __init__(self, master, menu, name, flag_name, options, x_pos, y_pos, label = "Shuffle %"):
         self.master = master
         self.menu = menu
         self.flag_name = flag_name
         self.options = options
+        self.tooltip = ""
         ui_font_large = font.Font(family="data/Folk.otf",size=22)
         ui_font_medium = font.Font(family="data/Folk.otf",size=16)
         ui_font_small = font.Font(family="data/Folk.otf",size=12)
         self.flag_var = tk.IntVar()
+        self.flag_var.trace("w", self.update_state)
         self.mode_var = 0
         self.check = tk.Checkbutton(self.master, fg='white',bg=bg_color, font=ui_font_small, selectcolor=bg_color,
                             text=name, onvalue=1, offvalue=0, variable=self.flag_var, command=menu.determine_flags)
         self.check.place(x=x_pos,y=y_pos)
+        self.check.bind('<Enter>', self.update_information)
         self.mode_menu = ttk.Combobox(master,width=14)
         self.mode_menu['values'] = options
         self.mode_menu.place(x=x_pos+115,y=y_pos+5)
         self.mode_menu.current(0)
         self.mode_menu['state'] = 'readonly'
         self.mode_menu.bind("<<ComboboxSelected>>", self.value_changed)
+        self.mode_menu.bind('<Enter>', self.update_information)
         self.menu.my_widgets.append(self.check)
         self.menu.my_widgets.append(self.mode_menu)
         self.menu.determine_flags(0)
+        self.update_state()
+
+    def update_information(self, event):
+        self.menu.custom_menu.update_information(self.tooltip)
+
+    def update_state(self, *args):
+        if self.flag_var.get() == 0:
+            self.mode_menu['state'] = 'disabled'
+            return
+        self.mode_menu['state'] = 'readonly'
 
     def value_changed(self, event):
         if self.mode_menu.get() == self.options[0]:
@@ -367,27 +432,45 @@ class ThreeOptionFlag():
         self.menu = menu
         self.flag_name = flag_name
         self.options = options
+        self.tooltip = ""
         ui_font_large = font.Font(family="data/Folk.otf",size=22)
         ui_font_medium = font.Font(family="data/Folk.otf",size=16)
         ui_font_small = font.Font(family="data/Folk.otf",size=12)
         self.flag_var = tk.IntVar()
+        self.flag_var.trace("w", self.update_state)
         self.mode_var = 0
         self.magnitude = tk.IntVar()
         self.check = tk.Checkbutton(self.master, fg='white',bg=bg_color, font=ui_font_small, selectcolor=bg_color,
                             text=name, onvalue=1, offvalue=0, variable=self.flag_var, command=menu.determine_flags)
         self.check.place(x=x_pos,y=y_pos)
+        self.check.bind('<Enter>', self.update_information)
         self.scale = tk.Scale(self.master, label=label,length=100, from_=0, to=100, orient=tk.HORIZONTAL, fg='white', bg=bg_color,
                      variable=self.magnitude,command=menu.determine_flags)
         self.scale.place(x=x_pos+115,y=y_pos-15)
+        self.scale.bind('<Enter>', self.update_information)
         self.mode_menu = ttk.Combobox(master,width=14)
         self.mode_menu['values'] = options
         self.mode_menu.place(x=x_pos+115,y=y_pos+45)
         self.mode_menu.current(0)
-        self.mode_menu['state'] = 'readonly'
         self.mode_menu.bind("<<ComboboxSelected>>", self.value_changed)
+        self.mode_menu.bind('<Enter>', self.update_information)
         self.menu.my_widgets.append(self.check)
         self.menu.my_widgets.append(self.scale)
         self.menu.my_widgets.append(self.mode_menu)
+        self.update_state()
+
+    def update_information(self, event):
+        self.menu.custom_menu.update_information(self.tooltip)
+
+    def update_state(self, *args):
+        if self.flag_var.get() == 0:
+            self.scale['state'] = 'disabled'
+            self.scale.configure(fg='gray', bg='black')
+            self.mode_menu['state'] = 'disabled'
+            return
+        self.scale['state'] = 'normal'
+        self.scale.configure(fg='white', bg=bg_color)
+        self.mode_menu['state'] = 'readonly'
 
     def value_changed(self, event):
         if self.mode_menu.get() == self.options[0]:
@@ -406,16 +489,16 @@ class PresetMenu():
         ui_font_large = font.Font(family="data/Folk.otf",size=22)
         ui_font_medium = font.Font(family="data/Folk.otf",size=16)
         ui_font_small = font.Font(family="data/Folk.otf",size=12)
-        self.name_label = tk.Label(master,fg='white',bg=bg_color,text="Name",font=ui_font_medium)
-        self.name_label.place(x=75,y=145)
-        self.preset_name = tk.Entry(master,width=58)
-        self.preset_name.place(x=140,y=150)
-        self.descript_label = tk.Label(master,fg='white',bg=bg_color,text="Description",font=ui_font_medium)
-        self.descript_label.place(x=25,y=180)
-        self.preset_description = scrolledtext.ScrolledText(master,width=53,height=6)
-        self.preset_description.place(x=140,y=180)
+        self.name_label = tk.Label(master,fg='white',bg=bg_color,text="Name",font=ui_font_medium,width=9)
+        self.name_label.place(x=45,y=145)
+        self.preset_name = tk.Entry(master,width=59)
+        self.preset_name.place(x=180,y=150)
+        self.descript_label = tk.Label(master,fg='white',bg=bg_color,text="Description",font=ui_font_medium,width=9)
+        self.descript_label.place(x=45,y=190)
+        self.preset_description = scrolledtext.ScrolledText(master,width=42,height=6)
+        self.preset_description.place(x=180,y=194)
         self.save_button = tk.Button(master, text="Save",font=ui_font_small, width=8, command=self.save)
-        self.save_button.place(x=504,y=290)
+        self.save_button.place(x=457,y=312)
         self.my_widgets.append(self.preset_name)
         self.my_widgets.append(self.preset_description)
         self.my_widgets.append(self.preset_description.vbar)
@@ -465,6 +548,19 @@ class MiscMenu():
         self.flag_widgets.append(TwoOptionFlagDropdown(self.master, self, "Music", "-music ",("Shuffle"), 300, 250))
         self.flag_widgets.append(OneOptionFlag(self.master, self, "Log", "-log ", 300, 290))
         self.flag_widgets.append(TwoOptionFlag(self.master, self, "Harder 1p", "-harder_bosses ", 300, 340, "Difficulty"))
+        self.flag_widgets[0].tooltip = "Keeps elements the same as the original Melee."
+        self.flag_widgets[1].tooltip = "Makes attacks closer to their original power level."
+        self.flag_widgets[2].tooltip = "Throws will have their properties randomized."
+        self.flag_widgets[3].tooltip = "Try it at your own risk."
+        self.flag_widgets[4].tooltip = "Makes Nana the same as Popo."
+        self.flag_widgets[5].tooltip = "Boss hitboxes and attributes will not be included."
+        self.flag_widgets[6].tooltip = "Low tier characters will receive substantial buffs."
+        self.flag_widgets[7].tooltip = "Hitbox sounds will be randomized."
+        self.flag_widgets[8].tooltip = "Turnips will be randomized. Chaos may be buggy!"
+        self.flag_widgets[9].tooltip = "Shuffles music. Will increase randomization time drastically."
+        self.flag_widgets[10].tooltip = "A log will be generated that lists changes."
+        self.flag_widgets[11].tooltip = "Bosses will receive substantial buffs."
+        
         self.determine_settings()
         
     def determine_flags(self, val = 0):
@@ -525,6 +621,12 @@ class AttributeMenu():
         self.flag_widgets.append(ThreeOptionFlag(self.master, self, "Movement", "-movement ", ("Normal", "Faster", "Slower"), 320, 130, "Magnitude"))
         self.flag_widgets.append(ThreeOptionFlag(self.master, self, "Jumps", "-jump ", ("Normal", "Faster", "Slower"), 320, 220, "Magnitude"))
         self.flag_widgets.append(ThreeOptionFlag(self.master, self, "Landing", "-landing ", ("Normal", "Faster", "Slower"), 320, 310, "Magnitude"))
+        self.flag_widgets[0].tooltip = "Higher weight will lower knockback."
+        self.flag_widgets[1].tooltip = "How big a fighter is."
+        self.flag_widgets[2].tooltip = "Changes the size of fighters' shields'."
+        self.flag_widgets[3].tooltip = "Changes speed on the ground and in the air."
+        self.flag_widgets[4].tooltip = "Changes jumpsquat and jump properties."
+        self.flag_widgets[5].tooltip = "Affects landing lag on aerials and base landing lag."
         self.determine_settings()
         
     def determine_flags(self, val = 0):
@@ -576,6 +678,14 @@ class HitboxMenu():
         self.flag_widgets.append(TwoOptionFlag(self.master, self, "Set KB", "-wdsk ", 320, 200, "Random %"))
         self.flag_widgets.append(TwoOptionFlag(self.master, self, "Size", "-hitbox_size ", 320, 270, "Shuffle %"))
         self.flag_widgets.append(TwoOptionFlag(self.master, self, "Element", "-element ", 320, 340, "Random %"))
+        self.flag_widgets[0].tooltip = "Changes how much damage that an attack will do."
+        self.flag_widgets[1].tooltip = "Changes the angle that attacks will launch at."
+        self.flag_widgets[2].tooltip = "Changes how much percent affects knockback."
+        self.flag_widgets[3].tooltip = "Changes how much knockback an attack has."
+        self.flag_widgets[4].tooltip = "Changes how much damage an attack does to shields."
+        self.flag_widgets[5].tooltip = "Makes moves more similar to Fox's shine."
+        self.flag_widgets[6].tooltip = "Changes hitbox sizes, making them more/less likely to land."
+        self.flag_widgets[7].tooltip = "Can add Fire, Ice, Ground, Disable, etc..."
         self.determine_settings()
 
     def determine_flags(self, val = 0):

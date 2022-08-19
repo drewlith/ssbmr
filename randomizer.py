@@ -182,5 +182,7 @@ def start(iso_path = None, output_path = None, flags = ""):
         
     melee.end(iso_path, output_path)
 
+    return(flags)
+
 if __name__ == '__main__':
     start()

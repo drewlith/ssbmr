@@ -1,5 +1,0 @@
-{
-  "ISO Path": "C:/Users/Drew/Desktop/SSBM/SSBM v1-02.iso",
-  "Output Path": "C:/Users/Drew/Desktop/SSBM/Randomizer Seeds",
-  "Flags": "-damage 50 -angle 50 -growth 50 -base_knockback 50 -shield_damage 98 -wdsk 1 -hitbox_size 10 -element 2 -weight 50 -scale 15.0 -shield_size 4.0 -movement 10.0 -jump 10.0 -landing 7.1 -vanilla 5 -balance 100 -throws 50 -chaos 5 -harder_bosses 2 -soul_bond -better_low_tiers -sfx -turnips 0 -log\n"
-}
