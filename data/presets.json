@@ -1,6 +1,6 @@
 {
    "Standard": {
-      "Flags": "-damage 50 -angle 50 -growth 50 -base_knockback 50 -shield_damage 98 -wdsk 1 -hitbox_size 10 -element 2 -weight 50 -scale 5.0 -shield_size 2.0 -movement 10.0 -jump 2.0 -landing 5.1 -vanilla 5 -balance 100 -throws 50 -harder_bosses 2 -soul_bond -better_low_tiers -sfx -turnips 0 -log",
+      "Flags": "-damage 1 -angle -growth 1 -base_knockback 1 -shield_damage 1 -wdsk 1 -hitbox_size 1 -element 2 -weight 20.0 -scale 5.0 -shield_size 2.0 -movement 10.0 -jump 2.0 -landing 5.1 -vanilla 5 -shuffle 50 -balance 100 -throws 1 -harder_bosses 2 -soul_bond -better_low_tiers -sfx -turnips 0 -log",
       "Description": "A mix of everything that the randomizer has to offer! Attacks are balanced to be closer to their normal power level."
    },
    "Shuffle": {

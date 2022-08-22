@@ -10,6 +10,7 @@ class Fighter():
         self.attacks = []
         self.throws = []
         self.shuffle_target = self
+        self.original_stats = []
 
     def get_json_data(self):
         f = open("data/" + self.name + "/" + self.name + ".json")
@@ -112,6 +113,16 @@ class Fighter():
         for throw in self.throws:
             if throw.name == name:
                 return throw
+
+    def record_original_stats(self):
+        self.original_stats.clear()
+        self.original_stats.append(self.get_weight())
+        self.original_stats.append(self.get_scale())
+        self.original_stats.append(self.get_shield_size())
+        self.original_stats.append(self.get_air_attributes())
+        self.original_stats.append(self.get_ground_attributes())
+        self.original_stats.append(self.get_jump_attributes())
+        self.original_stats.append(self.get_landing_lags())
         
 
 

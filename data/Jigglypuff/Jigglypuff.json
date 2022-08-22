@@ -106,9 +106,6 @@
       },
       "Hitbox 1": {
          "Offset": 18300
-      },
-      "Hitbox 2": {
-         "Offset": 18320
       }
    },
    "Down-Smash": {
@@ -269,7 +266,7 @@
    },
    "Down Throw Loop": {
       "Type": 5,
-      "Strength": 0,
+      "Strength": 1,
       "Hitbox 0": {
          "Offset": 23900
       }

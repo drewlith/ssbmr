@@ -231,9 +231,12 @@ def get_fighter_data(): # Gets data from Fighters about their moves from offsets
                         hb.data = read_data(f.dat.fst_file.file_data, hb.offset, 20)
                         a.hitboxes.append(hb)
                         hitboxes.append(hb)
-
+            a.record_original_stats()
+        for t in f.throws:
+            t.record_original_stats()
         if f.properties_offset > 0:
             f.property_data = read_data(f.dat.fst_file.file_data, f.properties_offset, 2236) # Get Attributes
+            f.record_original_stats()
 
 def write_fighter_data(): # Writes everything to new iso data.
     for f in fighters:
@@ -266,41 +269,6 @@ def sort_attacks(): # Puts attacks into strength tiers and separates items
                 item_tiers[a.strength].append(a)
                 items.append(a)
 
-def set_shuffle_targets():
-    for tier in attack_tiers:
-        for attack in tier:
-            target = random.randint(0,len(tier)-1)
-            old_target = attack.shuffle_target_balanced
-            attack.shuffle_target_balanced = tier[target].shuffle_target_balanced
-            tier[target].shuffle_target_balanced = old_target
-
-            target = random.randint(0,len(attacks)-1)
-            old_target = attack.shuffle_target_unbalanced
-            attack.shuffle_target_unbalanced = attacks[target].shuffle_target_unbalanced
-            attacks[target].shuffle_target_unbalanced = old_target
-    for tier in item_tiers:
-        for item in tier:
-            target = random.randint(0,len(tier)-1)
-            old_target = item.shuffle_target_balanced
-            item.shuffle_target_balanced = tier[target].shuffle_target_balanced
-            tier[target].shuffle_target_balanced = old_target
-
-            target = random.randint(0,len(items)-1)
-            old_target = item.shuffle_target_unbalanced
-            item.shuffle_target_unbalanced = items[target].shuffle_target_unbalanced
-            items[target].shuffle_target_unbalanced = old_target
-    for throw in throws:
-        target = random.randint(0,len(throws)-1)
-        old_target = throw.shuffle_target
-        throw.shuffle_target = throws[target].shuffle_target
-        throws[target].shuffle_target = old_target
-    for fighter in fighters:
-        if fighter.properties_offset > 0:
-            target = random.randint(0,len(fighters)-2)
-            old_target = fighter.shuffle_target
-            fighter.shuffle_target = fighters[target].shuffle_target
-            fighters[target].shuffle_target = old_target
-        
 def start(iso_path):
     fst.clear()
     melee = open_iso(iso_path)
@@ -314,7 +282,6 @@ def start(iso_path):
     replace_file(b'MvOmake15.mth', "data/none.mth")
     get_fighter_data()
     sort_attacks()
-    set_shuffle_targets()
 
 def end(iso_path, output_path):
     write_fighter_data()

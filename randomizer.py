@@ -2,7 +2,7 @@ import melee, sys, random, util, string
 from mods import (damage, angle, growth, base, wdsk, element, shield_damage, sfx,
                   hitbox_size, throws, weight, scale, shield_size, movement, jump,
                   landing, chaos, music, log, vanilla, no_bosses, better_low_tiers,
-                  harder_bosses, soul_bond, turnips, balance)
+                  harder_bosses, soul_bond, turnips, balance, shuffle)
 
 def start(iso_path = None, output_path = None, flags = ""):
     seed = ""
@@ -50,27 +50,31 @@ def start(iso_path = None, output_path = None, flags = ""):
         p = get_values_from_string(flags, "-balance ", " -", ".") # p stands for Parameters
         balance.start_mod(p[0])
 
-    if "-damage" in flags: # "-damage S%"
+    if "-shuffle" in flags: # "-shuffle %"
+        print("Applying shuffle mod...")
+        p = get_values_from_string(flags, "-shuffle ", " -", ".") 
+        shuffle.start_mod(p[0])
+
+    if "-damage" in flags: # "-damage M"
         print("Applying damage mod...")
-        p = get_values_from_string(flags, "-damage ", " -", ".") # p stands for Parameters
+        p = get_values_from_string(flags, "-damage ", " -", ".")
         damage.start_mod(p[0])
 
-    if "-angle" in flags: # "-angle S%"
+    if "-angle" in flags: # "-angle"
         print("Applying angle mod...")
-        p = get_values_from_string(flags, "-angle ", " -", ".")
-        angle.start_mod(p[0])
+        angle.start_mod()
 
-    if "-growth" in flags: # "-growth S%"
+    if "-growth" in flags: # "-growth M"
         print("Applying knockback growth mod...")
         p = get_values_from_string(flags, "-growth ", " -", ".")
         growth.start_mod(p[0])
 
-    if "-base_knockback" in flags: # "-base_knockback S%"
+    if "-base_knockback" in flags: # "-base_knockback M"
         print("Applying base knockback mod...")
         p = get_values_from_string(flags, "-base_knockback ", " -", ".")
         base.start_mod(p[0])
         
-    if "-wdsk" in flags: # "-wdsk %"
+    if "-wdsk" in flags: # "-wdsk M"
         print("Applying weight-dependent set knockback mod...")
         p = get_values_from_string(flags, "-wdsk ", " -", ".")
         wdsk.start_mod(p[0])
@@ -80,7 +84,7 @@ def start(iso_path = None, output_path = None, flags = ""):
         p = get_values_from_string(flags, "-element ", " -", ".")
         element.start_mod(p[0])
         
-    if "-shield_damage" in flags: # "-shield_damage S%"
+    if "-shield_damage" in flags: # "-shield_damage M"
         print("Applying shield damage mod...")
         p = get_values_from_string(flags, "-shield_damage ", " -", ".")
         shield_damage.start_mod(p[0])
@@ -94,15 +98,18 @@ def start(iso_path = None, output_path = None, flags = ""):
         p = get_values_from_string(flags, "-hitbox_size ", " -", ".")
         hitbox_size.start_mod(p[0])
 
-    if "-throws" in flags: # "-throws S%"
+    if "-throws" in flags: # "-throws M"
         print("Applying throw mod...")
         p = get_values_from_string(flags, "-throws ", " -", ".")
         throws.start_mod(p[0])
 
-    if "-weight" in flags: # "-weight S%"
+    if "-weight" in flags: # "-weight Mag.Mo"
         print("Applying weight mod...")
         p = get_values_from_string(flags, "-weight ", " -", ".")
-        weight.start_mod(p[0])
+        if len(p) < 2:
+            weight.start_mod(p[0])
+        else:
+            weight.start_mod(p[0],p[1])
 
     if "-scale" in flags: # "-scale Mag.Mo(Optional)" Mode 0 = Bigger/smaller, 1 = Big only, 2 = Small only
         print("Applying scale mod...")
@@ -182,7 +189,7 @@ def start(iso_path = None, output_path = None, flags = ""):
         
     melee.end(iso_path, output_path)
 
-    return(flags)
+    return(flags[:-2])
 
 if __name__ == '__main__':
     start()

@@ -221,7 +221,7 @@
    },
    "Thunder 2": {
       "Type": 2,
-      "Strength": 2,
+      "Strength": 4,
       "Hitbox 0": {
          "Offset": 14912
       }

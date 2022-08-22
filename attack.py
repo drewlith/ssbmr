@@ -6,9 +6,22 @@ class Attack():
         self.strength = 0
         self.type = 0
         self.balance = False
-        self.shuffle_target_unbalanced = self
-        self.shuffle_target_balanced = self
+        self.shuffled = False
+        self.shuffled_with = self.fighter.name + " " + self.attack_name
         self.notes = []
+        self.original_stats = []
+        
+    def record_original_stats(self):
+        self.original_stats.clear()
+        self.original_stats.append(str(self.hitboxes[0].get_damage()))
+        self.original_stats.append(str(self.hitboxes[0].get_angle()))
+        self.original_stats.append(str(self.hitboxes[0].get_growth()))
+        self.original_stats.append(str(self.hitboxes[0].get_base()))
+        self.original_stats.append(str(self.hitboxes[0].get_set()))
+        self.original_stats.append(str(self.hitboxes[0].get_shield()))
+        self.original_stats.append(str(self.hitboxes[0].get_size()))
+        self.original_stats.append(self.hitboxes[0].get_element())
+        
 
         
         

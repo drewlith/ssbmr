@@ -296,14 +296,14 @@
    },
    "Down Throw Loop": {
       "Type": 5,
-      "Strength": 0,
+      "Strength": 1,
       "Hitbox 0": {
          "Offset": 40616
       }
    },
    "Down Throw Hitbox": {
       "Type": 5,
-      "Strength": 0,
+      "Strength": 1,
       "Hitbox 0": {
          "Offset": 40656
       }

@@ -1,4 +1,4 @@
-# Randomizes fighter scale
+# Random Scale mod by drewlith.
 import melee, random
 from util import percent_chance
 

@@ -1,24 +1,21 @@
-# Random/Shuffled weight-dependent set knockback Mod by drewlith.
-# Percent = Percent of moves to get WDSK. 
+# Random Set Knockback mod by drewlith.
+# Magnitude: Intensity of the randomization and chance of it being applied
 import melee, random
 from util import percent_chance
+from random import randint as rng
 
-def randomize(attack): 
-    wdsk = random.randint(20,120)
+def randomize(attack, magnitude):
+    if not percent_chance(magnitude):
+        return
+    if attack.balance:
+        wdsk = rng(0,attack.strength+magnitude)*6
+    else:
+        wdsk = rng(0,40+magnitude)
     for hb in attack.hitboxes:
         hb.set_set(wdsk)
 
-def start_mod(percent):
-    for tier in melee.attack_tiers: # Normal Attacks
-        for attack in tier:
-            if percent_chance(percent):
-                randomize(attack)
-                attack.notes.append("WDSK randomized to " +
-                                        str(attack.hitboxes[0].get_set()) + ".")
-                    
-    for tier in melee.item_tiers: # Items
-        for item in tier:
-            if percent_chance(percent):
-                randomize(item)
-                item.notes.append("WDSK randomized to " +
-                                      str(item.hitboxes[0].get_set()) + ".")
+def start_mod(magnitude):
+    for fighter in melee.fighters: # Normal Attacks
+        for attack in fighter.attacks:
+            if not attack.shuffled:
+                randomize(attack, magnitude)

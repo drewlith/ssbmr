@@ -174,6 +174,7 @@ class ApplicationMain():
             flags = "-seed " + self.seed_creator.get() + " " + self.flag_text_box.get("1.0",tk.END)
         else:
             flags = self.flag_text_box.get("1.0",tk.END)
+        flags = flags.strip()
         args = [self.iso_path.get(),self.output_path.get(),flags]
         # Check for Errors
         for arg in args:
@@ -208,9 +209,11 @@ class ApplicationMain():
         self.information.set(string)
 
     def show_seed_tip(self, event):
+        if self.randomizing: return
         self.information.set("ISOs generated with the same seed and flags will be identical.")
 
     def show_preset_tip(self, event):
+        if self.randomizing: return
         self.information.set("Presets are a collection of flags to start with. Click 'Customize' to make changes!")
 
 class Tab():
@@ -343,7 +346,7 @@ class OneOptionFlag():
         self.menu.custom_menu.update_information(self.tooltip)
         
 class TwoOptionFlag():
-    def __init__(self, master, menu, name, flag_name, x_pos, y_pos, label = "Shuffle %"):
+    def __init__(self, master, menu, name, flag_name, x_pos, y_pos, mag_cap = 100, label = "Magnitude"):
         self.master = master
         self.menu = menu
         self.flag_name = flag_name
@@ -358,7 +361,7 @@ class TwoOptionFlag():
                             text=name, onvalue=1, offvalue=0, variable=self.flag_var, command=menu.determine_flags)
         self.check.place(x=x_pos,y=y_pos)
         self.check.bind('<Enter>', self.update_information)
-        self.scale = tk.Scale(self.master, label=label,length=100, from_=0, to=100, orient=tk.HORIZONTAL, fg='white', bg=bg_color,
+        self.scale = tk.Scale(self.master, label=label,length=100, from_=0, to=mag_cap, orient=tk.HORIZONTAL, fg='white', bg=bg_color,
                      variable=self.magnitude,command=menu.determine_flags)
         self.scale.place(x=x_pos+115,y=y_pos-15)
         self.scale.bind('<Enter>', self.update_information)
@@ -378,7 +381,7 @@ class TwoOptionFlag():
         self.scale.configure(fg='white', bg=bg_color)
         
 class TwoOptionFlagDropdown():
-    def __init__(self, master, menu, name, flag_name, options, x_pos, y_pos, label = "Shuffle %"):
+    def __init__(self, master, menu, name, flag_name, options, x_pos, y_pos):
         self.master = master
         self.menu = menu
         self.flag_name = flag_name
@@ -427,7 +430,7 @@ class TwoOptionFlagDropdown():
         self.menu.determine_flags(0)
 
 class ThreeOptionFlag():
-    def __init__(self, master, menu, name, flag_name, options, x_pos, y_pos, label = "Shuffle %"):
+    def __init__(self, master, menu, name, flag_name, options, x_pos, y_pos, mag_cap = 100, label = "Magnitude"):
         self.master = master
         self.menu = menu
         self.flag_name = flag_name
@@ -444,7 +447,7 @@ class ThreeOptionFlag():
                             text=name, onvalue=1, offvalue=0, variable=self.flag_var, command=menu.determine_flags)
         self.check.place(x=x_pos,y=y_pos)
         self.check.bind('<Enter>', self.update_information)
-        self.scale = tk.Scale(self.master, label=label,length=100, from_=0, to=100, orient=tk.HORIZONTAL, fg='white', bg=bg_color,
+        self.scale = tk.Scale(self.master, label=label,length=100, from_=0, to=mag_cap, orient=tk.HORIZONTAL, fg='white', bg=bg_color,
                      variable=self.magnitude,command=menu.determine_flags)
         self.scale.place(x=x_pos+115,y=y_pos-15)
         self.scale.bind('<Enter>', self.update_information)
@@ -536,30 +539,32 @@ class MiscMenu():
         ui_font_medium = font.Font(family="data/Folk.otf",size=16)
         ui_font_small = font.Font(family="data/Folk.otf",size=12)
         self.flag_widgets = []
-        self.flag_widgets.append(TwoOptionFlag(self.master, self, "Vanilla", "-vanilla ", 50, 130, "Chance %"))
-        self.flag_widgets.append(TwoOptionFlag(self.master, self, "Balance", "-balance ", 50, 200, "Chance %"))
-        self.flag_widgets.append(TwoOptionFlag(self.master, self, "Throws", "-throws ", 50, 270, "Shuffle %"))
-        self.flag_widgets.append(TwoOptionFlag(self.master, self, "Chaos", "-chaos ", 50, 340, "Chaos Scale"))
-        self.flag_widgets.append(OneOptionFlag(self.master, self, "Soul Bond", "-soul_bond ", 300, 130))
-        self.flag_widgets.append(OneOptionFlag(self.master, self, "Vanilla Bosses", "-no_bosses ", 450, 130))
-        self.flag_widgets.append(OneOptionFlag(self.master, self, "Better Low Tiers", "-better_low_tiers ", 300, 170))
-        self.flag_widgets.append(OneOptionFlag(self.master, self, "SFX", "-sfx ", 450, 170))
-        self.flag_widgets.append(TwoOptionFlagDropdown(self.master, self, "Turnips", "-turnips ",("Balanced", "Items Only", "Chaos", "Chaos Items"), 300, 210))
-        self.flag_widgets.append(TwoOptionFlagDropdown(self.master, self, "Music", "-music ",("Shuffle"), 300, 250))
-        self.flag_widgets.append(OneOptionFlag(self.master, self, "Log", "-log ", 300, 290))
-        self.flag_widgets.append(TwoOptionFlag(self.master, self, "Harder 1p", "-harder_bosses ", 300, 340, "Difficulty"))
+        self.flag_widgets.append(TwoOptionFlag(self.master, self, "Vanilla", "-vanilla ", 50, 130, 100, "Chance %"))
+        self.flag_widgets.append(TwoOptionFlag(self.master, self, "Balance", "-balance ", 50, 200, 100, "Chance %"))
+        self.flag_widgets.append(TwoOptionFlag(self.master, self, "Throws", "-throws ", 50, 270, 20))
+        self.flag_widgets.append(TwoOptionFlag(self.master, self, "Chaos", "-chaos ", 50, 340, 100, "Chaos Scale"))
+        self.flag_widgets.append(TwoOptionFlag(self.master, self, "Shuffle", "-shuffle ", 300, 130, 100, "Chance %"))
+        self.flag_widgets.append(OneOptionFlag(self.master, self, "Soul Bond", "-soul_bond ", 300, 190))
+        self.flag_widgets.append(OneOptionFlag(self.master, self, "Vanilla Bosses", "-no_bosses ", 450, 190))
+        self.flag_widgets.append(OneOptionFlag(self.master, self, "Better Low Tiers", "-better_low_tiers ", 300, 230))
+        self.flag_widgets.append(OneOptionFlag(self.master, self, "SFX", "-sfx ", 450, 230))
+        self.flag_widgets.append(TwoOptionFlagDropdown(self.master, self, "Turnips", "-turnips ",("Balanced", "Items Only", "Chaos", "Chaos Items"), 300, 270))
+        self.flag_widgets.append(TwoOptionFlagDropdown(self.master, self, "Music", "-music ",("Shuffle"), 300, 310))
+        self.flag_widgets.append(OneOptionFlag(self.master, self, "Log", "-log ", 520, 230))
+        self.flag_widgets.append(TwoOptionFlag(self.master, self, "Harder 1p", "-harder_bosses ", 300, 360, 5, "Difficulty"))
         self.flag_widgets[0].tooltip = "Keeps elements the same as the original Melee."
         self.flag_widgets[1].tooltip = "Makes attacks closer to their original power level."
         self.flag_widgets[2].tooltip = "Throws will have their properties randomized."
-        self.flag_widgets[3].tooltip = "Try it at your own risk."
-        self.flag_widgets[4].tooltip = "Makes Nana the same as Popo."
-        self.flag_widgets[5].tooltip = "Boss hitboxes and attributes will not be included."
-        self.flag_widgets[6].tooltip = "Low tier characters will receive substantial buffs."
-        self.flag_widgets[7].tooltip = "Hitbox sounds will be randomized."
-        self.flag_widgets[8].tooltip = "Turnips will be randomized. Chaos may be buggy!"
-        self.flag_widgets[9].tooltip = "Shuffles music. Will increase randomization time drastically."
-        self.flag_widgets[10].tooltip = "A log will be generated that lists changes."
-        self.flag_widgets[11].tooltip = "Bosses will receive substantial buffs."
+        self.flag_widgets[3].tooltip = "Percent of attacks and throws to shuffle instead of randomize."
+        self.flag_widgets[4].tooltip = "Try it at your own risk."
+        self.flag_widgets[5].tooltip = "Makes Nana the same as Popo."
+        self.flag_widgets[6].tooltip = "Boss hitboxes and attributes will not be included."
+        self.flag_widgets[7].tooltip = "Low tier characters will receive substantial buffs."
+        self.flag_widgets[8].tooltip = "Hitbox sounds will be randomized."
+        self.flag_widgets[9].tooltip = "Turnips will be randomized. Chaos may be buggy!"
+        self.flag_widgets[10].tooltip = "Shuffles music. Will increase randomization time drastically."
+        self.flag_widgets[11].tooltip = "A log will be generated that lists changes."
+        self.flag_widgets[12].tooltip = "Bosses will receive substantial buffs."
         
         self.determine_settings()
         
@@ -579,7 +584,7 @@ class MiscMenu():
 
     def determine_settings(self):
         flags = self.custom_menu.flags.strip() + " -"
-        flag_names = ["-vanilla ", "-balance ", "-throws ", "-chaos ", "-soul_bond ",
+        flag_names = ["-vanilla ", "-balance ", "-throws ", "-chaos ", "-shuffle ", "-soul_bond ",
                       "-no_bosses ", "-better_low_tiers ", "-sfx ", "-turnips ", "-music ", "-log ", "-harder_bosses "]
         for i in range(len(self.flag_widgets)):
             if flag_names[i] in flags:
@@ -615,12 +620,12 @@ class AttributeMenu():
         ui_font_medium = font.Font(family="data/Folk.otf",size=16)
         ui_font_small = font.Font(family="data/Folk.otf",size=12)
         self.flag_widgets = []
-        self.flag_widgets.append(TwoOptionFlag(self.master, self, "Weight", "-weight ", 50, 130))
-        self.flag_widgets.append(ThreeOptionFlag(self.master, self, "Scale", "-scale ", ("Normal", "Bigger", "Smaller"), 50, 220, "Magnitude"))
-        self.flag_widgets.append(ThreeOptionFlag(self.master, self, "Shld. Size", "-shield_size ", ("Normal", "Bigger", "Smaller"), 50, 310, "Magnitude"))
-        self.flag_widgets.append(ThreeOptionFlag(self.master, self, "Movement", "-movement ", ("Normal", "Faster", "Slower"), 320, 130, "Magnitude"))
-        self.flag_widgets.append(ThreeOptionFlag(self.master, self, "Jumps", "-jump ", ("Normal", "Faster", "Slower"), 320, 220, "Magnitude"))
-        self.flag_widgets.append(ThreeOptionFlag(self.master, self, "Landing", "-landing ", ("Normal", "Faster", "Slower"), 320, 310, "Magnitude"))
+        self.flag_widgets.append(ThreeOptionFlag(self.master, self, "Weight", "-weight ", ("Normal", "Heavier", "Lighter"), 50, 130))
+        self.flag_widgets.append(ThreeOptionFlag(self.master, self, "Scale", "-scale ", ("Normal", "Bigger", "Smaller"), 50, 220))
+        self.flag_widgets.append(ThreeOptionFlag(self.master, self, "Shld. Size", "-shield_size ", ("Normal", "Bigger", "Smaller"), 50, 310, 10))
+        self.flag_widgets.append(ThreeOptionFlag(self.master, self, "Movement", "-movement ", ("Normal", "Faster", "Slower"), 320, 130))
+        self.flag_widgets.append(ThreeOptionFlag(self.master, self, "Jumps", "-jump ", ("Normal", "Faster", "Slower"), 320, 220))
+        self.flag_widgets.append(ThreeOptionFlag(self.master, self, "Landing", "-landing ", ("Normal", "Faster", "Slower"), 320, 310, 20))
         self.flag_widgets[0].tooltip = "Higher weight will lower knockback."
         self.flag_widgets[1].tooltip = "How big a fighter is."
         self.flag_widgets[2].tooltip = "Changes the size of fighters' shields'."
@@ -670,14 +675,14 @@ class HitboxMenu():
         ui_font_medium = font.Font(family="data/Folk.otf",size=16)
         ui_font_small = font.Font(family="data/Folk.otf",size=12)
         self.flag_widgets = []
-        self.flag_widgets.append(TwoOptionFlag(self.master, self, "Damage", "-damage ", 50, 130))
-        self.flag_widgets.append(TwoOptionFlag(self.master, self, "Angle", "-angle ", 50, 200))
-        self.flag_widgets.append(TwoOptionFlag(self.master, self, "KB Growth", "-growth ", 50, 270))
-        self.flag_widgets.append(TwoOptionFlag(self.master, self, "Base KB", "-base_knockback ", 50, 340))
-        self.flag_widgets.append(TwoOptionFlag(self.master, self, "Shield Dmg.", "-shield_damage ", 320, 130))
-        self.flag_widgets.append(TwoOptionFlag(self.master, self, "Set KB", "-wdsk ", 320, 200, "Random %"))
-        self.flag_widgets.append(TwoOptionFlag(self.master, self, "Size", "-hitbox_size ", 320, 270, "Shuffle %"))
-        self.flag_widgets.append(TwoOptionFlag(self.master, self, "Element", "-element ", 320, 340, "Random %"))
+        self.flag_widgets.append(TwoOptionFlag(self.master, self, "Damage", "-damage ", 50, 130, 20))
+        self.flag_widgets.append(OneOptionFlag(self.master, self, "Angle", "-angle ", 50, 200))
+        self.flag_widgets.append(TwoOptionFlag(self.master, self, "KB Growth", "-growth ", 50, 270, 20))
+        self.flag_widgets.append(TwoOptionFlag(self.master, self, "Base KB", "-base_knockback ", 50, 340, 20))
+        self.flag_widgets.append(TwoOptionFlag(self.master, self, "Shield Dmg.", "-shield_damage ", 320, 130, 20))
+        self.flag_widgets.append(TwoOptionFlag(self.master, self, "Set KB", "-wdsk ", 320, 200, 20))
+        self.flag_widgets.append(TwoOptionFlag(self.master, self, "Size", "-hitbox_size ", 320, 270, 20))
+        self.flag_widgets.append(TwoOptionFlag(self.master, self, "Element", "-element ", 320, 340, 100, "Random %"))
         self.flag_widgets[0].tooltip = "Changes how much damage that an attack will do."
         self.flag_widgets[1].tooltip = "Changes the angle that attacks will launch at."
         self.flag_widgets[2].tooltip = "Changes how much percent affects knockback."
@@ -694,6 +699,8 @@ class HitboxMenu():
             if widget.flag_var.get() == 1:
                 if type(widget) == TwoOptionFlag:
                     flags += widget.flag_name + str(widget.magnitude.get()) + " "
+                else:
+                    flags += widget.flag_name + " "
         self.custom_menu.hitbox_flags = flags
 
     def determine_settings(self):
@@ -703,7 +710,8 @@ class HitboxMenu():
         for i in range(len(self.flag_widgets)):
             if flag_names[i] in flags:
                 self.flag_widgets[i].flag_var.set(1)
-                self.flag_widgets[i].magnitude.set(int(util.get_string_between(flags,flag_names[i], "-")))
+                if type(self.flag_widgets[i]) == TwoOptionFlag:
+                    self.flag_widgets[i].magnitude.set(int(util.get_string_between(flags,flag_names[i], "-")))
         self.determine_flags(0)
             
     def clear(self):

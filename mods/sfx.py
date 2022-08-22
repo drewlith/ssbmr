@@ -1,4 +1,4 @@
-# Random/Shuffled SFX mod by drewlith.
+# Random SFX mod by drewlith.
 import melee, random
 from util import percent_chance
 
@@ -13,12 +13,10 @@ def randomize(attack):
 def start_mod():
     for tier in melee.attack_tiers: # Normal Attacks
         for attack in tier:
-            randomize(attack)
-            attack.notes.append("SFX randomized to " +
-                                    str(attack.hitboxes[0].get_sfx()) + ".")
+            if not attack.shuffled:
+                randomize(attack)
                     
     for tier in melee.item_tiers: # Items
         for item in tier:
-            randomize(item)
-            item.notes.append("SFX randomized to " +
-                                  str(item.hitboxes[0].get_sfx()) + ".")
+            if not attack.shuffled:
+                randomize(item)
