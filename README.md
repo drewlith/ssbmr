@@ -12,6 +12,8 @@ Save the .zip file from the download link above to your computer, and "extract" 
 
 When generating an ISO with the app, copy the flag set in the "Flags" box and paste them somewhere that your friend can see them. Have them paste the flags into their app and then generate an ISO. The two ISOs should now be the same. Now you should be able to play on Dolphin Netplay or Slippi Direct without issues. Note that playing Unranked with a randomized ISO will cause desyncs!
 
+### Join the official [Discord](https://discord.gg/48SQfvcvVY) server!
+
 ## Custom Music Pack: Coming soon!
 
 ## Custom Texture Pack: Coming soon!
@@ -19,5 +21,3 @@ When generating an ISO with the app, copy the flag set in the "Flags" box and pa
 ### Command Line Usage
 
 `randomizer.py "iso_path" "output_directory" "flags"`
-
-### Join the official [Discord](https://discord.gg/48SQfvcvVY) server!
