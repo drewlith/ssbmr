@@ -1,870 +1,870 @@
 {
-   "Container A": {
-      "Type": 6,
-      "Strength": 4,
-      "Hitbox 0": {
-         "Offset": 10140
-      }
-   },
-   "Container A Explosion": {
-      "Type": 6,
-      "Strength": 8,
-      "Hitbox 1": {
-         "Offset": 10168
-      }
-   },
-   "Container B": {
-      "Type": 6,
-      "Strength": 6,
-      "Hitbox 0": {
-         "Offset": 10212
-      }
-   },
-   "Container B Explosion": {
-      "Type": 6,
-      "Strength": 8,
-      "Hitbox 0": {
-         "Offset": 10240
-      }
-   },
-   "Container C": {
-      "Type": 6,
-      "Strength": 6,
-      "Hitbox 0": {
-         "Offset": 10288
-      }
-   },
-   "Container C Explosion": {
-      "Type": 6,
-      "Strength": 8,
-      "Hitbox 0": {
-         "Offset": 10348
-      }
-   },
-   "Capsule Throw": {
-      "Type": 6,
-      "Strength": 4,
-      "Hitbox 0": {
-         "Offset": 10396
-      }
-   },
-   "Capsule Explosion": {
-      "Type": 6,
-      "Strength": 8,
-      "Hitbox 0": {
-         "Offset": 10424
-      }
-   },
-   "Party Ball Throw": {
-      "Type": 6,
-      "Strength": 5,
-      "Hitbox 0": {
-         "Offset": 10472
-      }
-   },
-   "Party Ball Explosion": {
-      "Type": 6,
-      "Strength": 8,
-      "Hitbox 0": {
-         "Offset": 10500
-      }
-   },
-   "Bob-omb": {
-      "Type": 6,
-      "Strength": 9,
-      "Hitbox 0": {
-         "Offset": 10592
-      },
-      "Hitbox 1": {
-         "Offset": 10620
-      },
-      "Hitbox 2": {
-         "Offset": 10648
-      }
-   },
-   "Mr. Saturn": {
-      "Type": 6,
-      "Strength": 3,
-      "Hitbox 0": {
-         "Offset": 10692
-      },
-      "Hitbox 1": {
-         "Offset": 10716
-      }
-   },
-   "Barrel Cannon": {
-      "Type": 6,
-      "Strength": 7,
-      "Hitbox 0": {
-         "Offset": 10772
-      }
-   },
-   "Green Shell": {
-      "Type": 6,
-      "Strength": 7,
-      "Hitbox 0": {
-         "Offset": 10856
-      }
-   },
-   "Red Shell": {
-      "Type": 6,
-      "Strength": 6,
-      "Hitbox 0": {
-         "Offset": 10884
-      }
-   },
-   "Freezie": {
-      "Type": 6,
-      "Strength": 6,
-      "Hitbox 0": {
-         "Offset": 10912
-      }
-   },
-   "Motion Sensor Bomb Throw": {
-      "Type": 6,
-      "Strength": 4,
-      "Hitbox 0": {
-         "Offset": 10940
-      },
-      "Hitbox 1": {
-         "Offset": 11076
-      }
-   },
-   "Motion Sensor Bomb Explode": {
-      "Type": 6,
-      "Strength": 9,
-      "Hitbox 0": {
-         "Offset": 11000
-      },
-      "Hitbox 1": {
-         "Offset": 11136
-      }
-   },
-   "Flipper Throw": {
-      "Type": 6,
-      "Strength": 4,
-      "Hitbox 0": {
-         "Offset": 11212
-      },
-      "Hitbox 1": {
-         "Offset": 11236
-      }
-   },
-   "Flipper Active": {
-      "Type": 6,
-      "Strength": 4,
-      "Hitbox 0": {
-         "Offset": 11264
-      },
-      "Hitbox 1": {
-         "Offset": 11288
-      }
-   },
-   "Screw Attack": {
-      "Type": 6,
-      "Strength": 5,
-      "Hitbox 0": {
-         "Offset": 11316
-      }
-   },
-   "Parasol Throw": {
-      "Type": 6,
-      "Strength": 2,
-      "Hitbox 0": {
-         "Offset": 11352
-      },
-      "Hitbox 1": {
-         "Offset": 11376
-      }
-   },
-   "Home-run Bat Throw": {
-      "Type": 6,
-      "Strength": 7,
-      "Hitbox 0": {
-         "Offset": 11404
-      }
-   },
-   "Beam Sword Throw": {
-      "Type": 6,
-      "Strength": 5,
-      "Hitbox 0": {
-         "Offset": 11432
-      }
-   },
-   "Ray Gun Throw": {
-      "Type": 6,
-      "Strength": 4,
-      "Hitbox 0": {
-         "Offset": 11488
-      }
-   },
-   "Star Rod Throw": {
-      "Type": 6,
-      "Strength": 5,
-      "Hitbox 0": {
-         "Offset": 11516
-      }
-   },
-   "Lip's Stick Throw": {
-      "Type": 6,
-      "Strength": 4,
-      "Hitbox 0": {
-         "Offset": 11544
-      }
-   },
-   "Fan Throw": {
-      "Type": 6,
-      "Strength": 3,
-      "Hitbox 0": {
-         "Offset": 11572
-      }
-   },
-   "Fire Flower Throw": {
-      "Type": 6,
-      "Strength": 3,
-      "Hitbox 0": {
-         "Offset": 11600
-      }
-   },
-   "Hammer": {
-      "Type": 6,
-      "Strength": 8,
-      "Hitbox 0": {
-         "Offset": 11724
-      },
-      "Hitbox 1": {
-         "Offset": 11748
-      },
-      "Hitbox 2": {
-         "Offset": 11772
-      },
-      "Hitbox 3": {
-         "Offset": 11796
-      }
-   },
-   "Warp Star Descent": {
-      "Type": 6,
-      "Strength": 7,
-      "Hitbox 0": {
-         "Offset": 11828
-      }
-   },
-   "Warp Star Explosion": {
-      "Type": 6,
-      "Strength": 9,
-      "Hitbox 0": {
-         "Offset": 11868
-      }
-   },
-   "Ray Gun Shot": {
-      "Type": 6,
-      "Strength": 6,
-      "Hitbox 0": {
-         "Offset": 11904
-      },
-      "Hitbox 1": {
-         "Offset": 11928
-      }
-   },
-   "Star Rod Star Shot": {
-      "Type": 6,
-      "Strength": 6,
-      "Hitbox 0": {
-         "Offset": 11956
-      }
-   },
-   "Lip's Stick Shot": {
-      "Type": 6,
-      "Strength": 4,
-      "Hitbox 0": {
-         "Offset": 11984
-      }
-   },
-   "Super Scope 1": {
-      "Type": 6,
-      "Strength": 1,
-      "Hitbox 0": {
-         "Offset": 12012
-      }
-   },
-   "Super Scope 2": {
-      "Type": 6,
-      "Strength": 1,
-      "Hitbox 0": {
-         "Offset": 12040
-      }
-   },
-   "Super Scope 3": {
-      "Type": 6,
-      "Strength": 2,
-      "Hitbox 0": {
-         "Offset": 12068
-      }
-   },
-   "Super Scope 4": {
-      "Type": 6,
-      "Strength": 3,
-      "Hitbox 0": {
-         "Offset": 12096
-      }
-   },
-   "Super Scope 5": {
-      "Type": 6,
-      "Strength": 4,
-      "Hitbox 0": {
-         "Offset": 12124
-      }
-   },
-   "Super Scope 6": {
-      "Type": 6,
-      "Strength": 6,
-      "Hitbox 0": {
-         "Offset": 12152
-      }
-   },
-   "Super Scope 7": {
-      "Type": 6,
-      "Strength": 7,
-      "Hitbox 0": {
-         "Offset": 12180
-      }
-   },
-   "Super Scope 8": {
-      "Type": 6,
-      "Strength": 8,
-      "Hitbox 0": {
-         "Offset": 12208
-      }
-   },
-   "Super Scope 9": {
-      "Type": 6,
-      "Strength": 9,
-      "Hitbox 0": {
-         "Offset": 12236
-      }
-   },
-   "Super Scope 10": {
-      "Type": 6,
-      "Strength": 10,
-      "Hitbox 0": {
-         "Offset": 12264
-      }
-   },
-   "Fire Flower Fire": {
-      "Type": 6,
-      "Strength": 2,
-      "Hitbox 0": {
-         "Offset": 12292
-      }
-   },
-   "Goomba": {
-      "Type": 6,
-      "Strength": 5,
-      "Hitbox 0": {
-         "Offset": 18064
-      },
-      "Hitbox 1": {
-         "Offset": 18088
-      }
-   },
-   "Topi": {
-      "Type": 6,
-      "Strength": 6,
-      "Hitbox 0": {
-         "Offset": 18144
-      },
-      "Hitbox 1": {
-         "Offset": 18200
-      }
-   },
-   "Octorock": {
-      "Type": 6,
-      "Strength": 6,
-      "Hitbox 0": {
-         "Offset": 18368
-      }
-   },
-   "Adventure Mode Enemy? 1": {
-      "Type": 6,
-      "Strength": 6,
-      "Hitbox 0": {
-         "Offset": 18116
-      }
-   },
-   "Adventure Mode Enemy? 2": {
-      "Type": 6,
-      "Strength": 6,
-      "Hitbox 0": {
-         "Offset": 18172
-      }
-   },
-   "Adventure Mode Enemy? 3": {
-      "Type": 6,
-      "Strength": 6,
-      "Hitbox 0": {
-         "Offset": 18228
-      }
-   },
-   "Adventure Mode Enemy? 4": {
-      "Type": 6,
-      "Strength": 6,
-      "Hitbox 0": {
-         "Offset": 18256
-      }
-   },
-   "Adventure Mode Enemy? 5": {
-      "Type": 6,
-      "Strength": 6,
-      "Hitbox 0": {
-         "Offset": 18284
-      }
-   },
-   "Adventure Mode Enemy? 6": {
-      "Type": 6,
-      "Strength": 6,
-      "Hitbox 0": {
-         "Offset": 18340
-      }
-   },
-   "Chickorita Contact": {
-      "Type": 6,
-      "Strength": 2,
-      "Hitbox 0": {
-         "Offset": 38860
-      },
-      "Hitbox 1": {
-         "Offset": 38976
-      }
-   },
-   "Snorlax Jump": {
-      "Type": 6,
-      "Strength": 8,
-      "Hitbox 0": {
-         "Offset": 39012
-      }
-   },
-   "Snorlax Fall": {
-      "Type": 6,
-      "Strength": 8,
-      "Hitbox 0": {
-         "Offset": 39128
-      }
-   },
-   "Blastoise Contact": {
-      "Type": 6,
-      "Strength": 8,
-      "Hitbox 0": {
-         "Offset": 39232
-      },
-      "Hitbox 1": {
-         "Offset": 39260
-      },
-      "Hitbox 2": {
-         "Offset": 39456
-      }
-   },
-   "Charizard Contact": {
-      "Type": 6,
-      "Strength": 8,
-      "Hitbox 0": {
-         "Offset": 39564
-      },
-      "Hitbox 1": {
-         "Offset": 39592
-      }
-   },
-   "Pokemon? 1": {
-      "Type": 6,
-      "Strength": 10,
-      "Hitbox 0": {
-         "Offset": 39724
-      }
-   },
-   "Moltres": {
-      "Type": 6,
-      "Strength": 10,
-      "Hitbox 0": {
-         "Offset": 39764
-      },
-      "Hitbox 1": {
-         "Offset": 39788
-      },
-      "Hitbox 2": {
-         "Offset": 39812
-      },
-      "Hitbox 3": {
-         "Offset": 39860
-      },
-      "Hitbox 4": {
-         "Offset": 39884
-      },
-      "Hitbox 5": {
-         "Offset": 39908
-      }
-   },
-   "Zapdos": {
-      "Type": 6,
-      "Strength": 4,
-      "Hitbox 0": {
-         "Offset": 40056
-      },
-      "Hitbox 1": {
-         "Offset": 40080
-      },
-      "Hitbox 2": {
-         "Offset": 40104
-      },
-      "Hitbox 3": {
-         "Offset": 40128
-      }
-   },
-   "Articuno": {
-      "Type": 6,
-      "Strength": 10,
-      "Hitbox 0": {
-         "Offset": 40300
-      }
-   },
-   "Wobbuffet": {
-      "Type": 6,
-      "Strength": 6,
-      "Hitbox 0": {
-         "Offset": 40300
-      }
-   },
-   "Scizor 1": {
-      "Type": 6,
-      "Strength": 8,
-      "Hitbox 0": {
-         "Offset": 40504
-      }
-   },
-   "Scizor 2": {
-      "Type": 6,
-      "Strength": 9,
-      "Hitbox 0": {
-         "Offset": 40564
-      }
-   },
-   "Pokemon? 2": {
-      "Type": 6,
-      "Strength": 8,
-      "Hitbox 0": {
-         "Offset": 40624
-      }
-   },
-   "Entei": {
-      "Type": 6,
-      "Strength": 3,
-      "Hitbox 0": {
-         "Offset": 40692
-      },
-      "Hitbox 1": {
-         "Offset": 40716
-      },
-      "Hitbox 2": {
-         "Offset": 40740
-      },
-      "Hitbox 3": {
-         "Offset": 40764
-      }
-   },
-   "Raikou": {
-      "Type": 6,
-      "Strength": 8,
-      "Hitbox 0": {
-         "Offset": 40856
-      }
-   },
-   "Suicune 1": {
-      "Type": 6,
-      "Strength": 3,
-      "Hitbox 0": {
-         "Offset": 40932
-      },
-      "Hitbox 1": {
-         "Offset": 40956
-      },
-      "Hitbox 2": {
-         "Offset": 40980
-      },
-      "Hitbox 3": {
-         "Offset": 41004
-      }
-   },
-   "Suicune 2": {
-      "Type": 6,
-      "Strength": 8,
-      "Hitbox 0": {
-         "Offset": 41004
-      },
-      "Hitbox 1": {
-         "Offset": 41040
-      },
-      "Hitbox 2": {
-         "Offset": 41064
-      },
-      "Hitbox 3": {
-         "Offset": 41088
-      }
-   },
-   "Bellossom": {
-      "Type": 6,
-      "Strength": 5,
-      "Hitbox 0": {
-         "Offset": 41160
-      },
-      "Hitbox 1": {
-         "Offset": 41184
-      },
-      "Hitbox 2": {
-         "Offset": 41208
-      }
-   },
-   "Electrode": {
-      "Type": 6,
-      "Strength": 10,
-      "Hitbox 0": {
-         "Offset": 41316
-      }
-   },
-   "Lugia Contact": {
-      "Type": 6,
-      "Strength": 9,
-      "Hitbox 0": {
-         "Offset": 41440
-      },
-      "Hitbox 1": {
-         "Offset": 41464
-      },
-      "Hitbox 2": {
-         "Offset": 41488
-      },
-      "Hitbox 3": {
-         "Offset": 41568
-      },
-      "Hitbox 4": {
-         "Offset": 41592
-      },
-      "Hitbox 5": {
-         "Offset": 41616
-      },
-      "Hitbox 6": {
-         "Offset": 41680
-      },
-      "Hitbox 7": {
-         "Offset": 41704
-      },
-      "Hitbox 8": {
-         "Offset": 41728
-      }
-   },
-   "Ho-Oh Contact": {
-      "Type": 6,
-      "Strength": 7,
-      "Hitbox 0": {
-         "Offset": 41780
-      },
-      "Hitbox 1": {
-         "Offset": 41956
-      },
-      "Hitbox 2": {
-         "Offset": 41984
-      }
-   },
-   "Clefairy Self-Destruct": {
-      "Type": 6,
-      "Strength": 9,
-      "Hitbox 0": {
-         "Offset": 42172
-      }
-   },
-   "Clefairy Waterfall": {
-      "Type": 6,
-      "Strength": 8,
-      "Hitbox 0": {
-         "Offset": 42304
-      },
-      "Hitbox 1": {
-         "Offset": 42328
-      },
-      "Hitbox 2": {
-         "Offset": 42352
-      },
-      "Hitbox 3": {
-         "Offset": 42464
-      },
-      "Hitbox 4": {
-         "Offset": 42488
-      },
-      "Hitbox 5": {
-         "Offset": 42512
-      },
-      "Hitbox 6": {
-         "Offset": 42536
-      }
-   },
-   "Clefairy Fire Spin": {
-      "Type": 6,
-      "Strength": 1,
-      "Hitbox 0": {
-         "Offset": 42656
-      },
-      "Hitbox 1": {
-         "Offset": 42680
-      },
-      "Hitbox 2": {
-         "Offset": 42704
-      },
-      "Hitbox 3": {
-         "Offset": 42728
-      }
-   },
-   "Clefairy Gust": {
-      "Type": 6,
-      "Strength": 1,
-      "Hitbox 0": {
-         "Offset": 42780
-      },
-      "Hitbox 1": {
-         "Offset": 42804
-      },
-      "Hitbox 2": {
-         "Offset": 42828
-      },
-      "Hitbox 3": {
-         "Offset": 42852
-      }
-   },
-   "Togepi Leech Seed": {
-      "Type": 6,
-      "Strength": 2,
-      "Hitbox 0": {
-         "Offset": 43144
-      }
-   },
-   "Togepi Earthquake": {
-      "Type": 6,
-      "Strength": 5,
-      "Hitbox 0": {
-         "Offset": 43244
-      },
-      "Hitbox 1": {
-         "Offset": 43268
-      }
-   },
-   "Togepi Powder Snow": {
-      "Type": 6,
-      "Strength": 6,
-      "Hitbox 0": {
-         "Offset": 43464
-      }
-   },
-   "Togepi Sleep Powder": {
-      "Type": 6,
-      "Strength": 8,
-      "Hitbox 0": {
-         "Offset": 43592
-      }
-   },
-   "Pokemon? 3": {
-      "Type": 6,
-      "Strength": 7,
-      "Hitbox 0": {
-         "Offset": 43752
-      }
-   },
-   "Porygon2": {
-      "Type": 6,
-      "Strength": 9,
-      "Hitbox 0": {
-         "Offset": 43852
-      }
-   },
-   "Marill": {
-      "Type": 6,
-      "Strength": 1,
-      "Hitbox 0": {
-         "Offset": 43916
-      }
-   },
-   "Venusaur Earthquake": {
-      "Type": 6,
-      "Strength": 8,
-      "Hitbox 0": {
-         "Offset": 43956
-      }
-   },
-   "Chickorita Razor Leaf": {
-      "Type": 6,
-      "Strength": 2,
-      "Hitbox 0": {
-         "Offset": 44084
-      }
-   },
-   "Blastoise Hydro Pump": {
-      "Type": 6,
-      "Strength": 4,
-      "Hitbox 0": {
-         "Offset": 44112
-      }
-   },
-   "Wheezing Smog": {
-      "Type": 6,
-      "Strength": 1,
-      "Hitbox 0": {
-         "Offset": 44144
-      }
-   },
-   "Charizard Flamethrower": {
-      "Type": 6,
-      "Strength": 1,
-      "Hitbox 0": {
-         "Offset": 44172
-      }
-   },
-   "Unown": {
-      "Type": 6,
-      "Strength": 2,
-      "Hitbox 0": {
-         "Offset": 44200
-      }
-   },
-   "Lugia Aeroblast": {
-      "Type": 6,
-      "Strength": 8,
-      "Hitbox 0": {
-         "Offset": 44228
-      }
-   },
-   "Ho-oh Sacred Fire": {
-      "Type": 6,
-      "Strength": 3,
-      "Hitbox 0": {
-         "Offset": 44280
-      },
-      "Hitbox 1": {
-         "Offset": 44304
-      },
-      "Hitbox 2": {
-         "Offset": 44340
-      }
-   },
-   "Staryu": {
-      "Type": 6,
-      "Strength": 1,
-      "Hitbox 0": {
-         "Offset": 44372
-      }
-   },
-   "Cyndaquil": {
-      "Type": 6,
-      "Strength": 1,
-      "Hitbox 0": {
-         "Offset": 44400
-      },
-      "Hitbox 1": {
-         "Offset": 44428
-      }
-   }
+  "Container A": {
+    "Type": "Item",
+    "Strength": 4,
+    "Hitbox 0": {
+      "Offset": 10140
+    }
+  },
+  "Container A Explosion": {
+    "Type": "Item",
+    "Strength": 8,
+    "Hitbox 1": {
+      "Offset": 10168
+    }
+  },
+  "Container B": {
+    "Type": "Item",
+    "Strength": 6,
+    "Hitbox 0": {
+      "Offset": 10212
+    }
+  },
+  "Container B Explosion": {
+    "Type": "Item",
+    "Strength": 8,
+    "Hitbox 0": {
+      "Offset": 10240
+    }
+  },
+  "Container C": {
+    "Type": "Item",
+    "Strength": 6,
+    "Hitbox 0": {
+      "Offset": 10288
+    }
+  },
+  "Container C Explosion": {
+    "Type": "Item",
+    "Strength": 8,
+    "Hitbox 0": {
+      "Offset": 10348
+    }
+  },
+  "Capsule Throw": {
+    "Type": "Item",
+    "Strength": 4,
+    "Hitbox 0": {
+      "Offset": 10396
+    }
+  },
+  "Capsule Explosion": {
+    "Type": "Item",
+    "Strength": 8,
+    "Hitbox 0": {
+      "Offset": 10424
+    }
+  },
+  "Party Ball Throw": {
+    "Type": "Item",
+    "Strength": 5,
+    "Hitbox 0": {
+      "Offset": 10472
+    }
+  },
+  "Party Ball Explosion": {
+    "Type": "Item",
+    "Strength": 8,
+    "Hitbox 0": {
+      "Offset": 10500
+    }
+  },
+  "Bob-omb": {
+    "Type": "Devastating Item",
+    "Strength": 9,
+    "Hitbox 0": {
+      "Offset": 10592
+    },
+    "Hitbox 1": {
+      "Offset": 10620
+    },
+    "Hitbox 2": {
+      "Offset": 10648
+    }
+  },
+  "Mr. Saturn": {
+    "Type": "Item",
+    "Strength": 3,
+    "Hitbox 0": {
+      "Offset": 10692
+    },
+    "Hitbox 1": {
+      "Offset": 10716
+    }
+  },
+  "Barrel Cannon": {
+    "Type": "Item",
+    "Strength": 7,
+    "Hitbox 0": {
+      "Offset": 10772
+    }
+  },
+  "Green Shell": {
+    "Type": "Item",
+    "Strength": 7,
+    "Hitbox 0": {
+      "Offset": 10856
+    }
+  },
+  "Red Shell": {
+    "Type": "Item",
+    "Strength": 6,
+    "Hitbox 0": {
+      "Offset": 10884
+    }
+  },
+  "Freezie": {
+    "Type": "Item",
+    "Strength": 6,
+    "Hitbox 0": {
+      "Offset": 10912
+    }
+  },
+  "Motion Sensor Bomb Throw": {
+    "Type": "Item",
+    "Strength": 4,
+    "Hitbox 0": {
+      "Offset": 10940
+    },
+    "Hitbox 1": {
+      "Offset": 11076
+    }
+  },
+  "Motion Sensor Bomb Explode": {
+    "Type": "Devastating Item",
+    "Strength": 9,
+    "Hitbox 0": {
+      "Offset": 11000
+    },
+    "Hitbox 1": {
+      "Offset": 11136
+    }
+  },
+  "Flipper Throw": {
+    "Type": "Item",
+    "Strength": 4,
+    "Hitbox 0": {
+      "Offset": 11212
+    },
+    "Hitbox 1": {
+      "Offset": 11236
+    }
+  },
+  "Flipper Active": {
+    "Type": "Item",
+    "Strength": 4,
+    "Hitbox 0": {
+      "Offset": 11264
+    },
+    "Hitbox 1": {
+      "Offset": 11288
+    }
+  },
+  "Screw Attack": {
+    "Type": "Item",
+    "Strength": 5,
+    "Hitbox 0": {
+      "Offset": 11316
+    }
+  },
+  "Parasol Throw": {
+    "Type": "Item",
+    "Strength": 2,
+    "Hitbox 0": {
+      "Offset": 11352
+    },
+    "Hitbox 1": {
+      "Offset": 11376
+    }
+  },
+  "Home-run Bat Throw": {
+    "Type": "Item",
+    "Strength": 7,
+    "Hitbox 0": {
+      "Offset": 11404
+    }
+  },
+  "Beam Sword Throw": {
+    "Type": "Item",
+    "Strength": 5,
+    "Hitbox 0": {
+      "Offset": 11432
+    }
+  },
+  "Ray Gun Throw": {
+    "Type": "Item",
+    "Strength": 4,
+    "Hitbox 0": {
+      "Offset": 11488
+    }
+  },
+  "Star Rod Throw": {
+    "Type": "Item",
+    "Strength": 5,
+    "Hitbox 0": {
+      "Offset": 11516
+    }
+  },
+  "Lip's Stick Throw": {
+    "Type": "Item",
+    "Strength": 4,
+    "Hitbox 0": {
+      "Offset": 11544
+    }
+  },
+  "Fan Throw": {
+    "Type": "Item",
+    "Strength": 3,
+    "Hitbox 0": {
+      "Offset": 11572
+    }
+  },
+  "Fire Flower Throw": {
+    "Type": "Item",
+    "Strength": 3,
+    "Hitbox 0": {
+      "Offset": 11600
+    }
+  },
+  "Hammer": {
+    "Type": "Item",
+    "Strength": 8,
+    "Hitbox 0": {
+      "Offset": 11724
+    },
+    "Hitbox 1": {
+      "Offset": 11748
+    },
+    "Hitbox 2": {
+      "Offset": 11772
+    },
+    "Hitbox 3": {
+      "Offset": 11796
+    }
+  },
+  "Warp Star Descent": {
+    "Type": "Item",
+    "Strength": 7,
+    "Hitbox 0": {
+      "Offset": 11828
+    }
+  },
+  "Warp Star Explosion": {
+    "Type": "Devastating Item",
+    "Strength": 9,
+    "Hitbox 0": {
+      "Offset": 11868
+    }
+  },
+  "Ray Gun Shot": {
+    "Type": "Item",
+    "Strength": 6,
+    "Hitbox 0": {
+      "Offset": 11904
+    },
+    "Hitbox 1": {
+      "Offset": 11928
+    }
+  },
+  "Star Rod Star Shot": {
+    "Type": "Item",
+    "Strength": 6,
+    "Hitbox 0": {
+      "Offset": 11956
+    }
+  },
+  "Lip's Stick Shot": {
+    "Type": "Item",
+    "Strength": 4,
+    "Hitbox 0": {
+      "Offset": 11984
+    }
+  },
+  "Super Scope 1": {
+    "Type": "Item",
+    "Strength": 1,
+    "Hitbox 0": {
+      "Offset": 12012
+    }
+  },
+  "Super Scope 2": {
+    "Type": "Item",
+    "Strength": 1,
+    "Hitbox 0": {
+      "Offset": 12040
+    }
+  },
+  "Super Scope 3": {
+    "Type": "Item",
+    "Strength": 2,
+    "Hitbox 0": {
+      "Offset": 12068
+    }
+  },
+  "Super Scope 4": {
+    "Type": "Item",
+    "Strength": 3,
+    "Hitbox 0": {
+      "Offset": 12096
+    }
+  },
+  "Super Scope 5": {
+    "Type": "Item",
+    "Strength": 4,
+    "Hitbox 0": {
+      "Offset": 12124
+    }
+  },
+  "Super Scope 6": {
+    "Type": "Item",
+    "Strength": 6,
+    "Hitbox 0": {
+      "Offset": 12152
+    }
+  },
+  "Super Scope 7": {
+    "Type": "Item",
+    "Strength": 7,
+    "Hitbox 0": {
+      "Offset": 12180
+    }
+  },
+  "Super Scope 8": {
+    "Type": "Item",
+    "Strength": 8,
+    "Hitbox 0": {
+      "Offset": 12208
+    }
+  },
+  "Super Scope 9": {
+    "Type": "Devastating Item",
+    "Strength": 9,
+    "Hitbox 0": {
+      "Offset": 12236
+    }
+  },
+  "Super Scope 10": {
+    "Type": "Devastating Item",
+    "Strength": 10,
+    "Hitbox 0": {
+      "Offset": 12264
+    }
+  },
+  "Fire Flower Fire": {
+    "Type": "Item",
+    "Strength": 2,
+    "Hitbox 0": {
+      "Offset": 12292
+    }
+  },
+  "Goomba": {
+    "Type": "Item",
+    "Strength": 5,
+    "Hitbox 0": {
+      "Offset": 18064
+    },
+    "Hitbox 1": {
+      "Offset": 18088
+    }
+  },
+  "Topi": {
+    "Type": "Item",
+    "Strength": 6,
+    "Hitbox 0": {
+      "Offset": 18144
+    },
+    "Hitbox 1": {
+      "Offset": 18200
+    }
+  },
+  "Octorock": {
+    "Type": "Item",
+    "Strength": 6,
+    "Hitbox 0": {
+      "Offset": 18368
+    }
+  },
+  "Adventure Mode Enemy? 1": {
+    "Type": "Item",
+    "Strength": 6,
+    "Hitbox 0": {
+      "Offset": 18116
+    }
+  },
+  "Adventure Mode Enemy? 2": {
+    "Type": "Item",
+    "Strength": 6,
+    "Hitbox 0": {
+      "Offset": 18172
+    }
+  },
+  "Adventure Mode Enemy? 3": {
+    "Type": "Item",
+    "Strength": 6,
+    "Hitbox 0": {
+      "Offset": 18228
+    }
+  },
+  "Adventure Mode Enemy? 4": {
+    "Type": "Item",
+    "Strength": 6,
+    "Hitbox 0": {
+      "Offset": 18256
+    }
+  },
+  "Adventure Mode Enemy? 5": {
+    "Type": "Item",
+    "Strength": 6,
+    "Hitbox 0": {
+      "Offset": 18284
+    }
+  },
+  "Adventure Mode Enemy? 6": {
+    "Type": "Item",
+    "Strength": 6,
+    "Hitbox 0": {
+      "Offset": 18340
+    }
+  },
+  "Chickorita Contact": {
+    "Type": "Item",
+    "Strength": 2,
+    "Hitbox 0": {
+      "Offset": 38860
+    },
+    "Hitbox 1": {
+      "Offset": 38976
+    }
+  },
+  "Snorlax Jump": {
+    "Type": "Item",
+    "Strength": 8,
+    "Hitbox 0": {
+      "Offset": 39012
+    }
+  },
+  "Snorlax Fall": {
+    "Type": "Item",
+    "Strength": 8,
+    "Hitbox 0": {
+      "Offset": 39128
+    }
+  },
+  "Blastoise Contact": {
+    "Type": "Item",
+    "Strength": 8,
+    "Hitbox 0": {
+      "Offset": 39232
+    },
+    "Hitbox 1": {
+      "Offset": 39260
+    },
+    "Hitbox 2": {
+      "Offset": 39456
+    }
+  },
+  "Charizard Contact": {
+    "Type": "Item",
+    "Strength": 8,
+    "Hitbox 0": {
+      "Offset": 39564
+    },
+    "Hitbox 1": {
+      "Offset": 39592
+    }
+  },
+  "Pokemon? 1": {
+    "Type": "Devastating Item",
+    "Strength": 10,
+    "Hitbox 0": {
+      "Offset": 39724
+    }
+  },
+  "Moltres": {
+    "Type": "Devastating Item",
+    "Strength": 10,
+    "Hitbox 0": {
+      "Offset": 39764
+    },
+    "Hitbox 1": {
+      "Offset": 39788
+    },
+    "Hitbox 2": {
+      "Offset": 39812
+    },
+    "Hitbox 3": {
+      "Offset": 39860
+    },
+    "Hitbox 4": {
+      "Offset": 39884
+    },
+    "Hitbox 5": {
+      "Offset": 39908
+    }
+  },
+  "Zapdos": {
+    "Type": "Item",
+    "Strength": 4,
+    "Hitbox 0": {
+      "Offset": 40056
+    },
+    "Hitbox 1": {
+      "Offset": 40080
+    },
+    "Hitbox 2": {
+      "Offset": 40104
+    },
+    "Hitbox 3": {
+      "Offset": 40128
+    }
+  },
+  "Articuno": {
+    "Type": "Devastating Item",
+    "Strength": 10,
+    "Hitbox 0": {
+      "Offset": 40300
+    }
+  },
+  "Wobbuffet": {
+    "Type": "Item",
+    "Strength": 6,
+    "Hitbox 0": {
+      "Offset": 40300
+    }
+  },
+  "Scizor 1": {
+    "Type": "Item",
+    "Strength": 8,
+    "Hitbox 0": {
+      "Offset": 40504
+    }
+  },
+  "Scizor 2": {
+    "Type": "Devastating Item",
+    "Strength": 9,
+    "Hitbox 0": {
+      "Offset": 40564
+    }
+  },
+  "Pokemon? 2": {
+    "Type": "Item",
+    "Strength": 8,
+    "Hitbox 0": {
+      "Offset": 40624
+    }
+  },
+  "Entei": {
+    "Type": "Item",
+    "Strength": 3,
+    "Hitbox 0": {
+      "Offset": 40692
+    },
+    "Hitbox 1": {
+      "Offset": 40716
+    },
+    "Hitbox 2": {
+      "Offset": 40740
+    },
+    "Hitbox 3": {
+      "Offset": 40764
+    }
+  },
+  "Raikou": {
+    "Type": "Item",
+    "Strength": 8,
+    "Hitbox 0": {
+      "Offset": 40856
+    }
+  },
+  "Suicune 1": {
+    "Type": "Item",
+    "Strength": 3,
+    "Hitbox 0": {
+      "Offset": 40932
+    },
+    "Hitbox 1": {
+      "Offset": 40956
+    },
+    "Hitbox 2": {
+      "Offset": 40980
+    },
+    "Hitbox 3": {
+      "Offset": 41004
+    }
+  },
+  "Suicune 2": {
+    "Type": "Item",
+    "Strength": 8,
+    "Hitbox 0": {
+      "Offset": 41004
+    },
+    "Hitbox 1": {
+      "Offset": 41040
+    },
+    "Hitbox 2": {
+      "Offset": 41064
+    },
+    "Hitbox 3": {
+      "Offset": 41088
+    }
+  },
+  "Bellossom": {
+    "Type": "Item",
+    "Strength": 5,
+    "Hitbox 0": {
+      "Offset": 41160
+    },
+    "Hitbox 1": {
+      "Offset": 41184
+    },
+    "Hitbox 2": {
+      "Offset": 41208
+    }
+  },
+  "Electrode": {
+    "Type": "Devastating Item",
+    "Strength": 10,
+    "Hitbox 0": {
+      "Offset": 41316
+    }
+  },
+  "Lugia Contact": {
+    "Type": "Devastating Item",
+    "Strength": 9,
+    "Hitbox 0": {
+      "Offset": 41440
+    },
+    "Hitbox 1": {
+      "Offset": 41464
+    },
+    "Hitbox 2": {
+      "Offset": 41488
+    },
+    "Hitbox 3": {
+      "Offset": 41568
+    },
+    "Hitbox 4": {
+      "Offset": 41592
+    },
+    "Hitbox 5": {
+      "Offset": 41616
+    },
+    "Hitbox 6": {
+      "Offset": 41680
+    },
+    "Hitbox 7": {
+      "Offset": 41704
+    },
+    "Hitbox 8": {
+      "Offset": 41728
+    }
+  },
+  "Ho-Oh Contact": {
+    "Type": "Item",
+    "Strength": 7,
+    "Hitbox 0": {
+      "Offset": 41780
+    },
+    "Hitbox 1": {
+      "Offset": 41956
+    },
+    "Hitbox 2": {
+      "Offset": 41984
+    }
+  },
+  "Clefairy Self-Destruct": {
+    "Type": "Devastating Item",
+    "Strength": 9,
+    "Hitbox 0": {
+      "Offset": 42172
+    }
+  },
+  "Clefairy Waterfall": {
+    "Type": "Item",
+    "Strength": 8,
+    "Hitbox 0": {
+      "Offset": 42304
+    },
+    "Hitbox 1": {
+      "Offset": 42328
+    },
+    "Hitbox 2": {
+      "Offset": 42352
+    },
+    "Hitbox 3": {
+      "Offset": 42464
+    },
+    "Hitbox 4": {
+      "Offset": 42488
+    },
+    "Hitbox 5": {
+      "Offset": 42512
+    },
+    "Hitbox 6": {
+      "Offset": 42536
+    }
+  },
+  "Clefairy Fire Spin": {
+    "Type": "Item",
+    "Strength": 1,
+    "Hitbox 0": {
+      "Offset": 42656
+    },
+    "Hitbox 1": {
+      "Offset": 42680
+    },
+    "Hitbox 2": {
+      "Offset": 42704
+    },
+    "Hitbox 3": {
+      "Offset": 42728
+    }
+  },
+  "Clefairy Gust": {
+    "Type": "Item",
+    "Strength": 1,
+    "Hitbox 0": {
+      "Offset": 42780
+    },
+    "Hitbox 1": {
+      "Offset": 42804
+    },
+    "Hitbox 2": {
+      "Offset": 42828
+    },
+    "Hitbox 3": {
+      "Offset": 42852
+    }
+  },
+  "Togepi Leech Seed": {
+    "Type": "Item",
+    "Strength": 2,
+    "Hitbox 0": {
+      "Offset": 43144
+    }
+  },
+  "Togepi Earthquake": {
+    "Type": "Item",
+    "Strength": 5,
+    "Hitbox 0": {
+      "Offset": 43244
+    },
+    "Hitbox 1": {
+      "Offset": 43268
+    }
+  },
+  "Togepi Powder Snow": {
+    "Type": "Item",
+    "Strength": 6,
+    "Hitbox 0": {
+      "Offset": 43464
+    }
+  },
+  "Togepi Sleep Powder": {
+    "Type": "Item",
+    "Strength": 8,
+    "Hitbox 0": {
+      "Offset": 43592
+    }
+  },
+  "Pokemon? 3": {
+    "Type": "Item",
+    "Strength": 7,
+    "Hitbox 0": {
+      "Offset": 43752
+    }
+  },
+  "Porygon2": {
+    "Type": "Devastating Item",
+    "Strength": 9,
+    "Hitbox 0": {
+      "Offset": 43852
+    }
+  },
+  "Marill": {
+    "Type": "Item",
+    "Strength": 1,
+    "Hitbox 0": {
+      "Offset": 43916
+    }
+  },
+  "Venusaur Earthquake": {
+    "Type": "Item",
+    "Strength": 8,
+    "Hitbox 0": {
+      "Offset": 43956
+    }
+  },
+  "Chickorita Razor Leaf": {
+    "Type": "Item",
+    "Strength": 2,
+    "Hitbox 0": {
+      "Offset": 44084
+    }
+  },
+  "Blastoise Hydro Pump": {
+    "Type": "Item",
+    "Strength": 4,
+    "Hitbox 0": {
+      "Offset": 44112
+    }
+  },
+  "Wheezing Smog": {
+    "Type": "Item",
+    "Strength": 1,
+    "Hitbox 0": {
+      "Offset": 44144
+    }
+  },
+  "Charizard Flamethrower": {
+    "Type": "Item",
+    "Strength": 1,
+    "Hitbox 0": {
+      "Offset": 44172
+    }
+  },
+  "Unown": {
+    "Type": "Item",
+    "Strength": 2,
+    "Hitbox 0": {
+      "Offset": 44200
+    }
+  },
+  "Lugia Aeroblast": {
+    "Type": "Item",
+    "Strength": 8,
+    "Hitbox 0": {
+      "Offset": 44228
+    }
+  },
+  "Ho-oh Sacred Fire": {
+    "Type": "Item",
+    "Strength": 3,
+    "Hitbox 0": {
+      "Offset": 44280
+    },
+    "Hitbox 1": {
+      "Offset": 44304
+    },
+    "Hitbox 2": {
+      "Offset": 44340
+    }
+  },
+  "Staryu": {
+    "Type": "Item",
+    "Strength": 1,
+    "Hitbox 0": {
+      "Offset": 44372
+    }
+  },
+  "Cyndaquil": {
+    "Type": "Item",
+    "Strength": 1,
+    "Hitbox 0": {
+      "Offset": 44400
+    },
+    "Hitbox 1": {
+      "Offset": 44428
+    }
+  }
 }

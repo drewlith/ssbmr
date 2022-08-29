@@ -4,12 +4,12 @@ import melee, random
 from util import percent_chance
 
 elements = ["Normal", "Fire", "Electric", "Slash", "Coin", "Ice", "Sleep", "Sleep",
-            "Grounded", "Grounded", "Cape", "None", "Disable", "Dark", "Screw Attack",
+            "BUGGED REPORT TO DREWLITH", "Grounded", "Cape", "None", "Disable", "Dark", "Screw Attack",
             "Flower", "None"]
 
 def randomize(attack): 
     element = random.randint(0,15)
-    if element == 12 or element == 11: element = 0 # These elements will make the hitbox useless
+    if element == 8 or element == 11: element = 0 # These elements will make the hitbox useless
     if element == 6 or element == 7: element = 0 # No Sleep
     if element == 14: element = 0 # No Screw Attack
     for hb in attack.hitboxes:

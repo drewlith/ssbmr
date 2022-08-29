@@ -1,9 +1,12 @@
 # Balance mod by drewlith. Sets whether attacks should be balanced or not.
-# Percent: Percent chance a move becomes balanced.
 import melee
-from util import percent_chance
-def start_mod(percent):
-    for fighter in melee.fighters:
-        for attack in fighter.attacks:
-            if percent_chance(percent):
-                attack.balance = True
+def start_mod():
+    for attack in melee.attacks:
+        attack.balance = True
+        for hb in attack.hitboxes:
+            if hb.get_set() > 90:
+                hb.set_set(90)
+            if hb.get_element() == 6 or hb.get_element() == 7:
+                hb.set_element(0)
+    for item in melee.items:
+        item.balance = True

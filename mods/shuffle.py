@@ -7,7 +7,7 @@ from random import randint as rng
 def shuffle(attack):
     temp = copy.deepcopy(attack)
     if attack.balance:
-        if attack.type < 6:
+        if "Item" not in attack.type:
             tier = melee.attack_tiers[attack.strength]
         else:
             tier = melee.item_tiers[attack.strength]

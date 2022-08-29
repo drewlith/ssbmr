@@ -5,16 +5,22 @@ from random import randint as rng
 
 def randomize(attack):
     if attack.balance:
-        if percent_chance(80): # Forward Angles
+        if percent_chance(75): # Forward/Upwards Angles
             angle = rng(2,9)*10
-        elif percent_chance(50): # Sakurai Angle
+        elif percent_chance(75): # Sakurai Angle
             angle = 361
-        elif percent_chance(50): # Meteor
+        elif percent_chance(20): # Meteor
             angle = 290
-        elif percent_chance(50): # Spike
+        elif percent_chance(20): # Spike
             angle = 270
         else: # Random
             angle = rng(0,362)
+        if "Spike" in attack.type:
+            if percent_chance(80):
+                angle = rng(27,29)*10
+        if "Aerial" in attack.type:
+            if percent_chance(80):
+                angle = 361
     else:
         angle = rng(0,362)
     for hb in attack.hitboxes:

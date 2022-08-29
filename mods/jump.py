@@ -55,7 +55,13 @@ def randomize(fighter, magnitude, mode = 0):
                                    values[6])
         values[7] = random.uniform(values[7] * (1-(magnitude*0.01)), # Double Jump Momentum
                                    values[7])
+
+    for value in values:
+        if value <= 0:
+            value = float(0.01)
     fighter.set_jump_attributes(values)
+
+    
 
 def start_mod(magnitude, mode = 0):
     for fighter in melee.fighters:

@@ -84,6 +84,13 @@ def randomize(fighter, magnitude, mode = 0):
                                           ground_values[7])
         ground_values[10] = ground_values[7] # Dash/Run Terminal Velocity (Making this the same as Dash Initial
                                               # Velocity prevents bugs involving super wavedashes.
+
+    for value in air_values:
+        if value <= 0:
+            value = float(0.01)
+    for value in ground_values:
+        if value <= 0:
+            value = float(0.01)
     fighter.set_air_attributes(air_values)
     fighter.set_ground_attributes(ground_values)
 

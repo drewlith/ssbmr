@@ -1,6 +1,6 @@
 {
    "Floor Sweep": {
-      "Type": 0,
+      "Type": "Special",
       "Strength": 7,
       "Hitbox 0": {
          "Offset": 3324
@@ -10,14 +10,14 @@
       }
    },
    "Big Swipe": {
-      "Type": 0,
+      "Type": "Special",
       "Strength": 9,
       "Hitbox 0": {
          "Offset": 3420
       }
    },
    "Finger Walk": {
-      "Type": 0,
+      "Type": "Special",
       "Strength": 5,
       "Hitbox 0": {
          "Offset": 3556
@@ -45,7 +45,7 @@
       }
    },
    "Finger Walk Kick": {
-      "Type": 0,
+      "Type": "Special",
       "Strength": 8,
       "Hitbox 0": {
          "Offset": 3820
@@ -58,7 +58,7 @@
       }
    },
    "Drill Loop": {
-      "Type": 0,
+      "Type": "Special Multi-hit",
       "Strength": 1,
       "Hitbox 0": {
          "Offset": 4120
@@ -74,21 +74,21 @@
       }
    },
    "Power Punch": {
-      "Type": 0,
+      "Type": "Special",
       "Strength": 9,
       "Hitbox 0": {
          "Offset": 4680
       }
    },
    "Power Slap": {
-      "Type": 0,
+      "Type": "Special",
       "Strength": 9,
       "Hitbox 0": {
          "Offset": 4940
       }
    },
    "Tri-Poke 1 and 2": {
-      "Type": 0,
+      "Type": "Special",
       "Strength": 5,
       "Hitbox 0": {
          "Offset": 5088
@@ -104,7 +104,7 @@
       }
    },
    "Tri-Poke 3": {
-      "Type": 0,
+      "Type": "Special",
       "Strength": 8,
       "Hitbox 0": {
          "Offset": 5256
@@ -114,14 +114,14 @@
       }
    },
    "Jetstream Spike": {
-      "Type": 0,
+      "Type": "Special Spike",
       "Strength": 7,
       "Hitbox 0": {
          "Offset": 5960
       }
    },
    "Jetstream Start": {
-      "Type": 0,
+      "Type": "Special",
       "Strength": 5,
       "Hitbox 0": {
          "Offset": 6068
@@ -131,7 +131,7 @@
       }
    },
    "Jetstream": {
-      "Type": 0,
+      "Type": "Special",
       "Strength": 10,
       "Hitbox 0": {
          "Offset": 6160
@@ -144,7 +144,7 @@
       }
    },
    "Flying Punch": {
-      "Type": 0,
+      "Type": "Special",
       "Strength": 9,
       "Hitbox 0": {
          "Offset": 6504
@@ -154,7 +154,7 @@
       }
    },
    "Flying Slap 1": {
-      "Type": 0,
+      "Type": "Special",
       "Strength": 9,
       "Hitbox 0": {
          "Offset": 6808
@@ -167,7 +167,7 @@
       }
    },
    "Flying Slap 2": {
-      "Type": 0,
+      "Type": "Special",
       "Strength": 7,
       "Hitbox 0": {
          "Offset": 6912
@@ -177,7 +177,7 @@
       }
    },
    "Flying Slap 3": {
-      "Type": 0,
+      "Type": "Special",
       "Strength": 5,
       "Hitbox 0": {
          "Offset": 6996
@@ -187,7 +187,7 @@
       }
    },
    "Sandwich Punch": {
-      "Type": 0,
+      "Type": "Special",
       "Strength": 8,
       "Hitbox 0": {
          "Offset": 7660
@@ -197,7 +197,7 @@
       }
    },
    "Applause Start": {
-      "Type": 0,
+      "Type": "Special",
       "Strength": 8,
       "Hitbox 0": {
          "Offset": 7788
@@ -207,7 +207,7 @@
       }
    },
    "Applause Claps": {
-      "Type": 0,
+      "Type": "Special",
       "Strength": 4,
       "Hitbox 0": {
          "Offset": 7948
@@ -223,7 +223,7 @@
       }
    },
    "Applause Finish": {
-      "Type": 0,
+      "Type": "Special",
       "Strength": 6,
       "Hitbox 0": {
          "Offset": 8056

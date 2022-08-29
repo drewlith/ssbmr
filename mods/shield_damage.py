@@ -6,9 +6,9 @@ from random import randint as rng
 
 def randomize(attack, magnitude):
     if attack.balance:
-        damage = rng(0,attack.strength+magnitude)*4
+        damage = rng(magnitude,attack.strength+magnitude)*4
     else:
-        damage = rng(0,50+magnitude)
+        damage = rng(magnitude,50+magnitude)
     for hb in attack.hitboxes:
         hb.set_shield(damage)
 

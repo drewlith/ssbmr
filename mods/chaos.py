@@ -34,7 +34,7 @@ def start_mod(flags, scale):
             for hb in attack.hitboxes:
                 if percent_chance(scale):
                     element = random.randint(0,15)
-                    if element == 12 or element == 11: element = 0 # These elements will make the hitbox useless
+                    if element == 8 or element == 11: element = 0 # These elements will make the hitbox useless
                     if element == 6 or element == 7: element = 12 # Turn sleep into disable, better balanced
                     if element == 14: element = 0 # No Screw Attack!!!
                     hb.set_element(element)

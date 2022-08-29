@@ -4,7 +4,7 @@ import melee
 from random import randint as rng
 
 def randomize(attack, magnitude):
-    size = rng(3,25+magnitude)*100
+    size = rng(3+magnitude,25+magnitude)*100
     for hb in attack.hitboxes:
         hb.set_size(size)
 

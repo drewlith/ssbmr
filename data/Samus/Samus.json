@@ -1,828 +1,832 @@
 {
-   "Jab 1": {
-      "Type": 0,
-      "Strength": 2,
-      "Hitbox 0": {
-         "Offset": 18168
-      },
-      "Hitbox 1": {
-         "Offset": 18188
-      },
-      "Hitbox 2": {
-         "Offset": 18208
-      }
-   },
-   "Jab 2": {
-      "Type": 0,
-      "Strength": 3,
-      "Hitbox 0": {
-         "Offset": 18288
-      },
-      "Hitbox 1": {
-         "Offset": 18308
-      }
-   },
-   "Dash Attack": {
-      "Type": 0,
-      "Strength": 5,
-      "Hitbox 0": {
-         "Offset": 18384
-      },
-      "Hitbox 1": {
-         "Offset": 18444
-      }
-   },
-   "F-Tilt": {
-      "Type": 0,
-      "Strength": 4,
-      "Hitbox 0": {
-         "Offset": 18488
-      },
-      "Hitbox 1": {
-         "Offset": 18508
-      },
-      "Hitbox 2": {
-         "Offset": 18528
-      },
-      "Hitbox 3": {
-         "Offset": 18548
-      },
-      "Hitbox 4": {
-         "Offset": 18612
-      },
-      "Hitbox 5": {
-         "Offset": 18632
-      },
-      "Hitbox 6": {
-         "Offset": 18652
-      },
-      "Hitbox 7": {
-         "Offset": 18672
-      },
-      "Hitbox 8": {
-         "Offset": 18736
-      },
-      "Hitbox 9": {
-         "Offset": 18756
-      },
-      "Hitbox 10": {
-         "Offset": 18776
-      },
-      "Hitbox 11": {
-         "Offset": 18796
-      }
-   },
-   "Up-Tilt": {
-      "Type": 0,
-      "Strength": 5,
-      "Hitbox 0": {
-         "Offset": 18924
-      },
-      "Hitbox 1": {
-         "Offset": 18944
-      },
-      "Hitbox 2": {
-         "Offset": 18964
-      },
-      "Hitbox 3": {
-         "Offset": 18984
-      }
-   },
-   "Down-Tilt": {
-      "Type": 0,
-      "Strength": 5,
-      "Hitbox 0": {
-         "Offset": 19116
-      },
-      "Hitbox 1": {
-         "Offset": 19136
-      },
-      "Hitbox 2": {
-         "Offset": 19156
-      }
-   },
-   "F-Smash": {
-      "Type": 0,
-      "Strength": 8,
-      "Hitbox 0": {
-         "Offset": 19240
-      },
-      "Hitbox 1": {
-         "Offset": 19260
-      },
-      "Hitbox 2": {
-         "Offset": 19280
-      },
-      "Hitbox 3": {
-         "Offset": 19404
-      },
-      "Hitbox 4": {
-         "Offset": 19424
-      },
-      "Hitbox 5": {
-         "Offset": 19444
-      },
-      "Hitbox 6": {
-         "Offset": 19516
-      },
-      "Hitbox 7": {
-         "Offset": 19536
-      },
-      "Hitbox 8": {
-         "Offset": 19556
-      }
-   },
-   "Up-Smash Start": {
-      "Type": 0,
-      "Strength": 4,
-      "Hitbox 0": {
-         "Offset": 19628
-      },
-      "Hitbox 1": {
-         "Offset": 19648
-      },
-      "Hitbox 2": {
-         "Offset": 19736
-      },
-      "Hitbox 3": {
-         "Offset": 19756
-      }
-   },
-   "Up-Smash Middle": {
-      "Type": 0,
-      "Strength": 1,
-      "Hitbox 0": {
-         "Offset": 19824
-      },
-      "Hitbox 1": {
-         "Offset": 19844
-      },
-      "Hitbox 2": {
-         "Offset": 19912
-      },
-      "Hitbox 3": {
-         "Offset": 19932
-      }
-   },
-   "Up-Smash End": {
-      "Type": 0,
-      "Strength": 4,
-      "Hitbox 0": {
-         "Offset": 20020
-      },
-      "Hitbox 1": {
-         "Offset": 20040
-      }
-   },
-   "Down-Smash 1": {
-      "Type": 0,
-      "Strength": 8,
-      "Hitbox 0": {
-         "Offset": 20188
-      },
-      "Hitbox 1": {
-         "Offset": 20208
-      }
-   },
-   "Down-Smash 2": {
-      "Type": 0,
-      "Strength": 4,
-      "Hitbox 0": {
-         "Offset": 20256
-      },
-      "Hitbox 1": {
-         "Offset": 20276
-      }
-   },
-   "N-air": {
-      "Type": 0,
-      "Strength": 6,
-      "Hitbox 0": {
-         "Offset": 20360
-      },
-      "Hitbox 1": {
-         "Offset": 20360
-      },
-      "Hitbox 2": {
-         "Offset": 20404
-      },
-      "Hitbox 3": {
-         "Offset": 20424
-      }
-   },
-   "F-air 1": {
-      "Type": 1,
-      "Strength": 1,
-      "Hitbox 0": {
-         "Offset": 20488
-      },
-      "Hitbox 1": {
-         "Offset": 20508
-      }
-   },
-   "F-air 2": {
-      "Type": 0,
-      "Strength": 4,
-      "Hitbox 0": {
-         "Offset": 20580
-      },
-      "Hitbox 1": {
-         "Offset": 20600
-      }
-   },
-   "B-air": {
-      "Type": 0,
-      "Strength": 6,
-      "Hitbox 0": {
-         "Offset": 20708
-      },
-      "Hitbox 1": {
-         "Offset": 20728
-      },
-      "Hitbox 2": {
-         "Offset": 20748
-      }
-   },
-   "Up-Air Loop": {
-      "Type": 1,
-      "Strength": 1,
-      "Hitbox 0": {
-         "Offset": 20820
-      },
-      "Hitbox 1": {
-         "Offset": 20840
-      },
-      "Hitbox 2": {
-         "Offset": 20860
-      },
-      "Hitbox 3": {
-         "Offset": 20908
-      },
-      "Hitbox 4": {
-         "Offset": 20928
-      },
-      "Hitbox 5": {
-         "Offset": 20948
-      }
-   },
-   "Up-Air End": {
-      "Type": 0,
-      "Strength": 3,
-      "Hitbox 0": {
-         "Offset": 20984
-      },
-      "Hitbox 1": {
-         "Offset": 21004
-      },
-      "Hitbox2": {
-         "Offset": 21024
-      }
-   },
-   "D-air": {
-      "Type": 0,
-      "Strength": 5,
-      "Hitbox 0": {
-         "Offset": 21128
-      },
-      "Hitbox 1": {
-         "Offset": 21148
-      }
-   },
-   "Charge Beam": {
-      "Type": 2,
-      "Strength": 1,
-      "Hitbox 0": {
-         "Offset": 16084
-      }
-   },
-   "Homing Missile": {
-      "Type": 4,
-      "Strength": 1,
-      "Hitbox 0": {
-         "Offset": 16496
-      }
-   },
-   "Super Missile": {
-      "Type": 4,
-      "Strength": 3,
-      "Hitbox 0": {
-         "Offset": 16524
-      }
-   },
-   "Bomb": {
-      "Type": 4,
-      "Strength": 2,
-      "Hitbox 0": {
-         "Offset": 16752
-      }
-   },
-   "Screw Attack Start": {
-      "Type": 2,
-      "Strength": 3,
-      "Hitbox 0": {
-         "Offset": 14720
-      },
-      "Hitbox 1": {
-         "Offset": 14740
-      },
-      "Hitbox 2": {
-         "Offset": 14760
-      },
-      "Hitbox 3": {
-         "Offset": 14780
-      }
-   },
-   "Screw Attack Loop": {
-      "Type": 3,
-      "Strength": 1,
-      "Hitbox 0": {
-         "Offset": 14812
-      },
-      "Hitbox 1": {
-         "Offset": 14832
-      },
-      "Hitbox 2": {
-         "Offset": 14852
-      },
-      "Hitbox 3": {
-         "Offset": 14872
-      },
-      "Hitbox 4": {
-         "Offset": 14912
-      },
-      "Hitbox 5": {
-         "Offset": 14932
-      },
-      "Hitbox 6": {
-         "Offset": 14952
-      },
-      "Hitbox 7": {
-         "Offset": 14972
-      }
-   },
-   "Screw Attack Final Hitbox": {
-      "Type": 2,
-      "Strength": 1,
-      "Hitbox 0": {
-         "Offset": 15004
-      }
-   },
-   "Forward Throw": {
-      "Throw": {
-         "Offset": 25604
-      }
-   },
-   "Back Throw": {
-      "Throw": {
-         "Offset": 25776
-      }
-   },
-   "Up Throw": {
-      "Throw": {
-         "Offset": 25932
-      }
-   },
-   "Up Throw Hitbox": {
-      "Type": 5,
-      "Strength": 0,
-      "Hitbox 0": {
-         "Offset": 26020
-      }
-   },
-   "Down Throw": {
-      "Throw": {
-         "Offset": 26144
-      }
-   },
-   "Grapple Beam": {
-      "Type": 0,
-      "Strength": 2,
-      "Hitbox 0": {
-         "Offset": 15844
-      },
-      "Hitbox 1": {
-         "Offset": 15864
-      }
-   },
-   "Beam Sword Jab": {
-      "Type": 6,
-      "Strength": 4,
-      "Hitbox 0": {
-         "Offset": 10140
-      },
-      "Hitbox 1": {
-         "Offset": 10160
-      },
-      "Hitbox 2": {
-         "Offset": 10180
-      }
-   },
-   "Beam Sword Tilt": {
-      "Type": 6,
-      "Strength": 5,
-      "Hitbox 0": {
-         "Offset": 10260
-      },
-      "Hitbox 1": {
-         "Offset": 10280
-      },
-      "Hitbox 2": {
-         "Offset": 10300
-      }
-   },
-   "Beam Sword Smash": {
-      "Type": 6,
-      "Strength": 8,
-      "Hitbox 0": {
-         "Offset": 10380
-      },
-      "Hitbox 1": {
-         "Offset": 10400
-      },
-      "Hitbox 2": {
-         "Offset": 10420
-      }
-   },
-   "Beam Sword Dash Attack": {
-      "Type": 6,
-      "Strength": 6,
-      "Hitbox 0": {
-         "Offset": 10500
-      },
-      "Hitbox 1": {
-         "Offset": 10520
-      },
-      "Hitbox 2": {
-         "Offset": 10540
-      }
-   },
-   "Home-Run Bat Jab": {
-      "Type": 6,
-      "Strength": 4,
-      "Hitbox 0": {
-         "Offset": 10796
-      },
-      "Hitbox 1": {
-         "Offset": 10816
-      },
-      "Hitbox 2": {
-         "Offset": 10836
-      }
-   },
-   "Home-Run Bat Tilt": {
-      "Type": 6,
-      "Strength": 5,
-      "Hitbox 0": {
-         "Offset": 10896
-      },
-      "Hitbox 1": {
-         "Offset": 10916
-      },
-      "Hitbox 2": {
-         "Offset": 10936
-      }
-   },
-   "Home-Run Bat Smash": {
-      "Type": 6,
-      "Strength": 10,
-      "Hitbox 0": {
-         "Offset": 10996
-      },
-      "Hitbox 1": {
-         "Offset": 11016
-      },
-      "Hitbox 2": {
-         "Offset": 11036
-      }
-   },
-   "Home-Run Bat Dash Attack": {
-      "Type": 6,
-      "Strength": 6,
-      "Hitbox 0": {
-         "Offset": 11156
-      },
-      "Hitbox 1": {
-         "Offset": 11176
-      },
-      "Hitbox 2": {
-         "Offset": 11196
-      }
-   },
-   "Parasol Jab": {
-      "Type": 6,
-      "Strength": 3,
-      "Hitbox 0": {
-         "Offset": 11272
-      },
-      "Hitbox 1": {
-         "Offset": 11292
-      },
-      "Hitbox 2": {
-         "Offset": 11312
-      }
-   },
-   "Parasol Tilt": {
-      "Type": 6,
-      "Strength": 5,
-      "Hitbox 0": {
-         "Offset": 11412
-      },
-      "Hitbox 1": {
-         "Offset": 11432
-      },
-      "Hitbox 2": {
-         "Offset": 11452
-      }
-   },
-   "Parasol Smash": {
-      "Type": 6,
-      "Strength": 8,
-      "Hitbox 0": {
-         "Offset": 11552
-      },
-      "Hitbox 1": {
-         "Offset": 11572
-      },
-      "Hitbox 2": {
-         "Offset": 11592
-      }
-   },
-   "Parasol Dash Attack": {
-      "Type": 6,
-      "Strength": 6,
-      "Hitbox 0": {
-         "Offset": 11692
-      },
-      "Hitbox 1": {
-         "Offset": 11712
-      },
-      "Hitbox 2": {
-         "Offset": 11732
-      }
-   },
-   "Parasol Fall": {
-      "Type": 6,
-      "Strength": 4,
-      "Hitbox 0": {
-         "Offset": 11872
-      }
-   },
-   "Fan Jab": {
-      "Type": 6,
-      "Strength": 3,
-      "Hitbox 0": {
-         "Offset": 11952
-      },
-      "Hitbox 1": {
-         "Offset": 11972
-      },
-      "Hitbox 2": {
-         "Offset": 11992
-      }
-   },
-   "Fan Tilt": {
-      "Type": 6,
-      "Strength": 5,
-      "Hitbox 0": {
-         "Offset": 12052
-      },
-      "Hitbox 1": {
-         "Offset": 12072
-      },
-      "Hitbox 2": {
-         "Offset": 12092
-      }
-   },
-   "Fan Smash": {
-      "Type": 6,
-      "Strength": 8,
-      "Hitbox 0": {
-         "Offset": 12152
-      },
-      "Hitbox 1": {
-         "Offset": 12172
-      },
-      "Hitbox 2": {
-         "Offset": 12192
-      }
-   },
-   "Fan Dash Attack": {
-      "Type": 6,
-      "Strength": 6,
-      "Hitbox 0": {
-         "Offset": 12272
-      },
-      "Hitbox 1": {
-         "Offset": 12292
-      },
-      "Hitbox 2": {
-         "Offset": 12312
-      }
-   },
-   "Star Rod Jab": {
-      "Type": 6,
-      "Strength": 4,
-      "Hitbox 0": {
-         "Offset": 12384
-      },
-      "Hitbox 1": {
-         "Offset": 12404
-      },
-      "Hitbox 2": {
-         "Offset": 12424
-      }
-   },
-   "Star Rod Tilt": {
-      "Type": 6,
-      "Strength": 5,
-      "Hitbox 0": {
-         "Offset": 12516
-      },
-      "Hitbox 1": {
-         "Offset": 12536
-      },
-      "Hitbox 2": {
-         "Offset": 12556
-      }
-   },
-   "Star Rod Smash": {
-      "Type": 6,
-      "Strength": 8,
-      "Hitbox 0": {
-         "Offset": 12648
-      },
-      "Hitbox 1": {
-         "Offset": 12668
-      },
-      "Hitbox 2": {
-         "Offset": 12688
-      }
-   },
-   "Star Rod Dash Attack": {
-      "Type": 6,
-      "Strength": 6,
-      "Hitbox 0": {
-         "Offset": 12780
-      },
-      "Hitbox 1": {
-         "Offset": 12800
-      },
-      "Hitbox 2": {
-         "Offset": 12820
-      }
-   },
-   "Lip's Stick Jab": {
-      "Type": 6,
-      "Strength": 2,
-      "Hitbox 0": {
-         "Offset": 12928
-      },
-      "Hitbox 1": {
-         "Offset": 12948
-      },
-      "Hitbox 2": {
-         "Offset": 12968
-      }
-   },
-   "Lip's Stick Tilt": {
-      "Type": 6,
-      "Strength": 5,
-      "Hitbox 0": {
-         "Offset": 13000
-      },
-      "Hitbox 1": {
-         "Offset": 13020
-      },
-      "Hitbox 2": {
-         "Offset": 13040
-      }
-   },
-   "Lip's Stick Smash": {
-      "Type": 6,
-      "Strength": 8,
-      "Hitbox 0": {
-         "Offset": 13072
-      },
-      "Hitbox 1": {
-         "Offset": 13092
-      },
-      "Hitbox 2": {
-         "Offset": 13112
-      }
-   },
-   "Lip's Stick Dash Attack": {
-      "Type": 6,
-      "Strength": 6,
-      "Hitbox 0": {
-         "Offset": 13144
-      },
-      "Hitbox 1": {
-         "Offset": 13164
-      },
-      "Hitbox 2": {
-         "Offset": 13184
-      }
-   },
-   "Screw Attack (Item) 1": {
-      "Type": 6,
-      "Strength": 1,
-      "Hitbox 0": {
-         "Offset": 28820
-      },
-      "Hitbox 1": {
-         "Offset": 28840
-      },
-      "Hitbox 2": {
-         "Offset": 28860
-      },
-      "Hitbox 3": {
-         "Offset": 28880
-      }
-   },
-   "Screw Attack (Item) 2": {
-      "Type": 6,
-      "Strength": 1,
-      "Hitbox 0": {
-         "Offset": 28960
-      },
-      "Hitbox 1": {
-         "Offset": 28980
-      },
-      "Hitbox 2": {
-         "Offset": 29000
-      },
-      "Hitbox 3": {
-         "Offset": 29020
-      }
-   },
-   "Get-Up Attack 1": {
-      "Type": 0,
-      "Strength": 4,
-      "Hitbox 0": {
-         "Offset": 23052
-      },
-      "Hitbox 1": {
-         "Offset": 23072
-      },
-      "Hitbox 2": {
-         "Offset": 23092
-      },
-      "Hitbox 3": {
-         "Offset": 23112
-      },
-      "Hitbox 4": {
-         "Offset": 23164
-      },
-      "Hitbox 5": {
-         "Offset": 23184
-      },
-      "Hitbox 6": {
-         "Offset": 23204
-      },
-      "Hitbox 7": {
-         "Offset": 23224
-      }
-   },
-   "Get-Up Attack 2": {
-      "Type": 0,
-      "Strength": 4,
-      "Hitbox 0": {
-         "Offset": 23536
-      },
-      "Hitbox 1": {
-         "Offset": 23556
-      },
-      "Hitbox 2": {
-         "Offset": 23628
-      },
-      "Hitbox 3": {
-         "Offset": 23648
-      }
-   },
-   "Ledge Attack Slow": {
-      "Type": 0,
-      "Strength": 4,
-      "Hitbox 0": {
-         "Offset": 24344
-      },
-      "Hitbox 1": {
-         "Offset": 24364
-      },
-      "Hitbox 2": {
-         "Offset": 24384
-      }
-   },
-   "Ledge Attack Fast": {
-      "Type": 0,
-      "Strength": 4,
-      "Hitbox 0": {
-         "Offset": 24512
-      },
-      "Hitbox 1": {
-         "Offset": 24532
-      },
-      "Hitbox 2": {
-         "Offset": 24552
-      }
-   }
+  "Jab 1": {
+    "Type": "Normal",
+    "Strength": 2,
+    "Hitbox 0": {
+      "Offset": 18168
+    },
+    "Hitbox 1": {
+      "Offset": 18188
+    },
+    "Hitbox 2": {
+      "Offset": 18208
+    }
+  },
+  "Jab 2": {
+    "Type": "Normal",
+    "Strength": 3,
+    "Hitbox 0": {
+      "Offset": 18288
+    },
+    "Hitbox 1": {
+      "Offset": 18308
+    }
+  },
+  "Dash Attack": {
+    "Type": "Normal",
+    "Strength": 5,
+    "Hitbox 0": {
+      "Offset": 18384
+    },
+    "Hitbox 1": {
+      "Offset": 18444
+    }
+  },
+  "F-Tilt": {
+    "Type": "Normal",
+    "Strength": 4,
+    "Hitbox 0": {
+      "Offset": 18488
+    },
+    "Hitbox 1": {
+      "Offset": 18508
+    },
+    "Hitbox 2": {
+      "Offset": 18528
+    },
+    "Hitbox 3": {
+      "Offset": 18548
+    },
+    "Hitbox 4": {
+      "Offset": 18612
+    },
+    "Hitbox 5": {
+      "Offset": 18632
+    },
+    "Hitbox 6": {
+      "Offset": 18652
+    },
+    "Hitbox 7": {
+      "Offset": 18672
+    },
+    "Hitbox 8": {
+      "Offset": 18736
+    },
+    "Hitbox 9": {
+      "Offset": 18756
+    },
+    "Hitbox 10": {
+      "Offset": 18776
+    },
+    "Hitbox 11": {
+      "Offset": 18796
+    }
+  },
+  "Up-Tilt": {
+    "Type": "Normal",
+    "Strength": 5,
+    "Hitbox 0": {
+      "Offset": 18924
+    },
+    "Hitbox 1": {
+      "Offset": 18944
+    },
+    "Hitbox 2": {
+      "Offset": 18964
+    },
+    "Hitbox 3": {
+      "Offset": 18984
+    }
+  },
+  "Down-Tilt": {
+    "Type": "Normal",
+    "Strength": 5,
+    "Hitbox 0": {
+      "Offset": 19116
+    },
+    "Hitbox 1": {
+      "Offset": 19136
+    },
+    "Hitbox 2": {
+      "Offset": 19156
+    }
+  },
+  "F-Smash": {
+    "Type": "Smash",
+    "Strength": 8,
+    "Hitbox 0": {
+      "Offset": 19240
+    },
+    "Hitbox 1": {
+      "Offset": 19260
+    },
+    "Hitbox 2": {
+      "Offset": 19280
+    },
+    "Hitbox 3": {
+      "Offset": 19404
+    },
+    "Hitbox 4": {
+      "Offset": 19424
+    },
+    "Hitbox 5": {
+      "Offset": 19444
+    },
+    "Hitbox 6": {
+      "Offset": 19516
+    },
+    "Hitbox 7": {
+      "Offset": 19536
+    },
+    "Hitbox 8": {
+      "Offset": 19556
+    }
+  },
+  "Up-Smash Start": {
+    "Type": "Smash",
+    "Strength": 4,
+    "Hitbox 0": {
+      "Offset": 19628
+    },
+    "Hitbox 1": {
+      "Offset": 19648
+    },
+    "Hitbox 2": {
+      "Offset": 19736
+    },
+    "Hitbox 3": {
+      "Offset": 19756
+    }
+  },
+  "Up-Smash Middle": {
+    "Type": "Smash",
+    "Strength": 1,
+    "Hitbox 0": {
+      "Offset": 19824
+    },
+    "Hitbox 1": {
+      "Offset": 19844
+    },
+    "Hitbox 2": {
+      "Offset": 19912
+    },
+    "Hitbox 3": {
+      "Offset": 19932
+    }
+  },
+  "Up-Smash End": {
+    "Type": "Smash",
+    "Strength": 4,
+    "Hitbox 0": {
+      "Offset": 20020
+    },
+    "Hitbox 1": {
+      "Offset": 20040
+    }
+  },
+  "Down-Smash 1": {
+    "Type": "Smash",
+    "Strength": 8,
+    "Hitbox 0": {
+      "Offset": 20188
+    },
+    "Hitbox 1": {
+      "Offset": 20208
+    }
+  },
+  "Down-Smash 2": {
+    "Type": "Smash",
+    "Strength": 4,
+    "Hitbox 0": {
+      "Offset": 20256
+    },
+    "Hitbox 1": {
+      "Offset": 20276
+    }
+  },
+  "N-air": {
+    "Type": "Aerial",
+    "Strength": 6,
+    "Hitbox 0": {
+      "Offset": 20360
+    },
+    "Hitbox 1": {
+      "Offset": 20360
+    },
+    "Hitbox 2": {
+      "Offset": 20404
+    },
+    "Hitbox 3": {
+      "Offset": 20424
+    }
+  },
+  "F-air 1": {
+    "Type": "Aerial",
+    "Strength": 1,
+    "Hitbox 0": {
+      "Offset": 20488
+    },
+    "Hitbox 1": {
+      "Offset": 20508
+    }
+  },
+  "F-air 2": {
+    "Type": "Aerial",
+    "Strength": 4,
+    "Hitbox 0": {
+      "Offset": 20580
+    },
+    "Hitbox 1": {
+      "Offset": 20600
+    }
+  },
+  "B-air": {
+    "Type": "Aerial",
+    "Strength": 6,
+    "Hitbox 0": {
+      "Offset": 20708
+    },
+    "Hitbox 1": {
+      "Offset": 20728
+    },
+    "Hitbox 2": {
+      "Offset": 20748
+    }
+  },
+  "Up-Air Loop": {
+    "Type": "Multi-hit",
+    "Strength": 1,
+    "Hitbox 0": {
+      "Offset": 20820
+    },
+    "Hitbox 1": {
+      "Offset": 20840
+    },
+    "Hitbox 2": {
+      "Offset": 20860
+    },
+    "Hitbox 3": {
+      "Offset": 20908
+    },
+    "Hitbox 4": {
+      "Offset": 20928
+    },
+    "Hitbox 5": {
+      "Offset": 20948
+    }
+  },
+  "Up-Air End": {
+    "Type": "Aerial",
+    "Strength": 3,
+    "Hitbox 0": {
+      "Offset": 20984
+    },
+    "Hitbox 1": {
+      "Offset": 21004
+    },
+    "Hitbox2": {
+      "Offset": 21024
+    }
+  },
+  "D-air": {
+    "Type": "Spike",
+    "Strength": 5,
+    "Hitbox 0": {
+      "Offset": 21128
+    },
+    "Hitbox 1": {
+      "Offset": 21148
+    }
+  },
+  "Charge Beam": {
+    "Type": "Special",
+    "Strength": 1,
+    "Hitbox 0": {
+      "Offset": 16084
+    }
+  },
+  "Homing Missile": {
+    "Type": "Projectile",
+    "Strength": 1,
+    "Hitbox 0": {
+      "Offset": 16496
+    }
+  },
+  "Super Missile": {
+    "Type": "Projectile",
+    "Strength": 3,
+    "Hitbox 0": {
+      "Offset": 16524
+    }
+  },
+  "Bomb": {
+    "Type": "Projectile",
+    "Strength": 2,
+    "Hitbox 0": {
+      "Offset": 16752
+    }
+  },
+  "Screw Attack Start": {
+    "Type": "Special",
+    "Strength": 3,
+    "Hitbox 0": {
+      "Offset": 14720
+    },
+    "Hitbox 1": {
+      "Offset": 14740
+    },
+    "Hitbox 2": {
+      "Offset": 14760
+    },
+    "Hitbox 3": {
+      "Offset": 14780
+    }
+  },
+  "Screw Attack Loop": {
+    "Type": "Special Multi-hit",
+    "Strength": 1,
+    "Hitbox 0": {
+      "Offset": 14812
+    },
+    "Hitbox 1": {
+      "Offset": 14832
+    },
+    "Hitbox 2": {
+      "Offset": 14852
+    },
+    "Hitbox 3": {
+      "Offset": 14872
+    },
+    "Hitbox 4": {
+      "Offset": 14912
+    },
+    "Hitbox 5": {
+      "Offset": 14932
+    },
+    "Hitbox 6": {
+      "Offset": 14952
+    },
+    "Hitbox 7": {
+      "Offset": 14972
+    }
+  },
+  "Screw Attack Final Hitbox": {
+    "Type": "Special",
+    "Strength": 1,
+    "Hitbox 0": {
+      "Offset": 15004
+    }
+  },
+  "Forward Throw": {
+    "Throw": {
+      "Offset": 25604
+    },
+    "Type": "Forward Throw"
+  },
+  "Back Throw": {
+    "Throw": {
+      "Offset": 25776
+    },
+    "Type": "Back Throw"
+  },
+  "Up Throw": {
+    "Throw": {
+      "Offset": 25932
+    },
+    "Type": "Up Throw"
+  },
+  "Up Throw Hitbox": {
+    "Type": "Throw Hitbox",
+    "Strength": 0,
+    "Hitbox 0": {
+      "Offset": 26020
+    }
+  },
+  "Down Throw": {
+    "Throw": {
+      "Offset": 26144
+    },
+    "Type": "Down Throw"
+  },
+  "Grapple Beam": {
+    "Type": "Normal",
+    "Strength": 2,
+    "Hitbox 0": {
+      "Offset": 15844
+    },
+    "Hitbox 1": {
+      "Offset": 15864
+    }
+  },
+  "Beam Sword Jab": {
+    "Type": "Item",
+    "Strength": 4,
+    "Hitbox 0": {
+      "Offset": 10140
+    },
+    "Hitbox 1": {
+      "Offset": 10160
+    },
+    "Hitbox 2": {
+      "Offset": 10180
+    }
+  },
+  "Beam Sword Tilt": {
+    "Type": "Item",
+    "Strength": 5,
+    "Hitbox 0": {
+      "Offset": 10260
+    },
+    "Hitbox 1": {
+      "Offset": 10280
+    },
+    "Hitbox 2": {
+      "Offset": 10300
+    }
+  },
+  "Beam Sword Smash": {
+    "Type": "Item",
+    "Strength": 8,
+    "Hitbox 0": {
+      "Offset": 10380
+    },
+    "Hitbox 1": {
+      "Offset": 10400
+    },
+    "Hitbox 2": {
+      "Offset": 10420
+    }
+  },
+  "Beam Sword Dash Attack": {
+    "Type": "Item",
+    "Strength": 6,
+    "Hitbox 0": {
+      "Offset": 10500
+    },
+    "Hitbox 1": {
+      "Offset": 10520
+    },
+    "Hitbox 2": {
+      "Offset": 10540
+    }
+  },
+  "Home-Run Bat Jab": {
+    "Type": "Item",
+    "Strength": 4,
+    "Hitbox 0": {
+      "Offset": 10796
+    },
+    "Hitbox 1": {
+      "Offset": 10816
+    },
+    "Hitbox 2": {
+      "Offset": 10836
+    }
+  },
+  "Home-Run Bat Tilt": {
+    "Type": "Item",
+    "Strength": 5,
+    "Hitbox 0": {
+      "Offset": 10896
+    },
+    "Hitbox 1": {
+      "Offset": 10916
+    },
+    "Hitbox 2": {
+      "Offset": 10936
+    }
+  },
+  "Home-Run Bat Smash": {
+    "Type": "Devastating Item",
+    "Strength": 10,
+    "Hitbox 0": {
+      "Offset": 10996
+    },
+    "Hitbox 1": {
+      "Offset": 11016
+    },
+    "Hitbox 2": {
+      "Offset": 11036
+    }
+  },
+  "Home-Run Bat Dash Attack": {
+    "Type": "Item",
+    "Strength": 6,
+    "Hitbox 0": {
+      "Offset": 11156
+    },
+    "Hitbox 1": {
+      "Offset": 11176
+    },
+    "Hitbox 2": {
+      "Offset": 11196
+    }
+  },
+  "Parasol Jab": {
+    "Type": "Item",
+    "Strength": 3,
+    "Hitbox 0": {
+      "Offset": 11272
+    },
+    "Hitbox 1": {
+      "Offset": 11292
+    },
+    "Hitbox 2": {
+      "Offset": 11312
+    }
+  },
+  "Parasol Tilt": {
+    "Type": "Item",
+    "Strength": 5,
+    "Hitbox 0": {
+      "Offset": 11412
+    },
+    "Hitbox 1": {
+      "Offset": 11432
+    },
+    "Hitbox 2": {
+      "Offset": 11452
+    }
+  },
+  "Parasol Smash": {
+    "Type": "Item",
+    "Strength": 8,
+    "Hitbox 0": {
+      "Offset": 11552
+    },
+    "Hitbox 1": {
+      "Offset": 11572
+    },
+    "Hitbox 2": {
+      "Offset": 11592
+    }
+  },
+  "Parasol Dash Attack": {
+    "Type": "Item",
+    "Strength": 6,
+    "Hitbox 0": {
+      "Offset": 11692
+    },
+    "Hitbox 1": {
+      "Offset": 11712
+    },
+    "Hitbox 2": {
+      "Offset": 11732
+    }
+  },
+  "Parasol Fall": {
+    "Type": "Item",
+    "Strength": 4,
+    "Hitbox 0": {
+      "Offset": 11872
+    }
+  },
+  "Fan Jab": {
+    "Type": "Item",
+    "Strength": 3,
+    "Hitbox 0": {
+      "Offset": 11952
+    },
+    "Hitbox 1": {
+      "Offset": 11972
+    },
+    "Hitbox 2": {
+      "Offset": 11992
+    }
+  },
+  "Fan Tilt": {
+    "Type": "Item",
+    "Strength": 5,
+    "Hitbox 0": {
+      "Offset": 12052
+    },
+    "Hitbox 1": {
+      "Offset": 12072
+    },
+    "Hitbox 2": {
+      "Offset": 12092
+    }
+  },
+  "Fan Smash": {
+    "Type": "Item",
+    "Strength": 8,
+    "Hitbox 0": {
+      "Offset": 12152
+    },
+    "Hitbox 1": {
+      "Offset": 12172
+    },
+    "Hitbox 2": {
+      "Offset": 12192
+    }
+  },
+  "Fan Dash Attack": {
+    "Type": "Item",
+    "Strength": 6,
+    "Hitbox 0": {
+      "Offset": 12272
+    },
+    "Hitbox 1": {
+      "Offset": 12292
+    },
+    "Hitbox 2": {
+      "Offset": 12312
+    }
+  },
+  "Star Rod Jab": {
+    "Type": "Item",
+    "Strength": 4,
+    "Hitbox 0": {
+      "Offset": 12384
+    },
+    "Hitbox 1": {
+      "Offset": 12404
+    },
+    "Hitbox 2": {
+      "Offset": 12424
+    }
+  },
+  "Star Rod Tilt": {
+    "Type": "Item",
+    "Strength": 5,
+    "Hitbox 0": {
+      "Offset": 12516
+    },
+    "Hitbox 1": {
+      "Offset": 12536
+    },
+    "Hitbox 2": {
+      "Offset": 12556
+    }
+  },
+  "Star Rod Smash": {
+    "Type": "Item",
+    "Strength": 8,
+    "Hitbox 0": {
+      "Offset": 12648
+    },
+    "Hitbox 1": {
+      "Offset": 12668
+    },
+    "Hitbox 2": {
+      "Offset": 12688
+    }
+  },
+  "Star Rod Dash Attack": {
+    "Type": "Item",
+    "Strength": 6,
+    "Hitbox 0": {
+      "Offset": 12780
+    },
+    "Hitbox 1": {
+      "Offset": 12800
+    },
+    "Hitbox 2": {
+      "Offset": 12820
+    }
+  },
+  "Lip's Stick Jab": {
+    "Type": "Item",
+    "Strength": 2,
+    "Hitbox 0": {
+      "Offset": 12928
+    },
+    "Hitbox 1": {
+      "Offset": 12948
+    },
+    "Hitbox 2": {
+      "Offset": 12968
+    }
+  },
+  "Lip's Stick Tilt": {
+    "Type": "Item",
+    "Strength": 5,
+    "Hitbox 0": {
+      "Offset": 13000
+    },
+    "Hitbox 1": {
+      "Offset": 13020
+    },
+    "Hitbox 2": {
+      "Offset": 13040
+    }
+  },
+  "Lip's Stick Smash": {
+    "Type": "Item",
+    "Strength": 8,
+    "Hitbox 0": {
+      "Offset": 13072
+    },
+    "Hitbox 1": {
+      "Offset": 13092
+    },
+    "Hitbox 2": {
+      "Offset": 13112
+    }
+  },
+  "Lip's Stick Dash Attack": {
+    "Type": "Item",
+    "Strength": 6,
+    "Hitbox 0": {
+      "Offset": 13144
+    },
+    "Hitbox 1": {
+      "Offset": 13164
+    },
+    "Hitbox 2": {
+      "Offset": 13184
+    }
+  },
+  "Screw Attack (Item) 1": {
+    "Type": "Item",
+    "Strength": 1,
+    "Hitbox 0": {
+      "Offset": 28820
+    },
+    "Hitbox 1": {
+      "Offset": 28840
+    },
+    "Hitbox 2": {
+      "Offset": 28860
+    },
+    "Hitbox 3": {
+      "Offset": 28880
+    }
+  },
+  "Screw Attack (Item) 2": {
+    "Type": "Item",
+    "Strength": 1,
+    "Hitbox 0": {
+      "Offset": 28960
+    },
+    "Hitbox 1": {
+      "Offset": 28980
+    },
+    "Hitbox 2": {
+      "Offset": 29000
+    },
+    "Hitbox 3": {
+      "Offset": 29020
+    }
+  },
+  "Get-Up Attack 1": {
+    "Type": "Normal",
+    "Strength": 4,
+    "Hitbox 0": {
+      "Offset": 23052
+    },
+    "Hitbox 1": {
+      "Offset": 23072
+    },
+    "Hitbox 2": {
+      "Offset": 23092
+    },
+    "Hitbox 3": {
+      "Offset": 23112
+    },
+    "Hitbox 4": {
+      "Offset": 23164
+    },
+    "Hitbox 5": {
+      "Offset": 23184
+    },
+    "Hitbox 6": {
+      "Offset": 23204
+    },
+    "Hitbox 7": {
+      "Offset": 23224
+    }
+  },
+  "Get-Up Attack 2": {
+    "Type": "Normal",
+    "Strength": 4,
+    "Hitbox 0": {
+      "Offset": 23536
+    },
+    "Hitbox 1": {
+      "Offset": 23556
+    },
+    "Hitbox 2": {
+      "Offset": 23628
+    },
+    "Hitbox 3": {
+      "Offset": 23648
+    }
+  },
+  "Ledge Attack Slow": {
+    "Type": "Normal",
+    "Strength": 4,
+    "Hitbox 0": {
+      "Offset": 24344
+    },
+    "Hitbox 1": {
+      "Offset": 24364
+    },
+    "Hitbox 2": {
+      "Offset": 24384
+    }
+  },
+  "Ledge Attack Fast": {
+    "Type": "Normal",
+    "Strength": 4,
+    "Hitbox 0": {
+      "Offset": 24512
+    },
+    "Hitbox 1": {
+      "Offset": 24532
+    },
+    "Hitbox 2": {
+      "Offset": 24552
+    }
+  }
 }

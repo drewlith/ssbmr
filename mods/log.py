@@ -72,7 +72,7 @@ def start_mod(output_dir, seed, flags, debug = False):
             log.write("\n -D-air Lag Frames: " + str(fighter.original_stats[6][5]) + " > " + dair)
         log.write("\n\nATTACKS")
         for attack in fighter.attacks:
-            if attack.type < 6 or debug:
+            if "Item" not in attack.type or debug:
                 log.write("\n\n[" + fighter.name + " " + attack.attack_name+"]")
                 if attack.shuffled:
                     log.write("\nShuffled with " + attack.shuffled_with)
@@ -85,7 +85,7 @@ def start_mod(output_dir, seed, flags, debug = False):
                 log.write("\n -Knockback Growth: " + attack.original_stats[2] +
                           " > " + str(attack.hitboxes[0].get_growth()))
                 log.write("\n -Base Knockback: " + attack.original_stats[3] +
-                          " > " + str(attack.hitboxes[0].get_growth()))
+                          " > " + str(attack.hitboxes[0].get_base()))
                 log.write("\n -Set Knockback: " + attack.original_stats[4] +
                           " > " + str(attack.hitboxes[0].get_set()))
                 log.write("\n -Shield Damage: " + attack.original_stats[5] +

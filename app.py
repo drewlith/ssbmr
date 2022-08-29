@@ -540,7 +540,7 @@ class MiscMenu():
         ui_font_small = font.Font(family="data/Folk.otf",size=12)
         self.flag_widgets = []
         self.flag_widgets.append(TwoOptionFlag(self.master, self, "Vanilla", "-vanilla ", 50, 130, 100, "Chance %"))
-        self.flag_widgets.append(TwoOptionFlag(self.master, self, "Balance", "-balance ", 50, 200, 100, "Chance %"))
+        self.flag_widgets.append(OneOptionFlag(self.master, self, "Balance", "-balance ", 50, 200))
         self.flag_widgets.append(TwoOptionFlag(self.master, self, "Throws", "-throws ", 50, 270, 20))
         self.flag_widgets.append(TwoOptionFlag(self.master, self, "Chaos", "-chaos ", 50, 340, 100, "Chaos Scale"))
         self.flag_widgets.append(TwoOptionFlag(self.master, self, "Shuffle", "-shuffle ", 300, 130, 100, "Chance %"))

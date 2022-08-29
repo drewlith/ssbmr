@@ -5,9 +5,19 @@ from random import randint as rng
 
 def randomize(attack, magnitude):
     if attack.balance:
-        growth = rng(2,attack.strength+magnitude+2)*15
+        growth = rng(magnitude,attack.strength+magnitude)*10
     else:
-        growth = rng(0,120+magnitude)
+        growth = rng(0,10+magnitude)*10
+    if "Smash" in attack.type:
+        growth += rng(2,3)*10
+        if growth < 80:
+            growth = 80
+    if "Aerial" in attack.type:
+        growth += 10
+        if growth < 60:
+            growth = 60
+    if "Laser" in attack.type:
+        growth = 0
     for hb in attack.hitboxes:
         hb.set_growth(growth)
 

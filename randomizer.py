@@ -42,13 +42,14 @@ def start(iso_path = None, output_path = None, flags = ""):
         print("Applying vanilla mod...")
         p = get_values_from_string(flags, "-vanilla ", " -", ".") # p stands for Parameters
         vanilla.start_mod(p[0])
+        
+    melee.sort_attacks()
 
     # Anything that doesn't exclude data from the randomizer goes below here.
     
     if "-balance" in flags: # "-balance %"
         print("Applying balance mod...")
-        p = get_values_from_string(flags, "-balance ", " -", ".") # p stands for Parameters
-        balance.start_mod(p[0])
+        balance.start_mod()
 
     if "-shuffle" in flags: # "-shuffle %"
         print("Applying shuffle mod...")
@@ -186,6 +187,10 @@ def start(iso_path = None, output_path = None, flags = ""):
     if "-log" in flags: # -log
         print("Writing log")
         log.start_mod(old_path, seed, flags)
+
+    # Music test
+    #melee.replace_file(b'menu01.hps', 'test.hps')
+    #melee.replace_file(b'menu3.hps', 'test.hps')
         
     melee.end(iso_path, output_path)
 

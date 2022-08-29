@@ -6,9 +6,15 @@ from random import randint as rng
 
 def randomize(attack, magnitude):
     if attack.balance:
-        base = rng(0,attack.strength+magnitude)*5
+        base = rng(magnitude,attack.strength+magnitude)*2
     else:
-        base = rng(0,100+magnitude)
+        base = rng(magnitude,20+magnitude*2)
+    if "Smash" in attack.type:
+        base += rng(1,2+magnitude)*10
+        if base < 30:
+            base = 30
+    if "Laser" in attack.type:
+        base = 0
     for hb in attack.hitboxes:
         hb.set_base(base)
 
@@ -17,3 +23,4 @@ def start_mod(magnitude):
         for attack in fighter.attacks:
             if not attack.shuffled:
                 randomize(attack, magnitude)
+                

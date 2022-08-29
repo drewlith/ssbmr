@@ -11,7 +11,7 @@ items = []
 throws = []
 hitboxes = []
 
-attack_tiers = [[],[],[],[],[],[],[],[],[],[],[]] # For balanced modes
+attack_tiers = [[],[],[],[],[],[],[],[],[],[],[]] # For balance
 item_tiers = [[],[],[],[],[],[],[],[],[],[],[]]
 #############
 
@@ -210,6 +210,7 @@ def get_fighter_data(): # Gets data from Fighters about their moves from offsets
         for key in data:
             if "Type" in data[key] and "Strength" in data[key]:  # Get Attacks
                 a = attack.Attack(f, key)
+                a.type = data[key]["Type"]
                 f.attacks.append(a)
                 attacks.append(a)
             elif "Throw" in data[key]:  # Get throws
@@ -262,7 +263,7 @@ def sort_attacks(): # Puts attacks into strength tiers and separates items
         t.clear()
     for f in fighters:
         for a in f.attacks:
-            if a.type < 6: # If type < 6, it's implied it's not an item
+            if "Item" not in a.type:
                 attack_tiers[a.strength].append(a)
                 attacks.append(a)
             else:

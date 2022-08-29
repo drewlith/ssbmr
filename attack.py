@@ -4,7 +4,7 @@ class Attack():
         self.fighter = fighter
         self.hitboxes = []
         self.strength = 0
-        self.type = 0
+        self.type = None
         self.balance = False
         self.shuffled = False
         self.shuffled_with = self.fighter.name + " " + self.attack_name
