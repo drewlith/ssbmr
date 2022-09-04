@@ -256,7 +256,7 @@
     }
   },
   "D-air": {
-    "Type": "Aerial",
+    "Type": "Aerial Multi-hit",
     "Strength": 1,
     "Hitbox 0": {
       "Offset": 20448

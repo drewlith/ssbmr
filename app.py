@@ -539,24 +539,25 @@ class MiscMenu():
         ui_font_medium = font.Font(family="data/Folk.otf",size=16)
         ui_font_small = font.Font(family="data/Folk.otf",size=12)
         self.flag_widgets = []
-        self.flag_widgets.append(TwoOptionFlag(self.master, self, "Vanilla", "-vanilla ", 50, 130, 100, "Chance %"))
-        self.flag_widgets.append(OneOptionFlag(self.master, self, "Balance", "-balance ", 50, 200))
+        self.flag_widgets.append(TwoOptionFlag(self.master, self, "Vanilla", "-vanilla ", 50, 130, 100, "% Chance"))
+        self.flag_widgets.append(OneOptionFlag(self.master, self, "Balance", "-balance ", 300, 270))
         self.flag_widgets.append(TwoOptionFlag(self.master, self, "Throws", "-throws ", 50, 270, 20))
         self.flag_widgets.append(TwoOptionFlag(self.master, self, "Chaos", "-chaos ", 50, 340, 100, "Chaos Scale"))
-        self.flag_widgets.append(TwoOptionFlag(self.master, self, "Shuffle", "-shuffle ", 300, 130, 100, "Chance %"))
+        self.flag_widgets.append(TwoOptionFlag(self.master, self, "Shuffle", "-shuffle ", 50, 200, 100, "% Chance"))
         self.flag_widgets.append(OneOptionFlag(self.master, self, "Soul Bond", "-soul_bond ", 300, 190))
         self.flag_widgets.append(OneOptionFlag(self.master, self, "Vanilla Bosses", "-no_bosses ", 450, 190))
         self.flag_widgets.append(OneOptionFlag(self.master, self, "Better Low Tiers", "-better_low_tiers ", 300, 230))
         self.flag_widgets.append(OneOptionFlag(self.master, self, "SFX", "-sfx ", 450, 230))
-        self.flag_widgets.append(TwoOptionFlagDropdown(self.master, self, "Turnips", "-turnips ",("Balanced", "Items Only", "Chaos", "Chaos Items"), 300, 270))
-        self.flag_widgets.append(TwoOptionFlagDropdown(self.master, self, "Music", "-music ",("Shuffle"), 300, 310))
+        self.flag_widgets.append(TwoOptionFlagDropdown(self.master, self, "Turnips", "-turnips ",("Balanced", "Items Only", "Chaos", "Chaos Items"), 300, 310))
+        self.flag_widgets.append(TwoOptionFlagDropdown(self.master, self, "Music", "-music ",("Shuffle"), 300, 350))
         self.flag_widgets.append(OneOptionFlag(self.master, self, "Log", "-log ", 520, 230))
-        self.flag_widgets.append(TwoOptionFlag(self.master, self, "Harder 1p", "-harder_bosses ", 300, 360, 5, "Difficulty"))
+        self.flag_widgets.append(TwoOptionFlag(self.master, self, "Harder 1p", "-harder_bosses ", 300, 130, 5, "Difficulty"))
+        self.flag_widgets.append(OneOptionFlag(self.master, self, "Fox Only", "-all_fox ", 400, 270))
         self.flag_widgets[0].tooltip = "Keeps elements the same as the original Melee."
         self.flag_widgets[1].tooltip = "Makes attacks closer to their original power level."
         self.flag_widgets[2].tooltip = "Throws will have their properties randomized."
-        self.flag_widgets[3].tooltip = "Percent of attacks and throws to shuffle instead of randomize."
-        self.flag_widgets[4].tooltip = "Try it at your own risk."
+        self.flag_widgets[3].tooltip = "Gives each hitbox special quirks."
+        self.flag_widgets[4].tooltip = "A percentage of attacks/throws will be shuffled instead of randomized."
         self.flag_widgets[5].tooltip = "Makes Nana the same as Popo."
         self.flag_widgets[6].tooltip = "Boss hitboxes and attributes will not be included."
         self.flag_widgets[7].tooltip = "Low tier characters will receive substantial buffs."
@@ -565,6 +566,7 @@ class MiscMenu():
         self.flag_widgets[10].tooltip = "Shuffles music. Will increase randomization time drastically."
         self.flag_widgets[11].tooltip = "A log will be generated that lists changes."
         self.flag_widgets[12].tooltip = "Bosses will receive substantial buffs."
+        self.flag_widgets[13].tooltip = "All characters will have the movement of Fox."
         
         self.determine_settings()
         
@@ -585,7 +587,7 @@ class MiscMenu():
     def determine_settings(self):
         flags = self.custom_menu.flags.strip() + " -"
         flag_names = ["-vanilla ", "-balance ", "-throws ", "-chaos ", "-shuffle ", "-soul_bond ",
-                      "-no_bosses ", "-better_low_tiers ", "-sfx ", "-turnips ", "-music ", "-log ", "-harder_bosses "]
+                      "-no_bosses ", "-better_low_tiers ", "-sfx ", "-turnips ", "-music ", "-log ", "-harder_bosses ", "-all-fox "]
         for i in range(len(self.flag_widgets)):
             if flag_names[i] in flags:
                 if type(self.flag_widgets[i]) == OneOptionFlag:
@@ -620,15 +622,15 @@ class AttributeMenu():
         ui_font_medium = font.Font(family="data/Folk.otf",size=16)
         ui_font_small = font.Font(family="data/Folk.otf",size=12)
         self.flag_widgets = []
-        self.flag_widgets.append(ThreeOptionFlag(self.master, self, "Weight", "-weight ", ("Normal", "Heavier", "Lighter"), 50, 130))
-        self.flag_widgets.append(ThreeOptionFlag(self.master, self, "Scale", "-scale ", ("Normal", "Bigger", "Smaller"), 50, 220))
+        self.flag_widgets.append(ThreeOptionFlag(self.master, self, "Weight", "-weight ", ("Normal", "Heavier", "Lighter"), 50, 130, 20))
+        self.flag_widgets.append(ThreeOptionFlag(self.master, self, "Scale", "-scale ", ("Normal", "Bigger", "Smaller"), 50, 220, 50))
         self.flag_widgets.append(ThreeOptionFlag(self.master, self, "Shld. Size", "-shield_size ", ("Normal", "Bigger", "Smaller"), 50, 310, 10))
-        self.flag_widgets.append(ThreeOptionFlag(self.master, self, "Movement", "-movement ", ("Normal", "Faster", "Slower"), 320, 130))
-        self.flag_widgets.append(ThreeOptionFlag(self.master, self, "Jumps", "-jump ", ("Normal", "Faster", "Slower"), 320, 220))
+        self.flag_widgets.append(ThreeOptionFlag(self.master, self, "Movement", "-movement ", ("Normal", "Faster", "Slower"), 320, 130, 20))
+        self.flag_widgets.append(ThreeOptionFlag(self.master, self, "Jumps", "-jump ", ("Normal", "Faster", "Slower"), 320, 220, 20))
         self.flag_widgets.append(ThreeOptionFlag(self.master, self, "Landing", "-landing ", ("Normal", "Faster", "Slower"), 320, 310, 20))
         self.flag_widgets[0].tooltip = "Higher weight will lower knockback."
         self.flag_widgets[1].tooltip = "How big a fighter is."
-        self.flag_widgets[2].tooltip = "Changes the size of fighters' shields'."
+        self.flag_widgets[2].tooltip = "Changes the size of fighters' shields."
         self.flag_widgets[3].tooltip = "Changes speed on the ground and in the air."
         self.flag_widgets[4].tooltip = "Changes jumpsquat and jump properties."
         self.flag_widgets[5].tooltip = "Affects landing lag on aerials and base landing lag."
@@ -675,8 +677,8 @@ class HitboxMenu():
         ui_font_medium = font.Font(family="data/Folk.otf",size=16)
         ui_font_small = font.Font(family="data/Folk.otf",size=12)
         self.flag_widgets = []
-        self.flag_widgets.append(TwoOptionFlag(self.master, self, "Damage", "-damage ", 50, 130, 20))
-        self.flag_widgets.append(OneOptionFlag(self.master, self, "Angle", "-angle ", 50, 200))
+        self.flag_widgets.append(TwoOptionFlag(self.master, self, "Damage", "-damage ", 50, 200, 20))
+        self.flag_widgets.append(OneOptionFlag(self.master, self, "Angle", "-angle ", 50, 130))
         self.flag_widgets.append(TwoOptionFlag(self.master, self, "KB Growth", "-growth ", 50, 270, 20))
         self.flag_widgets.append(TwoOptionFlag(self.master, self, "Base KB", "-base_knockback ", 50, 340, 20))
         self.flag_widgets.append(TwoOptionFlag(self.master, self, "Shield Dmg.", "-shield_damage ", 320, 130, 20))
@@ -688,7 +690,7 @@ class HitboxMenu():
         self.flag_widgets[2].tooltip = "Changes how much percent affects knockback."
         self.flag_widgets[3].tooltip = "Changes how much knockback an attack has."
         self.flag_widgets[4].tooltip = "Changes how much damage an attack does to shields."
-        self.flag_widgets[5].tooltip = "Makes moves more similar to Fox's shine."
+        self.flag_widgets[5].tooltip = "Makes moves send at a fixed amount of knockback."
         self.flag_widgets[6].tooltip = "Changes hitbox sizes, making them more/less likely to land."
         self.flag_widgets[7].tooltip = "Can add Fire, Ice, Ground, Disable, etc..."
         self.determine_settings()

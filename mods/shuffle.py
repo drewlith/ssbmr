@@ -4,8 +4,10 @@ import melee, copy
 from util import percent_chance
 from random import randint as rng
 
+bosses = ["Crazy Hand", "Master Hand", "Giga Bowser"]
 def shuffle(attack):
     temp = copy.deepcopy(attack)
+    boss = False
     if attack.balance:
         if "Item" not in attack.type:
             tier = melee.attack_tiers[attack.strength]
@@ -13,12 +15,17 @@ def shuffle(attack):
             tier = melee.item_tiers[attack.strength]
         target = tier[rng(0,len(tier)-1)]
     else:
-        if attack.type < 6:
+        if "Item" not in attack.type:
             target = melee.attacks[rng(0,len(melee.attacks)-1)]
         else:
             target = melee.items[rng(0,len(melee.items)-1)]
     if target.shuffled:
         return
+    for boss in bosses:
+        if target.fighter.name == boss:
+            boss = True
+        if attack.fighter.name == boss:
+            boss = True
     for i in range(len(attack.hitboxes)-1):
         if i > len(target.hitboxes)-1:
             hb_id = 0
@@ -52,6 +59,26 @@ def shuffle(attack):
     temp = attack.shuffled_with
     attack.shuffled_with = target.shuffled_with
     target.shuffled_with = temp
+
+    if "Multi-hit" in attack.type or "Throw Hitbox" in attack.type:
+        for hb in attack.hitboxes:
+            damage = hb.get_damage() // 3
+            if damage < 0:
+                damage = 0
+            hb.set_damage(damage)
+
+    if "Multi-hit" in target.type or "Throw Hitbox" in target.type:
+        for hb in target.hitboxes:
+            damage = hb.get_damage() // 3
+            if damage < 0:
+                damage = 0
+            hb.set_damage(damage)
+    
+    if boss:    # Balance bosses gigantic hitboxes
+        for hb in attack.hitboxes:
+            if hb.get_size() > 3000:
+                hb.set_size(3000)
+    
 
 def shuffle_throw(throw):
     temp = copy.deepcopy(throw)

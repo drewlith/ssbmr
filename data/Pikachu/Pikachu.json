@@ -136,7 +136,7 @@
   },
   "Down-Smash 2": {
     "Type": "Smash",
-    "Strength": 8,
+    "Strength": 3,
     "Hitbox 0": {
       "Offset": 18664
     }

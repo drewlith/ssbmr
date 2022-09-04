@@ -2,7 +2,7 @@ import melee, sys, random, util, string
 from mods import (damage, angle, growth, base, wdsk, element, shield_damage, sfx,
                   hitbox_size, throws, weight, scale, shield_size, movement, jump,
                   landing, chaos, music, log, vanilla, no_bosses, better_low_tiers,
-                  harder_bosses, soul_bond, turnips, balance, shuffle)
+                  harder_bosses, soul_bond, turnips, balance, shuffle, all_fox)
 
 def start(iso_path = None, output_path = None, flags = ""):
     seed = ""
@@ -176,6 +176,10 @@ def start(iso_path = None, output_path = None, flags = ""):
     if "-soul_bond" in flags: # "-soul_bond"
         print("Applying soul bond mod...")
         soul_bond.start_mod()
+
+    if "-all_fox" in flags: # "-all_fox"
+        print("Applying Fox Only mod...")
+        all_fox.start_mod()
 
     # Anything that affects only visual/audio elements, or creates external files go below here.
 

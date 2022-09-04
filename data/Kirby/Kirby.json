@@ -189,7 +189,7 @@
   },
   "Up-Air": {
     "Type": "Aerial",
-    "Strength": 6,
+    "Strength": 7,
     "Hitbox 0": {
       "Offset": 35424
     }
@@ -299,7 +299,7 @@
     "Type": "Down Throw"
   },
   "Down Throw Loop": {
-    "Type": "Down Throw",
+    "Type": "Throw Hitbox",
     "Strength": 1,
     "Hitbox 0": {
       "Offset": 40616

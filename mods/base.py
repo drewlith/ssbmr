@@ -10,7 +10,7 @@ def randomize(attack, magnitude):
     else:
         base = rng(magnitude,20+magnitude*2)
     if "Smash" in attack.type:
-        base += rng(1,2+magnitude)*10
+        base += rng(1,2)*10
         if base < 30:
             base = 30
     if "Laser" in attack.type:

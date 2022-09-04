@@ -8,9 +8,9 @@ def randomize(attack, magnitude):
     if not percent_chance(magnitude):
         return
     if attack.balance:
-        wdsk = rng(0,attack.strength+magnitude)*6
+        wdsk = rng(magnitude,attack.strength+magnitude)*10
     else:
-        wdsk = rng(0,40+magnitude)
+        wdsk = rng(magnitude,70+magnitude)
     if "Laser" in attack.type:
         wdsk = 0
     if wdsk > 90: # Makes sure it's never much more than Fox's shine

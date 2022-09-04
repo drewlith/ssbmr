@@ -18,5 +18,4 @@ def start_mod():
         if include:
             melee.fighters.append(fighter)
     melee.sort_attacks()
-    melee.set_shuffle_targets()
 

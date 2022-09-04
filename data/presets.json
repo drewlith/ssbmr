@@ -1,34 +1,22 @@
 {
    "Standard": {
-      "Flags": "-damage 5 -angle -growth 5 -base_knockback 5 -shield_damage 5 -wdsk 5 -hitbox_size 1 -element 2 -weight 20.0 -scale 5.0 -shield_size 2.0 -movement 10.0 -jump 2.0 -landing 5.1 -vanilla 5 -shuffle 50 -balance -throws 4 -harder_bosses 2 -soul_bond -better_low_tiers -sfx -turnips 0 -log",
+      "Flags": "-damage 5 -angle -growth 5 -base_knockback 5 -shield_damage 5 -wdsk 5 -hitbox_size 1 -element 2 -weight 10.0 -scale 5.0 -shield_size 2.0 -movement 10.0 -jump 2.0 -landing 5.1 -vanilla 5 -shuffle 50 -balance -throws 4 -harder_bosses 2 -soul_bond -better_low_tiers -no_bosses -sfx -turnips 0 -log",
       "Description": "A mix of everything that the randomizer has to offer! Attacks are balanced to be closer to their normal power level."
    },
-   "Shuffle": {
-      "Flags": "-damage 100 -angle 100 -growth 100 -base_knockback 100 -shield_damage 100 -throws 100 -soul_bond -log ",
-      "Description": "All attack's hitbox properties are shuffled with one another! For example, Falcon's Knee could be Ness's Jab!\n"
-   },
-   "Shuffle Balanced": {
-      "Flags": "-damage 100 -angle 100 -growth 100 -base_knockback 100 -shield_damage 100 -balance 100 -throws 100 -soul_bond -log ",
-      "Description": "All attacks are shuffled, but only with moves close to their original power level! No Jabs will be shuffled with Rest for example.\n"
-   },
-   "Random": {
-      "Flags": "-damage 0 -angle 0 -growth 0 -base_knockback 0 -shield_damage 0 -hitbox_size 0 -element 5 -weight 0 -scale 20.0 -shield_size 5.0 -movement 20.0 -jump 20.0 -landing 5.0 -throws 0 -turnips 0 -soul_bond -log ",
-      "Description": "Hitboxes and character attributes will be set to random values! Not to be taken too seriously.\n"
-   },
-   "Random Balance": {
-      "Flags": "-damage 0 -angle 0 -growth 0 -base_knockback 0 -shield_damage 0 -hitbox_size 0 -element 5 -weight 0 -scale 20.0 -shield_size 5.0 -movement 20.0 -jump 20.0 -landing 5.0 -balance 100 -throws 0 -soul_bond -turnips 0 -log ",
-      "Description": "All attacks have random properties, but they are closer to their original strength! Attributes are randomized as well.\n"
-   },
-   "Chaos": {
-      "Flags": "-damage 50 -angle 50 -growth 50 -base_knockback 50 -shield_damage 85 -wdsk 10 -hitbox_size 50 -element 8 -weight 50 -scale 30.0 -shield_size 10.0 -movement 25.0 -jump 25.0 -landing 12.1 -vanilla 5 -balance 85 -throws 50 -chaos 30 -soul_bond -better_low_tiers -sfx -turnips 2 -log -harder_bosses 4 ",
-      "Description": "The randomizer is out of control! Expect nothing but CHAOS!!\n"
+   "Shuffled": {
+      "Flags": "-balance -shuffle 100 -soul_bond -no_bosses -log ",
+      "Description": "All the attacks have been switched around! Try to find the best attacks on other characters!\n"
    },
    "Competitive": {
-      "Flags": "-damage 50 -growth 50 -base_knockback 50 -vanilla 25 -balance 100 -throws 50 -soul_bond -no_bosses -better_low_tiers -sfx -log ",
-      "Description": "Attacks will launch at their normal angle. Some attacks won't even be changed at all! Characters should play very similar to normal.\n"
+      "Flags": "-damage 5 -growth 5 -base_knockback 5 -shield_damage 1 -movement 5.1 -landing 5.1 -vanilla 10 -balance -throws 4 -soul_bond -better_low_tiers -log ",
+      "Description": "Settings designed to be good for more serious matches that plays closer to the original!\n"
    },
-   "Faster Melee": {
-      "Flags": "-damage 50 -angle 50 -growth 50 -base_knockback 50 -shield_damage 98 -wdsk 1 -hitbox_size 10 -element 2 -shield_size 2.0 -movement 30.1 -jump 30.1 -landing 10.1 -vanilla 5 -balance 100 -throws 50 -soul_bond -better_low_tiers -sfx -turnips 0 -log -harder_bosses 2 ",
-      "Description": "All the characters are a lot faster! Attacks have been randomized as well, with balancing!\n"
+   "Chaos": {
+      "Flags": "-damage 6 -angle -growth 6 -base_knockback 6 -shield_damage 6 -wdsk 6 -hitbox_size 6 -element 10 -weight 10.0 -scale 25.0 -shield_size 5.0 -movement 15.0 -jump 15.0 -landing 15.0 -throws 7 -chaos 50 -shuffle 15 -sfx -turnips 3 -music 0 -log ",
+      "Description": "A nonsensical fun time!\n"
+   },
+   "Oops, all Fox!": {
+      "Flags": "-damage 5 -angle -growth 5 -base_knockback 5 -shield_damage 1 -wdsk 2 -vanilla 15 -balance -throws 4 -shuffle 25 -soul_bond -better_low_tiers -no_bosses -log -all_fox ",
+      "Description": "All the characters have been given the movement of Fox! Will Fox still reign supreme?\n"
    }
 }
