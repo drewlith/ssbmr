@@ -6,7 +6,7 @@ from random import randint as rng
     
 def randomize(attack, magnitude):
     if attack.balance:
-        damage = rng(magnitude,attack.strength+magnitude)
+        damage = rng(magnitude+2,attack.strength+magnitude+2)
     else:
         damage = rng(0,15+magnitude)
     if "Devastating" in attack.type:
@@ -14,7 +14,7 @@ def randomize(attack, magnitude):
     if "Smash" in attack.type:
         damage += rng(2,5)
     if "Aerial" in attack.type:
-        damage += rng(0,2)
+        damage += rng(1,2)
     if "Projectile" in attack.type or "Multi" in attack.type or "Throw Hitbox" in attack.type:
         damage = damage // 3
     if damage < 0:

@@ -149,7 +149,7 @@
     }
   },
   "F-air": {
-    "Type": "Aerial",
+    "Type": "Aerial Multi-hit",
     "Strength": 3,
     "Hitbox 0": {
       "Offset": 18412
@@ -247,7 +247,7 @@
     "Type": "Forward Throw"
   },
   "Forward Throw Loop": {
-    "Type": "Forward Throw",
+    "Type": "Multi-hit Throw Hitbox",
     "Strength": 1,
     "Hitbox 0": {
       "Offset": 23480

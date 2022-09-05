@@ -255,6 +255,7 @@ def find_fighter(name):
             return f
 
 def sort_attacks(): # Puts attacks into strength tiers and separates items
+    throws.clear()
     attacks.clear()
     items.clear()
     for t in attack_tiers:
@@ -269,6 +270,8 @@ def sort_attacks(): # Puts attacks into strength tiers and separates items
             else:
                 item_tiers[a.strength].append(a)
                 items.append(a)
+        for t in f.throws:
+            throws.append(t)
 
 def start(iso_path):
     fst.clear()

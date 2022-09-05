@@ -14,7 +14,6 @@ def start_mod():
         if buff:
             for attack in fighter.attacks:
                 for hb in attack.hitboxes:
-                    hb.set_damage(hb.get_damage()+random.randint(0,2))
                     hb.set_growth(hb.get_growth()+random.randint(1,2)*10)
                     hb.set_base(hb.get_base()+random.randint(0,2)*5)
                     hb.set_size(hb.get_size()+random.randint(1,5)*50)
