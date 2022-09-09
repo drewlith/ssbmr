@@ -214,14 +214,14 @@
   },
   "Thunder 1": {
     "Type": "Special Multi-hit",
-    "Strength": 1,
+    "Strength": 3,
     "Hitbox 0": {
       "Offset": 15592
     }
   },
   "Thunder 2": {
     "Type": "Special",
-    "Strength": 4,
+    "Strength": 6,
     "Hitbox 0": {
       "Offset": 14912
     }
@@ -234,8 +234,8 @@
     }
   },
   "Side-B": {
-    "Type": "Special",
-    "Strength": 1,
+    "Type": "Devastating Special",
+    "Strength": 3,
     "Hitbox 0": {
       "Offset": 14280
     }
@@ -267,7 +267,7 @@
   },
   "Up Throw Hitbox": {
     "Type": "Throw Hitbox",
-    "Strength": 0,
+    "Strength": 3,
     "Hitbox 0": {
       "Offset": 23824
     }
@@ -280,7 +280,7 @@
   },
   "Down Throw Hitbox": {
     "Type": "Throw Hitbox",
-    "Strength": 0,
+    "Strength": 3,
     "Hitbox 0": {
       "Offset": 24000
     }

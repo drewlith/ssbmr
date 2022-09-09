@@ -4,6 +4,8 @@ import util, os.path, fighter, attack, throw, hitbox, random
 fst = bytearray() # Contains pointers to all ISO files and their names and sizes
 fst_files = [] # All the FST Files
 
+dol = bytearray() # The machine code for melee.
+
 ############# Import melee into other scripts to have access to this useful data
 fighters = []
 attacks = []
@@ -97,6 +99,8 @@ def build_iso(melee, output_path):
     melee.seek(0)
     new_iso = open(output_path, "wb")
     new_iso.write(melee.read(0x456E00))
+    new_iso.seek(0x1E800)
+    new_iso.write(dol)
     new_iso.seek(0x456E00)
     new_iso.write(fst)
     for f in fst_files:
@@ -274,8 +278,11 @@ def sort_attacks(): # Puts attacks into strength tiers and separates items
             throws.append(t)
 
 def start(iso_path):
+    dol.clear()
     fst.clear()
     melee = open_iso(iso_path)
+    melee.seek(0x1E800)
+    dol.extend(melee.read(0x438600))
     melee.seek(0x456E00)
     fst.extend(melee.read(0x7529))
     get_files_from_fst()

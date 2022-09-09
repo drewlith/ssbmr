@@ -425,8 +425,9 @@ class TwoOptionFlagDropdown():
             self.mode_var = 1
         if self.mode_menu.get() == self.options[2]:
             self.mode_var = 2
-        if self.mode_menu.get() == self.options[3]:
-            self.mode_var = 3
+        if len(self.options) > 3:
+            if self.mode_menu.get() == self.options[3]:
+                self.mode_var = 3
         self.menu.determine_flags(0)
 
 class ThreeOptionFlag():
@@ -553,6 +554,7 @@ class MiscMenu():
         self.flag_widgets.append(OneOptionFlag(self.master, self, "Log", "-log ", 520, 230))
         self.flag_widgets.append(TwoOptionFlag(self.master, self, "Harder 1p", "-harder_bosses ", 300, 130, 5, "Difficulty"))
         self.flag_widgets.append(OneOptionFlag(self.master, self, "Fox Only", "-all_fox ", 400, 270))
+        self.flag_widgets.append(OneOptionFlag(self.master, self, "Elemental Mastery", "-elemental_mastery ", 300, 390))
         self.flag_widgets[0].tooltip = "Keeps elements the same as the original Melee."
         self.flag_widgets[1].tooltip = "Makes attacks closer to their original power level."
         self.flag_widgets[2].tooltip = "Throws will have their properties randomized."
@@ -567,7 +569,7 @@ class MiscMenu():
         self.flag_widgets[11].tooltip = "A log will be generated that lists changes."
         self.flag_widgets[12].tooltip = "Bosses will receive substantial buffs."
         self.flag_widgets[13].tooltip = "All characters will have the movement of Fox."
-        
+        self.flag_widgets[14].tooltip = "Moves with certain elements will get special bonuses."
         self.determine_settings()
         
     def determine_flags(self, val = 0):
@@ -587,7 +589,8 @@ class MiscMenu():
     def determine_settings(self):
         flags = self.custom_menu.flags.strip() + " -"
         flag_names = ["-vanilla ", "-balance ", "-throws ", "-chaos ", "-shuffle ", "-soul_bond ",
-                      "-no_bosses ", "-better_low_tiers ", "-sfx ", "-turnips ", "-music ", "-log ", "-harder_bosses ", "-all-fox "]
+                      "-no_bosses ", "-better_low_tiers ", "-sfx ", "-turnips ", "-music ", "-log ", "-harder_bosses ", "-all-fox ",
+                      "-elemental_mastery "]
         for i in range(len(self.flag_widgets)):
             if flag_names[i] in flags:
                 if type(self.flag_widgets[i]) == OneOptionFlag:
@@ -678,7 +681,7 @@ class HitboxMenu():
         ui_font_small = font.Font(family="data/Folk.otf",size=12)
         self.flag_widgets = []
         self.flag_widgets.append(TwoOptionFlag(self.master, self, "Damage", "-damage ", 50, 200, 20))
-        self.flag_widgets.append(OneOptionFlag(self.master, self, "Angle", "-angle ", 50, 130))
+        self.flag_widgets.append(TwoOptionFlagDropdown(self.master, self, "Angle", "-angle ",("Normal", "Deviation", "All Meteor"), 50, 130))
         self.flag_widgets.append(TwoOptionFlag(self.master, self, "KB Growth", "-growth ", 50, 270, 20))
         self.flag_widgets.append(TwoOptionFlag(self.master, self, "Base KB", "-base_knockback ", 50, 340, 20))
         self.flag_widgets.append(TwoOptionFlag(self.master, self, "Shield Dmg.", "-shield_damage ", 320, 130, 20))
@@ -701,6 +704,8 @@ class HitboxMenu():
             if widget.flag_var.get() == 1:
                 if type(widget) == TwoOptionFlag:
                     flags += widget.flag_name + str(widget.magnitude.get()) + " "
+                elif type(widget) == TwoOptionFlagDropdown:
+                    flags += widget.flag_name + str(widget.mode_var) + " "
                 else:
                     flags += widget.flag_name + " "
         self.custom_menu.hitbox_flags = flags
@@ -714,6 +719,16 @@ class HitboxMenu():
                 self.flag_widgets[i].flag_var.set(1)
                 if type(self.flag_widgets[i]) == TwoOptionFlag:
                     self.flag_widgets[i].magnitude.set(int(util.get_string_between(flags,flag_names[i], "-")))
+                if type(self.flag_widgets[i]) == TwoOptionFlagDropdown:
+                    self.flag_widgets[i].flag_var.set(1)
+                    value = util.get_string_between(flags,flag_names[i], "-")
+                    try:
+                        self.flag_widgets[i].mode_var = int(value)
+                        self.flag_widgets[i].mode_menu.current(int(value))
+                    except:
+                        self.flag_widgets[i].mode_var = 0
+                        self.flag_widgets[i].mode_menu.current(0)
+                    
         self.determine_flags(0)
             
     def clear(self):

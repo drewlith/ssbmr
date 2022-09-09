@@ -315,7 +315,7 @@
   },
   "Turnip": {
     "Type": "Special",
-    "Strength": 1,
+    "Strength": 0,
     "Hitbox 0": {
       "Offset": 17168
     }
@@ -328,7 +328,7 @@
   },
   "Forward Throw Hitbox": {
     "Type": "Throw Hitbox",
-    "Strength": 1,
+    "Strength": 2,
     "Hitbox 0": {
       "Offset": 28072
     }
@@ -341,7 +341,7 @@
   },
   "Back Throw Hitbox": {
     "Type": "Throw Hitbox",
-    "Strength": 1,
+    "Strength": 2,
     "Hitbox 0": {
       "Offset": 28204
     }
@@ -354,7 +354,7 @@
   },
   "Up Throw Hitbox": {
     "Type": "Throw Hitbox",
-    "Strength": 0,
+    "Strength": 2,
     "Hitbox 0": {
       "Offset": 28356
     }
@@ -367,7 +367,7 @@
   },
   "Down Throw Hitbox": {
     "Type": "Throw Hitbox",
-    "Strength": 0,
+    "Strength": 1,
     "Hitbox 0": {
       "Offset": 28464
     }

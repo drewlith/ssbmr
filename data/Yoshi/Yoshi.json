@@ -233,7 +233,7 @@
     }
   },
   "Egg": {
-    "Type": "Projectile",
+    "Type": "Devastating Projectile",
     "Strength": 2,
     "Hitbox 0": {
       "Offset": 14992
@@ -247,7 +247,7 @@
     }
   },
   "Side-B": {
-    "Type": "Special",
+    "Type": "Devastating Special",
     "Strength": 4,
     "Hitbox 0": {
       "Offset": 14256
@@ -263,7 +263,7 @@
     }
   },
   "Ground Pound": {
-    "Type": "Special",
+    "Type": "Devastating Special",
     "Strength": 6,
     "Hitbox 0": {
       "Offset": 14668

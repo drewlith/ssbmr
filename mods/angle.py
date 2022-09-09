@@ -26,8 +26,30 @@ def randomize(attack):
     for hb in attack.hitboxes:
         hb.set_angle(angle)
 
-def start_mod():
+def deviate(attack):
+    angle = attack.hitboxes[0].get_angle()
+    if angle == 361:
+        return
+    angle = rng(angle - 15, angle + 15)
+    if angle < 0:
+        angle = 360 + angle
+    if angle > 360:
+        angle = angle - 360
+    for hb in attack.hitboxes:
+        hb.set_angle(angle)
+
+def all_meteor(attack):
+    for hb in attack.hitboxes:
+        hb.set_angle(290)
+
+def start_mod(mode = 0):
     for fighter in melee.fighters: # Normal Attacks
         for attack in fighter.attacks:
             if not attack.shuffled:
-                randomize(attack)
+                if mode == 0:
+                    randomize(attack)
+                if mode == 1:
+                    deviate(attack)
+                if mode == 2:
+                    all_meteor(attack)
+                    

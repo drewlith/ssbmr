@@ -91,8 +91,8 @@
     }
   },
   "F-Smash 1": {
-    "Type": "Smash",
-    "Strength": 1,
+    "Type": "Multi-hit",
+    "Strength": 2,
     "Hitbox 0": {
       "Offset": 18956
     },
@@ -107,7 +107,7 @@
     }
   },
   "F-Smash 2": {
-    "Type": "Smash",
+    "Type": "Devastating Smash",
     "Strength": 8,
     "Hitbox 0": {
       "Offset": 19052
@@ -123,7 +123,7 @@
     }
   },
   "Up-Smash 1": {
-    "Type": "Smash",
+    "Type": "Multi-hit",
     "Strength": 1,
     "Hitbox 0": {
       "Offset": 19324
@@ -151,7 +151,7 @@
     }
   },
   "Up-Smash 2": {
-    "Type": "Smash",
+    "Type": "Devastating Smash",
     "Strength": 8,
     "Hitbox 0": {
       "Offset": 19548
@@ -184,7 +184,7 @@
   },
   "N-air 1": {
     "Type": "Aerial",
-    "Strength": 1,
+    "Strength": 2,
     "Hitbox 0": {
       "Offset": 19960
     },
@@ -225,7 +225,7 @@
     }
   },
   "F-air Sweetspot": {
-    "Type": "Aerial",
+    "Type": "Devastating Aerial",
     "Strength": 7,
     "Hitbox 0": {
       "Offset": 20264
@@ -242,14 +242,14 @@
     }
   },
   "B-air Sweetspot": {
-    "Type": "Aerial",
+    "Type": "Devastating Aerial",
     "Strength": 7,
     "Hitbox 0": {
       "Offset": 20416
     }
   },
   "Up-Air": {
-    "Type": "Aerial",
+    "Type": "Devastating Aerial",
     "Strength": 5,
     "Hitbox 0": {
       "Offset": 20564
@@ -266,8 +266,8 @@
     }
   },
   "Din's Fire": {
-    "Type": "Projectile",
-    "Strength": 2,
+    "Type": "Devastating Projectile",
+    "Strength": 3,
     "Hitbox 0": {
       "Offset": 16356
     }
@@ -289,7 +289,7 @@
     }
   },
   "Neutral B End": {
-    "Type": "Special",
+    "Type": "Devastating Special",
     "Strength": 3,
     "Hitbox 0": {
       "Offset": 15116
@@ -345,7 +345,7 @@
     "Type": "Down Throw"
   },
   "Down Throw Loop": {
-    "Type": "Throw Hitbox",
+    "Type": "Multi-hit Throw Hitbox",
     "Strength": 1,
     "Hitbox 0": {
       "Offset": 26756

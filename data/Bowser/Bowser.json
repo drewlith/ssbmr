@@ -160,7 +160,7 @@
     }
   },
   "F-air": {
-    "Type": "Aerial",
+    "Type": "Devastating Aerial",
     "Strength": 7,
     "Hitbox 0": {
       "Offset": 20340
@@ -230,7 +230,7 @@
   },
   "Side-B Throw Forward Hitbox": {
     "Type": "Throw Hitbox",
-    "Strength": 1,
+    "Strength": 5,
     "Hitbox 0": {
       "Offset": 15112
     }
@@ -242,7 +242,7 @@
     "Type": "Back Throw"
   },
   "Fortress Start": {
-    "Type": "Special",
+    "Type": "Devastating Special",
     "Strength": 6,
     "Hitbox 0": {
       "Offset": 15632
@@ -279,7 +279,7 @@
     }
   },
   "Ground Pound": {
-    "Type": "Special",
+    "Type": "Devastating Special",
     "Strength": 7,
     "Hitbox 0": {
       "Offset": 16328
@@ -318,7 +318,7 @@
   },
   "Down Throw Hitboxes": {
     "Type": "Throw Hitbox",
-    "Strength": 1,
+    "Strength": 4,
     "Hitbox 0": {
       "Offset": 26232
     },

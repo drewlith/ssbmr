@@ -15,6 +15,8 @@ def randomize(attack, magnitude):
             base = 30
     if "Laser" in attack.type:
         base = 0
+    if "Devastating" in attack.type:
+        base += rng(1,6)*5
     for hb in attack.hitboxes:
         hb.set_base(base)
 

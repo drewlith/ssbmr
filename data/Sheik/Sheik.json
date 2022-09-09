@@ -279,7 +279,7 @@
   },
   "Chain": {
     "Type": "Special",
-    "Strength": 1,
+    "Strength": 2,
     "Hitbox 0": {
       "Offset": 13996
     },
@@ -301,7 +301,7 @@
   },
   "Forward Throw Hitbox": {
     "Type": "Throw Hitbox",
-    "Strength": 0,
+    "Strength": 3,
     "Hitbox 0": {
       "Offset": 23324
     }
@@ -314,7 +314,7 @@
   },
   "Back Throw Hitboxes": {
     "Type": "Throw Hitbox",
-    "Strength": 0,
+    "Strength": 3,
     "Hitbox 0": {
       "Offset": 23452
     },
@@ -330,7 +330,7 @@
   },
   "Up Throw Hitboxes": {
     "Type": "Throw Hitbox",
-    "Strength": 0,
+    "Strength": 3,
     "Hitbox 0": {
       "Offset": 23600
     },
@@ -346,7 +346,7 @@
   },
   "Down Throw Hitboxes": {
     "Type": "Throw Hitbox",
-    "Strength": 0,
+    "Strength": 3,
     "Hitbox 0": {
       "Offset": 23784
     },

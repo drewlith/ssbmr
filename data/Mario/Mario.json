@@ -231,7 +231,7 @@
     }
   },
   "D-air": {
-    "Type": "Aerial",
+    "Type": "Multi-hit Aerial",
     "Strength": 1,
     "Hitbox 0": {
       "Offset": 18960
@@ -304,7 +304,7 @@
   },
   "Down-B Start": {
     "Type": "Special",
-    "Strength": 0,
+    "Strength": 3,
     "Hitbox 0": {
       "Offset": 14256
     },
@@ -359,8 +359,8 @@
     }
   },
   "Down-B Finish": {
-    "Type": "Special",
-    "Strength": 2,
+    "Type": "Devastating Special",
+    "Strength": 4,
     "Hitbox 0": {
       "Offset": 14452
     },

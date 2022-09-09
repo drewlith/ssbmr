@@ -168,7 +168,7 @@
   },
   "Ice Block": {
     "Type": "Projectile",
-    "Strength": 2,
+    "Strength": 1,
     "Hitbox 0": {
       "Offset": 6676
     }
@@ -181,7 +181,7 @@
   },
   "Forward Throw Hitbox": {
     "Type": "Throw Hitbox",
-    "Strength": 0,
+    "Strength": 3,
     "Hitbox 0": {
       "Offset": 14216
     }
@@ -200,7 +200,7 @@
   },
   "Up Throw Hitbox": {
     "Type": "Throw Hitbox",
-    "Strength": 0,
+    "Strength": 3,
     "Hitbox 0": {
       "Offset": 14476
     },

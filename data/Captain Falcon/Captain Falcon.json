@@ -336,7 +336,7 @@
     "Type": "Up Throw"
   },
   "Falcon Kick": {
-    "Type": "Special",
+    "Type": "Devastating Special",
     "Strength": 5,
     "Hitbox 0": {
       "Offset": 16160
@@ -396,7 +396,7 @@
   },
   "F-Throw Hitboxes": {
     "Type": "Throw Hitbox",
-    "Strength": 1,
+    "Strength": 4,
     "Hitbox 0": {
       "Offset": 24764
     },
@@ -415,7 +415,7 @@
   },
   "Back Throw Hitboxes": {
     "Type": "Throw Hitbox",
-    "Strength": 1,
+    "Strength": 4,
     "Hitbox 0": {
       "Offset": 24932
     },
@@ -434,7 +434,7 @@
   },
   "Up Throw Hitboxes": {
     "Type": "Throw Hitbox",
-    "Strength": 1,
+    "Strength": 4,
     "Hitbox 0": {
       "Offset": 25060
     },

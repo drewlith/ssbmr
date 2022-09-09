@@ -234,14 +234,14 @@
     }
   },
   "Thunder Projectile": {
-    "Type": "Special",
-    "Strength": 5,
+    "Type": "Devastating Special",
+    "Strength": 6,
     "Hitbox 0": {
       "Offset": 15912
     }
   },
   "Thunder Strikes Pika": {
-    "Type": "Special",
+    "Type": "Devastating Special",
     "Strength": 8,
     "Hitbox 0": {
       "Offset": 15232
@@ -295,7 +295,7 @@
   },
   "Up Throw Hitbox": {
     "Type": "Throw Hitbox",
-    "Strength": 0,
+    "Strength": 3,
     "Hitbox 0": {
       "Offset": 24160
     }
@@ -308,7 +308,7 @@
   },
   "Down Throw Hitbox": {
     "Type": "Throw Hitbox",
-    "Strength": 0,
+    "Strength": 3,
     "Hitbox 0": {
       "Offset": 24336
     }

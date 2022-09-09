@@ -245,7 +245,7 @@
   },
   "Forward Throw Hitbox": {
     "Type": "Throw Hitbox",
-    "Strength": 1,
+    "Strength": 4,
     "Hitbox 0": {
       "Offset": 23348
     }
@@ -269,7 +269,7 @@
     "Type": "Down Throw"
   },
   "Down Throw Loop": {
-    "Type": "Throw Hitbox",
+    "Type": "Multi-hit Throw Hitbox",
     "Strength": 1,
     "Hitbox 0": {
       "Offset": 23900

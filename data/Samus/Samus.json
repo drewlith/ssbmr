@@ -266,7 +266,7 @@
     }
   },
   "Up-Air End": {
-    "Type": "Aerial",
+    "Type": "Devastating Aerial",
     "Strength": 3,
     "Hitbox 0": {
       "Offset": 20984
@@ -361,8 +361,8 @@
     }
   },
   "Screw Attack Final Hitbox": {
-    "Type": "Special",
-    "Strength": 1,
+    "Type": "Devastating Special",
+    "Strength": 2,
     "Hitbox 0": {
       "Offset": 15004
     }
@@ -399,7 +399,7 @@
     "Type": "Down Throw"
   },
   "Grapple Beam": {
-    "Type": "Normal",
+    "Type": "Devastating Normal",
     "Strength": 2,
     "Hitbox 0": {
       "Offset": 15844

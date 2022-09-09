@@ -19,14 +19,20 @@ def shuffle(attack):
             target = melee.attacks[rng(0,len(melee.attacks)-1)]
         else:
             target = melee.items[rng(0,len(melee.items)-1)]
-    if target.shuffled:
-        return
     for boss in bosses:
         if target.fighter.name == boss:
             boss = True
         if attack.fighter.name == boss:
             boss = True
-    for i in range(len(attack.hitboxes)-1):
+    if attack.hitboxes[0].get_growth() == 0 and attack.hitboxes[0].get_base == 0: # Fix hitboxes with no knockback
+        for hb in attack.hitboxes:
+            hb.set_growth(rng(1,10)*10)
+            hb.set_base(rng(2,12)*5)
+    if target.hitboxes[0].get_growth() == 0 and target.hitboxes[0].get_base == 0:
+        for hb in target.hitboxes:
+            hb.set_growth(rng(1,10)*10)
+            hb.set_base(rng(2,12)*5)
+    for i in range(len(attack.hitboxes)):
         if i > len(target.hitboxes)-1:
             hb_id = 0
         else:
@@ -40,7 +46,7 @@ def shuffle(attack):
         attack.hitboxes[i].set_size(target.hitboxes[hb_id].get_size())
         attack.hitboxes[i].set_sfx(target.hitboxes[hb_id].get_sfx())
         attack.hitboxes[i].set_shield(target.hitboxes[hb_id].get_shield())
-    for i in range(len(target.hitboxes)-1):
+    for i in range(len(target.hitboxes)):
         if i > len(temp.hitboxes)-1:
             hb_id = 0
         else:
@@ -54,31 +60,47 @@ def shuffle(attack):
         target.hitboxes[i].set_size(temp.hitboxes[hb_id].get_size())
         target.hitboxes[i].set_sfx(temp.hitboxes[hb_id].get_sfx())
         target.hitboxes[i].set_shield(temp.hitboxes[hb_id].get_shield())
-    attack.shuffled = True
-    target.shuffled = True
     temp = attack.shuffled_with
     attack.shuffled_with = target.shuffled_with
     target.shuffled_with = temp
 
-    if "Multi-hit" in attack.type or "Throw Hitbox" in attack.type:
+    if "Multi" in attack.type and not attack.shuffled:
         for hb in attack.hitboxes:
             damage = hb.get_damage() // 3
             if damage < 0:
                 damage = 0
             hb.set_damage(damage)
 
-    if "Multi-hit" in target.type or "Throw Hitbox" in target.type:
+    if "Multi" in target.type and not target.shuffled:
         for hb in target.hitboxes:
             damage = hb.get_damage() // 3
             if damage < 0:
                 damage = 0
             hb.set_damage(damage)
-    
+
+    if "Projectile" in attack.type and not attack.shuffled:
+        if attack.hitboxes[0].get_damage() > 7:
+            for hb in attack.hitboxes:
+                damage = hb.get_damage() // 2
+                if damage < 0:
+                    damage = 0
+                hb.set_damage(damage)
+
+    if "Projectile" in target.type and not target.shuffled:
+        if target.hitboxes[0].get_damage() > 7:
+            for hb in target.hitboxes:
+                damage = hb.get_damage() // 2
+                if damage < 0:
+                    damage = 0
+                hb.set_damage(damage)
+
     if boss:    # Balance bosses gigantic hitboxes
         for hb in attack.hitboxes:
-            if hb.get_size() > 3000:
-                hb.set_size(3000)
-    
+            if hb.get_size() > 2500:
+                hb.set_size(2500)
+
+    attack.shuffled = True
+    target.shuffled = True
 
 def shuffle_throw(throw):
     temp = copy.deepcopy(throw)
@@ -86,14 +108,28 @@ def shuffle_throw(throw):
     if target.shuffled:
         return
     throw.set_damage(target.get_damage())
-    throw.set_angle(target.get_angle())
+    angle = throw.get_angle()
+    if angle != 361:
+        angle = rng(angle-15, angle+15)
+        if angle < 0:
+            angle = 360 + angle
+        if angle > 360:
+            angle = angle - 360
+        throw.set_angle(angle)
     throw.set_base(target.get_base())
     throw.set_growth(target.get_growth())
     throw.set_set(target.get_set())
     throw.set_element(target.get_element())
 
     target.set_damage(temp.get_damage())
-    target.set_angle(temp.get_angle())
+    angle = target.get_angle()
+    if angle != 361:
+        angle = rng(angle-15, angle+15)
+        if angle < 0:
+            angle = 360 + angle
+        if angle > 360:
+            angle = angle - 360
+        target.set_angle(angle)
     target.set_base(temp.get_base())
     target.set_growth(temp.get_growth())
     target.set_set(temp.get_set())

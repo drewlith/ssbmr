@@ -15,7 +15,9 @@ def randomize(attack, magnitude):
         damage += rng(2,5)
     if "Aerial" in attack.type:
         damage += rng(1,2)
-    if "Projectile" in attack.type or "Multi" in attack.type or "Throw Hitbox" in attack.type:
+    if "Projectile" in attack.type:
+        damage = damage // 2
+    if "Multi" in attack.type:
         damage = damage // 3
     if damage < 0:
         damage = 0

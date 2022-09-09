@@ -1,8 +1,9 @@
-import melee, sys, random, util, string
+import melee, sys, random, util, string, dol
 from mods import (damage, angle, growth, base, wdsk, element, shield_damage, sfx,
                   hitbox_size, throws, weight, scale, shield_size, movement, jump,
                   landing, chaos, music, log, vanilla, no_bosses, better_low_tiers,
-                  harder_bosses, soul_bond, turnips, balance, shuffle, all_fox)
+                  harder_bosses, soul_bond, turnips, balance, shuffle, all_fox,
+                  elemental_mastery, textures)
 
 def start(iso_path = None, output_path = None, flags = ""):
     seed = ""
@@ -63,7 +64,11 @@ def start(iso_path = None, output_path = None, flags = ""):
 
     if "-angle" in flags: # "-angle"
         print("Applying angle mod...")
-        angle.start_mod()
+        if "-angle 0" in flags or "-angle 1" in flags or "-angle 2" in flags:
+            p = get_values_from_string(flags, "-angle ", " -", ".")
+            angle.start_mod(p[0])
+        else:
+            angle.start_mod()
 
     if "-growth" in flags: # "-growth M"
         print("Applying knockback growth mod...")
@@ -80,7 +85,7 @@ def start(iso_path = None, output_path = None, flags = ""):
         p = get_values_from_string(flags, "-wdsk ", " -", ".")
         wdsk.start_mod(p[0])
         
-    if "-element" in flags: # "-element %"
+    if "-element " in flags: # "-element %"
         print("Applying element mod...")
         p = get_values_from_string(flags, "-element ", " -", ".")
         element.start_mod(p[0])
@@ -181,6 +186,10 @@ def start(iso_path = None, output_path = None, flags = ""):
         print("Applying Fox Only mod...")
         all_fox.start_mod()
 
+    if "-elemental_mastery" in flags: # "-elemental_mastery"
+        print("Applying Elemental Master mod...")
+        elemental_mastery.start_mod()
+
     # Anything that affects only visual/audio elements, or creates external files go below here.
 
     if "-music" in flags: # "-music M"
@@ -195,6 +204,13 @@ def start(iso_path = None, output_path = None, flags = ""):
     # Music test
     #melee.replace_file(b'menu01.hps', 'test.hps')
     #melee.replace_file(b'menu3.hps', 'test.hps')
+    #melee.replace_file(b'MvOpen.mth', 'test.mth')
+
+    dol.start_mod()
+
+    music.custom_music()
+
+    textures.custom_textures(output_path)
         
     melee.end(iso_path, output_path)
 

@@ -129,7 +129,7 @@
     }
   },
   "Up-Smash 3": {
-    "Type": "Smash",
+    "Type": "Devastating Smash",
     "Strength": 4,
     "Hitbox 0": {
       "Offset": 19716
@@ -150,7 +150,7 @@
     }
   },
   "Down-Smash 3": {
-    "Type": "Smash",
+    "Type": "Devastating Smash",
     "Strength": 5,
     "Hitbox 0": {
       "Offset": 20008
@@ -226,14 +226,14 @@
     }
   },
   "D-air": {
-    "Type": "Spike",
+    "Type": "Devastating Spike",
     "Strength": 5,
     "Hitbox 0": {
       "Offset": 20716
     }
   },
   "PK Flash": {
-    "Type": "Special",
+    "Type": "Devastating Special",
     "Strength": 1,
     "Hitbox 0": {
       "Offset": 15764
@@ -285,7 +285,7 @@
     "Type": "Down Throw"
   },
   "Down Throw Loop": {
-    "Type": "Throw Hitbox",
+    "Type": "Multi-hit Throw Hitbox",
     "Strength": 1,
     "Hitbox 0": {
       "Offset": 25552

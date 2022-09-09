@@ -205,7 +205,7 @@
     }
   },
   "Grounded Hammer": {
-    "Type": "Special",
+    "Type": "Devastating Special",
     "Strength": 5,
     "Hitbox 0": {
       "Offset": 21876
@@ -215,14 +215,14 @@
     }
   },
   "Grounded Hammer Sweetspot": {
-    "Type": "Special",
+    "Type": "Devastating Special",
     "Strength": 8,
     "Hitbox 0": {
       "Offset": 21916
     }
   },
   "Aerial Hammer": {
-    "Type": "Special Multi-hit",
+    "Type": "Devastating Special Multi-hit",
     "Strength": 2,
     "Hitbox 0": {
       "Offset": 22080
@@ -261,14 +261,14 @@
     }
   },
   "Cutter 3": {
-    "Type": "Special",
+    "Type": "Devastating Special",
     "Strength": 2,
     "Hitbox 0": {
       "Offset": 31612
     }
   },
   "Down-B": {
-    "Type": "Special",
+    "Type": "Devastating Special",
     "Strength": 8,
     "Hitbox 0": {
       "Offset": 22920
@@ -299,7 +299,7 @@
     "Type": "Down Throw"
   },
   "Down Throw Loop": {
-    "Type": "Throw Hitbox",
+    "Type": "Multi-hit Throw Hitbox",
     "Strength": 1,
     "Hitbox 0": {
       "Offset": 40616

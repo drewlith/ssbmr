@@ -335,14 +335,14 @@
     }
   },
   "Hookshot": {
-    "Type": "Normal",
-    "Strength": 1,
+    "Type": "Devastating Normal",
+    "Strength": 2,
     "Hitbox 0": {
       "Offset": 16260
     }
   },
   "Up-B Loop Ground": {
-    "Type": "Multi-hit",
+    "Type": "Multi-hit Special",
     "Strength": 2,
     "Hitbox 0": {
       "Offset": 15260
@@ -358,8 +358,8 @@
     }
   },
   "Up-B Ground End": {
-    "Type": "Special",
-    "Strength": 3,
+    "Type": "Devastating Special",
+    "Strength": 4,
     "Hitbox 0": {
       "Offset": 15352
     },
@@ -445,7 +445,7 @@
   },
   "Forward Throw Hitboxes": {
     "Type": "Throw Hitbox",
-    "Strength": 0,
+    "Strength": 3,
     "Hitbox 0": {
       "Offset": 27720
     },
@@ -461,7 +461,7 @@
   },
   "Back Throw Hitboxes": {
     "Type": "Throw Hitbox",
-    "Strength": 0,
+    "Strength": 3,
     "Hitbox 0": {
       "Offset": 27896
     },
@@ -477,7 +477,7 @@
   },
   "Up Throw Hitboxes": {
     "Type": "Throw Hitbox",
-    "Strength": 1,
+    "Strength": 3,
     "Hitbox 0": {
       "Offset": 28076
     },
@@ -493,7 +493,7 @@
   },
   "Down Throw Hitbox": {
     "Type": "Throw Hitbox",
-    "Strength": 0,
+    "Strength": 3,
     "Hitbox 0": {
       "Offset": 28192
     }

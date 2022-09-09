@@ -242,7 +242,7 @@
     }
   },
   "D-air": {
-    "Type": "Aerial",
+    "Type": "Multi-hit Aerial",
     "Strength": 1,
     "Hitbox 0": {
       "Offset": 19544
@@ -256,14 +256,14 @@
   },
   "Pill": {
     "Type": "Projectile",
-    "Strength": 1,
+    "Strength": 2,
     "Hitbox 0": {
       "Offset": 15368
     }
   },
   "Cape": {
     "Type": "Special",
-    "Strength": 2,
+    "Strength": 4,
     "Hitbox 0": {
       "Offset": 14332
     },
@@ -276,7 +276,7 @@
   },
   "Up-B Start": {
     "Type": "Special",
-    "Strength": 1,
+    "Strength": 4,
     "Hitbox 0": {
       "Offset": 14440
     },
@@ -286,7 +286,7 @@
   },
   "Up-B Loop": {
     "Type": "Special Multi-hit",
-    "Strength": 1,
+    "Strength": 2,
     "Hitbox 0": {
       "Offset": 14556
     },
@@ -302,7 +302,7 @@
   },
   "Up-B Finish": {
     "Type": "Special",
-    "Strength": 1,
+    "Strength": 2,
     "Hitbox 0": {
       "Offset": 14664
     },
@@ -312,7 +312,7 @@
   },
   "Down-B Start": {
     "Type": "Special",
-    "Strength": 0,
+    "Strength": 1,
     "Hitbox 0": {
       "Offset": 14744
     },
@@ -343,8 +343,8 @@
     }
   },
   "Down-B Finish": {
-    "Type": "Special",
-    "Strength": 2,
+    "Type": "Devastating Special",
+    "Strength": 3,
     "Hitbox 0": {
       "Offset": 14900
     },

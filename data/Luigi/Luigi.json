@@ -289,7 +289,7 @@
   },
   "Down-B 1": {
     "Type": "Special",
-    "Strength": 1,
+    "Strength": 4,
     "Hitbox 0": {
       "Offset": 14520
     },
@@ -299,7 +299,7 @@
   },
   "Down-B 2": {
     "Type": "Special",
-    "Strength": 4,
+    "Strength": 5,
     "Hitbox 0": {
       "Offset": 14576
     },

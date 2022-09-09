@@ -273,14 +273,14 @@
   },
   "Firebird": {
     "Type": "Special",
-    "Strength": 5,
+    "Strength": 6,
     "Hitbox 0": {
       "Offset": 15552
     }
   },
   "Shine": {
     "Type": "Special",
-    "Strength": 5,
+    "Strength": 6,
     "Hitbox 0": {
       "Offset": 15704
     }
@@ -293,7 +293,7 @@
   },
   "Forward Throw Hitbox": {
     "Type": "Throw Hitbox",
-    "Strength": 1,
+    "Strength": 2,
     "Hitbox": {
       "Offset": 25180
     }

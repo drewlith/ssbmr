@@ -258,7 +258,7 @@
     }
   },
   "Side-B": {
-    "Type": "Special",
+    "Type": "Devastating Special",
     "Strength": 5,
     "Hitbox 0": {
       "Offset": 15524
@@ -281,7 +281,7 @@
     "Type": "Up Throw"
   },
   "Grounded Down B": {
-    "Type": "Special",
+    "Type": "Devastating Special",
     "Strength": 5,
     "Hitbox 0": {
       "Offset": 16312
@@ -294,7 +294,7 @@
     }
   },
   "Aerial Down B": {
-    "Type": "Spike",
+    "Type": "Devastating Spike",
     "Strength": 7,
     "Hitbox 0": {
       "Offset": 16540
@@ -324,7 +324,7 @@
   },
   "Forward Throw Hitboxes": {
     "Type": "Throw Hitbox",
-    "Strength": 1,
+    "Strength": 4,
     "Hitbox 0": {
       "Offset": 24892
     },
@@ -362,7 +362,7 @@
   },
   "Up Throw Hitboxes": {
     "Type": "Throw Hitbox",
-    "Strength": 1,
+    "Strength": 4,
     "Hitbox 0": {
       "Offset": 25188
     },

@@ -291,14 +291,14 @@
   },
   "Firefox": {
     "Type": "Special",
-    "Strength": 5,
+    "Strength": 6,
     "Hitbox 0": {
       "Offset": 15364
     }
   },
   "Shine": {
     "Type": "Special",
-    "Strength": 5,
+    "Strength": 6,
     "Hitbox 0": {
       "Offset": 15516
     }
@@ -311,7 +311,7 @@
   },
   "Forward Throw Hitbox": {
     "Type": "Throw Hitbox",
-    "Strength": 1,
+    "Strength": 2,
     "Hitbox": {
       "Offset": 24896
     }

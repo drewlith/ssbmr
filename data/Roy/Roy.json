@@ -447,7 +447,7 @@
     }
   },
   "Dancing Blade 4 Up": {
-    "Type": "Special",
+    "Type": "Devastating Special",
     "Strength": 8,
     "Hitbox 0": {
       "Offset": 17168
@@ -463,7 +463,7 @@
     }
   },
   "Dancing Blade 4 Side": {
-    "Type": "Special",
+    "Type": "Devastating Special",
     "Strength": 8,
     "Hitbox 0": {
       "Offset": 17356
@@ -495,7 +495,7 @@
     }
   },
   "Dancing Blade 4 Down End": {
-    "Type": "Special",
+    "Type": "Devastating Special",
     "Strength": 4,
     "Hitbox 0": {
       "Offset": 17700
@@ -556,7 +556,7 @@
   },
   "Counter": {
     "Type": "Special",
-    "Strength": 0,
+    "Strength": 1,
     "Hitbox 0": {
       "Offset": 18756
     },

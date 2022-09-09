@@ -104,7 +104,7 @@
     }
   },
   "F-Smash": {
-    "Type": "Smash",
+    "Type": "Devastating Smash",
     "Strength": 8,
     "Hitbox 0": {
       "Offset": 18524
@@ -130,7 +130,7 @@
     }
   },
   "Up-Smash Hit": {
-    "Type": "Smash",
+    "Type": "Devastating Smash",
     "Strength": 6,
     "Hitbox 0": {
       "Offset": 18896
@@ -146,7 +146,7 @@
     }
   },
   "Down-Smash": {
-    "Type": "Smash",
+    "Type": "Devastating Smash",
     "Strength": 8,
     "Hitbox 0": {
       "Offset": 19080
@@ -270,8 +270,8 @@
     }
   },
   "Disable": {
-    "Type": "Special",
-    "Strength": 0,
+    "Type": "Devastating Special",
+    "Strength": 5,
     "Hitbox 0": {
       "Offset": 15616
     }

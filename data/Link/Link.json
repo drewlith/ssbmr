@@ -325,14 +325,14 @@
   },
   "Bomb Explosion": {
     "Type": "Projectile",
-    "Strength": 1,
+    "Strength": 2,
     "Hitbox 0": {
       "Offset": 16772
     }
   },
   "Hookshot": {
-    "Type": "Normal",
-    "Strength": 1,
+    "Type": "Devastating Normal",
+    "Strength": 2,
     "Hitbox 0": {
       "Offset": 15784
     },
@@ -341,7 +341,7 @@
     }
   },
   "Up-B Ground Strong": {
-    "Type": "Special",
+    "Type": "Devastating Special",
     "Strength": 8,
     "Hitbox 0": {
       "Offset": 14820
@@ -441,7 +441,7 @@
   },
   "Forward Throw Hitboxes": {
     "Type": "Throw Hitbox",
-    "Strength": 0,
+    "Strength": 3,
     "Hitbox 0": {
       "Offset": 26728
     },
@@ -457,7 +457,7 @@
   },
   "Back Throw Hitboxes": {
     "Type": "Throw Hitbox",
-    "Strength": 0,
+    "Strength": 3,
     "Hitbox 0": {
       "Offset": 26904
     },
@@ -473,7 +473,7 @@
   },
   "Up Throw Hitboxes": {
     "Type": "Throw Hitbox",
-    "Strength": 1,
+    "Strength": 2,
     "Hitbox 0": {
       "Offset": 27084
     },
@@ -489,7 +489,7 @@
   },
   "Down Throw Hitbox": {
     "Type": "Throw Hitbox",
-    "Strength": 0,
+    "Strength": 3,
     "Hitbox 0": {
       "Offset": 27200
     }
