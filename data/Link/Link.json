@@ -65,7 +65,7 @@
   },
   "F-Tilt": {
     "Type": "Normal",
-    "Strength": 5,
+    "Strength": 6,
     "Hitbox 0": {
       "Offset": 19012
     },
@@ -97,7 +97,7 @@
   },
   "Down-Tilt": {
     "Type": "Normal",
-    "Strength": 5,
+    "Strength": 6,
     "Hitbox 0": {
       "Offset": 19308
     },
@@ -227,7 +227,7 @@
   },
   "F-air 1": {
     "Type": "Aerial",
-    "Strength": 5,
+    "Strength": 6,
     "Hitbox 0": {
       "Offset": 20900
     },
@@ -439,31 +439,11 @@
     },
     "Type": "Forward Throw"
   },
-  "Forward Throw Hitboxes": {
-    "Type": "Throw Hitbox",
-    "Strength": 3,
-    "Hitbox 0": {
-      "Offset": 26728
-    },
-    "Hitbox 1": {
-      "Offset": 26748
-    }
-  },
   "Back Throw": {
     "Throw": {
       "Offset": 26848
     },
     "Type": "Back Throw"
-  },
-  "Back Throw Hitboxes": {
-    "Type": "Throw Hitbox",
-    "Strength": 3,
-    "Hitbox 0": {
-      "Offset": 26904
-    },
-    "Hitbox 1": {
-      "Offset": 26924
-    }
   },
   "Up Throw": {
     "Throw": {
@@ -486,13 +466,6 @@
       "Offset": 27172
     },
     "Type": "Down Throw"
-  },
-  "Down Throw Hitbox": {
-    "Type": "Throw Hitbox",
-    "Strength": 3,
-    "Hitbox 0": {
-      "Offset": 27200
-    }
   },
   "Beam Sword Jab": {
     "Type": "Item",

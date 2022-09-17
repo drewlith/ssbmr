@@ -126,7 +126,7 @@
   },
   "Up-Smash 2": {
     "Type": "Smash",
-    "Strength": 3,
+    "Strength": 6,
     "Hitbox 0": {
       "Offset": 17932
     },
@@ -262,7 +262,7 @@
   },
   "D-air": {
     "Type": "Aerial",
-    "Strength": 5,
+    "Strength": 6,
     "Hitbox 0": {
       "Offset": 19032
     },
@@ -299,28 +299,11 @@
     },
     "Type": "Forward Throw"
   },
-  "Forward Throw Hitbox": {
-    "Type": "Throw Hitbox",
-    "Strength": 3,
-    "Hitbox 0": {
-      "Offset": 23324
-    }
-  },
   "Back Throw": {
     "Throw": {
       "Offset": 23424
     },
     "Type": "Back Throw"
-  },
-  "Back Throw Hitboxes": {
-    "Type": "Throw Hitbox",
-    "Strength": 3,
-    "Hitbox 0": {
-      "Offset": 23452
-    },
-    "Hitbox 1": {
-      "Offset": 23472
-    }
   },
   "Up Throw": {
     "Throw": {
@@ -328,31 +311,11 @@
     },
     "Type": "Up Throw"
   },
-  "Up Throw Hitboxes": {
-    "Type": "Throw Hitbox",
-    "Strength": 3,
-    "Hitbox 0": {
-      "Offset": 23600
-    },
-    "Hitbox 1": {
-      "Offset": 23620
-    }
-  },
   "Down Throw": {
     "Throw": {
       "Offset": 23700
     },
     "Type": "Down Throw"
-  },
-  "Down Throw Hitboxes": {
-    "Type": "Throw Hitbox",
-    "Strength": 3,
-    "Hitbox 0": {
-      "Offset": 23784
-    },
-    "Hitbox 1": {
-      "Offset": 23804
-    }
   },
   "Beam Sword Jab": {
     "Type": "Item",

@@ -190,7 +190,7 @@
   },
   "B-air": {
     "Type": "Aerial",
-    "Strength": 4,
+    "Strength": 6,
     "Hitbox 0": {
       "Offset": 19640
     },
@@ -216,7 +216,7 @@
   },
   "D-air": {
     "Type": "Spike",
-    "Strength": 5,
+    "Strength": 6,
     "Hitbox 0": {
       "Offset": 19916
     },
@@ -257,7 +257,7 @@
   },
   "Shadow Ball Stage 3": {
     "Type": "Special",
-    "Strength": 3,
+    "Strength": 6,
     "Hitbox 0": {
       "Offset": 15940
     }

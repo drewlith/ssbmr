@@ -9,13 +9,12 @@ def randomize(attack, magnitude):
     else:
         growth = rng(0,10+magnitude)*10
     if "Smash" in attack.type:
-        growth += rng(2,3)*10
-        if growth < 80:
-            growth = 80
+        if growth < 100:
+            growth = 100
     if "Aerial" in attack.type:
         growth += rng(1,2)*10
-        if growth < 70:
-            growth = 70
+        if growth < 80:
+            growth = 80
     if "Laser" in attack.type:
         growth = 0
     for hb in attack.hitboxes:

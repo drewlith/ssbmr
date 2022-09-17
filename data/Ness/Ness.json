@@ -51,7 +51,7 @@
   },
   "F-Tilt": {
     "Type": "Normal",
-    "Strength": 4,
+    "Strength": 6,
     "Hitbox 0": {
       "Offset": 18796
     },
@@ -137,7 +137,7 @@
   },
   "Down-Smash 1": {
     "Type": "Smash",
-    "Strength": 4,
+    "Strength": 6,
     "Hitbox 0": {
       "Offset": 19932
     }
@@ -226,8 +226,8 @@
     }
   },
   "D-air": {
-    "Type": "Devastating Spike",
-    "Strength": 5,
+    "Type": "Devastating Aerial Spike",
+    "Strength": 6,
     "Hitbox 0": {
       "Offset": 20716
     }

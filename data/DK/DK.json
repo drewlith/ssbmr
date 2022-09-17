@@ -40,7 +40,7 @@
   },
   "F-Tilt": {
     "Type": "Normal",
-    "Strength": 4,
+    "Strength": 6,
     "Hitbox 0": {
       "Offset": 19912
     },
@@ -228,8 +228,8 @@
     }
   },
   "D-air": {
-    "Type": "Spike",
-    "Strength": 5,
+    "Type": "Aerial Spike",
+    "Strength": 6,
     "Hitbox 0": {
       "Offset": 22020
     },
@@ -242,7 +242,7 @@
   },
   "DK Punch Uncharged": {
     "Type": "Special",
-    "Strength": 4,
+    "Strength": 6,
     "Hitbox 0": {
       "Offset": 15432
     },
@@ -397,7 +397,7 @@
   },
   "Down-B": {
     "Type": "Devastating Special",
-    "Strength": 5,
+    "Strength": 6,
     "Hitbox 0": {
       "Offset": 17460
     },

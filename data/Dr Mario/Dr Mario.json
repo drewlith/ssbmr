@@ -263,7 +263,7 @@
   },
   "Cape": {
     "Type": "Special",
-    "Strength": 4,
+    "Strength": 6,
     "Hitbox 0": {
       "Offset": 14332
     },
@@ -275,7 +275,7 @@
     }
   },
   "Up-B Start": {
-    "Type": "Special",
+    "Type": "Devastating Special",
     "Strength": 4,
     "Hitbox 0": {
       "Offset": 14440
@@ -310,24 +310,8 @@
       "Offset": 14684
     }
   },
-  "Down-B Start": {
-    "Type": "Special",
-    "Strength": 1,
-    "Hitbox 0": {
-      "Offset": 14744
-    },
-    "Hitbox 1": {
-      "Offset": 14764
-    },
-    "Hitbox 2": {
-      "Offset": 15004
-    },
-    "Hitbox 3": {
-      "Offset": 15024
-    }
-  },
   "Down-B Loop": {
-    "Type": "Special Multi-hit",
+    "Type": "Devastating Special Multi-hit",
     "Strength": 1,
     "Hitbox 0": {
       "Offset": 14812

@@ -99,26 +99,26 @@
     }
   },
   "Up-Smash 1": {
-    "Type": "Devastating Smash",
+    "Type": "Smash",
     "Strength": 9,
+    "Hitbox 0": {
+      "Offset": 18192
+    },
+    "Hitbox 1": {
+      "Offset": 18212
+    },
+    "Hitbox 2": {
+      "Offset": 18232
+    }
+  },
+  "Up-Smash 2": {
+    "Type": "Smash",
+    "Strength": 6,
     "Hitbox 0": {
       "Offset": 18272
     },
     "Hitbox 1": {
       "Offset": 18292
-    },
-    "Hitbox 2": {
-      "Offset": 18312
-    }
-  },
-  "Up-Smash 2": {
-    "Type": "Smash",
-    "Strength": 4,
-    "Hitbox 0": {
-      "Offset": 18356
-    },
-    "Hitbox 1": {
-      "Offset": 18376
     }
   },
   "Down-Smash 1": {
@@ -179,7 +179,7 @@
   },
   "B-air": {
     "Type": "Aerial",
-    "Strength": 4,
+    "Strength": 6,
     "Hitbox 0": {
       "Offset": 19020
     },
@@ -234,8 +234,8 @@
     }
   },
   "Thunder Projectile": {
-    "Type": "Devastating Special",
-    "Strength": 6,
+    "Type": "Special",
+    "Strength": 7,
     "Hitbox 0": {
       "Offset": 15912
     }
@@ -293,25 +293,11 @@
     },
     "Type": "Up Throw"
   },
-  "Up Throw Hitbox": {
-    "Type": "Throw Hitbox",
-    "Strength": 3,
-    "Hitbox 0": {
-      "Offset": 24160
-    }
-  },
   "Down Throw": {
     "Throw": {
       "Offset": 24288
     },
     "Type": "Down Throw"
-  },
-  "Down Throw Hitbox": {
-    "Type": "Throw Hitbox",
-    "Strength": 3,
-    "Hitbox 0": {
-      "Offset": 24336
-    }
   },
   "Beam Sword Jab": {
     "Type": "Item",

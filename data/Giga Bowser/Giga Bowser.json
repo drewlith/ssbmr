@@ -216,22 +216,6 @@
       "Offset": 21388
     }
   },
-  "Side-B Claw": {
-    "Type": "Special",
-    "Strength": 5,
-    "Hitbox 0": {
-      "Offset": 14428
-    },
-    "Hitbox 1": {
-      "Offset": 14448
-    },
-    "Hitbox 2": {
-      "Offset": 14468
-    },
-    "Hitbox 3": {
-      "Offset": 14488
-    }
-  },
   "Side-B Throw Forward": {
     "Throw": {
       "Offset": 14808

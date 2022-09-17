@@ -8,6 +8,7 @@ dol = bytearray() # The machine code for melee.
 
 ############# Import melee into other scripts to have access to this useful data
 fighters = []
+boss_fighters = []
 attacks = []
 items = []
 throws = []
@@ -196,11 +197,11 @@ def get_fighter_data(): # Gets data from Fighters about their moves from offsets
     fighters.append(fighter.Fighter("Young Link", DAT(find_file(b'PlCl.dat')), 13728))
     fighters.append(fighter.Fighter("Zelda", DAT(find_file(b'PlZd.dat')), 14324))
 
-    fighters.append(fighter.Fighter("Male Wireframe", DAT(find_file(b'PlBo.dat')), 12744))
-    fighters.append(fighter.Fighter("Female Wireframe", DAT(find_file(b'PlGl.dat')), 12276))
-    fighters.append(fighter.Fighter("Giga Bowser", DAT(find_file(b'PlGk.dat')), 13520))
-    fighters.append(fighter.Fighter("Master Hand", DAT(find_file(b'PlMh.dat')), 2356))
-    fighters.append(fighter.Fighter("Crazy Hand", DAT(find_file(b'PlCh.dat')), 2232))
+    boss_fighters.append(fighter.Fighter("Male Wireframe", DAT(find_file(b'PlBo.dat')), 12744))
+    boss_fighters.append(fighter.Fighter("Female Wireframe", DAT(find_file(b'PlGl.dat')), 12276))
+    boss_fighters.append(fighter.Fighter("Giga Bowser", DAT(find_file(b'PlGk.dat')), 13520))
+    boss_fighters.append(fighter.Fighter("Master Hand", DAT(find_file(b'PlMh.dat')), 2356))
+    boss_fighters.append(fighter.Fighter("Crazy Hand", DAT(find_file(b'PlCh.dat')), 2232))
 
     fighters.append(fighter.Fighter("Items", DAT(find_file(b'ItCo.usd')), 0))
 

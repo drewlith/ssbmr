@@ -42,8 +42,8 @@ def randomize(fighter, magnitude, mode = 0):
                                        air_values[3] * (1+(magnitude*0.01)))
         air_values[4] = random.uniform(air_values[4], # Max Air Horizontal Velocity
                                        air_values[4] * (1+(magnitude*0.01)))
-        air_values[5] = random.uniform(air_values[5], # Air Friction
-                                       air_values[5] * (1+(magnitude*0.01)))
+        air_values[5] = random.uniform(air_values[5] * (1-(magnitude*0.01)), # Air Friction (Thanks AB)
+                                       air_values[5])
         air_values[6] = random.uniform(air_values[6], # Fast Fall Terminal Velocity
                                        air_values[6] * (1+(magnitude*0.01)))
         
@@ -51,10 +51,10 @@ def randomize(fighter, magnitude, mode = 0):
                                           ground_values[0] * (1+(magnitude*0.01)))
         ground_values[2] = random.uniform(ground_values[2], # Walk Max Velocity
                                           ground_values[2] * (1+(magnitude*0.01)))
-        ground_values[6] = random.uniform(ground_values[6], # Ground Friction
-                                          ground_values[6] * (1+(magnitude*0.01)))
         ground_values[7] = random.uniform(ground_values[7], # Dash Initial Velocity
                                           ground_values[7] * (1+(magnitude*0.01)))
+        ground_values[6] = random.uniform(ground_values[6] * (1-(magnitude*0.01)), # Ground Friction
+                                          ground_values[6])
         ground_values[10] = ground_values[7] # Dash/Run Terminal Velocity (Making this the same as Dash Initial
                                               # Velocity prevents bugs involving super wavedashes.
                                               
@@ -69,8 +69,8 @@ def randomize(fighter, magnitude, mode = 0):
                                        air_values[3])
         air_values[4] = random.uniform(air_values[4] * (1-(magnitude*0.01)), # Max Air Horizontal Velocity
                                        air_values[4])
-        air_values[5] = random.uniform(air_values[5] * (1-(magnitude*0.01)), # Air Friction
-                                       air_values[5])
+        air_values[5] = random.uniform(air_values[5], # Air Friction
+                                       air_values[5] * (1+(magnitude*0.01)))
         air_values[6] = random.uniform(air_values[6] * (1-(magnitude*0.01)), # Fast Fall Terminal Velocity
                                        air_values[6])
         
@@ -78,8 +78,8 @@ def randomize(fighter, magnitude, mode = 0):
                                           ground_values[0])
         ground_values[2] = random.uniform(ground_values[2] * (1-(magnitude*0.01)), # Walk Max Velocity
                                           ground_values[2])
-        ground_values[6] = random.uniform(ground_values[6] * (1-(magnitude*0.01)), # Ground Friction
-                                          ground_values[6])
+        ground_values[6] = random.uniform(ground_values[6], # Ground Friction
+                                          ground_values[6] * (1+(magnitude*0.01)))
         ground_values[7] = random.uniform(ground_values[7] * (1-(magnitude*0.01)), # Dash Initial Velocity
                                           ground_values[7])
         ground_values[10] = ground_values[7] # Dash/Run Terminal Velocity (Making this the same as Dash Initial

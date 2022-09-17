@@ -24,7 +24,7 @@
   },
   "Dash Attack": {
     "Type": "Normal",
-    "Strength": 5,
+    "Strength": 6,
     "Hitbox 0": {
       "Offset": 18384
     },
@@ -34,7 +34,7 @@
   },
   "F-Tilt": {
     "Type": "Normal",
-    "Strength": 4,
+    "Strength": 6,
     "Hitbox 0": {
       "Offset": 18488
     },
@@ -74,7 +74,7 @@
   },
   "Up-Tilt": {
     "Type": "Normal",
-    "Strength": 5,
+    "Strength": 6,
     "Hitbox 0": {
       "Offset": 18924
     },
@@ -90,7 +90,7 @@
   },
   "Down-Tilt": {
     "Type": "Normal",
-    "Strength": 5,
+    "Strength": 6,
     "Hitbox 0": {
       "Offset": 19116
     },
@@ -186,7 +186,7 @@
   },
   "Down-Smash 2": {
     "Type": "Smash",
-    "Strength": 4,
+    "Strength": 6,
     "Hitbox 0": {
       "Offset": 20256
     },
@@ -279,8 +279,8 @@
     }
   },
   "D-air": {
-    "Type": "Spike",
-    "Strength": 5,
+    "Type": "Aerial Spike",
+    "Strength": 6,
     "Hitbox 0": {
       "Offset": 21128
     },
@@ -304,7 +304,7 @@
   },
   "Super Missile": {
     "Type": "Projectile",
-    "Strength": 3,
+    "Strength": 6,
     "Hitbox 0": {
       "Offset": 16524
     }

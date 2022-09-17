@@ -57,7 +57,7 @@
   },
   "F-Tilt": {
     "Type": "Normal",
-    "Strength": 4,
+    "Strength": 5,
     "Hitbox 0": {
       "Offset": 18448
     },
@@ -88,7 +88,7 @@
   },
   "Up-Tilt": {
     "Type": "Normal",
-    "Strength": 5,
+    "Strength": 6,
     "Hitbox 0": {
       "Offset": 18792
     },
@@ -98,7 +98,7 @@
   },
   "Down-Tilt": {
     "Type": "Normal",
-    "Strength": 5,
+    "Strength": 6,
     "Hitbox 0": {
       "Offset": 18928
     },
@@ -261,7 +261,7 @@
   },
   "Up-Air 2": {
     "Type": "Aerial",
-    "Strength": 4,
+    "Strength": 5,
     "Hitbox 0": {
       "Offset": 20532
     },
@@ -322,13 +322,6 @@
       "Offset": 15688
     }
   },
-  "Up-B": {
-    "Type": "Special",
-    "Strength": 0,
-    "Hitbox 0": {
-      "Offset": 15928
-    }
-  },
   "Up-B Throw": {
     "Throw": {
       "Offset": 15964
@@ -337,7 +330,7 @@
   },
   "Falcon Kick": {
     "Type": "Devastating Special",
-    "Strength": 5,
+    "Strength": 6,
     "Hitbox 0": {
       "Offset": 16160
     },

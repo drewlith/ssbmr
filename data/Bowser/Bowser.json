@@ -27,7 +27,7 @@
   },
   "Dash Attack": {
     "Type": "Normal",
-    "Strength": 5,
+    "Strength": 6,
     "Hitbox 0": {
       "Offset": 18596
     },
@@ -40,7 +40,7 @@
   },
   "F-Tilt": {
     "Type": "Normal",
-    "Strength": 5,
+    "Strength": 6,
     "Hitbox 0": {
       "Offset": 18820
     },
@@ -81,7 +81,7 @@
   },
   "Down-Tilt 1": {
     "Type": "Normal",
-    "Strength": 4,
+    "Strength": 6,
     "Hitbox 0": {
       "Offset": 19284
     },
@@ -200,22 +200,6 @@
       "Offset": 20660
     }
   },
-  "Side-B Claw": {
-    "Type": "Special",
-    "Strength": 5,
-    "Hitbox 0": {
-      "Offset": 14740
-    },
-    "Hitbox 1": {
-      "Offset": 14760
-    },
-    "Hitbox 2": {
-      "Offset": 14780
-    },
-    "Hitbox 3": {
-      "Offset": 14800
-    }
-  },
   "Side-B Throw Forward": {
     "Throw": {
       "Offset": 15080
@@ -304,8 +288,8 @@
     "Type": "Up Throw"
   },
   "Up Throw Hitbox": {
-    "Type": "Throw Hitbox",
-    "Strength": 0,
+    "Type": "Multi-hit Throw Hitbox",
+    "Strength": 1,
     "Hitbox 0": {
       "Offset": 26080
     }

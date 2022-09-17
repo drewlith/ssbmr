@@ -15,12 +15,12 @@ def randomize(throw, magnitude):
         if angle > 360:
             angle = angle - 360
         throw.set_angle(angle)
-    throw.set_growth(rng(5,9+magnitude)*10)
-    throw.set_base(rng(4,6+magnitude)*8)
+    throw.set_growth(rng(3,7+magnitude)*10)
+    throw.set_base(rng(2,5+magnitude)*8)
     throw.set_set(0)
     throw.set_element(rng(0,4))
 
-    if throw.get_growth() > 100 and throw.get_base() > 30:
+    if throw.get_growth() > 90 and throw.get_base() > 30:
         throw.set_base(30)
 
 def start_mod(magnitude):

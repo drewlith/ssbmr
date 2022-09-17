@@ -49,7 +49,7 @@
   },
   "Dash Attack": {
     "Type": "Normal",
-    "Strength": 5,
+    "Strength": 6,
     "Hitbox 0": {
       "Offset": 19604
     },
@@ -65,7 +65,7 @@
   },
   "F-Tilt": {
     "Type": "Normal",
-    "Strength": 5,
+    "Strength": 6,
     "Hitbox 0": {
       "Offset": 19776
     },
@@ -189,7 +189,7 @@
   },
   "Down-Smash 2": {
     "Type": "Smash",
-    "Strength": 4,
+    "Strength": 6,
     "Hitbox 0": {
       "Offset": 21416
     },
@@ -443,31 +443,11 @@
     },
     "Type": "Forward Throw"
   },
-  "Forward Throw Hitboxes": {
-    "Type": "Throw Hitbox",
-    "Strength": 3,
-    "Hitbox 0": {
-      "Offset": 27720
-    },
-    "Hitbox 1": {
-      "Offset": 27740
-    }
-  },
   "Back Throw": {
     "Throw": {
       "Offset": 27840
     },
     "Type": "Back Throw"
-  },
-  "Back Throw Hitboxes": {
-    "Type": "Throw Hitbox",
-    "Strength": 3,
-    "Hitbox 0": {
-      "Offset": 27896
-    },
-    "Hitbox 1": {
-      "Offset": 27916
-    }
   },
   "Up Throw": {
     "Throw": {
@@ -490,13 +470,6 @@
       "Offset": 28164
     },
     "Type": "Down Throw"
-  },
-  "Down Throw Hitbox": {
-    "Type": "Throw Hitbox",
-    "Strength": 3,
-    "Hitbox 0": {
-      "Offset": 28192
-    }
   },
   "Beam Sword Jab": {
     "Type": "Item",

@@ -96,7 +96,7 @@
   },
   "F-Tilt Low": {
     "Type": "Normal",
-    "Strength": 1,
+    "Strength": 0,
     "Hitbox 0": {
       "Offset": 17336
     },
@@ -299,7 +299,7 @@
   },
   "Down-B 2": {
     "Type": "Special",
-    "Strength": 5,
+    "Strength": 6,
     "Hitbox 0": {
       "Offset": 14576
     },

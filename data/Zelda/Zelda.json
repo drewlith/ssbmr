@@ -33,7 +33,7 @@
   },
   "Dash Attack 1": {
     "Type": "Normal",
-    "Strength": 5,
+    "Strength": 6,
     "Hitbox 0": {
       "Offset": 18184
     },
@@ -43,7 +43,7 @@
   },
   "Dash Attack 2": {
     "Type": "Normal",
-    "Strength": 3,
+    "Strength": 4,
     "Hitbox 0": {
       "Offset": 18252
     },
@@ -250,7 +250,7 @@
   },
   "Up-Air": {
     "Type": "Devastating Aerial",
-    "Strength": 5,
+    "Strength": 6,
     "Hitbox 0": {
       "Offset": 20564
     }

@@ -176,7 +176,7 @@
   },
   "D-air Sweetspot": {
     "Type": "Devastating Aerial Spike",
-    "Strength": 5,
+    "Strength": 6,
     "Hitbox 0": {
       "Offset": 20384
     }

@@ -81,3 +81,16 @@ def get_string_between(string, start, end):
     end_index = string[start_index:].find(end)+start_index
     return string[start_index:end_index]
 
+def get_word_string(word):
+    string = ""
+    for b in word:
+        value = b
+        b = hex(b)
+        b = str(b)
+        b = b.replace("0x", "")
+        b = b.upper()
+        if value < 16:
+            b = "0" + b
+        string += b
+    return string
+

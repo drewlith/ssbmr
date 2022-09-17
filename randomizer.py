@@ -1,7 +1,7 @@
 import melee, sys, random, util, string, dol
 from mods import (damage, angle, growth, base, wdsk, element, shield_damage, sfx,
                   hitbox_size, throws, weight, scale, shield_size, movement, jump,
-                  landing, chaos, music, log, vanilla, no_bosses, better_low_tiers,
+                  landing, chaos, music, log, vanilla, better_low_tiers,
                   harder_bosses, soul_bond, turnips, balance, shuffle, all_fox,
                   elemental_mastery, textures)
 
@@ -34,10 +34,6 @@ def start(iso_path = None, output_path = None, flags = ""):
         for v in values:
             int_values.append(int(v))
         return int_values
-
-    if "-no_bosses" in flags: # "-no_bosses"
-        print("Applying no bosses mod...")
-        no_bosses.start_mod()
 
     if "-vanilla" in flags: # "-vanilla %"
         print("Applying vanilla mod...")
@@ -162,6 +158,13 @@ def start(iso_path = None, output_path = None, flags = ""):
         p = get_values_from_string(flags, "-turnips ", " -", ".") # p stands for Parameters
         turnips.start_mod(p[0])
 
+    # Anything dealing with dol modifications goes below here.
+    
+    if "-all_float" in flags: # "-all_float"
+        print("Applying all float mod...")
+        dol.activate_gecko_code("data/codes/Tournament to Debug - Magus, donny2112.txt")
+        dol.activate_gecko_code("data/codes/All Characters Float - Uncle Punch.txt")
+
     # Anything that is meant to modify stuff after randomization goes below here
 
     if "-harder_bosses" in flags: # "-harder_bosses D"
@@ -201,16 +204,14 @@ def start(iso_path = None, output_path = None, flags = ""):
         print("Writing log")
         log.start_mod(old_path, seed, flags)
 
-    # Music test
-    #melee.replace_file(b'menu01.hps', 'test.hps')
-    #melee.replace_file(b'menu3.hps', 'test.hps')
-    #melee.replace_file(b'MvOpen.mth', 'test.mth')
-
-    dol.start_mod()
-
     music.custom_music()
 
     textures.custom_textures(output_path)
+
+    # test
+    #melee.replace_file(b'menu01.hps', 'test.hps')
+    #melee.replace_file(b'menu3.hps', 'test.hps')
+    #melee.replace_file(b'MvOpen.mth', 'test.mth')
         
     melee.end(iso_path, output_path)
 

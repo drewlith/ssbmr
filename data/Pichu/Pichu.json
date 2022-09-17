@@ -213,29 +213,29 @@
     }
   },
   "Thunder 1": {
-    "Type": "Special Multi-hit",
-    "Strength": 3,
+    "Type": "Devastating Special Multi-hit",
+    "Strength": 4,
     "Hitbox 0": {
       "Offset": 15592
     }
   },
   "Thunder 2": {
-    "Type": "Special",
-    "Strength": 6,
+    "Type": "Devastating Special",
+    "Strength": 7,
     "Hitbox 0": {
       "Offset": 14912
     }
   },
   "Thunder Jolt": {
-    "Type": "Projectile",
-    "Strength": 2,
+    "Type": "Devastating Projectile",
+    "Strength": 4,
     "Hitbox 0": {
       "Offset": 15204
     }
   },
   "Side-B": {
     "Type": "Devastating Special",
-    "Strength": 3,
+    "Strength": 4,
     "Hitbox 0": {
       "Offset": 14280
     }
@@ -265,25 +265,11 @@
     },
     "Type": "Up Throw"
   },
-  "Up Throw Hitbox": {
-    "Type": "Throw Hitbox",
-    "Strength": 3,
-    "Hitbox 0": {
-      "Offset": 23824
-    }
-  },
   "Down Throw": {
     "Throw": {
       "Offset": 23952
     },
     "Type": "Down Throw"
-  },
-  "Down Throw Hitbox": {
-    "Type": "Throw Hitbox",
-    "Strength": 3,
-    "Hitbox 0": {
-      "Offset": 24000
-    }
   },
   "Beam Sword Jab": {
     "Type": "Item",

@@ -18,9 +18,9 @@ def start_mod(mode = 0):
     if peach.properties_offset <= 0: return
     turnip_offset = 0x3A50 - peach.properties_offset
     turnip_data = bytearray(peach.property_data[turnip_offset:turnip_offset+32])
-    util.set_value(turnip_data,192,32, random.randint(2,8)) # Odds of item 1
-    util.set_value(turnip_data,128,32, random.randint(2,8)) # Odds of item 2
-    util.set_value(turnip_data,64,32, random.randint(2,8)) # Odds of item 3
+    #util.set_value(turnip_data,192,32, random.randint(2,8)) # Odds of item 1
+    #util.set_value(turnip_data,128,32, random.randint(2,8)) # Odds of item 2
+    #util.set_value(turnip_data,64,32, random.randint(2,8)) # Odds of item 3
     if mode == 0 or mode == 2: # Odds of item pull
         util.set_value(turnip_data,224,32,
                         random.randint(64,128)) # Between 1/64 and 1/128

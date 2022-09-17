@@ -172,7 +172,7 @@
   },
   "N-air 1": {
     "Type": "Aerial",
-    "Strength": 5,
+    "Strength": 6,
     "Hitbox 0": {
       "Offset": 18428
     },
@@ -191,8 +191,8 @@
     }
   },
   "F-air": {
-    "Type": "Spike",
-    "Strength": 5,
+    "Type": "Aerial Spike",
+    "Strength": 6,
     "Hitbox 0": {
       "Offset": 18600
     },
@@ -293,7 +293,7 @@
     }
   },
   "Up-B Finish": {
-    "Type": "Special",
+    "Type": "Devastating Special",
     "Strength": 3,
     "Hitbox 0": {
       "Offset": 14164
@@ -302,24 +302,8 @@
       "Offset": 14184
     }
   },
-  "Down-B Start": {
-    "Type": "Special",
-    "Strength": 3,
-    "Hitbox 0": {
-      "Offset": 14256
-    },
-    "Hitbox 1": {
-      "Offset": 14276
-    },
-    "Hitbox 2": {
-      "Offset": 14568
-    },
-    "Hitbox 3": {
-      "Offset": 14588
-    }
-  },
   "Down-B Loop": {
-    "Type": "Special Multi-hit",
+    "Type": "Devastating Special Multi-hit",
     "Strength": 1,
     "Hitbox 0": {
       "Offset": 14324

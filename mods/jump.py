@@ -14,7 +14,8 @@ def randomize(fighter, magnitude, mode = 0):
                                    values[2] * (1+(magnitude*0.01)))
         values[3] = random.uniform(values[3] * (1-(magnitude*0.01)), # Ground to Air Jump Multiplier
                                    values[3] * (1+(magnitude*0.01)))
-        values[4] = 1 # Max Horizontal Velocity (1 prevents bugs)
+        values[4] = random.uniform(values[4] * (1-(magnitude*0.01)), # Max Horizontal Velocity (Thanks AB)
+                                   values[4] * (1+(magnitude*0.01)))
         values[5] = random.uniform(values[5] * (1-(magnitude*0.01)), # Shorthop Vertical Velocity
                                    values[5] * (1+(magnitude*0.01)))
         values[6] = random.uniform(values[6] * (1-(magnitude*0.01)), # Air Jump Multiplier
@@ -31,7 +32,8 @@ def randomize(fighter, magnitude, mode = 0):
                                    values[2] * (1+(magnitude*0.01)))
         values[3] = random.uniform(values[3], # Ground to Air Jump Multiplier
                                    values[3] * (1+(magnitude*0.01)))
-        values[4] = 1 # Max Horizontal Velocity (1 prevents bugs)
+        values[4] = random.uniform(values[4], # Max Horizontal Velocity
+                                   values[4] * (1+(magnitude*0.01)))
         values[5] = random.uniform(values[5], # Shorthop Vertical Velocity
                                    values[5] * (1+(magnitude*0.01)))
         values[6] = random.uniform(values[6], # Air Jump Multiplier
@@ -48,7 +50,8 @@ def randomize(fighter, magnitude, mode = 0):
                                    values[2])
         values[3] = random.uniform(values[3] * (1-(magnitude*0.01)), # Ground to Air Jump Multiplier
                                    values[3])
-        values[4] = 1 # Max Horizontal Velocity (1 prevents bugs)
+        values[4] = random.uniform(values[4] * (1-(magnitude*0.01)), # Max Horizontal Velocity
+                                   values[4])
         values[5] = random.uniform(values[5] * (1-(magnitude*0.01)), # Shorthop Vertical Velocity
                                    values[5])
         values[6] = random.uniform(values[6] * (1-(magnitude*0.01)), # Air Jump Multiplier
@@ -61,7 +64,6 @@ def randomize(fighter, magnitude, mode = 0):
             value = float(0.01)
     fighter.set_jump_attributes(values)
 
-    
 
 def start_mod(magnitude, mode = 0):
     for fighter in melee.fighters:

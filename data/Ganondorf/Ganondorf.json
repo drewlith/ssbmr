@@ -14,21 +14,21 @@
   },
   "Dash Attack 1": {
     "Type": "Normal",
-    "Strength": 5,
+    "Strength": 6,
     "Hitbox 0": {
       "Offset": 18088
     }
   },
   "Dash Attack 2": {
     "Type": "Normal",
-    "Strength": 3,
+    "Strength": 5,
     "Hitbox 0": {
       "Offset": 18132
     }
   },
   "F-Tilt": {
     "Type": "Normal",
-    "Strength": 5,
+    "Strength": 6,
     "Hitbox 0": {
       "Offset": 18208
     },
@@ -72,7 +72,7 @@
   },
   "Down-Tilt": {
     "Type": "Normal",
-    "Strength": 5,
+    "Strength": 6,
     "Hitbox 0": {
       "Offset": 18832
     },
@@ -152,7 +152,7 @@
   },
   "N-air 1": {
     "Type": "Aerial",
-    "Strength": 4,
+    "Strength": 5,
     "Hitbox 0": {
       "Offset": 19936
     },
@@ -165,7 +165,7 @@
   },
   "N-air 2": {
     "Type": "Aerial",
-    "Strength": 5,
+    "Strength": 6,
     "Hitbox 0": {
       "Offset": 20024
     },
@@ -214,7 +214,7 @@
   },
   "Up-Air 2": {
     "Type": "Aerial",
-    "Strength": 4,
+    "Strength": 5,
     "Hitbox 0": {
       "Offset": 20412
     },
@@ -259,7 +259,7 @@
   },
   "Side-B": {
     "Type": "Devastating Special",
-    "Strength": 5,
+    "Strength": 6,
     "Hitbox 0": {
       "Offset": 15524
     },
@@ -282,7 +282,7 @@
   },
   "Grounded Down B": {
     "Type": "Devastating Special",
-    "Strength": 5,
+    "Strength": 6,
     "Hitbox 0": {
       "Offset": 16312
     },
@@ -305,7 +305,7 @@
   },
   "Aerial Down B Touchdown": {
     "Type": "Special",
-    "Strength": 3,
+    "Strength": 6,
     "Hitbox 0": {
       "Offset": 16692
     },

@@ -540,36 +540,34 @@ class MiscMenu():
         ui_font_medium = font.Font(family="data/Folk.otf",size=16)
         ui_font_small = font.Font(family="data/Folk.otf",size=12)
         self.flag_widgets = []
-        self.flag_widgets.append(TwoOptionFlag(self.master, self, "Vanilla", "-vanilla ", 50, 130, 100, "% Chance"))
         self.flag_widgets.append(OneOptionFlag(self.master, self, "Balance", "-balance ", 300, 270))
-        self.flag_widgets.append(TwoOptionFlag(self.master, self, "Throws", "-throws ", 50, 270, 20))
-        self.flag_widgets.append(TwoOptionFlag(self.master, self, "Chaos", "-chaos ", 50, 340, 100, "Chaos Scale"))
-        self.flag_widgets.append(TwoOptionFlag(self.master, self, "Shuffle", "-shuffle ", 50, 200, 100, "% Chance"))
+        self.flag_widgets.append(TwoOptionFlag(self.master, self, "Throws", "-throws ", 50, 200, 20))
+        self.flag_widgets.append(TwoOptionFlag(self.master, self, "Chaos", "-chaos ", 50, 270, 100, "Chaos Scale"))
+        self.flag_widgets.append(TwoOptionFlag(self.master, self, "Shuffle", "-shuffle ", 50, 130, 100, "% Chance"))
         self.flag_widgets.append(OneOptionFlag(self.master, self, "Soul Bond", "-soul_bond ", 300, 190))
-        self.flag_widgets.append(OneOptionFlag(self.master, self, "Vanilla Bosses", "-no_bosses ", 450, 190))
         self.flag_widgets.append(OneOptionFlag(self.master, self, "Better Low Tiers", "-better_low_tiers ", 300, 230))
         self.flag_widgets.append(OneOptionFlag(self.master, self, "SFX", "-sfx ", 450, 230))
         self.flag_widgets.append(TwoOptionFlagDropdown(self.master, self, "Turnips", "-turnips ",("Balanced", "Items Only", "Chaos", "Chaos Items"), 300, 310))
         self.flag_widgets.append(TwoOptionFlagDropdown(self.master, self, "Music", "-music ",("Shuffle"), 300, 350))
         self.flag_widgets.append(OneOptionFlag(self.master, self, "Log", "-log ", 520, 230))
-        self.flag_widgets.append(TwoOptionFlag(self.master, self, "Harder 1p", "-harder_bosses ", 300, 130, 5, "Difficulty"))
+        self.flag_widgets.append(TwoOptionFlag(self.master, self, "Harder 1p", "-harder_bosses ", 50, 340, 5, "Difficulty"))
         self.flag_widgets.append(OneOptionFlag(self.master, self, "Fox Only", "-all_fox ", 400, 270))
-        self.flag_widgets.append(OneOptionFlag(self.master, self, "Elemental Mastery", "-elemental_mastery ", 300, 390))
-        self.flag_widgets[0].tooltip = "Keeps elements the same as the original Melee."
-        self.flag_widgets[1].tooltip = "Makes attacks closer to their original power level."
-        self.flag_widgets[2].tooltip = "Throws will have their properties randomized."
-        self.flag_widgets[3].tooltip = "Gives each hitbox special quirks."
-        self.flag_widgets[4].tooltip = "A percentage of attacks/throws will be shuffled instead of randomized."
-        self.flag_widgets[5].tooltip = "Makes Nana the same as Popo."
-        self.flag_widgets[6].tooltip = "Boss hitboxes and attributes will not be included."
-        self.flag_widgets[7].tooltip = "Low tier characters will receive substantial buffs."
-        self.flag_widgets[8].tooltip = "Hitbox sounds will be randomized."
-        self.flag_widgets[9].tooltip = "Turnips will be randomized. Chaos may be buggy!"
-        self.flag_widgets[10].tooltip = "Shuffles music. Will increase randomization time drastically."
-        self.flag_widgets[11].tooltip = "A log will be generated that lists changes."
-        self.flag_widgets[12].tooltip = "Bosses will receive substantial buffs."
-        self.flag_widgets[13].tooltip = "All characters will have the movement of Fox."
-        self.flag_widgets[14].tooltip = "Moves with certain elements will get special bonuses."
+        self.flag_widgets.append(OneOptionFlag(self.master, self, "Elemental Mastery", "-elemental_mastery ", 420, 190))
+        self.flag_widgets.append(OneOptionFlag(self.master, self, "All Characters Float", "-all_float ", 300, 120))
+        self.flag_widgets[0].tooltip = "Makes attacks closer to their original power level."
+        self.flag_widgets[1].tooltip = "Throws will have their properties randomized."
+        self.flag_widgets[2].tooltip = "Gives each hitbox special quirks."
+        self.flag_widgets[3].tooltip = "A percentage of attacks/throws will be shuffled instead of randomized."
+        self.flag_widgets[4].tooltip = "Makes Nana the same as Popo."
+        self.flag_widgets[5].tooltip = "Low tier characters will receive substantial buffs."
+        self.flag_widgets[6].tooltip = "Hitbox sounds will be randomized."
+        self.flag_widgets[7].tooltip = "Turnips will be randomized. Chaos may be buggy!"
+        self.flag_widgets[8].tooltip = "Shuffles music. Will increase randomization time drastically."
+        self.flag_widgets[9].tooltip = "A log will be generated that lists changes."
+        self.flag_widgets[10].tooltip = "Bosses will receive substantial buffs."
+        self.flag_widgets[11].tooltip = "All characters will have the movement of Fox."
+        self.flag_widgets[12].tooltip = "Moves with certain elements will get special bonuses."
+        self.flag_widgets[13].tooltip = "Gives all characters the ability to float like Peach! Credit: Uncle Punch"
         self.determine_settings()
         
     def determine_flags(self, val = 0):
@@ -588,9 +586,9 @@ class MiscMenu():
 
     def determine_settings(self):
         flags = self.custom_menu.flags.strip() + " -"
-        flag_names = ["-vanilla ", "-balance ", "-throws ", "-chaos ", "-shuffle ", "-soul_bond ",
-                      "-no_bosses ", "-better_low_tiers ", "-sfx ", "-turnips ", "-music ", "-log ", "-harder_bosses ", "-all-fox ",
-                      "-elemental_mastery "]
+        flag_names = ["-balance ", "-throws ", "-chaos ", "-shuffle ", "-soul_bond ",
+                      "-better_low_tiers ", "-sfx ", "-turnips ", "-music ", "-log ", "-harder_bosses ",
+                      "-all-fox ", "-elemental_mastery ", "-all_float "]
         for i in range(len(self.flag_widgets)):
             if flag_names[i] in flags:
                 if type(self.flag_widgets[i]) == OneOptionFlag:

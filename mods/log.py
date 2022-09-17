@@ -1,6 +1,6 @@
 import melee
 elements = ["Normal", "Fire", "Electric", "Slash", "Coin", "Ice", "Sleep", "Sleep",
-            "Grounded", "Grounded", "Cape", "None", "Disable", "Dark", "Screw Attack",
+            "BUGGED REPORT TO DREWLITH", "Grounded", "Cape", "None", "Disable", "Dark", "Screw Attack",
             "Flower", "None"]
 throw_elements = ["Normal", "Fire", "Electric", "Ice", "Darkness"]
 def start_mod(output_dir, seed, flags, debug = False):

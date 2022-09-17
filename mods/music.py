@@ -10,7 +10,10 @@ BF_PATH = "data/music/battlefield"
 BONUS_PATH = "data/music/bonus"
 BOSS_PATH = "data/music/boss"
 CHIPTUNE_PATH = "data/music/chiptune"
+CHIPTUNE_INTENSE_PATH = "data/music/chiptuneintense"
+DEPTHS_PATH = "data/music/depths"
 DK_PATH = "data/music/dk"
+FANFARE_PATH = "data/music/fanfare"
 FD_PATH = "data/music/final"
 FE_PATH = "data/music/fireemblem"
 FOUNTAIN_PATH = "data/music/fountain"
@@ -152,18 +155,22 @@ def shuffle_music(track):
 def random_music(path, file, attempts = 0):
     if not exists(path):
         print("Path not found! " + path)
-        return
+        return ""
     songs = listdir(path)
     if len(songs) == 0:
-        return
+        return ""
     rng = random.randint(0, len(songs)-1)
     for song in used_songs: # Make songs unique
         if song == songs[rng] and attempts < 10: # Attempts break infinite loop
             random_music(path, file, attempts + 1)
-            return
+            return ""
     print(songs[rng])
     melee.replace_file(file, path + "/" + songs[rng])
     used_songs.append(songs[rng])
+    return songs[rng]
+
+def specific_music(path, file):
+    melee.replace_file(file, path)
 
 def custom_music():
     if not exists("data/music"):
@@ -175,13 +182,14 @@ def custom_music():
     random_music(BONUS_PATH, b'target.hps')
     random_music(BONUS_PATH, b'menu02.hps')
     random_music(BOSS_PATH, b'sp_giga.hps')
-    random_music(CHIPTUNE_PATH, b'inis1_01.hps')
-    random_music(CHIPTUNE_PATH, b'inis2_01.hps')
-    random_music(CHIPTUNE_PATH, b'inis1_02.hps')
-    random_music(CHIPTUNE_PATH, b'inis2_02.hps')
+    song = random_music(CHIPTUNE_PATH, b'inis1_01.hps')
+    specific_music(CHIPTUNE_INTENSE_PATH + "/" + song, b'inis1_02.hps')
+    song = random_music(CHIPTUNE_PATH, b'inis2_01.hps')
+    specific_music(CHIPTUNE_INTENSE_PATH + "/" + song, b'inis2_02.hps')
     random_music(CHIPTUNE_PATH, b'mrider.hps')
     random_music(CHIPTUNE_PATH, b'baloon.hps')
     random_music(CHIPTUNE_PATH, b'flatzone.hps')
+    random_music(DEPTHS_PATH, b'kraid.hps')
     random_music(DK_PATH, b'garden.hps')
     random_music(DK_PATH, b'kongo.hps')
     random_music(DK_PATH, b'old_dk.hps')
@@ -201,7 +209,6 @@ def custom_music():
     random_music(MARIO_PATH, b'smari3.hps')
     random_music(MENU_PATH, b'menu01.hps')
     random_music(MENU_PATH, b'menu3.hps')
-    random_music(METROID_PATH, b'kraid.hps')
     random_music(METROID_PATH, b'zebes.hps')
     random_music(MOTHER_PATH, b'fourside.hps')
     random_music(MOTHER_PATH, b'onetto.hps')

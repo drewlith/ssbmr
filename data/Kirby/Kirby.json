@@ -35,7 +35,7 @@
   },
   "F-Tilt": {
     "Type": "Normal",
-    "Strength": 4,
+    "Strength": 6,
     "Hitbox 0": {
       "Offset": 33824
     },
@@ -88,7 +88,7 @@
   },
   "F-Smash 2": {
     "Type": "Smash",
-    "Strength": 4,
+    "Strength": 6,
     "Hitbox 0": {
       "Offset": 34316
     },
@@ -140,7 +140,7 @@
   },
   "N-air": {
     "Type": "Aerial",
-    "Strength": 4,
+    "Strength": 6,
     "Hitbox 0": {
       "Offset": 34960
     }
@@ -206,7 +206,7 @@
   },
   "Grounded Hammer": {
     "Type": "Devastating Special",
-    "Strength": 5,
+    "Strength": 7,
     "Hitbox 0": {
       "Offset": 21876
     },

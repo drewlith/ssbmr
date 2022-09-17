@@ -84,7 +84,7 @@
   },
   "Up-Smash 1": {
     "Type": "Smash",
-    "Strength": 8,
+    "Strength": 7,
     "Hitbox 0": {
       "Offset": 19204
     },
@@ -94,7 +94,7 @@
   },
   "Up-Smash 2": {
     "Type": "Smash",
-    "Strength": 5,
+    "Strength": 6,
     "Hitbox 0": {
       "Offset": 19288
     },
@@ -104,7 +104,7 @@
   },
   "Down-Smash": {
     "Type": "Smash",
-    "Strength": 8,
+    "Strength": 7,
     "Hitbox 0": {
       "Offset": 19432
     },
@@ -146,7 +146,7 @@
   },
   "F-air": {
     "Type": "Aerial",
-    "Strength": 5,
+    "Strength": 6,
     "Hitbox 0": {
       "Offset": 19848
     },

@@ -1,7 +1,7 @@
 {
   "Jab Sweetspot": {
     "Type": "Normal",
-    "Strength": 3,
+    "Strength": 2,
     "Hitbox 0": {
       "Offset": 19948
     },
@@ -14,14 +14,14 @@
   },
   "Jab Weak": {
     "Type": "Normal",
-    "Strength": 2,
+    "Strength": 1,
     "Hitbox 0": {
       "Offset": 20008
     }
   },
   "Dash Attack Sweetspot": {
     "Type": "Normal",
-    "Strength": 6,
+    "Strength": 5,
     "Hitbox 0": {
       "Offset": 20100
     },
@@ -34,7 +34,7 @@
   },
   "Dash Attack Weak": {
     "Type": "Normal",
-    "Strength": 3,
+    "Strength": 2,
     "Hitbox 0": {
       "Offset": 20160
     }
@@ -54,14 +54,14 @@
   },
   "F-Tilt Weak": {
     "Type": "Normal",
-    "Strength": 3,
+    "Strength": 2,
     "Hitbox 0": {
       "Offset": 20332
     }
   },
   "Up-Tilt Sweetspot": {
     "Type": "Normal",
-    "Strength": 4,
+    "Strength": 5,
     "Hitbox 0": {
       "Offset": 20464
     },
@@ -83,7 +83,7 @@
   },
   "Up-Tilt Weak": {
     "Type": "Normal",
-    "Strength": 3,
+    "Strength": 2,
     "Hitbox 0": {
       "Offset": 20524
     },
@@ -93,7 +93,7 @@
   },
   "Down-Tilt Sweetspot": {
     "Type": "Normal",
-    "Strength": 6,
+    "Strength": 5,
     "Hitbox 0": {
       "Offset": 20688
     },
@@ -106,14 +106,14 @@
   },
   "Down-Tilt Weak": {
     "Type": "Normal",
-    "Strength": 3,
+    "Strength": 2,
     "Hitbox 0": {
       "Offset": 20748
     }
   },
   "F-Smash Sweetspot": {
     "Type": "Smash",
-    "Strength": 9,
+    "Strength": 8,
     "Hitbox 0": {
       "Offset": 20908
     },
@@ -126,14 +126,14 @@
   },
   "F-Smash Weak": {
     "Type": "Smash",
-    "Strength": 4,
+    "Strength": 6,
     "Hitbox 0": {
       "Offset": 20968
     }
   },
   "Up-Smash 1": {
-    "Type": "Smash",
-    "Strength": 1,
+    "Type": "Multi-hit Smash",
+    "Strength": 2,
     "Hitbox 0": {
       "Offset": 21144
     },
@@ -181,7 +181,7 @@
   },
   "Down-Smash Weak": {
     "Type": "Smash",
-    "Strength": 4,
+    "Strength": 6,
     "Hitbox 0": {
       "Offset": 21468
     },
@@ -207,7 +207,7 @@
   },
   "N-air 2": {
     "Type": "Aerial",
-    "Strength": 6,
+    "Strength": 5,
     "Hitbox 0": {
       "Offset": 21832
     },
@@ -223,7 +223,7 @@
   },
   "F-air Sweetspot": {
     "Type": "Aerial",
-    "Strength": 6,
+    "Strength": 5,
     "Hitbox 0": {
       "Offset": 21988
     },
@@ -236,7 +236,7 @@
   },
   "F-air Weak": {
     "Type": "Aerial",
-    "Strength": 3,
+    "Strength": 2,
     "Hitbox 0": {
       "Offset": 22048
     }
@@ -256,14 +256,14 @@
   },
   "B-air Weak": {
     "Type": "Aerial",
-    "Strength": 3,
+    "Strength": 2,
     "Hitbox 0": {
       "Offset": 22196
     }
   },
   "Up-Air Sweetspot": {
     "Type": "Aerial",
-    "Strength": 6,
+    "Strength": 5,
     "Hitbox 0": {
       "Offset": 22288
     },
@@ -307,7 +307,7 @@
   },
   "Flare Blade 1": {
     "Type": "Special",
-    "Strength": 4,
+    "Strength": 5,
     "Hitbox 0": {
       "Offset": 15208
     },
@@ -336,7 +336,7 @@
   },
   "Dancing Blade 1": {
     "Type": "Special",
-    "Strength": 2,
+    "Strength": 3,
     "Hitbox 0": {
       "Offset": 15744
     },
@@ -399,8 +399,8 @@
     }
   },
   "Dancing Blade 3 Side": {
-    "Type": "Special",
-    "Strength": 8,
+    "Type": "Smash Special",
+    "Strength": 7,
     "Hitbox 0": {
       "Offset": 16636
     },

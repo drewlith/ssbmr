@@ -110,8 +110,8 @@
     }
   },
   "F-air Sweetspot": {
-    "Type": "Spike",
-    "Strength": 5,
+    "Type": "Aerial Spike",
+    "Strength": 6,
     "Hitbox 0": {
       "Offset": 9572
     }
@@ -128,7 +128,7 @@
   },
   "B-air": {
     "Type": "Aerial",
-    "Strength": 4,
+    "Strength": 6,
     "Hitbox 0": {
       "Offset": 9688
     },
@@ -179,13 +179,6 @@
     },
     "Type": "Forward Throw"
   },
-  "Forward Throw Hitbox": {
-    "Type": "Throw Hitbox",
-    "Strength": 3,
-    "Hitbox 0": {
-      "Offset": 14216
-    }
-  },
   "Back Throw": {
     "Throw": {
       "Offset": 14312
@@ -197,16 +190,6 @@
       "Offset": 14432
     },
     "Type": "Up Throw"
-  },
-  "Up Throw Hitbox": {
-    "Type": "Throw Hitbox",
-    "Strength": 3,
-    "Hitbox 0": {
-      "Offset": 14476
-    },
-    "Hitbox 1": {
-      "Offset": 14496
-    }
   },
   "Down Throw": {
     "Throw": {

@@ -202,7 +202,7 @@
   },
   "Applause Start": {
     "Type": "Special",
-    "Strength": 8,
+    "Strength": 10,
     "Hitbox 0": {
       "Offset": 8100
     },

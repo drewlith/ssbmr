@@ -27,14 +27,14 @@
   },
   "Dash Attack 1": {
     "Type": "Normal",
-    "Strength": 4,
+    "Strength": 6,
     "Hitbox 0": {
       "Offset": 17496
     }
   },
   "Dash Attack 2": {
     "Type": "Normal",
-    "Strength": 3,
+    "Strength": 4,
     "Hitbox 0": {
       "Offset": 17556
     }
@@ -90,7 +90,7 @@
   },
   "F-Smash 2": {
     "Type": "Smash",
-    "Strength": 4,
+    "Strength": 6,
     "Hitbox 0": {
       "Offset": 18156
     },
@@ -126,7 +126,7 @@
   },
   "N-air 1": {
     "Type": "Aerial",
-    "Strength": 5,
+    "Strength": 6,
     "Hitbox 0": {
       "Offset": 18628
     },
@@ -146,7 +146,7 @@
   },
   "F-air 1": {
     "Type": "Aerial",
-    "Strength": 5,
+    "Strength": 6,
     "Hitbox 0": {
       "Offset": 18764
     },
@@ -179,7 +179,7 @@
   },
   "Up-Air": {
     "Type": "Aerial",
-    "Strength": 5,
+    "Strength": 6,
     "Hitbox 0": {
       "Offset": 19008
     }

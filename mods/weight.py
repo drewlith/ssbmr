@@ -5,13 +5,13 @@ from util import percent_chance
 
 def randomize(fighter, magnitude, mode = 0):
     if mode == 0:
-        fighter.set_weight(random.uniform(fighter.get_weight() - magnitude*0.01,
-                                          fighter.get_weight() + magnitude*0.01))
+        fighter.set_weight(random.uniform(fighter.get_weight() * (1-magnitude*0.01),
+                                          fighter.get_weight() * (1+magnitude*0.01)))
     if mode == 1:
         fighter.set_weight(random.uniform(fighter.get_weight(),
-                                          fighter.get_weight() + magnitude*0.01))
+                                          fighter.get_weight() * (1+magnitude*0.01)))
     if mode == 2:
-        fighter.set_weight(random.uniform(fighter.get_weight() - magnitude*0.01,
+        fighter.set_weight(random.uniform(fighter.get_weight() * (1-magnitude*0.01),
                                           fighter.get_weight()))
     if fighter.get_weight() <= 0:
         fighter.set_weight(float(1))

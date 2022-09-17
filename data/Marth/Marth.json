@@ -409,7 +409,7 @@
   },
   "Dancing Blade 3 Down": {
     "Type": "Spike",
-    "Strength": 5,
+    "Strength": 6,
     "Hitbox 0": {
       "Offset": 16432
     },
