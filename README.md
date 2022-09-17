@@ -2,7 +2,8 @@
 
 A brand new melee at the click of a button! SSBMr will apply a variety of mods via "flags" that will have an effect on the game. Mods include randomized hitboxes, throws, character attributes, music, textures and much more! Also features "balancing" which will keep the game competitive by keeping moves close to their original power level! SSBMr is fully compatible with real hardware and slippi so you can share the fun with friends!
 
-## [Click here to Download](https://github.com/drewlith/ssbmr/files/9491452/SSBM.Randomizer.v0.2.1.zip)
+## [Click here to Download](https://github.com/drewlith/ssbmr/files/9592650/SSBM.Randomizer.v0.3.zip)
+
 
 ### Install
 
