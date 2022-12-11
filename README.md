@@ -4,11 +4,6 @@ A brand new melee at the click of a button! SSBMr will apply a variety of mods v
 
 ## [Generate a seed on the Website by clicking here!](https://ssbmr.com)
 
-
-### Install
-
-Save the .zip file from the download link above to your computer, and "extract" the contents to a directory of your choosing (Typically can be done via a right-click on the zip file). Run "SSBM Randomizer.exe" to start the application.
-
 ### Multiplayer
 
 When generating an ISO with the app, copy the flag set in the "Flags" box and paste them somewhere that your friend can see them. Have them paste the flags into their app and then generate an ISO. The two ISOs should now be the same. Now you should be able to play on Dolphin Netplay or Slippi Direct without issues. Note that playing Unranked with a randomized ISO will cause desyncs!
