@@ -1,0 +1,755 @@
+let flags = [];
+let components = [];
+let flagset = "";
+let flagInput = document.createElement("textarea");
+flagInput.classList.add("flagentry");
+class Flag {
+    constructor(flagName, parameters="", type="int") {
+        this.flagName = flagName;
+        this.parameters = parameters;
+        this.type = type;
+        this.active = false;
+        flags.push(this);
+    }
+    getFlag() {
+        let flag = "";
+        flag += "-" + this.flagName;
+        if (this.parameters.length > 0) {
+            flag += " "
+        }
+        for (let i = 0; i < this.parameters.length; i++) {
+            if (i != 0) {
+                flag += "."
+            }
+            flag += this.parameters[i]
+        }
+        return flag;
+    }
+    changeParameters(newParams) {
+        this.parameters = newParams;
+    }
+
+    getIsString() {
+        return this.isString;
+    }
+
+    getFlagName() {
+        return "-" + this.flagName;
+    }
+
+    getType() {
+        return this.type;
+    }
+
+    get enabled() {
+        return this.active;
+    }
+
+    set enabled(bool) {
+        this.active = bool; 
+    }
+
+}
+class Component {
+    constructor(flag, tooltip="", name="") {
+        this.flag = flag
+        this.div = document.createElement("div");
+        this.div.classList.add("component");
+        this.div.dataset.tooltip = tooltip;
+        this.div.id = this.flag.flagName;
+        this.label = document.createElement("label");
+        this.label.innerHTML = name;
+        this.div.appendChild(this.label);
+        components.push(this);
+    }
+
+    getFlag() {
+        return this.flag;
+    }
+
+    get element() {
+        return this.div;
+    }
+    set element(element) {
+        this.div = element;
+    }
+
+}
+
+class CheckboxInputComponent extends Component {
+    constructor(flag, tooltip="", name="", left="22%") {
+        super(flag, tooltip, name);
+        this.checkInput = document.createElement("input");
+        this.checkInput.type = "checkbox";
+        this.checkInput.style = ""
+        this.label.style.left = left;
+        this.div.appendChild(this.checkInput);
+        this.flag.component = this;
+        let checkInputVar = this.checkInput;
+        checkInputVar.oninput = function() {
+            flag.enabled = checkInputVar.checked;
+            updateFlags();
+        }
+    }
+    get value() {
+        return this.checkInput.checked;
+    }
+    set value(value) {
+        this.flag.enabled = value;
+        this.checkInput.checked = value;
+        updateFlags();
+    }
+}
+
+class TextInputComponent extends Component {
+    constructor(flag, tooltip="", name="", left="5%") {
+        super(flag, tooltip, name);
+        this.textInput = document.createElement("input");
+        this.textInput.type = "text";
+        this.textInput.style = "left:40%;top:35%;height:30px;position: absolute;";
+        this.textInput.value = "";
+        let textInputVar = this.textInput;
+        textInputVar.oninput = function() {
+            flag.changeParameters([textInputVar.value]);
+            if (textInputVar.value.length > 0) {
+                flag.enabled = true;
+            } else {
+                flag.enabled = false;
+            }
+            updateFlags();
+        }
+        this.label.style.left = left;
+        this.div.appendChild(textInputVar);
+        this.flag.component = this;
+    }
+    get value() {
+        return this.textInput.value;
+    }
+    set value(value) {
+        this.flag.parameters = [value];
+        this.textInput.value = value;
+        if (value.length > 0) {
+            this.flag.enabled = true;
+        } else {
+            this.flag.enabled = false;
+        }
+        updateFlags();
+    }
+}
+
+class NumberInputComponent extends Component {
+    constructor(flag, tooltip="", name="", left="17%", min="0", max="300", percent=true, fighterFlag=false) {
+        super(flag, tooltip, name);
+        this.numInput = document.createElement("input");
+        this.numInput.type = "number";
+        this.numInput.min = min;
+        this.numInput.max = max;
+        if (percent) {
+            let image = document.createElement("img");
+            image.src = "static/percent.png";
+            this.div.appendChild(image);
+        }
+        this.label.style.left = left;
+        this.div.appendChild(this.numInput);
+        this.flag.component = this;
+        let numInputVar = this.numInput;
+        numInputVar.oninput = function() {
+            flag.changeParameters([numInputVar.value]);
+            if (fighterFlag) {
+                if (numInputVar.value > 0 && numInputVar.value != 100) {
+                    flag.enabled = true;
+                } else {
+                    flag.enabled = false;
+                }
+            } else {
+                if (numInputVar.value > 0) {
+                    flag.enabled = true;
+                } else {
+                    flag.enabled = false;
+                }
+            }
+            updateFlags();
+        }
+        this.fighterFlag = fighterFlag;
+    }
+    get value() {
+        return this.numInput.value;
+    }
+    set value(value) {
+        this.flag.changeParameters([value]);
+        this.numInput.value = value;
+        if (this.fighterFlag) {
+            if (value > 0 && value != 100) {
+                this.flag.enabled = true;
+            } else {
+                this.flag.enabled = false;
+            }
+        } else {
+            if (value > 0) {
+                this.flag.enabled = true;
+            } else {
+                this.flag.enabled = false;
+            }
+        }
+        updateFlags();
+    }
+}
+
+class DualNumInputComponent extends Component {
+    constructor(flag, tooltip="", name="", left="6%", min="0", max="300") {
+        super(flag, tooltip, name);
+        this.numInputA = document.createElement("input");
+        this.numInputA.type = "number";
+        this.numInputA.min = min;
+        this.numInputA.max = max;
+        this.numInputB = document.createElement("input");
+        this.numInputB.type = "number";
+        this.numInputB.min = min;
+        this.numInputB.max = max;
+        let percent = document.createElement("img");
+        let hyphen = document.createElement("img");
+        percent.src = "static/percent.png";
+        percent.classList.add("percent");
+        hyphen.src = "static/dash.png"
+        hyphen.classList.add("dash");
+        this.div.appendChild(this.numInputA);
+        this.div.appendChild(hyphen);
+        this.div.appendChild(this.numInputB);
+        this.div.appendChild(percent);
+        this.flag.component = this;
+        let numInputAVar = this.numInputA;
+        let numInputBVar = this.numInputB;
+        numInputAVar.oninput = function() {
+            flag.changeParameters([numInputAVar.value, numInputBVar.value]);
+            if ((numInputAVar.value > 0 || numInputBVar.value > 0) && (numInputAVar.value != 100 || numInputBVar.value != 100)) {
+                console.log(numInputAVar.value, numInputBVar.value);
+                flag.enabled = true;
+            } else {
+                flag.enabled = false;
+            }
+            if (parseInt(numInputAVar.value) < 0) {
+                numInputAVar.value = 0;
+            }
+            if (!Number.isInteger(parseInt(numInputAVar.value))) {
+                numInputAVar.value = 0;
+            }
+            updateFlags();
+        }
+        numInputBVar.oninput = function() {
+            flag.changeParameters([numInputAVar.value, numInputBVar.value]);
+            if ((numInputAVar.value > 0 || numInputBVar.value > 0) && (numInputAVar.value != 100 || numInputBVar.value != 100)) {
+                console.log(numInputAVar.value, numInputBVar.value);
+                flag.enabled = true;
+            } else {
+                flag.enabled = false;
+            }
+            if (parseInt(numInputBVar.value) < 0) {
+                numInputBVar.value = 0;
+            }
+            if (!Number.isInteger(parseInt(numInputBVar.value))) {
+                numInputBVar.value = 0;
+            }
+            updateFlags();
+        }
+        this.label.style.left = left;
+        this.numInputA.style = "left:50%; top:25%; width:60; height:40; font-size:20";
+        this.numInputB.style = "left:72%; top:25%; width:60; height:40; font-size:20";
+        percent.style = "left:88%";
+        hyphen.style = "left:65.5%;top:40%;height:15;width:25";
+    }
+    get valueA() {
+        return this.numInputA.value;
+    }
+    set valueA(value) {
+        this.flag.changeParameters([value, this.numInputB.value]);
+        this.numInputA.value = value;
+        if (value > 0 && (value != 100 || this.numInputB.value != 100)) {
+            this.flag.enabled = true;
+        } else {
+            this.flag.enabled = false;
+        }
+        updateFlags();
+    }
+    get valueB() {
+        return this.numInputB.value;
+    }
+    set valueB(value) {
+        this.flag.changeParameters([this.numInputA.value, value]);
+        this.numInputB.value = value;
+        if (value > 0 && (value != 100 || this.numInputA.value != 100)) {
+            this.flag.enabled = true;
+        } else {
+            this.flag.enabled = false;
+        }
+        updateFlags();
+    }
+}
+flagInput.onchange = function() {
+    updateComponents();
+}
+
+function updateFlags() {
+    flagset = "";
+    for (let i = 0; i < flags.length; i++) {
+        if (flags[i].enabled) {
+            flagset += flags[i].getFlag() + " ";
+        }
+    }
+    flagInput.value = flagset;
+}
+
+function updateComponents() {
+    let newFlags = flagInput.value;
+    for (let i = 0; i < components.length; i++) {
+        let flag = components[i].getFlag();
+        flagType = flag.getType();
+        if (newFlags.includes(flag.getFlagName())) { // Flag exists
+            if (flagType == "string") {
+                parameters = getFlagParameters(newFlags + "-", flag.getFlagName(), true);
+                components[i].value = [parameters];
+            }  else if (flagType == "bool") {
+                components[i].value = true;
+            }  else if (flagType == "dual-int") {
+                parameters = getFlagParameters(newFlags + "-", flag.getFlagName());
+                components[i].valueA = parameters[0];
+                components[i].valueB = parameters[1];
+            }  else {
+                parameters = getFlagParameters(newFlags + "-", flag.getFlagName());
+                components[i].value = parameters[0];
+            }
+        } else { // Flag doesn't exist
+            if (flagType == "string") {
+                components[i].value = "";                                
+            } else if(flagType == "bool") {
+                components[i].value = false;
+            } else if (flagType == "dual-int") {
+                components[i].valueA = 100;
+                components[i].valueB = 100; 
+            }
+            else {    
+                if (components[i].fighterFlag) {
+                    components[i].value = 100; 
+                } else {
+                    components[i].value = 0;   
+                }          
+            }
+        }
+    }
+}
+
+// Works the same as in util.py.
+function getFlagParameters(flags, flagToRead, isString=false) {
+    flags = flags.replace(/\s/g, "");
+    flagToRead = flagToRead.replace(/\s/g, "");
+    let index = flags.search(flagToRead)
+    index += flagToRead.length;
+    let string = "";
+    if (isString == false) {
+        let parameters = [];
+        param = ""
+        while (true) {
+            if (index > flags.length-1) {
+                parameters.push(parseInt(param));
+                break;
+            }
+            if (flags[index] == "&" || flags[index] == "-") {
+                parameters.push(parseInt(param));
+                break;
+            }
+            if (flags[index] == ".") {
+                parameters.push(parseInt(param));
+                param = ""
+            } else {
+                param += flags[index]
+            }
+            index += 1
+        }
+        return parameters;
+    } else {
+        while (true) {
+            char = flags[index]
+            if (char == "&" || char == "-") {
+                break;
+            }
+            string += char;
+            index += 1;
+        }
+        string = string.replace(" ", "");
+        return string;
+    }
+}
+function createHeader(tab, text, autoMargin = false, marginLeft="2%") {
+    let h = document.createElement("h3");
+    h.innerHTML = text;
+    if (autoMargin) {
+        h.style.margin = "auto";
+        h.style.textAlign = "center";
+    } else {
+        h.style.marginLeft = marginLeft;
+    }
+    tab.after(h);
+}
+function createFlag(tab, type, flagName, labelName, tooltip="", left="", min="0", max="300", percent=true, fighterFlag=false) {
+    if (type=="string") {
+        newFlag = new TextInputComponent(
+            new Flag(flagName, "", type),
+            tooltip,
+            labelName,
+            left
+        )
+    }
+    else if (type=="bool") {
+        newFlag = new CheckboxInputComponent(
+            new Flag(flagName, "", type),
+            tooltip,
+            labelName
+        )
+    }
+    else if (type=="dual-int") {
+        newFlag = new DualNumInputComponent(
+            new Flag(flagName, [100,100], type),
+            tooltip,
+            labelName,
+            left,
+            min,
+            max
+        )
+    }
+    else if (type=="int") {
+        newFlag = new NumberInputComponent(
+            new Flag(flagName, [0], type),
+            tooltip,
+            labelName,
+            left,
+            min,
+            max,
+            percent,
+            fighterFlag
+        )
+    }
+    tab.appendChild(newFlag.element);
+    return newFlag;
+}
+
+// Main
+mainTab = document.getElementById("main-tab");
+createFlag(mainTab, "string", "seed", "Seed", 
+            "ISOs generated with the same seed/flags will be identical.",
+            "5%");
+createFlag(mainTab, "bool", "balance", "Balance", 
+            "Groups attack into separate tiers before shuffling or applying chaos.");
+mainTab.parentElement.appendChild(flagInput);
+createHeader(mainTab, "Flags", false, "10%");
+// Attacks
+attackTab = document.getElementById("attack-tab");
+hitboxFlags = ["shuffle_attacks", "angle", "damage", "shield_damage", "growth", "base", "wdsk", "size"];
+hitboxNames = ["Shuffle", "Angle", "Damage", "Shield Dmg", "KB Growth", "Base KB", "Set KB", "Size"];
+hitboxTooltips = [
+    "Shuffles attacks to swap all their properties. The chance any attack will be shuffled is specified by the percent inputed.",
+    "The angle at which an attack will launch. Angle will be adjusted by a random degrees in either direction based on the value specified.",
+    "The amount of percent an attack deals. Percent also affects knockback.",
+    "Damage on shields is calculated as normal damage + this value.",
+    "Determines how much the knockback of an attack scales to the opponents percent.",
+    "Determines a base amount of knockback, independent of other variables this will always be added to the final knockback amount after all other calculations.",
+    "Only affects attacks with Set Knockback. This property will make an attack always have the same amount of knockback regardless of percent.",
+    "Affects the size of all hitbox bubbles for an attack."
+];
+hitboxLefts = ["", "", "9%", "2%", "2%", "7%", "11%", "14%"]
+for (let i = 0; i < hitboxFlags.length; i++) {
+    if (hitboxFlags[i] == "shuffle_attacks") {
+        createFlag(attackTab, "int", hitboxFlags[i], hitboxNames[i], hitboxTooltips[i], "12%", "0", "100");
+    }
+    else if (hitboxFlags[i] == "angle") {
+        createFlag(attackTab, "int", "hitbox_" + hitboxFlags[i], hitboxNames[i], hitboxTooltips[i], "14%", "0", "180", false);
+    } else {
+        createFlag(attackTab, "dual-int", "hitbox_" + hitboxFlags[i], hitboxNames[i], hitboxTooltips[i], hitboxLefts[i], "0", "300");
+    }
+}
+
+// Throws
+throwTab = document.getElementById("throw-tab");
+throwFlags = ["shuffle_throws", "angle", "damage", "growth", "base", "wdsk"];
+throwNames = ["Shuffle", "Angle", "Damage", "KB Growth", "Base KB", "Set KB"];
+throwTooltips = [
+    "Shuffles throws to swap all their properties. The chance any throw will be shuffled is specified by the percent inputed.",
+    "The angle at which a throw will launch. Angle will be adjusted by a random degrees in either direction based on the value specified.",
+    "The amount of percent a throw deals. Percent also affects knockback.",
+    "Determines how much the knockback of a throw scales to the opponents percent.",
+    "Determines a base amount of knockback, independent of other variables this will always be added to the final knockback amount after all other calculations.",
+    "Only affects throws with Set Knockback. This property will make a throw always have the same amount of knockback regardless of percent.",
+];
+throwLefts = ["", "", "9%", "2%", "8%", "11%"];
+for (let i = 0; i < throwFlags.length; i++) {
+    if (throwFlags[i] == "shuffle_throws") {
+        createFlag(throwTab, "int", throwFlags[i], throwNames[i], throwTooltips[i], "12%", "0", "100");
+    }
+    else if (throwFlags[i] == "angle") {
+        createFlag(throwTab, "int", "throw_" + throwFlags[i], throwNames[i], throwTooltips[i], "14%", "0", "180", false);
+    } else {
+        createFlag(throwTab, "dual-int", "throw_" + throwFlags[i], throwNames[i], throwTooltips[i], throwLefts[i], "0", "300");
+    }
+}
+// Element
+elementTab = document.getElementById("element-tab");
+elementFlags = ["element_percent", "normal", "fire", "electric", "slash", "coin", "ice", "sleep", "ground", "cape", "disable", "dark", "screw_attack", "flower"];
+elementNames = ["Elements", "Normal", "Fire", "Electric", "Slash", "Coin", "Ice", "Sleep", "Ground", "Cape", "Disable", "Dark", "Screw Attack", "Flower"];
+elementTooltips = [
+    "Percent chance an attack or throw will have its element changed. Will be randomly chosen from all selected elements.",
+    "No additional effects are applied.",
+    "Sets the opponent ablaze.",
+    "Zaps the target, increasing hitlag.",
+    "Clanks with swords, unless its damage far surpasses the opposing attack.",
+    "Increases wealth.",
+    "Chance to temporarily encase an enemy in ice and preserves their momentum for awhile.",
+    "Puts target to sleep. Very unfair.",
+    "Target will be smashed through the floor, making them unable to move for awhile.",
+    "Turns target around.",
+    "Temporarily stuns an opponent. A lot more fair than sleep.",
+    "Corrupts the targets soul.",
+    "Makes the target do a Screw Attack like Samus. They will be in free fall after.",
+    "Adds a poison-like draining effect."
+];
+for (let i = 0; i < elementFlags.length; i++) {
+    if (elementFlags[i] == "element_percent") {
+        createFlag(elementTab, "int", elementFlags[i], elementNames[i], elementTooltips[i], "12%", "0", "100");
+    } else {
+        createFlag(elementTab, "bool", "element_" + elementFlags[i], elementNames[i], elementTooltips[i]);
+    }
+}
+// Attributes
+attributeTab = document.getElementById("attribute-tab");
+attributeFlags = ["shuffle_attributes", "walk", "dash", "friction", "air", "jump", "gravity", "weight", "scale", "shield_size", "landing_lag"];
+attributeNames = ["Shuffle", "Walk", "Dash/Run", "Friction", "Aerial", "Jump", "Gravity", "Weight", "Scale", "Shield Size", "Landing Lag"];
+attributeTooltips = [
+    "Shuffles all attributes with another fighter's. The chance this will occur is the percent specified.",
+    "The speed at which fighters will walk.",
+    "The speed at which fighters will dash or run.",
+    "Controls wavedash length and jump distance. Lower values will allow a fighter to go farther.",
+    "Controls aerial mobility.",
+    "Changes jump heights and velocity.",
+    "Affects how floaty a fighter is.",
+    "Lowers the amount of knockback taken from attacks. Also affects the speed of many throws.",
+    "The size of the fighter's model.",
+    "The size of a fighter's shield.",
+    "The amount of lag when landing after an aerial."
+];
+attributeLefts = ["", "13%", "8%", "10%", "13%", "12%", "11%", "13%", "12%", "2%", "-1%"]
+for (let i = 0; i < attributeFlags.length; i++) {
+    if (attributeFlags[i] == "shuffle_attributes") {
+        createFlag(attributeTab, "int", attributeFlags[i], attributeNames[i], attributeTooltips[i], "12%", "0", "100");
+    }   else {
+        createFlag(attributeTab, "dual-int", "attribute_" + attributeFlags[i], attributeNames[i], attributeTooltips[i], attributeLefts[i], "0", "300");
+    }
+}
+
+// Chaos Percent
+chaosTab = document.getElementById("chaos-tab");
+chaosTabAttack = document.getElementById("chaos-tab-attack");
+createFlag(chaosTab, "int", "chaos_percent", "Chaos", 
+"The percent chance a property will have Chaos applied to it.", 
+"10%", "0", "100");
+
+// Chaos Attack
+createHeader(chaosTab, "Attacks");
+chaosHitboxFlags = ["damage", "angle", "growth", "base", "wdsk", "size"];
+chaosHitboxNames = ["Damage", "Angle", "KB Growth", "Base KB", "Set KB", "Size"];
+chaosHitboxTooltips = [
+    "Damage will be replaced with a random value. Increase magnitude to raise the average damage.",
+    "Angle will be randomly selected from a group of common angles, but there's also a chance it will be completely random.",
+    "Knockback Growth will be replaced with a random value. Increase magnitude to raise the average Knockback Growth.",
+    "Base Knockback will be replaced with a random value. Increase magnitude to raise the average base knockback.",
+    "Set Knockback will be replaced with a random value, but only for attacks that originally have it.",
+    "Hitbox size will be replaced with a random value. Increase magnitude to raise the average hitbox size."
+];
+chaosHitboxLefts = ["12%", "6%", "7%", "10%", "12%", "13%"]
+for (let i = 0; i < chaosHitboxFlags.length; i++) {
+    if (chaosHitboxFlags[i] == "angle") {
+        createFlag(chaosTabAttack, "bool", "chaos_hitbox_" + chaosHitboxFlags[i], chaosHitboxNames[i], chaosHitboxTooltips[i], chaosHitboxLefts[i]);
+    }   else {
+        createFlag(chaosTabAttack, "int", "chaos_hitbox_" + chaosHitboxFlags[i], chaosHitboxNames[i], chaosHitboxTooltips[i], chaosHitboxLefts[i], "0", "10", false);
+    }
+}
+
+// Chaos Throw
+chaosTabThrow = document.getElementById("chaos-tab-throw");
+createHeader(chaosTabAttack, "Throws");
+chaosThrowFlags = ["damage", "angle", "growth", "base", "wdsk"];
+chaosThrowNames = ["Damage", "Angle", "KB Growth", "Base KB", "Set KB"];
+chaosThrowTooltips = [
+    "Damage will be replaced with a random value. Increase magnitude to raise the average damage.",
+    "Angle will be randomly selected from a group of common angles, but there's also a chance it will be completely random.",
+    "Knockback Growth will be replaced with a random value. Increase magnitude to raise the average Knockback Growth.",
+    "Base Knockback will be replaced with a random value. Increase magnitude to raise the average base knockback.",
+    "Set Knockback will be replaced with a random value, but only for throws that originally have it.",
+];
+chaosThrowLefts = ["12%", "6%", "7%", "10%", "12%"]
+for (let i = 0; i < chaosThrowFlags.length; i++) {
+    if (chaosThrowFlags[i] == "angle") {
+        createFlag(chaosTabThrow, "bool", "chaos_throw_" + chaosThrowFlags[i], chaosThrowNames[i], chaosThrowTooltips[i], chaosThrowLefts[i]);
+    }   else {
+        createFlag(chaosTabThrow, "int", "chaos_throw_" + chaosThrowFlags[i], chaosThrowNames[i], chaosThrowTooltips[i], chaosThrowLefts[i], "0", "10", false);
+    }
+}
+
+// Chaos Attributes
+chaosTabAttribute = document.getElementById("chaos-tab-attribute");
+createHeader(chaosTabThrow, "Attributes");
+chaosAttributeFlags = ["walk", "dash", "air", "jump", "gravity", "friction", "weight", "landing_lag"];
+chaosAttributeNames = ["Walk", "Dash/Run", "Aerial", "Jump", "Gravity", "Friction", "Weight", "Landing Lag"];
+for (let i = 0; i < chaosAttributeFlags.length; i++) {
+    createFlag(chaosTabAttribute, "bool", "chaos_attribute_" + chaosAttributeFlags[i], chaosAttributeNames[i], "Values will be randomly chosen from a range between the highest and lowest of all fighters' original values.");
+}
+
+// Fighter
+hitboxComponentArrays = [];
+throwComponentArrays = [];
+attributeComponentArrays = [];
+specialComponentArrays = [];
+fighters = ["bowser", "captain_falcon", "dk", "dr_mario", "falco", "fox", "game_and_watch", "ganondorf", "popo", "nana", "jigglypuff",
+"kirby", "link", "luigi", "mario", "marth", "mewtwo", "ness", "peach", "pichu", "pikachu", "roy", "samus",
+"sheik", "yoshi", "young_link", "zelda", "boy", "girl", "giga_koopa", "master_hand", "crazy_hand"];
+fighterNames = ["Bowser", "Captain Falcon", "Donkey Kong", "Dr Mario","Falco", "Fox", "Mr. Game & Watch", "Ganondorf", "Popo",
+"Nana", "Jigglypuff", "Kirby", "Link", "Luigi", "Mario","Marth", "Mewtwo", "Ness", "Peach", "Pichu", "Pikachu",
+"Roy", "Samus", "Sheik", "Yoshi", "Young Link", "Zelda", "Boy", "Girl", "Giga Koopa", "Master Hand", "Crazy Hand"];
+fighterSelectObj = document.getElementById("fighter-select-tab");
+createHeader(fighterSelectObj, "Attacks");
+fighterTabAttacks = document.getElementById("fighter-tab-attack");
+createHeader(fighterTabAttacks, "Throws");
+fighterHitboxFlags = ["damage", "shield_damage", "base", "growth", "wdsk", "size"];
+fighterHitboxNames = ["Damage", "Shield Dmg", "Base KB", "KB Growth", "Set KB", "Size"];
+fighterHitboxLefts = ["6%", "6%", "6%", "6%", "6%", "6%"];
+fighterTabThrows = document.getElementById("fighter-tab-throw");
+createHeader(fighterTabThrows, "Attributes");
+fighterThrowFlags = ["damage", "base", "growth", "wdsk"];
+fighterThrowNames = ["Damage", "Base KB", "KB Growth", "Set KB"];
+fighterThrowLefts = ["6%", "6%", "6%", "6%"];
+fighterTabAttributes = document.getElementById("fighter-tab-attribute");
+createHeader(fighterTabAttributes, "Special");
+fighterAttributeFlags = ["walk", "dash", "friction", "air", "jump", "gravity", "weight", "scale", "shield_size", "landing_lag"];
+fighterAttributeNames = ["Walk", "Dash", "Friction", "Aerial", "Jump", "Gravity", "Weight", "Scale", "Shield Size", "Landing Lag"];
+fighterAttributeLefts = ["6%", "6%", "6%", "6%", "6%", "6%", "6%", "6%", "6%", "2%"]
+
+for (let k = 0; k < fighters.length; k++) {
+    hitboxes = [];
+    throws = [];
+    attributes = [];
+    for (let i = 0; i < fighterHitboxFlags.length; i++) {
+        hitboxes.push(createFlag(fighterTabAttacks, "int", fighters[k] + "_hitbox_" + fighterHitboxFlags[i], fighterHitboxNames[i], 
+        "Values will be multiplied by the percent specified.",
+        fighterHitboxLefts[i], "0", "300", true, true));
+    }
+    for (let i = 0; i < fighterThrowFlags.length; i++) {
+        throws.push(createFlag(fighterTabThrows, "int", fighters[k] + "_throw_" + fighterThrowFlags[i], fighterThrowNames[i], 
+        "Values will be multiplied by the percent specified.",
+        fighterThrowLefts[i], "0", "300", true, true));
+    }
+    for (let i = 0; i < fighterAttributeFlags.length; i++) {
+        attributes.push(createFlag(fighterTabAttributes, "int", fighters[k] + "_attribute_" + fighterAttributeFlags[i], fighterAttributeNames[i], 
+        "Values will be multiplied by the percent specified.",
+        fighterAttributeLefts[i], "0", "300", true, true));
+    }
+    hitboxComponentArrays.push(hitboxes);
+    throwComponentArrays.push(throws);
+    attributeComponentArrays.push(attributes);
+}
+// Special Attributes
+fighterTabSpecial = document.getElementById("fighter-tab-special");
+bowserSpecial = []
+bowserSpecial.push(createFlag(fighterTabSpecial, "dual-int", "bowser_flames", "Flames", 
+"Controls recharge rate, amount of fuel, flame velocity, X/Y offset, and scale.",
+"6%", "0", "300"));
+bowserSpecial.push(createFlag(fighterTabSpecial, "dual-int", "koopa_klaw", "Koopa Klaw", 
+"Controls bite damage and grab duration.",
+"6%", "0", "300"));
+bowserSpecial.push(createFlag(fighterTabSpecial, "dual-int", "whirling_fortress", "Whirling Fortress", 
+"Controls movement.",
+"6%", "0", "300"));
+bowserSpecial.push(createFlag(fighterTabSpecial, "dual-int", "bowser_bomb", "Bowser Bomb", 
+"Controls horizontal momentum and velocity.",
+"6%", "0", "300"));
+specialComponentArrays.push(bowserSpecial);
+falconSpecial = []
+falconSpecial.push(createFlag(fighterTabSpecial, "dual-int", "falcon_punch", "Falcon Punch", 
+"Controls horizontal and vertical momentum.",
+"6%", "0", "300"));
+falconSpecial.push(createFlag(fighterTabSpecial, "dual-int", "raptor_boost", "Raptor Boost", 
+"Controls gravity on hit and on whiff.",
+"6%", "0", "300"));
+falconSpecial.push(createFlag(fighterTabSpecial, "dual-int", "falcon_dive", "Falcon Dive", 
+"Controls landing lag, friction, and horizontal momentum.",
+"6%", "0", "300"));
+falconSpecial.push(createFlag(fighterTabSpecial, "dual-int", "falcon_kick", "Falcon Kick", 
+"Controls landing lag, traction, and speed modifier on hit.",
+"6%", "0", "300"));
+specialComponentArrays.push(falconSpecial);
+function turnOnFighterComponent(index) {
+    for (let i = 0; i < hitboxComponentArrays[index].length; i++) {
+        hitboxComponentArrays[index][i].element.style.display = "block";
+    }
+    for (let i = 0; i < throwComponentArrays[index].length; i++) {
+        throwComponentArrays[index][i].element.style.display = "block";
+    }
+    for (let i = 0; i < attributeComponentArrays[index].length; i++) {
+        attributeComponentArrays[index][i].element.style.display = "block";
+    }
+    for (let i = 0; i < specialComponentArrays[index].length; i++) {
+        specialComponentArrays[index][i].element.style.display = "block";
+    }
+}
+
+function turnOffAllFighterComponents() {
+    for (let i = 0; i < hitboxComponentArrays.length; i++) {
+        for (let k = 0; k < hitboxComponentArrays[i].length; k++) {
+            hitboxComponentArrays[i][k].element.style.display = "none";
+        }
+    }
+    for (let i = 0; i < throwComponentArrays.length; i++) {
+        for (let k = 0; k < throwComponentArrays[i].length; k++) {
+            throwComponentArrays[i][k].element.style.display = "none";
+        }
+    }
+    for (let i = 0; i < attributeComponentArrays.length; i++) {
+        for (let k = 0; k < attributeComponentArrays[i].length; k++) {
+            attributeComponentArrays[i][k].element.style.display = "none";
+        }
+    }
+    for (let i = 0; i < specialComponentArrays.length; i++) {
+        for (let k = 0; k < specialComponentArrays[i].length; k++) {
+            specialComponentArrays[i][k].element.style.display = "none";
+        }
+    }
+}
+
+// Gecko
+geckoTab = document.getElementById("gecko-tab");
+createFlag(geckoTab, "bool", "all_characters_float", "Everyone Floats", 
+        "Credit: Uncle Punch.");
+createFlag(geckoTab, "bool", "fastfall_whenever", "Fastfall Whenever", 
+        "Credit: Uncle Punch.");
+createFlag(geckoTab, "bool", "paper_mode", "Paper Mode", 
+        "Credit: DRGN.");
+// Secret
+secretTab = document.getElementById("secret-tab");
+createFlag(secretTab, "bool", "sound", "SFX", 
+        "It's a secret to everyone.");
+createFlag(secretTab, "bool", "up_launchers", "Launchers", 
+        "It's a secret to everyone.");
+createFlag(secretTab, "bool", "super_punch", "Super Punch", 
+        "It's a secret to everyone.");
+// Selector Event
+fighterSelect = document.getElementById("fighter-select");
+fighterSelect.onchange = function() {
+    turnOffAllFighterComponents();
+    turnOnFighterComponent(fighterSelect.selectedIndex);
+};
+turnOffAllFighterComponents();
+turnOnFighterComponent(0);
+flagInput.value = "-balance -shuffle_attacks 50 -hitbox_angle 20 -hitbox_damage 90.120 -hitbox_growth 90.120 -hitbox_base 90.120 -hitbox_wdsk 80.120 -hitbox_size 100.110 -shuffle_throws 50 -throw_angle 20 -throw_damage 90.120 -throw_growth 90.120 -throw_base 90.120 -throw_wdsk 80.120 -element_percent 10 -element_normal -element_fire -element_electric -element_slash -element_coin -element_cape -element_dark -element_flower -attribute_walk 100.120 -attribute_dash 100.120 -attribute_friction 80.100 -attribute_air 100.120 -attribute_jump 90.110 -attribute_gravity 90.120 -attribute_weight 75.150 -attribute_scale 95.110 -attribute_shield_size 90.110 -attribute_landing_lag 70.100 -chaos_percent 50 -chaos_hitbox_damage 5 -chaos_hitbox_angle -chaos_hitbox_growth 5 -chaos_hitbox_base 5 -chaos_hitbox_wdsk 5 -chaos_hitbox_size 5 -chaos_throw_damage 5 -chaos_throw_angle -chaos_throw_growth 5 -chaos_throw_base 5 -chaos_throw_wdsk 5 -chaos_attribute_walk -chaos_attribute_dash -chaos_attribute_air -chaos_attribute_jump -chaos_attribute_gravity -chaos_attribute_friction -chaos_attribute_weight -chaos_attribute_landing_lag -sound"
+updateComponents();
+
+function uploadFlags() { // When Generate button is clicked.
+    message = document.getElementById("generating-message");
+    message.style.display = "block";
+    flagElement = document.getElementById("flags");
+    flagElement.value = flagInput.value;
+}

@@ -24,9 +24,10 @@ def randomize(throw, magnitude):
         throw.set_base(30)
 
 def start_mod(magnitude):
-    for throw in melee.throws:
-        if not throw.shuffled:
-            randomize(throw, magnitude)
+    for fighter in melee.fighters:
+        for throw in fighter.throws:
+            if not throw.shuffled:
+                randomize(throw, magnitude)
         
 
         

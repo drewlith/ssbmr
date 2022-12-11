@@ -1,22 +1,10 @@
 {
-   "Standard": {
-      "Flags": "-damage 5 -angle -growth 5 -base_knockback 5 -shield_damage 5 -wdsk 5 -hitbox_size 1 -element 2 -weight 10.0 -scale 5.0 -shield_size 2.0 -movement 10.0 -jump 2.0 -landing 5.1 -vanilla 5 -shuffle 50 -balance -throws 4 -harder_bosses 2 -soul_bond -better_low_tiers -no_bosses -sfx -turnips 0 -log",
-      "Description": "A mix of everything that the randomizer has to offer! Attacks are balanced to be closer to their normal power level."
-   },
-   "Shuffled": {
-      "Flags": "-balance -shuffle 100 -soul_bond -no_bosses -log ",
-      "Description": "All the attacks have been switched around! Try to find the best attacks on other characters!\n"
-   },
-   "Competitive": {
-      "Flags": "-damage 5 -growth 5 -base_knockback 5 -shield_damage 1 -movement 5.1 -landing 5.1 -vanilla 10 -balance -throws 4 -soul_bond -better_low_tiers -log ",
-      "Description": "Settings designed to be good for more serious matches that plays closer to the original!\n"
-   },
-   "Chaos": {
-      "Flags": "-damage 6 -angle -growth 6 -base_knockback 6 -shield_damage 6 -wdsk 6 -hitbox_size 6 -element 10 -weight 10.0 -scale 25.0 -shield_size 5.0 -movement 15.0 -jump 15.0 -landing 15.0 -throws 7 -chaos 50 -shuffle 15 -sfx -turnips 3 -music 0 -log ",
-      "Description": "A nonsensical fun time!\n"
-   },
-   "Oops, all Fox!": {
-      "Flags": "-damage 5 -angle -growth 5 -base_knockback 5 -shield_damage 1 -wdsk 2 -vanilla 15 -balance -throws 4 -shuffle 25 -soul_bond -better_low_tiers -no_bosses -log -all_fox ",
-      "Description": "All the characters have been given the movement of Fox! Will Fox still reign supreme?\n"
-   }
+    "Standard": {
+        "Flags": "-balance &deviate_hitboxes 100% &deviate_throws 100% &deviate_attributes 100% -log",
+        "Description": "Hitbox, throw, and character attribute values are set to be within a range based on the normal value!"
+    },
+    "Deviate": {
+        "Flags": "-balance &deviate_hitboxes 100% &deviate_throws 100% &deviate_attributes 100% -log",
+        "Description": "Hitbox, throw, and character attribute values are set to be within a range based on the normal value!"
+    }
 }

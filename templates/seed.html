@@ -1,0 +1,125 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div style="display: flex; flex-wrap: wrap;">
+  <div style="margin-left:auto;margin-right: auto;">
+    <!--<h1 style="color:#FFCC00;size: 64px;text-align: center;">Select ISO</h1>-->
+    <h1 style="color:#FFCC00;size: 64px;text-align: center;">Seed: {{content[1]}}</h1>
+    <div class="drop-zone" id = "drag-dropper">
+      <span class="drop-zone__prompt" id="prompt">Drag and Drop v1.02 NTSC ISO here (or click to browse for ISO.)</span>
+      <input type="file" name=file id="iso" class="drop-zone__input">
+    </div>
+    <div class="button-submit">
+      <input type="image" name="submit" src="{{url_for('static', filename='button.png')}}" alt="submit" id="button-patch">
+      <div class="overlay" id="overlay" style="left:76;">Randomize</div>
+    </div>
+    <div>
+      <textarea id="flags" name="flags" hidden></textarea> 
+    </div>
+    
+    <h3 style="color:#FF0000;size: 16px;text-align: center;display: none;" id="error-message">Error occurred while patching. Please try a different ISO.</h3>
+    <h3 style="color:#FF0000;size: 16px;text-align: center;display: none;" id="error-message-2">No ISO was selected!</h3>
+  </div>
+  <div style="margin-right:1%;">
+    <h1 style="color:#FFCC00;size: 64px;">Log</h1>
+    <div>
+      <div style="max-height:500;max-width: 1150px;border:1px solid #ccc;overflow:auto;color:black;background-color: white;white-space: pre-line;font-family:'Courier New', Courier, monospace;">{{content[2]}}</div>
+    </div>
+    <h1 style="color:#FFCC00;size: 64px;">Credits</h1>
+    <div>
+      <div style="max-height:200;max-width: 1150px;border:1px solid #ccc;overflow:auto;color:black;background-color: white;white-space: pre-line;font-family:'Courier New', Courier, monospace;">{{content[3]}}</div>
+    </div>
+  </div>
+</div>
+
+<script src="{{url_for('static', filename='dropzone.js')}}"></script>
+<script src="https://cdn.jsdelivr.net/npm/streamsaver@2.0.3/StreamSaver.min.js"></script>
+<script>
+  function _base64ToArrayBuffer(base64) {
+    var binary_string = window.atob(base64);
+    var len = binary_string.length;
+    var bytes = new Uint8Array(len);
+    for (var i = 0; i < len; i++) {
+        bytes[i] = binary_string.charCodeAt(i);
+    }
+    return bytes.buffer;
+}
+  let patch = _base64ToArrayBuffer("{{content[0]}}");
+  patch = new File([patch], "patch.xdelta");
+  let sourceInvalid = false; 
+  let patchInvalid = false;
+  let running = false;
+  let errorMessage = null;
+  let extraErrorMessage = null;
+  var clone = document.getElementById("drag-dropper").cloneNode(true);
+
+  randomizeButton = document.getElementById("button-patch")
+  randomizeButton.addEventListener("click", function() { // Patch iso
+    decodeHandler();
+  });
+
+  const decodeHandler = async () => {
+      document.getElementById("error-message").style.display = "none";
+      document.getElementById("error-message-2").style.display = "none";
+      let sourceFile = document.getElementById("iso").files[0] // js file object
+      // Grab Patch from server
+      //let patchFile = document.getElementById("patch").files[0]
+      let patchFile = patch  // js file object
+      //
+      sourceInvalid = !sourceFile // javascript file object
+      sourceInvalid = !patchFile   // javascript file object
+      if (!sourceFile || !patchFile) {
+        document.getElementById("error-message-2").style.display = "block"
+          return
+      }
+      running = true
+      errorMessage = null
+      extraErrorMessage = null
+
+      const worker = new Worker("{{url_for('static', filename='xdelta3.worker.js')}}");
+      window.xdelta3Worker = worker
+
+      streamSaver.WritableStream = WritableStream
+      let fileStream = null
+      let writer = null
+
+      const lastDot = sourceFile.name.lastIndexOf(".")
+      let patchedName = 'SSBMr-{{content[1]}}.iso';
+
+      worker.onmessage = function (e) {
+          if (!e.data) {
+          return
+          }
+          const {final} = e.data
+          if (!final) {
+          if (!fileStream && !writer) {
+              fileStream = streamSaver.createWriteStream(patchedName)
+              writer = fileStream.getWriter()
+          }
+          writer.write(e.data.bytes)
+          return
+          }
+          console.log("Got final worker command")
+          if (e.data.error) {
+          errorMessage = "Error occurred while patching"
+          document.getElementById("error-message").style.display = "block"
+          if (e.data.errorMessage) {
+              extraErrorMessage = `Details: ${e.data.errorMessage} (code ${e.data.errorCode || "unknown"})`
+          }
+
+          if (fileStream) {
+              fileStream.abort()
+          }
+          if (writer) {
+              writer.abort()
+          }
+          } else {
+          writer.close()
+          }
+          running = false;
+      }
+      await worker.postMessage({command: "start", sourceFile: sourceFile, patchFile: patchFile})
+    }
+</script>
+{% endblock %}
+

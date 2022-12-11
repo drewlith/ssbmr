@@ -3,6 +3,14 @@ import random
 MASK = [1, 2, 4, 8, 16, 32, 64, 128]
 CLEAR_MASK = [254, 253, 251, 247, 239, 223, 191, 127]
 
+def read_data(data, offset, length):
+    new_data = bytearray()
+    new_data.extend(data[offset:offset+length])
+    return new_data
+    
+def write_data(data, offset, new_data):
+    data[offset:offset+len(new_data)] = new_data
+
 def get_bit(data, bit): # lowest index = least significant. Use on Bytearray
     index = (len(data)-1) - bit // 8
     if data[index] & MASK[bit%8] == MASK[bit%8]: return 1
@@ -30,6 +38,9 @@ def set_value(data, offset, size, value):
         if value & 2**i == 2**i: data = set_bit(data,offset+i)
         else: data = clear_bit(data, offset+i)
     return data
+
+def get_word(data, offset=0):
+    return get_value(data, offset*32, 32)
 
 def merge(left, right):
     if len(left) == 0:
@@ -76,10 +87,37 @@ def percent_chance(chance): # Util, enter chance in %
     else:
         return False
 
-def get_string_between(string, start, end):
-    start_index = string.find(start)+len(start)
-    end_index = string[start_index:].find(end)+start_index
-    return string[start_index:end_index]
+def get_flag_params(flags, name, is_string=False):
+    name = name.replace(" ", "")
+    index = flags.find(name)
+    index += len(name)
+    string = ""
+    if is_string == False:
+        parameters = []
+        param = ""
+        while True:
+            if index > len(flags)-1:
+                parameters.append(int(param))
+                break
+            if flags[index] == "&" or flags[index] == "-": # Flag Delimiters
+                parameters.append(int(param))
+                break
+            if flags[index] == ".": # Parameter Delimiter
+                parameters.append(int(param))
+                param = ""
+            else:
+                param += flags[index]
+            index += 1
+        return parameters
+    else:
+        while True:
+            char = flags[index]
+            if char == "&" or char == "-": # Flag Delimiters
+                break
+            string += char
+            index += 1
+        string = string.replace(" ", "")
+        return string
 
 def get_word_string(word):
     string = ""

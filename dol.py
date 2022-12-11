@@ -2,7 +2,7 @@
 # Created by drewlith. Special Thanks: ribbanya, DRGN, Vetri
 
 import melee
-from util import set_value, get_value, get_word_string
+from util import *
 from asm import *
 
 free_space = [( 0x2C8, 0x398 ), ( 0x39C, 0x498 ), ( 0x4E4, 0x598 ), ( 0x5CC, 0x698 ),
@@ -13,24 +13,17 @@ free_space = [( 0x2C8, 0x398 ), ( 0x39C, 0x498 ), ( 0x4E4, 0x598 ), ( 0x5CC, 0x6
 	      ( 0x1ECC, 0x1F98 ), ( 0x1FCC, 0x2098 ), ( 0x20CC, 0x2198 )] # Thanks DRGN!
 free_space.append((0x18DCC0, 0x18E8C0)) # Tournament mode, size 0xC00
 
-def read_data(data, offset, length):
-    new_data = bytearray()
-    new_data.extend(data[offset:offset+length])
-    return new_data
-    
-def write_data(data, offset, new_data):
-    data[offset:offset+len(new_data)] = new_data
+class DOL(): 
+    def __init__(self, iso): # iso is an opened .iso melee v1.02 file
+        iso.seek(0x1E800)
+        self.data = bytearray()
+        self.data.extend(iso.read(0x438600))
 
-def find_free_space(space_needed):
-    for i in range(len(free_space)):
-        size = free_space[i][1] - free_space[i][0]
-        if size >= space_needed:
-            free_space.append((free_space[i][0]+space_needed, free_space[i][1])) # Add leftover back to array
-            return free_space.pop(i)
-    print("Not enough free space! Abort")
-    return (0,0)
+    def clear_dol(self):
+        self.data = bytearray()
 
 def activate_gecko_code(code_path):
+    print(code_path)
     def divide_into_words(data):
         words = []
         i = 0
@@ -77,7 +70,7 @@ def activate_gecko_code(code_path):
         number_of_instructions = (destination - start) // 4
         return number_of_instructions
 
-    dol = melee.dol
+    dol = melee.dol_file.data
     file = open(code_path, 'r')
     code = file.read()
     file.seek(0)
@@ -137,6 +130,17 @@ def activate_gecko_code(code_path):
                 write_data(dol, offset, instructions[j])
             i += k
             total_instruction_count += len(instructions)
+
+def find_free_space(space_needed):
+    for i in range(len(free_space)):
+        size = free_space[i][1] - free_space[i][0]
+        if size >= space_needed:
+            free_space.append((free_space[i][0]+space_needed, free_space[i][1])) # Add leftover back to array
+            return free_space.pop(i)
+    print("Not enough free space! Abort")
+    return (0,0)
+
+
     
     
     
