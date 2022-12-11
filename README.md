@@ -6,7 +6,7 @@ A brand new melee at the click of a button! SSBMr will apply a variety of mods v
 
 ### Multiplayer
 
-Share the page link of the generated seed with the person you want to play with so that they can create a randomized iso then you and your friend should both load that iso in Slippi and play like normal.
+Share the page link of the generated seed with the person you want to play with so that they can create the same randomized iso then you and your friend should both load that iso in Slippi and play like normal.
 
 ### Join the official [Discord](https://discord.gg/48SQfvcvVY) server!
 
