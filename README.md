@@ -13,3 +13,10 @@ Share the page link of the generated seed with the person you want to play with 
 ### Command Line Usage
 
 `randomizer.py "iso_path" "output_directory" "flags"`
+
+# Features
+- Flask front-end, styled with HTML, CSS, and JavaScript.
+- Creates xdelta patches on server.
+- Distributes xdelta patches and patches in browser.
+- Python back-end, command line executable.
+- Active Discord community and weekly tournaments.
