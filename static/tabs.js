@@ -24,6 +24,7 @@ function setActive(item) {
                     document.getElementById("element-label"),
                     document.getElementById("attribute-label"),
                     document.getElementById("main-label"),
+                    document.getElementById("mechanics-label"),
                     document.getElementById("chaos-label"),
                     document.getElementById("fighter-label"),
                     document.getElementById("gecko-label"),

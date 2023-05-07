@@ -225,11 +225,11 @@ textarea {
   margin: auto;
   border-radius: .3rem;
   height: 50px;
-  width: 78px;
+  width: 90px;
   font-size: 28px;
   text-align: center;
   font-family: 'Galliard';
-  left: 56%;
+  left: 61%;
   top: 20%;
 }
 .component input[type="checkbox"] {
@@ -243,7 +243,7 @@ textarea {
 
 .component img {
   position: absolute;
-  left: 77%;
+  left: 84%;
   top: 30%;
   height: 40;
   width: 46;

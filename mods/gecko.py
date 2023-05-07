@@ -8,6 +8,8 @@ def start_mod(flags):
     credit_string += "\nDisable CSS BG Anim - Uncle Punch"
     activate_gecko_code("codes/Tournament to Debug - Magus, donny2112.txt")
     credit_string += "\nTournament to Debug - Magus, donny2112"
+    activate_gecko_code("codes/Unlock All - standardtoaster, Achilles.txt")
+    credit_string += "\nUnlock All - standardtoaster, Achilles"
     if "all_characters_float" in flags:
         activate_gecko_code("codes/All Characters Float - Uncle Punch.txt")
         credit_string += "\nAll Characters Float - Uncle Punch"

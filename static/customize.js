@@ -19,7 +19,7 @@ class Flag {
         }
         for (let i = 0; i < this.parameters.length; i++) {
             if (i != 0) {
-                flag += "."
+                flag += ":"
             }
             flag += this.parameters[i]
         }
@@ -138,10 +138,13 @@ class TextInputComponent extends Component {
 }
 
 class NumberInputComponent extends Component {
-    constructor(flag, tooltip="", name="", left="17%", min="0", max="300", percent=true, fighterFlag=false) {
+    constructor(flag, tooltip="", name="", left="17%", min="0", max="300", percent=true, fighterFlag=false, float=false, initial=0) {
         super(flag, tooltip, name);
         this.numInput = document.createElement("input");
         this.numInput.type = "number";
+        if (float == true) {
+            this.numInput.step = "0.01";
+        }
         this.numInput.min = min;
         this.numInput.max = max;
         if (percent) {
@@ -152,6 +155,9 @@ class NumberInputComponent extends Component {
         this.label.style.left = left;
         this.div.appendChild(this.numInput);
         this.flag.component = this;
+        if (initial > 0) {
+            this.numInput.value = initial;
+        }
         let numInputVar = this.numInput;
         numInputVar.oninput = function() {
             flag.changeParameters([numInputVar.value]);
@@ -162,7 +168,7 @@ class NumberInputComponent extends Component {
                     flag.enabled = false;
                 }
             } else {
-                if (numInputVar.value > 0) {
+                if (numInputVar.value > 0 && numInputVar.value != initial) {
                     flag.enabled = true;
                 } else {
                     flag.enabled = false;
@@ -171,6 +177,8 @@ class NumberInputComponent extends Component {
             updateFlags();
         }
         this.fighterFlag = fighterFlag;
+        this.float = float;
+        this.initial = initial;
     }
     get value() {
         return this.numInput.value;
@@ -184,8 +192,9 @@ class NumberInputComponent extends Component {
             } else {
                 this.flag.enabled = false;
             }
-        } else {
-            if (value > 0) {
+        } 
+        else {
+            if (value > 0 && value != this.initial) {
                 this.flag.enabled = true;
             } else {
                 this.flag.enabled = false;
@@ -222,7 +231,6 @@ class DualNumInputComponent extends Component {
         numInputAVar.oninput = function() {
             flag.changeParameters([numInputAVar.value, numInputBVar.value]);
             if ((numInputAVar.value > 0 || numInputBVar.value > 0) && (numInputAVar.value != 100 || numInputBVar.value != 100)) {
-                console.log(numInputAVar.value, numInputBVar.value);
                 flag.enabled = true;
             } else {
                 flag.enabled = false;
@@ -238,7 +246,6 @@ class DualNumInputComponent extends Component {
         numInputBVar.oninput = function() {
             flag.changeParameters([numInputAVar.value, numInputBVar.value]);
             if ((numInputAVar.value > 0 || numInputBVar.value > 0) && (numInputAVar.value != 100 || numInputBVar.value != 100)) {
-                console.log(numInputAVar.value, numInputBVar.value);
                 flag.enabled = true;
             } else {
                 flag.enabled = false;
@@ -314,7 +321,11 @@ function updateComponents() {
                 components[i].valueA = parameters[0];
                 components[i].valueB = parameters[1];
             }  else {
-                parameters = getFlagParameters(newFlags + "-", flag.getFlagName());
+                if (components[i].float == true) {
+                    parameters = getFlagParameters(newFlags + "-", flag.getFlagName(), false, true);
+                } else {
+                    parameters = getFlagParameters(newFlags + "-", flag.getFlagName());
+                }
                 components[i].value = parameters[0];
             }
         } else { // Flag doesn't exist
@@ -326,8 +337,11 @@ function updateComponents() {
                 components[i].valueA = 100;
                 components[i].valueB = 100; 
             }
-            else {    
-                if (components[i].fighterFlag) {
+            else {
+                if (components[i].initial > 0) {
+                    components[i].value = components[i].initial;
+                } 
+                else if (components[i].fighterFlag) {
                     components[i].value = 100; 
                 } else {
                     components[i].value = 0;   
@@ -338,7 +352,7 @@ function updateComponents() {
 }
 
 // Works the same as in util.py.
-function getFlagParameters(flags, flagToRead, isString=false) {
+function getFlagParameters(flags, flagToRead, isString=false, isFloat=false) {
     flags = flags.replace(/\s/g, "");
     flagToRead = flagToRead.replace(/\s/g, "");
     let index = flags.search(flagToRead)
@@ -349,15 +363,27 @@ function getFlagParameters(flags, flagToRead, isString=false) {
         param = ""
         while (true) {
             if (index > flags.length-1) {
-                parameters.push(parseInt(param));
+                if (isFloat == true) {
+                    parameters.push(parseFloat(param));
+                } else {
+                    parameters.push(parseInt(param));
+                }
                 break;
             }
             if (flags[index] == "&" || flags[index] == "-") {
-                parameters.push(parseInt(param));
+                if (isFloat == true) {
+                    parameters.push(parseFloat(param));
+                } else {
+                    parameters.push(parseInt(param));
+                }
                 break;
             }
-            if (flags[index] == ".") {
-                parameters.push(parseInt(param));
+            if (flags[index] == ":") {
+                if (isFloat == true) {
+                    parameters.push(parseFloat(param));
+                } else {
+                    parameters.push(parseInt(param));
+                }
                 param = ""
             } else {
                 param += flags[index]
@@ -389,7 +415,7 @@ function createHeader(tab, text, autoMargin = false, marginLeft="2%") {
     }
     tab.after(h);
 }
-function createFlag(tab, type, flagName, labelName, tooltip="", left="", min="0", max="300", percent=true, fighterFlag=false) {
+function createFlag(tab, type, flagName, labelName, tooltip="", left="", min="0", max="300", percent=true, fighterFlag=false, float=false, initial=0) {
     if (type=="string") {
         newFlag = new TextInputComponent(
             new Flag(flagName, "", type),
@@ -424,7 +450,9 @@ function createFlag(tab, type, flagName, labelName, tooltip="", left="", min="0"
             min,
             max,
             percent,
-            fighterFlag
+            fighterFlag,
+            float,
+            initial
         )
     }
     tab.appendChild(newFlag.element);
@@ -440,6 +468,50 @@ createFlag(mainTab, "bool", "balance", "Balance",
             "Groups attack into separate tiers before shuffling or applying chaos.");
 mainTab.parentElement.appendChild(flagInput);
 createHeader(mainTab, "Flags", false, "10%");
+
+// Mechanics
+mechTab = document.getElementById("mechanics-tab");
+createFlag(mechTab, "int", "knockback", "Knockback X", 
+            "Affects the multiplier for the base amount of knockback for all attacks and throws.", 
+            "4%", "0.1", "2.8", false, false, true, 1.4);
+createFlag(mechTab, "int", "hitstun", "Hitstun X", 
+            "Affects the multiplier for the base amount of hitstun for all attacks and throws.", 
+            "9%", "0.1", "1", false, false, true, 0.4);
+createFlag(mechTab, "int", "hitlag", "Base Hitlag", 
+            "Affects the amount of time characters are frozen when a hit is landed.", 
+            "7%", "0.1", "20", false, false, true, 3);
+createFlag(mechTab, "int", "l_cancel_leniency", "L Cancel Frames", 
+            "Amount of frames before landing to press L/R/Z to L cancel.", 
+            "-7%", "1", "21", false, false, false, 7);
+createFlag(mechTab, "int", "l_cancel_division", "L Cancel Divide", 
+            "Animation speed divison upon successful L Cancel.", 
+            "-5%", "1", "14", false, false, true, 2);
+createFlag(mechTab, "int", "shield_hp", "Shield HP", 
+            "Amount of health a player's shield has.", 
+            "10%", "1", "120", false, false, true, 60);
+createFlag(mechTab, "int", "shield_release", "Shield Release", 
+            "Amount of frames until a player can release shield.", 
+            "0%", "1", "16", false, false, true, 8);
+createFlag(mechTab, "int", "shield_stun", "Shield Stun", 
+            "Amount of base shield stun.", 
+            "5%", "1", "8", false, false, true, 2);
+createFlag(mechTab, "int", "air_dodge_speed", "Air Dodge Speed", 
+            "Units of movement when air dodging.", 
+            "-8%", "1", "9", false, false, true, 3.1);
+createFlag(mechTab, "int", "air_dodge_lag", "Air Dodge Lag", 
+            "Amount of frames of lag after landing from an air dodge or wavedash.", 
+            "0%", "1", "20", false, false, true, 10);
+createFlag(mechTab, "int", "ledge_timeout", "Ledge Time-out", 
+            "How many frames after letting go of the ledge before it can be grabbed again.", 
+            "-4%", "10", "60", false, false, false, 30);
+createFlag(mechTab, "int", "ledge_invincible", "Ledge Invincibility", 
+            "How many frames after letting go of the ledge that you are invincible.", 
+            "-15%", "1", "60", false, false, false, 30);
+createFlag(mechTab, "int", "respawn_timer", "Respawn Timer", 
+            "How many frames after dying before you are resurrected.", 
+            "-5%", "1", "300", false, false, false, 60);
+
+
 // Attacks
 attackTab = document.getElementById("attack-tab");
 hitboxFlags = ["shuffle_attacks", "angle", "damage", "shield_damage", "growth", "base", "wdsk", "size"];
@@ -744,9 +816,8 @@ fighterSelect.onchange = function() {
 };
 turnOffAllFighterComponents();
 turnOnFighterComponent(0);
-flagInput.value = "-balance -shuffle_attacks 50 -hitbox_angle 20 -hitbox_damage 90.120 -hitbox_growth 90.120 -hitbox_base 90.120 -hitbox_wdsk 80.120 -hitbox_size 100.110 -shuffle_throws 50 -throw_angle 20 -throw_damage 90.120 -throw_growth 90.120 -throw_base 90.120 -throw_wdsk 80.120 -element_percent 10 -element_normal -element_fire -element_electric -element_slash -element_coin -element_cape -element_dark -element_flower -attribute_walk 100.120 -attribute_dash 100.120 -attribute_friction 80.100 -attribute_air 100.120 -attribute_jump 90.110 -attribute_gravity 90.120 -attribute_weight 75.150 -attribute_scale 95.110 -attribute_shield_size 90.110 -attribute_landing_lag 70.100 -chaos_percent 50 -chaos_hitbox_damage 5 -chaos_hitbox_angle -chaos_hitbox_growth 5 -chaos_hitbox_base 5 -chaos_hitbox_wdsk 5 -chaos_hitbox_size 5 -chaos_throw_damage 5 -chaos_throw_angle -chaos_throw_growth 5 -chaos_throw_base 5 -chaos_throw_wdsk 5 -chaos_attribute_walk -chaos_attribute_dash -chaos_attribute_air -chaos_attribute_jump -chaos_attribute_gravity -chaos_attribute_friction -chaos_attribute_weight -chaos_attribute_landing_lag -sound"
+flagInput.value = "-balance -knockback 1.4 -shuffle_attacks 50 -hitbox_angle 20 -hitbox_damage 90:120 -hitbox_growth 90:120 -hitbox_base 90:120 -hitbox_wdsk 80:120 -hitbox_size 100:110 -shuffle_throws 50 -throw_angle 20 -throw_damage 90:120 -throw_growth 90:120 -throw_base 90:120 -throw_wdsk 80:120 -element_percent 10 -element_normal -element_fire -element_electric -element_slash -element_coin -element_cape -element_dark -element_flower -attribute_walk 100:120 -attribute_dash 100:120 -attribute_friction 80:100 -attribute_air 100:120 -attribute_jump 90:110 -attribute_gravity 90:120 -attribute_weight 75:150 -attribute_scale 95:110 -attribute_shield_size 90:110 -attribute_landing_lag 70:100 -chaos_percent 50 -chaos_hitbox_damage 5 -chaos_hitbox_angle -chaos_hitbox_growth 5 -chaos_hitbox_base 5 -chaos_hitbox_wdsk 5 -chaos_hitbox_size 5 -chaos_throw_damage 5 -chaos_throw_angle -chaos_throw_growth 5 -chaos_throw_base 5 -chaos_throw_wdsk 5 -chaos_attribute_walk -chaos_attribute_dash -chaos_attribute_air -chaos_attribute_jump -chaos_attribute_gravity -chaos_attribute_friction -chaos_attribute_weight -chaos_attribute_landing_lag -sound"
 updateComponents();
-
 function uploadFlags() { // When Generate button is clicked.
     message = document.getElementById("generating-message");
     message.style.display = "block";

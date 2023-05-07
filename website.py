@@ -27,11 +27,16 @@ def generate_new():
             seed = ''.join(random.choices(string.digits + string.ascii_lowercase, k=8))
             flags = "-seed " + seed + flags
         code = create_seed_code(flags)
-        log = randomizer.start(["base.iso", "", flags], code)
-        if log == -1: # No return value/randomizer did not run (seed already exists)
+        logs = randomizer.start(["base.iso", "", flags],code)
+        if logs == -1: # No return value/randomizer did not run (seed already exists)
             return redirect(url_for('seed', seed=code))
+        info_dict = {
+            "seed": util.get_flag_params(flags,"-seed",True),
+            "log": logs[0],
+            "credits": logs[1]
+            }
         with open("json/" + code + ".json", "w") as outfile:
-            json.dump(log, outfile)
+            json.dump(info_dict, outfile)
         return redirect(url_for('seed', seed=code))
     return render_template("index.html")
 
@@ -43,9 +48,9 @@ def seed(seed):
     except:
         return "<h1>No seed found!</h1>"
     data = base64.b64encode(xdelta).decode('ascii')
-    log_json = open("json/" + seed + ".json")
-    log = json.load(log_json)
-    return render_template("seed.html", content=[data,log])
+    seed_info_json = open("json/" + seed + ".json")
+    seed_info = json.load(seed_info_json)
+    return render_template("seed.html", content=[data,seed_info['seed'],seed_info['log'],seed_info['credits']])
 
 @app.route("/seed/<code>")
 def old(code):
@@ -56,4 +61,4 @@ def send_json(code):
     return send_file(code+".json", code+".json")
 
 if __name__ == "__main__":
-    app.run(debug="True")
+    app.run()

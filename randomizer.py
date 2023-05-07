@@ -1,9 +1,9 @@
-import melee, sys, random, util, string, flag_groups, os.path, json, credit
+import melee, sys, random, util, string, flag_groups, os.path
 
 from util import percent_chance, get_flag_params
 
 from mods import (chaos, element, log, music, sfx, shuffle, deviate, fighter_adjust,
-                  secret, gecko, fighter_common)
+                  fighter_common, secret, gecko)
 
 def start(params = None, code=""): # Use array of parameters for module usage.
     if len(code) > 0:
@@ -51,20 +51,21 @@ def start(params = None, code=""): # Use array of parameters for module usage.
     if "-chaos_percent" in flags:
         percent = get_flag_params(flags, "-chaos_percent")[0]
         chaos.start_mod(flags, percent)
-    fighter_common.start_mod()
     shuffle.start_mod(flags)
     deviate.start_mod(flags)
     fighter_adjust.start_mod(flags)
     element.start_mod(flags)
     secret.start_mod(flags)
-    seed_log = log.start_mod(pretty_flags)
-    seed_log["seed"] = seed
-    seed_log["credits"] = credit.create_credits()
-    gecko.start_mod(flags)
+    fighter_common.start_mod(flags)
+    code_credits = gecko.start_mod(flags)
+
+    txt_log = log.start_mod_old(seed, pretty_flags)
+    log.start_mod(pretty_flags, code)
+    credit = "SSBM Randomizer created by drewlith."    # Enter seed-specific credits here.
+    credit += code_credits
     melee.end(iso_path, output_path, code)
-    outfile = open("log.json", "w")
-    json.dump(seed_log, outfile, indent=8)
-    return seed_log
+
+    return (txt_log, credit)
 
 if __name__ == '__main__':
     start()

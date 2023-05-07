@@ -102,7 +102,7 @@ def get_flag_params(flags, name, is_string=False):
             if flags[index] == "&" or flags[index] == "-": # Flag Delimiters
                 parameters.append(int(param))
                 break
-            if flags[index] == ".": # Parameter Delimiter
+            if flags[index] == ":": # Parameter Delimiter
                 parameters.append(int(param))
                 param = ""
             else:
@@ -118,6 +118,27 @@ def get_flag_params(flags, name, is_string=False):
             index += 1
         string = string.replace(" ", "")
         return string
+
+def get_flag_float(flags, name):
+    name = name.replace(" ", "")
+    index = flags.find(name)
+    index += len(name)
+    parameters = []
+    param = ""
+    while True:
+        if index > len(flags)-1:
+            parameters.append(float(param))
+            break
+        if flags[index] == "&" or flags[index] == "-": # Flag Delimiters
+            parameters.append(float(param))
+            break
+        if flags[index] == ":": # Parameter Delimiter
+            parameters.append(float(param))
+            param = ""
+        else:
+            param += flags[index]
+        index += 1
+    return parameters
 
 def get_word_string(word):
     string = ""
