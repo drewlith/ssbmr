@@ -414,6 +414,7 @@ function createHeader(tab, text, autoMargin = false, marginLeft="2%") {
         h.style.marginLeft = marginLeft;
     }
     tab.after(h);
+    return h;
 }
 function createFlag(tab, type, flagName, labelName, tooltip="", left="", min="0", max="300", percent=true, fighterFlag=false, float=false, initial=0) {
     if (type=="string") {
@@ -466,8 +467,67 @@ createFlag(mainTab, "string", "seed", "Seed",
             "5%");
 createFlag(mainTab, "bool", "balance", "Balance", 
             "Groups attack into separate tiers before shuffling or applying chaos.");
-mainTab.parentElement.appendChild(flagInput);
-createHeader(mainTab, "Flags", false, "10%");
+
+// Flagset Stuff
+flagHeader = createHeader(mainTab, "Flags", false, "10%");
+flagHeader.after(flagInput);
+
+// Preset Stuff
+let presets = document.createElement("select");
+let presetLabel = document.createElement("label");
+presetLabel.htmlFor = presets;
+presetLabel.style.display = "flex";
+presetLabel.style.flexWrap = "wrap";
+presetLabel.style.maxWidth = "80%";
+presetLabel.style.height = "8%";
+presetLabel.style.margin = "auto";
+presetLabel.style.background = "00000000";
+presets.style.display = "flex";
+presets.style.flexWrap = "wrap";
+presets.style.marginLeft = "10%";
+presets.style.marginTop = "5px";
+presets.style.marginBottom = "5px";
+
+presets.oninput = function(e) {
+    presetLabel.innerHTML = presets.options[presets.options.selectedIndex].dataset.description;
+    flagInput.value = presets.options[presets.options.selectedIndex].dataset.flags;
+    updateComponents();
+}
+
+function createOption(name, description, flags) {
+    let option = document.createElement("option");
+    option.innerHTML = name;
+    option.value = name;
+    option.dataset.description = description;
+    option.dataset.flags = flags;
+    presets.options.add(option);
+}
+standardFlags = "-balance -shuffle_attacks 50 -hitbox_angle 20 -hitbox_damage 90:120 -hitbox_growth 90:120 -hitbox_base 90:120 -hitbox_wdsk 80:120 -hitbox_size 100:110 -shuffle_throws 50 -throw_angle 20 -throw_damage 90:120 -throw_growth 90:120 -throw_base 90:120 -throw_wdsk 80:120 -element_percent 10 -element_normal -element_fire -element_electric -element_slash -element_coin -element_cape -element_dark -element_flower -attribute_walk 100:120 -attribute_dash 100:120 -attribute_friction 80:100 -attribute_air 100:120 -attribute_jump 90:110 -attribute_gravity 90:120 -attribute_weight 75:150 -attribute_scale 95:110 -attribute_shield_size 90:110 -attribute_landing_lag 70:100 -chaos_percent 50 -chaos_hitbox_damage 5 -chaos_hitbox_angle -chaos_hitbox_growth 5 -chaos_hitbox_base 5 -chaos_hitbox_wdsk 5 -chaos_hitbox_size 5 -chaos_throw_damage 5 -chaos_throw_angle -chaos_throw_growth 5 -chaos_throw_base 5 -chaos_throw_wdsk 5 -chaos_attribute_walk -chaos_attribute_dash -chaos_attribute_air -chaos_attribute_jump -chaos_attribute_gravity -chaos_attribute_friction -chaos_attribute_weight -chaos_attribute_landing_lag -sound";
+tournamentFlags = "-balance -ledge_invincible 20 -shuffle_attacks 25 -hitbox_angle 15 -hitbox_damage 90:120 -hitbox_growth 90:120 -hitbox_base 90:120 -hitbox_wdsk 80:100 -throw_angle 15 -throw_damage 90:120 -throw_growth 90:120 -throw_base 90:120 -throw_wdsk 80:100 -element_percent 10 -element_normal -element_fire -element_electric -element_slash -element_coin -element_dark -attribute_walk 100:120 -attribute_dash 100:120 -attribute_friction 85:100 -attribute_air 100:110 -attribute_jump 90:110 -attribute_gravity 95:110 -attribute_weight 90:120 -attribute_shield_size 100:110 -attribute_landing_lag 70:100";
+shuffleFlags = "-balance -shuffle_attacks 100 -shuffle_throws 100";
+chaosFlags = "-balance -element_percent 100 -element_normal -element_fire -element_electric -element_slash -element_coin -element_dark -element_flower -chaos_percent 100 -chaos_hitbox_damage 5 -chaos_hitbox_angle -chaos_hitbox_growth 5 -chaos_hitbox_base 5 -chaos_hitbox_wdsk 5 -chaos_hitbox_size 5 -chaos_throw_damage 5 -chaos_throw_angle -chaos_throw_growth 5 -chaos_throw_base 5 -chaos_throw_wdsk 5";
+frenchFlags = "-balance -hitbox_angle 15 -hitbox_damage 90:115 -hitbox_growth 90:115 -hitbox_base 90:115 -hitbox_wdsk 90:115 -hitbox_size 90:115 -throw_angle 15 -throw_damage 90:115 -throw_growth 90:115 -throw_base 90:115 -throw_wdsk 90:115 -attribute_walk 90:115 -attribute_dash 90:115 -attribute_friction 90:115 -attribute_air 90:115 -attribute_jump 90:115 -attribute_gravity 90:115 -attribute_weight 90:115 -attribute_scale 90:115 -attribute_shield_size 90:115 -attribute_landing_lag 90:115";
+nsixfourFlags = "-balance -hitstun 0.6 -l_cancel_division 8 -shield_stun 4 -hitbox_angle 10 -hitbox_damage 90:115 -hitbox_shield_damage 100:120 -hitbox_growth 50:85 -hitbox_base 100:120 -hitbox_wdsk 80:100 -hitbox_size 100:120 -throw_angle 15 -throw_damage 90:115 -throw_growth 60:85 -throw_base 100:130 -throw_wdsk 80:100 -element_percent 10 -element_normal -element_fire -element_electric -element_slash -element_coin -element_dark -attribute_weight 100:125 -attribute_shield_size 100:120 -attribute_landing_lag 70:100 ";
+lightningFlags = "-balance -l_cancel_division 4 -shield_release 2 -air_dodge_speed 5 -air_dodge_lag 2 -ledge_timeout 15 -ledge_invincible 15 -respawn_timer 30 -shuffle_attacks 50 -hitbox_angle 20 -hitbox_damage 90:120 -hitbox_growth 90:120 -hitbox_base 90:120 -hitbox_wdsk 80:120 -hitbox_size 100:110 -shuffle_throws 50 -throw_angle 20 -throw_damage 90:120 -throw_growth 90:120 -throw_base 90:120 -throw_wdsk 80:120 -element_percent 10 -element_normal -element_fire -element_electric -element_slash -element_coin -element_cape -element_dark -element_flower -attribute_walk 100:150 -attribute_dash 100:150 -attribute_friction 60:100 -attribute_air 100:140 -attribute_jump 100:110 -attribute_gravity 100:150 -attribute_weight 75:120 -attribute_scale 85:105 -attribute_shield_size 90:110 -attribute_landing_lag 50:100 -chaos_percent 50 -chaos_hitbox_damage 5 -chaos_hitbox_angle -chaos_hitbox_growth 5 -chaos_hitbox_base 5 -chaos_hitbox_wdsk 5 -chaos_hitbox_size 5 -chaos_throw_damage 5 -chaos_throw_angle -chaos_throw_growth 5 -chaos_throw_base 5 -chaos_throw_wdsk 5 -fastfall_whenever";
+trueShuffleFlags = "-shuffle_attacks 100 -shuffle_throws 100 -shuffle_attributes 100";
+trueChaosFlags = "-element_percent 100 -element_normal -element_fire -element_electric -element_slash -element_coin -element_ice -element_sleep -element_ground -element_cape -element_disable -element_dark -element_screw_attack -element_flower -chaos_percent 100 -chaos_hitbox_damage 10 -chaos_hitbox_angle -chaos_hitbox_growth 10 -chaos_hitbox_base 10 -chaos_hitbox_wdsk 10 -chaos_hitbox_size 10 -chaos_throw_damage 10 -chaos_throw_angle -chaos_throw_growth 10 -chaos_throw_base 10 -chaos_throw_wdsk 10 -chaos_attribute_walk -chaos_attribute_dash -chaos_attribute_air -chaos_attribute_jump -chaos_attribute_gravity -chaos_attribute_friction -chaos_attribute_weight -chaos_attribute_landing_lag -sound";
+birthdayBoyFlags = "-balance -hitbox_angle 60 -hitbox_damage 60:90 -hitbox_shield_damage 100:200 -hitbox_growth 100:115 -hitbox_base 90:110 -hitbox_wdsk 60:75 -hitbox_size 90:110 -shuffle_throws 25 -throw_angle 45 -throw_damage 40:80 -throw_growth 100:125 -throw_base 100:115 -throw_wdsk 60:80 -element_percent 25 -element_fire -element_electric -element_slash -element_flower -attribute_walk 100:200 -attribute_dash 90:120 -attribute_friction 50:110 -attribute_air 110:175 -attribute_gravity 90:110 -attribute_weight 90:110 -attribute_scale 80:115 -attribute_shield_size 75:125 -attribute_landing_lag 50:75 -chaos_percent 10 -chaos_hitbox_angle -chaos_hitbox_base 3 -chaos_hitbox_size 3 -chaos_throw_angle -chaos_throw_base 3 -chaos_attribute_walk -chaos_attribute_friction -chaos_attribute_weight";
+cgFlags = "-balance -shuffle_attacks 25 -hitbox_angle 45 -hitbox_damage 90:110 -hitbox_growth 90:110 -hitbox_base 90:110 -hitbox_wdsk 90:110 -hitbox_size 95:110 -throw_angle 30 -throw_damage 90:110 -throw_growth 90:110 -throw_base 90:110 -throw_wdsk 90:110 -element_percent 10 -element_normal -element_fire -element_electric -element_slash -element_cape -element_dark -element_flower -attribute_walk 100:125 -attribute_dash 100:110 -attribute_friction 90:100 -attribute_air 100:110 -attribute_gravity 95:110 -attribute_weight 90:110 -attribute_scale 90:110 -attribute_shield_size 90:110 -attribute_landing_lag 75:100 -chaos_percent 10 -chaos_hitbox_damage 3 -chaos_hitbox_angle -chaos_hitbox_base 5 -chaos_throw_damage 3 -chaos_throw_angle -chaos_throw_base 5 -chaos_throw_wdsk 5 -chaos_attribute_walk -chaos_attribute_dash -chaos_attribute_weight";
+createOption("Standard","A variety of flags providing a well-rounded experience.", standardFlags);
+createOption("Tournament","Flags that are designed around competitive play. For tournaments or more serious matches.", tournamentFlags);
+createOption("Shuffle", "Attack properties are all shuffled! Jigglypuff's rest could be Ganondorf's Warlock Punch, for example.", shuffleFlags);
+createOption("Chaos", "Attacks and attributes are randomized disregarding the original properties! Things could get a bit wild, but should still be somewhat balanced.", chaosFlags);
+createOption("French Vanilla", "Attacks and attributes are randomized to be close to their original values. Good for gameplay similar to the original Melee, but with slight twists.", frenchFlags);
+createOption("Smash N64", "Light randomization, but certain flags will try to make the game feel closer to the original Super Smash Bros.!", nsixfourFlags);
+createOption("Lightning Melee", "Everything is randomized, but the flags chosen will favor increasing speed!", lightningFlags);
+createOption("Birthday Boy", "The flags used during the 'BirthdayBoy' Seed of the Week!", birthdayBoyFlags);
+createOption("CGAGI 2023", "The flags used during the Conduit Gaming Annual Gold Invitational 2023 tournament!", cgFlags);
+createOption("True Shuffle", "Shuffle, but without balancing, so a jab could be an instant KO! Character attributes are also shuffled, so Marth could move like Fox for example!", trueShuffleFlags);
+createOption("True Chaos", "The randomizer will make no attempts to balance anything! For rowdy late night sessions.", trueChaosFlags);
+presetLabel.innerHTML = presets.options[presets.options.selectedIndex].dataset.description;
+mainTab.after(presetLabel);
+presetHeader = createHeader(mainTab, "Preset", false, "10%");
+presetHeader.after(presets);
 
 // Mechanics
 mechTab = document.getElementById("mechanics-tab");
