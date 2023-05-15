@@ -1,3 +1,22 @@
 
 *.iso
 xdelta.exe
+*.pyc
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+mods/
+
+# Environmentsgi
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+
+
