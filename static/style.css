@@ -211,7 +211,7 @@ textarea {
   margin-bottom: 8px;
   border-radius: .8rem;
 }
-.component label {
+/* .component label {
   position: absolute;
   background: none;
   text-align: center;
@@ -219,6 +219,16 @@ textarea {
   font-size: 32px;
   left: 12%;
   top: 12%;
+} */
+
+.component p {
+  position: absolute;
+  background: none;
+  text-align: center;
+  height: 80px;
+  font-size: 32px;
+  /* left: 12%;
+  top: 12%; */
 }
 .component input[type="number"] {
   position: absolute;
@@ -286,6 +296,23 @@ textarea {
   border: var(--arrow-size) solid transparent;
   border-top-color: var(--tooltip-color);
 }
+
+.innerDiv {
+  display: block;
+  float: right;
+  width: 200;
+  height: 80;
+  /* border:1px solid white; */
+}
+
+.innerDivText {
+  display: block;
+  float: left;
+  width: 200px;
+  height: 80;
+  /* border:1px solid white; */
+}
+
 /*
 .component:hover::before {
   content: attr(data-tooltip);
