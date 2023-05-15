@@ -1,1 +1,0 @@
-randomizer.py "C:\Users\Drew\Desktop\SSBM\ssbmv1-02.iso" "C:\Users\Drew\Desktop\SSBM\Randomizer Seeds" "-seed test -balance"
