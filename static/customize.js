@@ -908,3 +908,48 @@ function uploadFlags() { // When Generate button is clicked.
     flagElement = document.getElementById("flags");
     flagElement.value = flagInput.value;
 }
+
+// All this was mostly made by ChatGPT
+const shrinks = document.querySelectorAll('.innerDivText');
+
+function shrinkText() {
+  shrinks.forEach((shrink) => {
+    const text = shrink.querySelector('p');
+    // const maxWidth = shrink.offsetWidth;
+    const maxWidth = 150; // Hard coded max width since I couldn't get it to pull dynamically
+    let currentFontSize = parseInt(getComputedStyle(text).getPropertyValue('font-size'));
+    // create a temporary element to calculate the text width without truncating it
+    const temp = document.createElement('div');
+    temp.style.fontSize = `${currentFontSize}px`;
+    temp.style.visibility = 'hidden';
+    temp.style.position = 'absolute';
+    temp.style.top = '0';
+    temp.style.left = '0';
+    temp.textContent = text.textContent;
+    document.body.appendChild(temp);
+    let textWidth = temp.offsetWidth;
+    document.body.removeChild(temp);
+    while (textWidth > maxWidth && currentFontSize > 8) {
+      currentFontSize -= 2; // decrease the font size by 2px
+      text.style.fontSize = `${currentFontSize}px`;
+      // create a new temporary element with the new font size to recalculate the text width
+      const newTemp = document.createElement('div');
+      newTemp.style.fontSize = `${currentFontSize}px`;
+      newTemp.style.visibility = 'hidden';
+      newTemp.style.position = 'absolute';
+      newTemp.style.top = '0';
+      newTemp.style.left = '0';
+      newTemp.textContent = text.textContent;
+      document.body.appendChild(newTemp);
+      const newWidth = newTemp.offsetWidth;
+      document.body.removeChild(newTemp);
+
+      if (newWidth <= maxWidth) {
+        textWidth = newWidth;
+      }
+    }
+  });
+}
+
+window.addEventListener('load', shrinkText);
+window.addEventListener('resize', shrinkText);
