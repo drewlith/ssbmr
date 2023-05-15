@@ -855,19 +855,43 @@ function turnOffAllFighterComponents() {
 // Gecko
 geckoTab = document.getElementById("gecko-tab");
 createFlag(geckoTab, "bool", "all_characters_float", "Everyone Floats", 
-        "Credit: Uncle Punch.");
+        "Credit: UnclePunch. Same mechanics as Peach.");
 createFlag(geckoTab, "bool", "fastfall_whenever", "Fastfall Whenever", 
-        "Credit: Uncle Punch.");
+        "Credit: UnclePunch.");
 createFlag(geckoTab, "bool", "paper_mode", "Paper Mode", 
-        "Credit: DRGN.");
+        "Credit: DRGN. Characters will be 2D like Game & Watch. (No Z-Axis)");
+createFlag(geckoTab, "bool", "airdodge_catch", "Airdodge Catch", 
+        "Credit: UnclePunch. Air dodge into an item in mid air to catch it.");
+createFlag(geckoTab, "bool", "air_grabs", "Air Grabs", 
+        "Credit: UnclePunch. Enables grabbing in the air.");
+createFlag(geckoTab, "bool", "auto_lcancel", "Auto L-Cancel", 
+        "Credit: Dan Salvato. No need to L Cancel.");
+createFlag(geckoTab, "bool", "b_reverse", "B Reverse", 
+        "Credit: UnclePunch. Adds a Brawl style B Reverse.");
+createFlag(geckoTab, "bool", "flame_cancel", "Flame Cancel", 
+        "Credit: Achilles. Gives Bowser back his flame cancel from v1.00.");
+createFlag(geckoTab, "bool", "brawl_airdodge", "Brawl Airdodge", 
+        "Credit: UnclePunch. Use L to Brawl airdodge, or R to Melee airdodge.");
+createFlag(geckoTab, "bool", "all_walljump", "All Walljump", 
+        "Credit: Achilles, Geuse. Allows any Character to wall jump.");
+createFlag(geckoTab, "bool", "meteors_spike", "Meteors Spike", 
+        "Credit: flieskiller, Geuse. Meteor cancel is disabled.");
+createFlag(geckoTab, "bool", "no_shield", "No Shield", 
+        "Credit: Achilles1515. Shielding is disabled.");
+createFlag(geckoTab, "bool", "perfect_shield", "Perfect Shield", 
+        "Credit: UnclePunch. Adds Ultimate style Perfect Shield.");
+createFlag(geckoTab, "bool", "reverse_aerial_rush", "Rev. Aerial Rush", 
+        "Credit: MagicScrumpy. Adds a brawl style Reverse Aerial Rush mechanic.");
+createFlag(geckoTab, "bool", "shadow_mode", "Shadow Mode", 
+        "All characters become blacker than a moonless night.");
 // Secret
 secretTab = document.getElementById("secret-tab");
 createFlag(secretTab, "bool", "sound", "SFX", 
-        "It's a secret to everyone.");
+        "Characters will make different sounds for each action, with balancing.");
 createFlag(secretTab, "bool", "up_launchers", "Launchers", 
-        "It's a secret to everyone.");
+        "Up tilts and Up smashes become universal combo starters, besides Ganondorfs.");
 createFlag(secretTab, "bool", "super_punch", "Super Punch", 
-        "It's a secret to everyone.");
+        "DK charges his punch very quickly and gets extra momentum on the ground.");
 // Selector Event
 fighterSelect = document.getElementById("fighter-select");
 fighterSelect.onchange = function() {

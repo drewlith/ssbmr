@@ -5,25 +5,23 @@ import melee
 from util import *
 from asm import *
 
-free_space = [( 0x2C8, 0x398 ), ( 0x39C, 0x498 ), ( 0x4E4, 0x598 ), ( 0x5CC, 0x698 ),
-              ( 0x6CC, 0x798 ), ( 0x8CC, 0x998 ), ( 0x99C, 0xA98 ), ( 0xACC, 0xB98 ),
-              ( 0xBCC, 0xE98 ), ( 0xECC, 0xF98 ), ( 0xFCC, 0x1098 ), (0x10CC, 0x1198 ),
-              ( 0x1220, 0x1298 ), ( 0x1308, 0x1398 ), ( 0x1408, 0x1498 ), ( 0x1508, 0x1598 ),
-	      ( 0x15F0, 0x1698 ), ( 0x16CC, 0x1898 ), ( 0x18CC, 0x1998 ), ( 0x19CC, 0x1E98 ),
-	      ( 0x1ECC, 0x1F98 ), ( 0x1FCC, 0x2098 ), ( 0x20CC, 0x2198 )] # Thanks DRGN!
-free_space.append((0x18DCC0, 0x18E8C0)) # Tournament mode, size 0xC00
-
 class DOL(): 
     def __init__(self, iso): # iso is an opened .iso melee v1.02 file
         iso.seek(0x1E800)
         self.data = bytearray()
         self.data.extend(iso.read(0x438600))
+        self.free_space = [( 0x2C8, 0x398 ), ( 0x39C, 0x498 ), ( 0x4E4, 0x598 ), ( 0x5CC, 0x698 ),
+              ( 0x6CC, 0x798 ), ( 0x8CC, 0x998 ), ( 0x99C, 0xA98 ), ( 0xACC, 0xB98 ),
+              ( 0xBCC, 0xE98 ), ( 0xECC, 0xF98 ), ( 0xFCC, 0x1098 ), (0x10CC, 0x1198 ),
+              ( 0x1220, 0x1298 ), ( 0x1308, 0x1398 ), ( 0x1408, 0x1498 ), ( 0x1508, 0x1598 ),
+	      ( 0x15F0, 0x1698 ), ( 0x16CC, 0x1898 ), ( 0x18CC, 0x1998 ), ( 0x19CC, 0x1E98 ),
+	      ( 0x1ECC, 0x1F98 ), ( 0x1FCC, 0x2098 ), ( 0x20CC, 0x2198 )] # Thanks DRGN!
+        self.free_space.append((0x18DCC0, 0x18E8C0)) # Tournament mode, size 0xC00
 
     def clear_dol(self):
         self.data = bytearray()
 
 def activate_gecko_code(code_path):
-    print(code_path)
     def divide_into_words(data):
         words = []
         i = 0
@@ -52,7 +50,7 @@ def activate_gecko_code(code_path):
         return address
 
     def to_ram_offset(address): # DOL > RAM
-        if address <= 0x100: # Text 0
+        if address <= 0x2198: # Text 0
             address = address + 0x3000
         elif address <= 0x3B3E20: # Text 1
             address = address + 0x3420
@@ -84,11 +82,14 @@ def activate_gecko_code(code_path):
     code = code.to_bytes(number_of_bytes, 'big')
     code = bytearray(code)
     code = divide_into_words(code)
-    total_instruction_count = 0
+    last_instruction_count = 0
     inject_offset = find_free_space(number_of_bytes)[0]
     if inject_offset == 0:
         return
-    for i in range(len(code)):
+    i = 0
+    while i < len(code)-1:
+        if code[i][0] != 0x04 and code[i][0] != 0xC2:
+            i += 1
         if code[i][0] == 0x04: # 32 Bits Write
             address = code[i][1:]
             address = get_value(address, 0, 24)
@@ -101,8 +102,7 @@ def activate_gecko_code(code_path):
             i += 1
         if code[i][0] == 0xC2: # Insert ASM
             # Increase offset by number of instructions, in case of multiple C2 instructions in the same code.
-            inject_offset = inject_offset + total_instruction_count * 4
-
+            inject_offset += last_instruction_count * 4
             # Add branch to ASM
             address = code[i][1:]
             address = get_value(address, 0, 24)
@@ -122,16 +122,17 @@ def activate_gecko_code(code_path):
 
             # Add branch back to where we started to end of instructions
             branch_address = determine_branch_address(to_ram_offset(inject_offset+len(instructions)*4), address)
-            instructions.append(B(branch_address+1))
-    
+            br_instr = B(branch_address+1)
+            instructions.append(br_instr)
             # Write instructions to dol
             for j in range(len(instructions)):
                 offset = inject_offset + j*4
                 write_data(dol, offset, instructions[j])
             i += k
-            total_instruction_count += len(instructions)
+            last_instruction_count = len(instructions)
 
 def find_free_space(space_needed):
+    free_space = melee.dol_file.free_space
     for i in range(len(free_space)):
         size = free_space[i][1] - free_space[i][0]
         if size >= space_needed:
@@ -140,9 +141,3 @@ def find_free_space(space_needed):
     print("Not enough free space! Abort")
     return (0,0)
 
-
-    
-    
-    
-
-    
