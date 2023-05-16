@@ -1,380 +1,376 @@
-from util import *
+import iso, fst
+from util import to_word, get_value, set_value
 
-class DAT(): # Class for handling melee's DAT file format
-    def __init__(self, fst_file):
-        self.fst_file = fst_file
-        self.data = fst_file.file_data
-        self.header = read_data(self.data, 0, 0x20) # Header is 32 bytes. Then Data Block starts
-        self.data_block = read_data(self.data, 0x20, self.data_block_size()) # Grabs the entire data block and puts it in to self.data
-        self.relocation_offset = 0x20 + self.data_block_size()
-        self.root_offset_a = self.relocation_offset + (self.relocation_table_count() * 4)
-        self.root_offset_b = self.root_offset_a + (self.root_count()[0] * 8)
-        self.string_table_offset = self.root_offset_b + (self.root_count()[1] * 8)
-        self.relocation_table = RelocationTable(self)
-        self.strings = self.get_strings()
-        self.root_nodes = RootNodes(self)
-        self.fighter_data = None
-        self.fighter_name = None
-        for node in self.root_nodes.nodes:
-            if b'ftData' in node.name:
-                self.fighter_data = FtData(self, node)
-                self.fighter_name = node.name
-        
-    def file_size(self):
-        return get_word(self.header, 7)
+file_data = None
 
-    def data_block_size(self):
-        return get_word(self.header, 6)
+# Basic Stuff
+def header():
+    return file_data[0x0:0x20]
 
-    def relocation_table_count(self):
-        return get_word(self.header, 5)
+def data_block():
+    return file_data[0x20:data_block_size()]
 
-    def root_count(self): # Returns Tuple
-        count_a = get_word(self.header, 4)
-        count_b = get_word(self.header, 3)
-        return [count_a, count_b]
+def data_block_size():
+    return to_word(header(), 6)
 
-    def unknowns(self):
-        unknown_a = get_word(self.header, 2)
-        unknown_b = get_word(self.header, 1)
-        unknown_c = get_word(self.header, 0)
-        return [unknown_a, unknown_b, unknown_c]
+def file_size():
+    return to_word(header(), 7)
 
-    def get_string(self, offset):
-        i = 0
-        name = bytearray()
-        while True:
-            if self.data_block[offset+i] != 0:
-                name.append(self.data_block[offset+i])
-                i += 1
-            else:
-                return name
+# Relocation Table Stuff
+def relocation_count():
+    return to_word(header(), 5)
 
-    def get_strings(self):
-        string_table_data = self.data[self.string_table_offset:]
-        string_data = []
-        name = bytearray()
-        i = 0
-        offset = 0
-        while i < len(string_table_data):
-            if string_table_data[i] != 0:
-                name.append(string_table_data[i])
-            else:
-                string_data.append((name, offset))
-                offset += i - offset + 1
-                name = bytearray()
+def relocation_table_offset():
+    return 0x20 + data_block_size()
+
+def get_relocation_table_offsets():
+    offsets = []
+    table_offset = relocation_table_offset()
+    table = file_data[table_offset:table_offset + relocation_count()*4]
+    table_word_length = len(table)//4 - 1
+    for i in range(relocation_count()):
+        offsets.append(to_word(table, table_word_length - i))
+    return offsets
+
+def get_relocation_table_data_offsets():
+    table_offsets = get_relocation_table_offsets()
+    offsets = []
+    data = data_block()
+    for i in range(len(table_offsets)):
+        offset = table_offsets[i]
+        offsets.append(data[offset:offset + 4])
+    return offsets
+
+# Root Node, Node, and string stuff
+def get_string(offset):
+    name = bytearray()
+    i = 0
+    while True:
+        if data_block()[offset+i] != 0:
+            name.append(data_block()[offset+i])
             i += 1
-        
-        return string_data
+        else:
+            return name
+    print("Error.. No string found at ", offset)
 
-    def find_string_by_offset(self, offset):
-        for data in self.strings:
-            if data[1] == offset:
-                return data[0]
-        print("No name found at offset ", offset)
-        return(b'No Name!')
+def get_strings():
+    string_data = file_data[string_table_offset():]
+    strings = []
+    name = bytearray()
+    i = 0
+    offset = 0
+    while i < len(string_data):
+        if string_data[i] != 0:
+            name.append(string_data[i])
+        else:
+            strings.append((name,offset))
+            offset += i - offset + 1
+            name = bytearray()
+        i += 1
+    return strings
 
-    def get_subactions(self):
-        subactions = []
-        for data in self.fighter_data:
-            for action in data.subactions:
-                subactions.append(action)
-        return subactions
+def find_string(strings, offset):
+    for string in strings:
+        if string[1] == offset:
+            return string[0]
+    print("No name found at offset ", offset)
+    return(b'No Name!')
 
-    def write_to_fst(self):
-        write_data(self.fst_file.file_data, 0, self.header)
-        write_data(self.fst_file.file_data, 0x20, self.data_block)
-         
-    def display_info(self):
-        print("File Size: ", hex(self.file_size()))
-        print("Data Block Size: ", hex(self.data_block_size()))
-        print("Relocation Table Count: ", hex(self.relocation_table_count()))
-        print("Root Count 1: ", hex(self.root_count()[0]))
-        print("Root Count 2: ", hex(self.root_count()[1]))
-        print("Relocation Offset: ", hex(self.relocation_offset))
-        print("Root 1 Offset: ", hex(self.root_offset_a))
-        print("Root 2 Offset: ", hex(self.root_offset_b))
-        print("String Table Offset: ", hex(self.string_table_offset))
-        print("Unknown 1: ", hex(self.unknowns()[0]))
-        print("Unknown 2: ", hex(self.unknowns()[1]))
-        print("Unknown 3: ", hex(self.unknowns()[2]))
+def root_counts():
+    a = to_word(header(), 3)
+    b = to_word(header(), 4)
+    return (a,b)
+
+def root_offsets():
+    a = relocation_table_offset() + relocation_count() * 4
+    b = a + root_counts()[0] * 8
+    return (a,b)
+
+def get_nodes():
+    nodes = []
+    for i in range(root_counts()[0]):
+        offset = root_offsets()[0] + (i*8)
+        data = file_data[offset:offset + 8]
+        data_offset = data[0:4]
+        string_offset = data[4:8]
+        nodes.append(Node(data_offset, string_offset))
+    for i in range(root_counts()[1]):
+        offset = root_offsets()[1] + (i*8)
+        data = file_data[offset:offset + 8]
+        data_offset = data[0:4]
+        string_offset = data[4:8]
+        nodes.append(Node(data_offset, string_offset))
+    return nodes
+
+def string_table_offset():
+    return root_offsets()[1] + root_counts()[1] * 8
 
 class Node():
-    def __init__(self, dat, data_offset, string_offset):
+    def __init__(self, data_offset, string_offset):
+        strings = get_strings()
         self.data_offset = data_offset
         self.string_offset = string_offset
-        self.name = dat.find_string_by_offset(get_word(self.string_offset, 0))
+        self.name = find_string(strings, to_word(string_offset))
 
-class RootNodes():
-    def __init__(self, dat):
-        self.nodes = []
-        for i in range(dat.root_count()[0]):
-            data = read_data(dat.data, dat.root_offset_a + (i*8), 8)
-            data_offset = read_data(data, 0, 4)
-            string_offset = read_data(data, 4, 4)
-            node = Node(dat, data_offset, string_offset)
-            self.nodes.append(node)
-        for i in range(dat.root_count()[1]):
-            data = read_data(dat.data, dat.root_offset_b + (i*8), 8)
-            data_offset = read_data(data, 0, 4)
-            string_offset = read_data(data, 4, 4)
-            node = Node(dat, data_offset, string_offset)
-            self.nodes.append(node)
+# Fighter DAT Specific stuff
+def ft_node():
+    for node in get_nodes():
+        if b'ftData' in node.name:
+            return node
+    print("No ftData node was found.")
 
-class RelocationTable():
-    def __init__(self, dat):
-        self.dat = dat
-        self.relocation_offsets = self.get_relocation_offsets()
-        self.data_offsets = self.get_data_offsets(self.relocation_offsets)
+def ft_start_offset():
+    return to_word(ft_node().data_offset)
 
-    def get_relocation_offsets(self): 
-        offsets = []
-        relocation_table = read_data(self.dat.data, self.dat.relocation_offset, self.dat.relocation_table_count()*4)
-        word_length = len(relocation_table)//4 -1
-        for i in range(self.dat.relocation_table_count()):
-            offsets.append(get_word(relocation_table, word_length - i))
-        return offsets
+def ft_header():
+    offset = ft_start_offset()
+    return data_block()[offset:offset + 24]
 
-    def get_data_offsets(self, relocation_table):
-        offsets = []
-        for i in range(len(relocation_table)):
-            offset = read_data(self.dat.data_block, relocation_table[i], 4)
-            offsets.append(offset)
-        return offsets
+def ft_attributes_offset():
+    return to_word(ft_header(), 5)
 
-# Source: https://github.com/pfirsich/meleeDat2Json/blob/master/meleedat2json/meleedat2json.py
-# Really, I should redo the whole thing to be as neat as the code at the link...
-class FtData():
-    def __init__(self, dat, node):
-        start_offset = get_word(node.data_offset, 0)
-        header = read_data(dat.data_block, start_offset, 24)
-        self.attributes_offset = get_word(header, 5)
-        self.attributes_end = get_word(header, 4)
-        self.unknown_a = get_word(header, 3)
-        self.subactions_offset = get_word(header, 2)
-        self.unknown_b = get_word(header, 1)
-        self.subactions_end = get_word(header, 0)
+def ft_attributes_end():
+    return to_word(ft_header(), 4)
 
-        self.attribute_data = dat.data_block[self.attributes_offset:self.attributes_end]
-        self.subaction_data = dat.data_block[self.subactions_offset:self.subactions_end]
+def ft_subactions_offset():
+    return to_word(ft_header(), 2)
 
-        subaction_count = len(self.subaction_data)//24
+def ft_subactions_end():
+    return to_word(ft_header(), 0)
 
-        self.subactions = []
-        
-        for i in range(subaction_count):
-            data = read_data(self.subaction_data, i*24, 24)
-            self.subactions.append(Subaction(data, dat))
+def get_attribute_data():
+    return data_block()[ft_attributes_offset():ft_attributes_end()]
+
+def get_subaction_data():
+    return data_block()[ft_subactions_offset():ft_subactions_end()]
+
+def ft_subaction_count():
+    return len(get_subaction_data()) // 24
+
+def get_subactions():
+    subactions = []
+    subaction_data = get_subaction_data() 
+    for i in range(ft_subaction_count()):
+        subaction = Subaction(subaction_data[i*24:i*24+24])
+        subactions.append(subaction)
+    return subactions
 
 class Subaction():
-    def __init__(self, subaction_data, dat):
-        self.name_offset = get_word(subaction_data, 5)
-        self.animation_offset = get_word(subaction_data, 4)
-        self.animation_size = get_word(subaction_data, 3)
-        self.events_offset = get_word(subaction_data, 2)
-        self.position_flags = get_word(subaction_data, 1) # Not sure what this is
-        self.character_id = get_word(subaction_data, 0)
-        self.name = dat.get_string(self.name_offset)
-        
+    def __init__(self, subaction_data):
+        self.data = subaction_data
+        self.name = self.get_name()
         self.hitboxes = []
         self.throws = []
-        self.gfx = []
         self.sfx = []
-        self.wait_sync_events = []
-        self.wait_async_events = []
-        self.loop_events = []
-        self.shoot_item = []
         self.other = []
-        
-        def event_handler(offset):
-                command = dat.data_block[offset]
-                command = command >> 2
-                command = command << 2
+        self.get_events(self.events_offset())
 
-                data = dat.data_block
+    def name_offset(self):
+        return to_word(self.data, 5)
+    
+    def animation_offset(self):
+        return to_word(self.data, 4)
+
+    def animation_size(self):
+        return to_word(self.data, 3)
+
+    def events_offset(self):
+        return to_word(self.data, 2)
+
+    def position_flags(self):
+        return to_word(self.data, 1)
+
+    def character_id(self):
+        return to_word(self.data, 0)
+
+    def get_name(self):
+        return get_string(self.name_offset())
+
+    def get_events(self, offset):
+        command = data_block()[offset]
+        command = command >> 2
+        command = command << 2
+        size = 0x04
+        match command:
+            case 0x00:
+                return
+            case 0x04: # Wait Sync
+                self.other.append(data_block()[offset:offset+size])
+            case 0x08: # Wait Async
+                self.other.append(data_block()[offset:offset+size])
+            case 0x0C: # Loop
+                self.other.append(data_block()[offset:offset+size])
+            case 0x14:
+                size = 0x08
+            case 0x1C:
+                size = 0x08
+            case 0x28: # GFX
+                size = 0x14
+            case 0x2C: # Hitbox
+                size = 0x14
+                self.hitboxes.append(Hitbox(data_block()[offset:offset+size], offset))
+            case 0x44: # SFX
+                size = 0x0C
+                self.sfx.append(SFX(data_block()[offset:offset+size], offset))
+            case 0x60: # Shoot Item
+                self.other.append(data_block()[offset:offset+size])
+            case 0x88: # Throws
+                size = 0x0C
+                self.throws.append(Throw(data_block()[offset:offset+size], offset))
+            case 0x98:
+                size = 0x1C
+            case 0x9C:
+                size = 0x10
+            case 0xD8:
+                size = 0x0C
+            case 0xDC:
+                size = 0x0C
+            case 0xE0:
+                size = 0x08
+            case 0xE8:
+                size = 0x10
+            case _:
                 size = 0x04
-
-                match command:
-                    case 0x00:
-                        return
-                    case 0x04: # Wait Sync
-                        self.wait_sync_events.append(WordEvent(data[offset:offset+size], offset))
-                    case 0x08: # Wait Async
-                        self.wait_sync_events.append(WordEvent(data[offset:offset+size],offset))
-                    case 0x0C: # Loops
-                        self.loop_events.append(WordEvent(data[offset:offset+size], offset))
-                    case 0x14: 
-                        size = 0x08
-                    case 0x1C:
-                        size = 0x08
-                    case 0x28: # GFX
-                        size = 0x14
-                        self.gfx.append(data[offset:offset+size])
-                    case 0x2C: # Hitbox
-                        size = 0x14
-                        self.hitboxes.append(Hitbox(self.name, data[offset:offset+size], offset))
-                    case 0x44: # SFX
-                        size = 0x0C
-                        self.sfx.append(SFX(data[offset:offset+size], offset))
-                    case 0x60: # Shoot Item
-                        self.shoot_item.append(data[offset:offset+size])
-                    case 0x88: # Throws
-                        size = 0x0C
-                        self.throws.append(Throw(self.name, data[offset:offset+size], offset))
-                    case 0x98:
-                        size = 0x1C
-                    case 0x9C:
-                        size = 0x10
-                    case 0xD8:
-                        size = 0x0C
-                    case 0xDC:
-                        size = 0x0C
-                    case 0xE0:
-                        size = 0x08
-                    case 0xE8:
-                        size = 0x10
-                    case _:
-                        size = 0x04
-                        self.other.append(dat.data_block[offset:offset+size])
-
-                event_handler(offset + size)
-
-        event_handler(self.events_offset)
+                self.other.append(data_block()[offset:offset+size])
+            
+        self.get_events(offset+size)
 
 class Hitbox(): # Class for handling Hitbox Event
-    def __init__(self, name, data, offset):
-        self.name = name
+    def __init__(self, data, offset):
         self.data = data
         self.offset = offset
-
-    def get_damage(self): #b2 and b3 xxxxxxxD DDDDDDDD
+        
+    @property
+    def damage(self): #b2 and b3 xxxxxxxD DDDDDDDD
         return get_value(self.data, 128, 9)
-
-    def set_damage(self, value): 
+    
+    @damage.setter
+    def damage(self, value): 
         self.data = set_value(self.data, 128, 9, value)
-    
-    def get_angle(self): #b12 and b13 AAAAAAAA Axxxxxxx
+
+    @property
+    def angle(self): #b12 and b13 AAAAAAAA Axxxxxxx
         return get_value(self.data, 55, 9)
-    
-    def set_angle(self, value):
+
+    @angle.setter
+    def angle(self, value):
         self.data = set_value(self.data, 55, 9, value)
 
-    def get_growth(self): #b13 and b14 xGGGGGGG GGxxxxxx
+    @property
+    def growth(self): #b13 and b14 xGGGGGGG GGxxxxxx
         return get_value(self.data, 46, 9)
 
-    def set_growth(self, value):
+    @growth.setter
+    def growth(self, value):
         self.data = set_value(self.data, 46, 9, value)
-        
-    def get_set(self): #b14 and b15 xxWWWWWW WWWxxxxx
+
+    @property
+    def set_kb(self): #b14 and b15 xxWWWWWW WWWxxxxx
         return get_value(self.data, 37, 9)
 
-    def set_set(self, value):
+    @set_kb.setter
+    def set_kb(self, value):
         self.data = set_value(self.data, 37, 9, value)
 
-    def get_base(self): #b16 and b17 BBBBBBBB Bxxxxxxx
+    @property
+    def base(self): #b16 and b17 BBBBBBBB Bxxxxxxx
         return get_value(self.data, 23, 9)
 
-    def set_base(self, value):
+    @base.setter
+    def base(self, value):
         self.data = set_value(self.data, 23, 9, value)
-    
-    def get_element(self): #b17 xEEEEExx
+
+    @property
+    def element(self): #b17 xEEEEExx
         return get_value(self.data, 18, 5)
 
-    def set_element(self, value):
+    @element.setter
+    def element(self, value):
         self.data = set_value(self.data, 18, 5, value)
 
-    def get_shield(self): #b17 and b18 xxxxxxxS SSSSSSxx
+    @property
+    def shield_damage(self): #b17 and b18 xxxxxxxS SSSSSSxx
         return get_value(self.data, 10, 7)
 
-    def set_shield(self, value):
+    @shield_damage.setter
+    def shield_damage(self, value):
         self.data = set_value(self.data, 10, 7, value)
 
-    def get_sfx(self): #b18 and b19 xxxxxxFF FFFFFFxx
+    @property
+    def sfx(self): #b18 and b19 xxxxxxFF FFFFFFxx
         return get_value(self.data, 2, 8)
 
-    def set_sfx(self, value):
+    @sfx.setter
+    def sfx(self, value):
         self.data = set_value(self.data, 2, 8, value)
 
-    def get_size(self): #b4 and b5 SSSSSSSS SSSSSSSS
+    @property
+    def size(self): #b4 and b5 SSSSSSSS SSSSSSSS
         return get_value(self.data, 112, 16)
 
-    def set_size(self, value):
+    @size.setter
+    def size(self, value):
         self.data = set_value(self.data, 112, 16, value)
 
 class Throw(): # Class for handling Throw Event
-    def __init__(self, name, data, offset):
-        self.name = name.decode("utf-8")
+    def __init__(self, data, offset):
         self.data = data
         self.offset = offset
-        self.fighter = None
-        self.original_stats = []
-        self.vanilla = False
-        self.shuffle_target = self
-        self.shuffled = False
-        # IDs: Damage: 0 | Angle: 1 | BKB: 2 | KBG: 3 | WDSK: 4 | Element: 5
-        # Values: Unchanged: 0 | Shuffled: 1 | Deviated: 2 | Randomized: 3 
-        self.randomization_types = [0,0,0,0,0,0]
 
     def get_type(self):
         return get_value(self.data, 87, 3)
 
-    def get_damage(self): #b2 and b3
+    @property
+    def damage(self): #b2 and b3
         return get_value(self.data, 64, 9)
 
+    @damage.setter
     def set_damage(self, value): 
         self.data = set_value(self.data, 64, 9, value)
 
-    def get_angle(self): #b4 and b5 AAAAAAAA Axxxxxxx
+    @property
+    def angle(self): #b4 and b5 AAAAAAAA Axxxxxxx
         return get_value(self.data, 55, 9)
 
-    def set_angle(self, value):
+    @angle.setter
+    def angle(self, value):
         self.data = set_value(self.data, 55, 9, value)
 
-    def get_growth(self): #b5 and b6 xGGGGGGG GGxxxxxx
+    @property
+    def growth(self): #b5 and b6 xGGGGGGG GGxxxxxx
         return get_value(self.data, 46, 9)
 
-    def set_growth(self, value):
+    @growth.setter
+    def growth(self, value):
         self.data = set_value(self.data, 46, 9, value)
 
-    def get_set(self): #b6 and b7 xxWWWWWW WWWxxxxx
+    @property
+    def set_kb(self): #b6 and b7 xxWWWWWW WWWxxxxx
         return get_value(self.data, 37, 9)
 
-    def set_set(self, value):
+    @set_kb.setter
+    def set_kb(self, value):
         self.data = set_value(self.data, 37, 9, value)
 
-    def get_base(self): #b8 and b9 BBBBBBBB Bxxxxxxx
+    @property
+    def base(self): #b8 and b9 BBBBBBBB Bxxxxxxx
         return get_value(self.data, 23, 9)
 
-    def set_base(self, value):
+    @base.setter
+    def base(self, value):
         self.data = set_value(self.data, 23, 9, value)
 
-    def get_element(self): #b9 xEEEExxx
+    @property
+    def element(self): #b9 xEEEExxx
         return get_value(self.data, 19, 4)
 
-    def set_element(self, value):
+    @element.setter
+    def element(self, value):
         self.data = set_value(self.data, 19, 4, value)
-
-    def record_original_stats(self):
-        self.original_stats.clear()
-        self.original_stats.append(str(self.get_damage()))
-        self.original_stats.append(str(self.get_angle()))
-        self.original_stats.append(str(self.get_growth()))
-        self.original_stats.append(str(self.get_base()))
-        self.original_stats.append(str(self.get_set()))
-        self.original_stats.append(self.get_element())
 
 class SFX():
     def __init__(self, data, offset):
         self.offset = offset
         self.data = data
-    def get(self):
+    def get_sfx(self):
         return get_value(self.data, 32, 20)
-
-class WordEvent():
-    def __init__(self, data, offset):
-        self.offset = offset
-        self.data = data
-    def get(self):
-        return self.data[3]
-    def set(self, value):
-        set_value(self.data, 0, 8, value)
