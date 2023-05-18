@@ -107,10 +107,13 @@ class CheckboxInputComponent extends Component {
 class TextInputComponent extends Component {
     constructor(flag, tooltip="", name="", left="5%") {
         super(flag, tooltip, name);
+        this.divInner = document.createElement("div");
+        this.divInner.classList.add("innerDiv6");
         this.textInput = document.createElement("input");
         this.textInput.type = "text";
         this.textInput.style = "left:40%;top:35%;height:30px;position: absolute;";
         this.textInput.value = "";
+        this.divInner.appendChild(this.textInput);
         let textInputVar = this.textInput;
         textInputVar.oninput = function() {
             flag.changeParameters([textInputVar.value]);
@@ -143,6 +146,8 @@ class TextInputComponent extends Component {
 class NumberInputComponent extends Component {
     constructor(flag, tooltip="", name="", left="17%", min="0", max="300", percent=true, fighterFlag=false, float=false, initial=0) {
         super(flag, tooltip, name);
+        this.divInner = document.createElement("div");
+        this.divInner.classList.add("innerDiv");
         this.numInput = document.createElement("input");
         this.numInput.type = "number";
         if (float == true) {
@@ -156,7 +161,8 @@ class NumberInputComponent extends Component {
             this.div.appendChild(image);
         }
         this.label.style.left = left;
-        this.div.appendChild(this.numInput);
+        this.divInner.appendChild(this.numInput);
+        this.div.appendChild(this.divInner);
         this.flag.component = this;
         if (initial > 0) {
             this.numInput.value = initial;

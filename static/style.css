@@ -211,24 +211,13 @@ textarea {
   margin-bottom: 8px;
   border-radius: .8rem;
 }
-/* .component label {
-  position: absolute;
-  background: none;
-  text-align: center;
-  height: 80px;
-  font-size: 32px;
-  left: 12%;
-  top: 12%;
-} */
-
 .component p {
   position: absolute;
   background: none;
   text-align: center;
-  height: 80px;
   font-size: 32px;
-  /* left: 12%;
-  top: 12%; */
+  margin-top: 16px;
+  margin-bottom: 16px;
 }
 .component input[type="number"] {
   position: absolute;
@@ -306,11 +295,18 @@ textarea {
 }
 
 .innerDivText {
-  display: block;
+  display: flex;
+  align-items: center;
   float: left;
   width: 200px;
   height: 80;
   /* border:1px solid white; */
+}
+
+.innerDivText {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 /*
