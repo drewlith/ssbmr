@@ -144,7 +144,8 @@ class TextInputComponent extends Component {
 }
 
 class NumberInputComponent extends Component {
-    constructor(flag, tooltip="", name="", left="17%", min="0", max="300", percent=true, fighterFlag=false, float=false, initial=0) {
+    // constructor(flag, tooltip="", name="", left="17%", min="0", max="300", percent=true, fighterFlag=false, float=false, initial=0) {
+    constructor(flag, tooltip="", name="", min="0", max="300", percent=true, fighterFlag=false, float=false, initial=0) {
         super(flag, tooltip, name);
         this.divInner = document.createElement("div");
         this.divInner.classList.add("innerDiv");
@@ -160,7 +161,7 @@ class NumberInputComponent extends Component {
             image.src = "static/percent.png";
             this.div.appendChild(image);
         }
-        this.label.style.left = left;
+        // this.label.style.left = left;
         this.divInner.appendChild(this.numInput);
         this.div.appendChild(this.divInner);
         this.flag.component = this;
@@ -214,7 +215,9 @@ class NumberInputComponent extends Component {
 }
 
 class DualNumInputComponent extends Component {
-    constructor(flag, tooltip="", name="", left="6%", min="0", max="300") {
+   // constructor(flag, tooltip="", name="", left="6%", min="0", max="300") {
+    constructor(flag, tooltip="", name="", min="0", max="300") {
+
         super(flag, tooltip, name);
         this.divInner = document.createElement("div");
         this.divInner.classList.add("innerDiv");
@@ -271,7 +274,7 @@ class DualNumInputComponent extends Component {
             }
             updateFlags();
         }
-        this.label.style.left = left;
+        // this.label.style.left = left;
         this.numInputA.style = "left:50%; top:25%; width:60; height:40; font-size:20";
         this.numInputB.style = "left:72%; top:25%; width:60; height:40; font-size:20";
         percent.style = "left:88%";
@@ -450,7 +453,7 @@ function createFlag(tab, type, flagName, labelName, tooltip="", left="", min="0"
             new Flag(flagName, [100,100], type),
             tooltip,
             labelName,
-            left,
+           // left,
             min,
             max
         )
@@ -460,7 +463,7 @@ function createFlag(tab, type, flagName, labelName, tooltip="", left="", min="0"
             new Flag(flagName, [0], type),
             tooltip,
             labelName,
-            left,
+         //   left,
             min,
             max,
             percent,
