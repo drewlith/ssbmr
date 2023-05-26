@@ -62,6 +62,7 @@ def start(params = None, code=""): # Use array of parameters for module usage.
     txt_log = log.start_mod_old(seed, pretty_flags)
     log.start_mod(pretty_flags, code)
     credit = "SSBM Randomizer created by drewlith."    # Enter seed-specific credits here.
+    credit += "\nWith contributions by: mikey20100 and Kielbasiago."
     credit += code_credits
     melee.end(iso_path, output_path, code)
 
