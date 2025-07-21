@@ -176,3 +176,5 @@ cython_debug/
 # Melee Stuff
 .iso
 .dol
+.hps
+.dat
