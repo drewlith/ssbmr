@@ -4,4 +4,4 @@ class ModelMod():
         self.data = data
 
     def __str__(self):
-        return "Model Mod Event at offset " + str(self.offset) + " with command: " + hex(self.data[0])
+        return "Model Mod Event at offset " + str(self.offset) + " with command: " + hex(self.data[0]) + " | RAW HEX: " + self.data.hex()

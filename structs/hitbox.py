@@ -1,14 +1,24 @@
-from utility import get_value, set_value
+from utility import get_value, set_value, percent_chance
 from random import randint as rng
 
 all_hitboxes = []
+
+ELEMENTS = ["Normal", "Fire", "Electric", "Slash", "Coin", "Ice", "Sleep", "Hibernate",
+            "??????", "Grounded", "Cape", "Special", "Disable", "Dark", "Screw Attack",
+            "Flower", "None"]
+
 class Hitbox():
     def __init__(self, data, offset):
         self.data = data
+        self.power_rating = 0
         self.offset = offset
-        self.tags = []
+        self.name = ""
+        self.tags = ["hitbox"]
         self.original_values = []
         self.log_notes = []
+        self.shuffled = False
+        if self.element == 8 or self.element == 11:
+            self.tags.append("Exclude")
         all_hitboxes.append(self)
         
     @property
@@ -36,11 +46,11 @@ class Hitbox():
         self.data = set_value(self.data, 46, 9, value)
 
     @property
-    def set_kb(self): #b14 and b15 xxWWWWWW WWWxxxxx
+    def setkb(self): #b14 and b15 xxWWWWWW WWWxxxxx
         return get_value(self.data, 37, 9)
 
-    @set_kb.setter
-    def set_kb(self, value):
+    @setkb.setter
+    def setkb(self, value):
         self.data = set_value(self.data, 37, 9, value)
 
     @property
@@ -60,11 +70,11 @@ class Hitbox():
         self.data = set_value(self.data, 18, 5, value)
 
     @property
-    def shield_damage(self): #b17 and b18 xxxxxxxS SSSSSSxx
+    def shielddamage(self): #b17 and b18 xxxxxxxS SSSSSSxx
         return get_value(self.data, 10, 7)
 
-    @shield_damage.setter
-    def shield_damage(self, value):
+    @shielddamage.setter
+    def shielddamage(self, value):
         self.data = set_value(self.data, 10, 7, value)
 
     @property
@@ -121,23 +131,115 @@ class Hitbox():
         string += "\n Angle: " + str(self.angle)
         string += "\n Growth: " + str(self.growth)
         string += "\n Base: " + str(self.base)
-        string += "\n Set KB: " + str(self.set_kb)
-        string += "\n Element: " + str(self.element)
-        string += "\n Shield Damage: " + str(self.shield_damage)
+        string += "\n Set KB: " + str(self.setkb)
+        string += "\n Element: " + ELEMENTS[self.element]
+        string += "\n Shield Damage: " + str(self.shielddamage)
         string += "\n SFX: " + str(self.sfx)
         string += "\n Size: " + str(self.size)
         string += "\n Z-Offset: " + str(self.zoffset)
         string += "\n Y-Offset: " + str(self.yoffset)
         string += "\n X-Offset: " + str(self.xoffset)
         string += "\n Bone: " + str(self.bone)
+        tags = ""
+        for tag in self.tags:
+            tags += tag + ", " 
+        string += "\n Tags: " + tags[:-2]
+        string += "\n My Power rating is: " + str(self.power_rating)
         return string
     
-def simple(flags):
-    if "&shuffle 1" in flags: # Ignore consequences, shuffle everything
-        for hb in all_hitboxes:
-            target = rng(0, len(all_hitboxes) - 1)
-            temp = hb.data
-            target_hb = all_hitboxes[target]
-            hb.data = target_hb.data
-            target_hb.data = temp
+    def check_tags(self, searching_for):
+        for tag in self.tags:
+            if tag.lower() in searching_for.lower():
+                return True
+        return False
+    
+    def add_tags(self, tags):
+        for tag in tags:
+            self.tags.append(tag)
 
+def determine_power_ratings():
+    for hitbox in all_hitboxes:
+        power_rating = 0
+        power_rating += hitbox.damage * 10
+        power_rating += hitbox.growth
+        power_rating += hitbox.base * 4
+        power_rating += hitbox.size // 20
+        power_rating += hitbox.shielddamage * 5
+        power_rating += hitbox.setkb
+        hitbox.power_rating = power_rating
+
+def shuffle_hitboxes(hitbox, target):
+    hitbox.damage, target.damage = target.damage, hitbox.damage
+    hitbox.angle, target.angle = target.angle, hitbox.angle
+    hitbox.growth, target.growth = target.growth, hitbox.growth
+    hitbox.base, target.base = target.base, hitbox.base
+    hitbox.setkb, target.setkb = target.setkb, hitbox.setkb
+    hitbox.size, target.size = target.size, hitbox.size
+    #hitbox.element, target.element = target.element, hitbox.element
+    hitbox.shielddamage, target.shielddamage = target.shielddamage, hitbox.shielddamage
+    hitbox.sfx, target.sfx = target.sfx, hitbox.sfx
+
+def exclude_hitboxes(tag):
+    for hitbox in all_hitboxes:
+        if hitbox.check_tags(tag):
+            hitbox.tags.append("exclude")
+
+def unbalanced_shuffle_all(chance):
+    pool = []
+    for hitbox in all_hitboxes:
+        if not hitbox.check_tags("exclude"):
+            pool.append(hitbox)
+
+    for hitbox in pool:
+        if percent_chance(chance):
+            target = pool[rng(0, len(pool) - 1)]
+            shuffle_hitboxes(hitbox, target)
+
+def balanced_shuffle_all(chance):
+    number_of_tiers = 10
+    tiers = []
+    setkb_tiers = []
+    for i in range(number_of_tiers):
+        tiers.append([])
+        setkb_tiers.append([])
+
+    def add_to_tier(hitbox, tier_number):
+        if hitbox.setkb > 0:
+            setkb_tiers[tier_number].append(hitbox)
+            return
+        tiers[tier_number].append(hitbox)
+        return
+
+    for hitbox in all_hitboxes:
+        if not hitbox.check_tags("exclude"):
+            if hitbox.power_rating > 1000:
+                add_to_tier(hitbox, 9)
+            elif hitbox.power_rating > 800:
+                add_to_tier(hitbox, 8)
+            elif hitbox.power_rating > 700:
+                add_to_tier(hitbox, 7)
+            elif hitbox.power_rating > 600:
+                add_to_tier(hitbox, 6)
+            elif hitbox.power_rating > 500:
+                add_to_tier(hitbox, 5)
+            elif hitbox.power_rating > 400:
+                add_to_tier(hitbox, 4)
+            elif hitbox.power_rating > 300:
+                add_to_tier(hitbox, 3)
+            elif hitbox.power_rating > 200:
+                add_to_tier(hitbox, 2)
+            elif hitbox.power_rating > 100:
+                add_to_tier(hitbox, 1)
+            else:
+                add_to_tier(hitbox, 0)
+    
+    for tier in tiers:
+        for hitbox in tier:
+            if percent_chance(chance):
+                target = tier[rng(0, len(tier) - 1)]
+                shuffle_hitboxes(hitbox, target)
+    for tier in setkb_tiers:
+        for hitbox in tier:
+            if percent_chance(chance):
+                target = tier[rng(0, len(tier) - 1)]
+                shuffle_hitboxes(hitbox, target)

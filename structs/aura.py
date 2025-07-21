@@ -1,4 +1,8 @@
-from utility import bidict, get_value, set_value
+from utility import bidict, get_value, set_value, percent_chance
+
+all_auras = []
+
+from random import randint as rng
 
 AURAS = bidict({    0x0000: "Nothing",
                     0x0004: "Nothing", 
@@ -46,6 +50,7 @@ AURAS = bidict({    0x0000: "Nothing",
                     0x00AC: "Black Tint", 
                     0x00B0: "Brief Red", 
                     0x00B4: "Flashing Yellow", 
+                    0x00B8: "Flashing Yellow", 
                     0x00BC: "Flashing Yellow (Glows)", 
                     0x00C0: "Yellow Fade", 
                     0x00C4: "Orange (Long)", 
@@ -132,17 +137,29 @@ class Aura():
     def __init__(self, data, offset):
         self.offset = offset
         self.data = data
+        all_auras.append(self)
 
     @property
     def id(self): #b1 and b2 xxxxxxxI IIIIIIII xxxxxxxx xxxxxxxx
         return AURAS[get_value(self.data, 15, 9)]
 
     @id.setter
-    def id(self, aura):
-        id = Aura.AURAS[aura]
-        self.data = set_value(self.data, 15, 9, id)
+    def id(self, _id):
+        self.data = set_value(self.data, 15, 9, _id)
 
     def __str__(self):
-        string = "Aura Event at offset " + str(self.offset) + " with command: " + hex(self.data[0])
+        string = "Aura Event at offset " + str(self.offset) + " with command: " + hex(self.data[0]) + " | RAW HEX: " + self.data.hex()
         string += " The Aura type is: " + self.id
         return string
+    
+def shuffle(chance):
+    for _aura in all_auras:
+        if percent_chance(chance):
+            target = all_auras[rng(0,len(all_auras)-1)]
+            _aura.data, target.data = target.data, _aura.data
+
+def randomize(chance):
+    for _aura in all_auras:
+        if percent_chance(chance):
+            random_number = rng(0,len(AURAS)-1) * 0x04
+            _aura.id = random_number

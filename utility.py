@@ -59,3 +59,5 @@ class bidict(dict): # https://stackoverflow.com/questions/3318625/how-to-impleme
         if self[key] in self.inverse and not self.inverse[self[key]]: 
             del self.inverse[self[key]]
         super(bidict, self).__delitem__(key)
+
+        

@@ -4,4 +4,4 @@ class SetLoop():
         self.data = data
 
     def __str__(self):
-        return "Set Loop Event at offset " + str(self.offset) + " with command: " + hex(self.data[0])
+        return "Set Loop Event at offset " + str(self.offset) + " with command: " + hex(self.data[0]) + " | RAW HEX: " + self.data.hex()

@@ -4,4 +4,4 @@ class ReturnTo():
         self.data = data
 
     def __str__(self):
-        return "Return Event at offset " + str(self.offset) + " with command: " + hex(self.data[0])
+        return "Return Event at offset " + str(self.offset) + " with command: " + hex(self.data[0]) + " | RAW HEX: " + self.data.hex()

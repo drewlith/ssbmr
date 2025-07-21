@@ -1,4 +1,4 @@
-from utility import to_word
+from utility import to_word, get_value
 from structs.subaction import Subaction
 
 MAX_CAPACITY = 1459978240
@@ -119,16 +119,21 @@ class MeleeFile: # Contains FST data, and File data
 
     @property
     def name(self):
-        fst = get_fst()
         offset = int.from_bytes(self.entry_data[0x01:0x04], "big") + STRING_TABLE_OFFSET
         name = bytearray()
         i = 0
         while True:
-            byte = fst[offset+i]
+            byte = fst.fst_data[offset+i]
             if byte == 0:
                 return name
             name.append(byte)
             i += 1
+
+    @name.setter # Currently, can only do shorter names without shifting the string table
+    def name(self, new):
+        offset = int.from_bytes(self.entry_data[0x01:0x04], "big") + STRING_TABLE_OFFSET
+        fst.fst_data[offset:offset+len(new)] = new
+        fst.fst_data[offset+len(new)] = 0
 
     @property
     def offset(self):
@@ -169,7 +174,6 @@ def replace_file(name, new_file_path):
         file.size = len(new_file_data)
 
         offset_adjustment = old_size - file.size # Calculate offset adjustment
-        offset_adjustment += offset_adjustment % 0x20
 
         for _file in fst.entries: # Update offsets for the rest of the files after this file, since they should remain adjacent and now there's a gap.
             if _file.offset > old_offset:
@@ -188,10 +192,9 @@ def write_files_to_disk(): # Debug/Utility
 def build_iso():
     replace_file(b'MvHowto.mth', "blank.mth") # Delete Movies
     replace_file(b'MvOmake15.mth', "blank.mth")
+    replace_file(b'GmTtAll.usd', "Textures/Title Screen/GmTtAll-ssbmr.usd") # Add custom title screen
     fst.write_file_entries()
     seek_and_write(fst_offset(), fst.fst_data)
-    # Change later once gecko is reimplemented, get_dol to new dol
-    seek_and_write(dol_offset(), get_dol())
     for file in fst.entries:
         seek_and_write(file.offset, file.file_data)
     while True: # Add padding at end. Could be 0x20 but 0x8000 lines up better with an actual disk.
@@ -312,6 +315,7 @@ class DAT:
 
     def string_table_offset(self):
         return self.root_offsets()[1] + self.root_counts()[1] * 8
+    
     # Fighter DAT Specific stuff
     def ft_node(self):
         for node in self.get_nodes():
@@ -340,11 +344,23 @@ class DAT:
 
     def get_attribute_data(self):
         return self.data_block[self.ft_attributes_offset():self.ft_attributes_end()]
+    
+    def write_attribute_data(self, attribute, fighter): # Not all at once, does one attribute at a time.
+        if attribute.special == 0:
+            offset = self.ft_attributes_offset() + attribute.offset + 0x20
+            self.file_data[offset:offset+len(attribute.data)] = attribute.data
+        if attribute.special == 1:
+            offset = self.ft_attributes_end() + attribute.offset + 0x20
+            self.file_data[offset:offset+len(attribute.data)] = attribute.data
+        if attribute.special >= 2:
+            article_number = attribute.special - 2
+            offset = fighter.articles_offsets[article_number] + attribute.offset + 0x20
+            self.file_data[offset:offset+len(attribute.data)] = attribute.data
 
     def get_subaction_data(self):
         return self.data_block[self.ft_subactions_offset():self.ft_subactions_end()]
     
-    def write_subaction_data(self, data):
+    def write_subaction_data(self, data): # Writes all subactions for a fighter
         self.file_data[self.ft_subactions_offset()+0x20:self.ft_subactions_end()+0x20] = data
 
     def ft_subaction_count(self):
@@ -366,6 +382,107 @@ class DAT:
             subaction = Subaction(subaction_data[i*24:i*24+24], self, i)
             subactions.append(subaction)
         return subactions
+    
+    # Texture DAT File Stuff
 
+    def joint_node(self):
+        for node in self.get_nodes():
+            if b'Share_joint' in node.name:
+                return node
+        print("No joint node was found.")
+
+    def joint_start_offset(self):
+        return self.joint_node().data_offset
+    
+    def joint_object(self):
+        offset = to_word(self.joint_start_offset())
+        return self.data_block[offset:offset+0x40]
+    
+    def child_offset(self):
+        return to_word(self.joint_object(), 13)
+    
+    def next_offset(self):
+        return to_word(self.joint_object(), 12)
+
+    def dobj_offset(self):
+        return to_word(self.joint_object(), 11)
+    
+    #def rotation(self):
+        #return to_word(self.joint_object(), 5)
+    
+    #def scale(self):
+        #return to_word(self.joint_object(), 6)
+    
+    #def translation(self): 
+        #return to_word(self.joint_object(), 7)
+    
+    def transform_offset(self):
+        return to_word(self.joint_object(), 1)
+    
+    def dobj_data(self): # I really don't know what the "D" stands for but it gets you to texture info I think https://smashboards.com/threads/melee-dat-format.292603/
+        return self.data_block[self.dobj_offset():self.dobj_offset()+0x10]
+    
+    def next_dobj_offset(self): # Next in the tree
+        return to_word(self.dobj_data(), 2)
+    
+    def mobj_offset(self): # mobj = Material
+        return to_word(self.dobj_data(), 1)
+    
+    def pobj_offset(self): # pobj = Mesh
+        return to_word(self.dobj_data(), 0)
+    
+    def mobj_data(self):
+        return self.data_block[self.mobj_offset():self.mobj_offset()+0x18]
+    
+    def tobj_offset(self):
+        return to_word(self.mobj_data(), 3)
+    
+    def material_colors_offset(self): # Colors related?
+        return to_word(self.mobj_data(), 2)
+    
+    def material_colors_data(self):
+        return self.data_block[self.material_colors_offset():self.material_colors_offset+0x14]
+    
+    def tobj_data(self): # Texture Object
+        return self.data_block[self.tobj_offset():self.tobj_offset()+0x5C]
+    
+    def image_header_offset(self):
+        return to_word(self.tobj_data(), 3)
+    
+    def palette_header_offset(self):
+        return to_word(self.tobj_data(), 2)
+    
+    def image_header_data(self):
+        return self.data_block[self.image_header_offset():self.image_header_offset()+12]
+    
+    def image_file_data_offset(self):
+        return to_word(self.image_header_data(), 2)
+    
+    def image_width(self):
+        return get_value(self.image_header_data(), 48, 16)
+    
+    def image_height(self):
+        return get_value(self.image_header_data(), 32, 16)
+    
+    def image_format(self):
+        return to_word(self.image_header_data(), 0)
+    
+    def palette_header_data(self):
+        return self.data_block[self.palette_header_offset():self.palette_header_offset()+16]
+    
+    def palette_data_offset(self):
+        return to_word(self.palette_header_data(), 3)
+    
+    def palette_format(self):
+        return to_word(self.palette_header_data(), 2)
+    
+    def palette_color_count(self):
+        return get_value(self.image_header_data(), 16, 16)
+    
+    def palette_end(self):
+        return self.image_file_data_offset()
+    
+    def palette_data(self):
+        return self.data_block[self.palette_data_offset():self.palette_end()]
+    
 fst = FST(get_fst())
-

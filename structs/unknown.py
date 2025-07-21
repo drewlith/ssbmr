@@ -4,4 +4,4 @@ class Unknown():
         self.data = data
 
     def __str__(self):
-        return "Unknown Event at offset " + str(self.offset) + " with command: " + hex(self.data[0])
+        return "Unknown Event at offset " + str(self.offset) + " with command: " + hex(self.data[0]) + " | RAW HEX: " + self.data.hex()

@@ -4,4 +4,4 @@ class WindEffect():
         self.data = data
 
     def __str__(self):
-        return "Wind Effect Event at offset " + str(self.offset) + " with command: " + hex(self.data[0])
+        return "Wind Effect Event at offset " + str(self.offset) + " with command: " + hex(self.data[0]) + " | RAW HEX: " + self.data.hex()

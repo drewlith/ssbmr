@@ -42,6 +42,7 @@ class Subaction():
         self.data = subaction_data
         self.index = index
         self.friendly_name = "Nameless"
+        self.multiple_hits = False
         self.name = self.get_name()
         self.script = []
         self.unknowns = []
@@ -307,5 +308,15 @@ class Subaction():
         for event in self.script:
             self.dat_file.file_data[event.offset+0x20:event.offset+len(event.data)+0x20] = event.data
 
-def shuffle_subactions(sub_a, sub_b):
+    def add_hitbox_tags(self, tags):
+        for hitbox in self.hitboxes:
+            for tag in tags:
+                hitbox.tags.append(tag)
+    
+    def add_throw_tags(self, tags):
+        for throw in self.throws:
+            for tag in tags:
+                throw.tags.append(tag)
+
+def swap_subactions(sub_a, sub_b):
     sub_a.data, sub_b.data = sub_b.data, sub_a.data

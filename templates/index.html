@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Seed Generator</title>
+    <script>
+        function send() {
+            let flags = document.getElementById("flags").value;
+          
+              const json = {
+                  flags: flags
+            };
+
+            fetch("/generate", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(json),
+            });
+        }
+    </script>
+</head>
+
+<body>
+    <h1>Welcome to SSBM Randomizer</h1>
+    <input type="text" id="flags"/>
+    <button onclick="send()">Generate</button>
+</body>
+
+</html>

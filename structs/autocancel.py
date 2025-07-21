@@ -4,4 +4,4 @@ class Autocancel():
         self.data = data
 
     def __str__(self):
-        return "Autocancel Event at offset " + str(self.offset) + " with command: " + hex(self.data[0])
+        return "Autocancel Event at offset " + str(self.offset) + " with command: " + hex(self.data[0]) + " | RAW HEX: " + self.data.hex()
