@@ -3,6 +3,9 @@ import random
 MASK = [1, 2, 4, 8, 16, 32, 64, 128]
 CLEAR_MASK = [254, 253, 251, 247, 239, 223, 191, 127]
 
+def set_seed(seed):
+    random.seed(seed)
+
 def get_bit(data, bit): # lowest index = least significant. Use on Bytearray
     index = (len(data)-1) - bit // 8
     if data[index] & MASK[bit%8] == MASK[bit%8]: return 1
@@ -34,8 +37,11 @@ def set_value(data, offset, size, value):
 def to_word(data, offset=0):
     return get_value(data, offset*32, 32)
 
+def set_word(data, value, offset=0):
+    return set_value(data, offset*32, 32, value)
+
 def percent_chance(chance): # Util, enter chance in %
-    rng = random.randint(0,99)
+    rng = random.randint(0,100)
     if rng < chance:
         return True
     else:

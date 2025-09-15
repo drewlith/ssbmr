@@ -17,7 +17,28 @@ iceshot_hitbox = hitbox.Hitbox(file_data[offset:offset+20], offset)
 iceshot_hitbox.tags.append("projectile")
 popo.projectile_hitboxes.append(iceshot_hitbox)
 
-popo.subactions[295].friendly_name = "Ice Shot"
+popo.subactions[0x127].friendly_name = "Ice Shot"
+popo.subactions[0x128].friendly_name = "Ice Shot"
+popo.subactions[0x129].friendly_name = "Squall Hammer"
+popo.subactions[0x12A].friendly_name = "Squall Hammer"
+popo.subactions[0x12B].friendly_name = "Squall Hammer"
+popo.subactions[0x12C].friendly_name = "Squall Hammer"
+popo.subactions[0x12D].friendly_name = "Belay"
+popo.subactions[0x12E].friendly_name = "Belay"
+popo.subactions[0x12F].friendly_name = "Belay"
+popo.subactions[0x130].friendly_name = "Belay"
+popo.subactions[0x131].friendly_name = "Belay"
+popo.subactions[0x132].friendly_name = "Belay"
+popo.subactions[0x133].friendly_name = "Belay"
+popo.subactions[0x134].friendly_name = "Belay"
+popo.subactions[0x135].friendly_name = "Belay"
+popo.subactions[0x136].friendly_name = "Belay"
+popo.subactions[0x137].friendly_name = "Blizzard"
+popo.subactions[0x138].friendly_name = "Blizzard"
+
+for action in popo.subactions:
+    if "Nameless" not in action.friendly_name:
+        action.tags.append(action.friendly_name.lower().replace(" ", ""))
 
 attribute_data = popo.dat_file.get_special_attribute_data(popo.special_attribute_block_size)
 popo.add_attribute(attribute_data, 0x00, "Spawn Offset", 1)

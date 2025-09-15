@@ -11,10 +11,29 @@ link.articles_sizes = [0x34, 0x64, 0x64, 0x2C]
 link.articles_offsets = [0x4204, 0x40C0, 0x3E58, 0x3F48]
 link.projectile_offsets = [0x3FB4, 0x4258, 0x4184]
 
-link.subactions[295].friendly_name = "Forward Smash (Second Hit)"
-link.subactions[308].friendly_name = "Spin Attack (Ground)"
-link.subactions[309].friendly_name = "Spin Attack (Aerial)"
-link.subactions[312].friendly_name = "Hookshot (Aerial)"
+link.subactions[0x127].friendly_name = "Forward Smash Second Hit"
+link.subactions[0x128].friendly_name = "Fairy Bow"
+link.subactions[0x129].friendly_name = "Fairy Bow"
+link.subactions[0x12A].friendly_name = "Fairy Bow"
+link.subactions[0x12B].friendly_name = "Fairy Bow"
+link.subactions[0x12C].friendly_name = "Fairy Bow"
+link.subactions[0x12D].friendly_name = "Fairy Bow"
+link.subactions[0x12E].friendly_name = "Boomerang"
+link.subactions[0x12F].friendly_name = "Boomerang"
+link.subactions[0x130].friendly_name = "Boomerang"
+link.subactions[0x131].friendly_name = "Boomerang"
+link.subactions[0x132].friendly_name = "Boomerang"
+link.subactions[0x133].friendly_name = "Boomerang"
+link.subactions[0x134].friendly_name = "Spin Attack"
+link.subactions[0x135].friendly_name = "Spin Attack"
+link.subactions[0x136].friendly_name = "Link Bombs"
+link.subactions[0x137].friendly_name = "Link Bombs"
+link.subactions[0x138].friendly_name = "Hookshot"
+link.subactions[0x139].friendly_name = "Hookshot"
+
+for action in link.subactions:
+    if "Nameless" not in action.friendly_name:
+        action.tags.append(action.friendly_name.lower().replace(" ", ""))
 
 file_data = link.dat_file.file_data
 
@@ -34,9 +53,9 @@ link.projectile_hitboxes.append(bomb_explosion_hitbox)
 
 
 attribute_data = link.dat_file.get_special_attribute_data(link.special_attribute_block_size)
-link.add_attribute(attribute_data, 0x00, "Bow Frames For Max Charge", 1)
-link.add_attribute(attribute_data, 0x04, "Bow Charge Speed", 1)
-link.add_attribute(attribute_data, 0x08, "Bow Landing Lag", 1)
+link.add_attribute(attribute_data, 0x00, "Fairy Bow Frames For Max Charge", 1)
+link.add_attribute(attribute_data, 0x04, "Fairy Bow Charge Speed", 1)
+link.add_attribute(attribute_data, 0x08, "Fairy Bow Landing Lag", 1)
 link.add_attribute(attribute_data, 0x18, "Boomerang Launch Angle", 1)
 link.add_attribute(attribute_data, 0x20, "Boomerang Smash Launch Velocity", 1)
 link.add_attribute(attribute_data, 0x24, "Boomerang Tilt Launch Velocity", 1)
@@ -54,8 +73,8 @@ link.add_attribute(attribute_data, 0x5C, "Down Aerial Hitbox 1 Damage On Rehit",
 link.get_attribute("Down Aerial Hitbox 1 Damage On Rehit").integer = True
 link.add_attribute(attribute_data, 0x60, "Down Aerial Hitbox 2 Damage On Rehit", 1)
 link.get_attribute("Down Aerial Hitbox 2 Damage On Rehit").integer = True
-link.add_attribute(attribute_data, 0x7C, "Sword Trail Width", 1)
-link.add_attribute(attribute_data, 0x7C, "Sword Trail Height", 1)
+#link.add_attribute(attribute_data, 0x7C, "Sword Trail Width", 1)
+#link.add_attribute(attribute_data, 0x7C, "Sword Trail Height", 1)
 link.add_attribute(attribute_data, 0x84, "Hookshot Grab Delay", 1)
 link.get_attribute("Hookshot Grab Delay").integer = True
 link.add_attribute(attribute_data, 0x88, "Hookshot Grab Chain Release Begin", 1)

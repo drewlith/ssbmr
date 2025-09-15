@@ -34,3 +34,13 @@ class Attribute():
             return
         data = struct.pack('>f', value)
         self.data = data
+
+    def __str__(self):
+        string = "Attribute: " + self.name
+        string += "\n Value: " + str(self.value)
+        string += "\n Integer?: " + str(self.integer)
+        tags = ""
+        for tag in self.tags:
+            tags += tag + ", " 
+        string += "\n Tags: " + tags[:-2]
+        return string

@@ -18,11 +18,30 @@ turnip_hitbox = hitbox.Hitbox(file_data[offset:offset+20], offset)
 turnip_hitbox.tags.append("projectile")
 peach.projectile_hitboxes.append(turnip_hitbox)
 
-peach.subactions[298].friendly_name = "Tennis Racket"
-peach.subactions[299].friendly_name = "Golf Club"
-peach.subactions[300].friendly_name = "Frying Pan"
-peach.subactions[308].friendly_name = "Parasol"
-peach.subactions[316].friendly_name = "Parasol (Reopen)"
+peach.subactions[0x12A].friendly_name = "Tennis Racket"
+peach.subactions[0x12B].friendly_name = "Golf Club"
+peach.subactions[0x12C].friendly_name = "Frying Pan"
+peach.subactions[0x12D].friendly_name = "Toad"
+peach.subactions[0x12E].friendly_name = "Peach Bomber"
+peach.subactions[0x12F].friendly_name = "Peach Bomber"
+peach.subactions[0x130].friendly_name = "Peach Bomber"
+peach.subactions[0x131].friendly_name = "Peach Bomber"
+peach.subactions[0x132].friendly_name = "Peach Bomber"
+peach.subactions[0x133].friendly_name = "Peach Bomber"
+peach.subactions[0x134].friendly_name = "Parasol"
+peach.subactions[0x135].friendly_name = "Parasol"
+peach.subactions[0x136].friendly_name = "Parasol"
+peach.subactions[0x137].friendly_name = "Parasol"
+peach.subactions[0x13C].friendly_name = "Parasol"
+peach.subactions[0x13D].friendly_name = "Parasol"
+peach.subactions[0x138].friendly_name = "Vegetable"
+peach.subactions[0x139].friendly_name = "Vegetable"
+peach.subactions[0x13A].friendly_name = "Vegetable"
+peach.subactions[0x13B].friendly_name = "Vegetable"
+
+for action in peach.subactions:
+    if "Nameless" not in action.friendly_name:
+        action.tags.append(action.friendly_name.lower().replace(" ", ""))
 
 attribute_data = peach.dat_file.get_special_attribute_data(peach.special_attribute_block_size)
 peach.add_attribute(attribute_data, 0xC, "Float Duration", 1)
@@ -44,8 +63,8 @@ peach.add_attribute(attribute_data, 0x44, "Peach Bomber Tilt Horizontal Momentum
 peach.add_attribute(attribute_data, 0x48, "Peach Bomber Smash Horizontal Momentum", 1)
 peach.add_attribute(attribute_data, 0x4C, "Peach Bomber Vertical Momentum", 1)
 peach.add_attribute(attribute_data, 0x64, "Peach Bomber Vertical Recoil", 1)
-peach.add_attribute(attribute_data, 0x74, "Peach Parasol Landing Lag", 1)
-peach.add_attribute(attribute_data, 0x80, "Peach Parasol Launch Control Modifier", 1)
+peach.add_attribute(attribute_data, 0x74, "Parasol Landing Lag", 1)
+peach.add_attribute(attribute_data, 0x80, "Parasol Launch Control Modifier", 1)
 peach.add_attribute(attribute_data, 0x9C, "Toad Aerial Vertical Momentum", 1)
 peach.add_attribute(attribute_data, 0xA0, "Toad Fall Acceleration", 1)
 peach.add_attribute(attribute_data, 0xBC, "Toad Detection Bubble Size", 1)

@@ -8,18 +8,48 @@ ness.fighter_id = 0x0B
 
 ness.special_attribute_block_size = 0xDC
 ness.articles_sizes = [0x8, 0xC, 0x2C, 0x14, 0x14, 0x5C]
-ness.articles_offsets = [0x3E48, 0x3F10, 0x3C78, 0x4024, 0x3C7C, 0x4284]
+ness.articles_offsets = [0x3E48, 0x3F10, 0x3C78, 0x4024, 0x3D60, 0x4284]
 ness.projectile_offsets = [0x3D94, 0x3F3C, 0x3F5C, 0x4138]
 
-ness.subactions[295].friendly_name = "Up Smash Yo-Yo"
-ness.subactions[296].friendly_name = "Up Smash Yo-Yo"
-ness.subactions[298].friendly_name = "Down Smash Yo-Yo"
-ness.subactions[312].friendly_name = "PK Thunder 2"
+ness.subactions[0x127].friendly_name = "Up Smash YoYo"
+ness.subactions[0x128].friendly_name = "Up Smash YoYo"
+ness.subactions[0x129].friendly_name = "Down Smash YoYo"
+ness.subactions[0x12A].friendly_name = "Down Smash YoYo"
+ness.subactions[0x12B].friendly_name = "PK Flash"
+ness.subactions[0x12C].friendly_name = "PK Flash"
+ness.subactions[0x12D].friendly_name = "PK Flash"
+ness.subactions[0x12E].friendly_name = "PK Flash"
+ness.subactions[0x12F].friendly_name = "PK Flash"
+ness.subactions[0x130].friendly_name = "PK Flash"
+ness.subactions[0x131].friendly_name = "PK Flash"
+ness.subactions[0x132].friendly_name = "PK Flash"
+ness.subactions[0x133].friendly_name = "PK Fire"
+ness.subactions[0x134].friendly_name = "PK Fire"
+ness.subactions[0x135].friendly_name = "PK Thunder"
+ness.subactions[0x136].friendly_name = "PK Thunder"
+ness.subactions[0x137].friendly_name = "PK Thunder"
+ness.subactions[0x138].friendly_name = "PK Thunder"
+ness.subactions[0x139].friendly_name = "PK Thunder"
+ness.subactions[0x13A].friendly_name = "PK Thunder"
+ness.subactions[0x13B].friendly_name = "PK Thunder"
+ness.subactions[0x13C].friendly_name = "PK Thunder"
+ness.subactions[0x13E].friendly_name = "PK Magnet"
+ness.subactions[0x13F].friendly_name = "PK Magnet"
+ness.subactions[0x140].friendly_name = "PK Magnet"
+ness.subactions[0x141].friendly_name = "PK Magnet"
+ness.subactions[0x142].friendly_name = "PK Magnet"
+ness.subactions[0x143].friendly_name = "PK Magnet"
+ness.subactions[0x144].friendly_name = "PK Magnet"
+ness.subactions[0x145].friendly_name = "PK Magnet"
+
+for action in ness.subactions:
+    if "Nameless" not in action.friendly_name:
+        action.tags.append(action.friendly_name.lower().replace(" ", ""))
 
 file_data = ness.dat_file.file_data
 offset = ness.projectile_offsets[0]
 pkflash_hitbox = hitbox.Hitbox(file_data[offset:offset+20], offset)
-pkflash_hitbox.tags.append("projectile")
+#pkflash_hitbox.tags.append("projectile")
 ness.projectile_hitboxes.append(pkflash_hitbox)
 
 offset = ness.projectile_offsets[1]
@@ -70,13 +100,13 @@ ness.add_attribute(attribute_data, 0x88, "PK Magnet Momentum Preservation", 1)
 ness.add_attribute(attribute_data, 0x8C, "PK Magnet Fall Acceleration", 1)
 ness.add_attribute(attribute_data, 0x94, "PK Magnet Healing Multiplier", 1)
 ness.add_attribute(attribute_data, 0xA8, "PK Magnet Absorption Bubble Size", 1)
-ness.add_attribute(attribute_data, 0xAC, "Yo-Yo Smash Charge Duration", 1)
-ness.add_attribute(attribute_data, 0xB0, "Yo-Yo Smash Charge Damage Multiplier", 1)
-ness.add_attribute(attribute_data, 0xB4, "Yo-Yo Smash Charge Hitbox Rehit Rate", 1)
+ness.add_attribute(attribute_data, 0xAC, "YoYo Smash Charge Duration", 1)
+ness.add_attribute(attribute_data, 0xB0, "YoYo Smash Charge Damage Multiplier", 1)
+ness.add_attribute(attribute_data, 0xB4, "YoYo Smash Charge Hitbox Rehit Rate", 1)
 ness.add_attribute(attribute_data, 0xB8, "Baseball Bat Max Damage Reflectable", 1)
 ness.get_attribute("Baseball Bat Max Damage Reflectable").integer = True
-ness.add_attribute(attribute_data, 0xB8, "Baseball Bat Reflection Damage Multiplier", 1)
-ness.add_attribute(attribute_data, 0xB8, "Baseball Bat Reflection Speed Multiplier", 1)
+ness.add_attribute(attribute_data, 0xBC, "Baseball Bat Reflection Damage Multiplier", 1)
+ness.add_attribute(attribute_data, 0xC0, "Baseball Bat Reflection Speed Multiplier", 1)
 
 ness.article_datas = ness.dat_file.get_article_data(ness)
 pkfire_spark_data = ness.article_datas[0]
@@ -114,28 +144,28 @@ ness.add_attribute(pkflash_data, 0x0C, "PK Flash 2 Base Damage", 6)
 ness.add_attribute(pkflash_data, 0x10, "PK Flash 2 Damage Multiplier", 6)
 
 yoyo_data = ness.article_datas[5]
-ness.add_attribute(yoyo_data, 0x00, "Yo-Yo Number of String Segments", 7)
-ness.get_attribute("Yo-Yo Number of String Segments").integer = True
-ness.add_attribute(yoyo_data, 0x04, "Yo-Yo Number of Up-Smash String Segments", 7)
-ness.get_attribute("Yo-Yo Number of Up-Smash String Segments").integer = True
-ness.add_attribute(yoyo_data, 0x08, "Yo-Yo Number of Down-Smash String Segments", 7)
-ness.get_attribute("Yo-Yo Number of Down-Smash String Segments").integer = True
-ness.add_attribute(yoyo_data, 0x0C, "Yo-Yo String Size", 7)
-ness.add_attribute(yoyo_data, 0x18, "Yo-Yo Spin Animation Speed", 7)
-ness.add_attribute(yoyo_data, 0x1C, "Yo-Yo Charge Spin Animation Speed", 7)
-ness.add_attribute(yoyo_data, 0x20, "Yo-Yo Charge Spin Animation Speed Modifier", 7)
-ness.add_attribute(yoyo_data, 0x24, "Yo-Yo Charge Horizontal Release Velocity", 7)
-ness.add_attribute(yoyo_data, 0x28, "Yo-Yo Charge Pull Acceleration", 7)
-ness.add_attribute(yoyo_data, 0x2C, "Yo-Yo Max Charge Horizontal Velocity", 7)
-ness.add_attribute(yoyo_data, 0x30, "Yo-Yo Charge Vertical Release Velocity", 7)
-ness.add_attribute(yoyo_data, 0x34, "Yo-Yo Charge Base Gravity", 7)
-ness.add_attribute(yoyo_data, 0x38, "Yo-Yo Charge Terminal Velocity", 7)
-ness.add_attribute(yoyo_data, 0x3C, "Yo-Yo Charge Horizontal Pull Strength", 7)
-ness.add_attribute(yoyo_data, 0x40, "Yo-Yo Frame for Up Smash Model Rotation Change", 7)
-ness.get_attribute("Yo-Yo Frame for Up Smash Model Rotation Change").integer = True
-ness.add_attribute(yoyo_data, 0x44, "Yo-Yo Frame for Up Smash Snap to Palm", 7)
-ness.get_attribute("Yo-Yo Frame for Up Smash Snap to Palm").integer = True
-ness.add_attribute(yoyo_data, 0x48, "Yo-Yo Frame for Down Smash Model Rotation Change", 7)
-ness.get_attribute("Yo-Yo Frame for Down Smash Model Rotation Change").integer = True
-ness.add_attribute(yoyo_data, 0x4C, "Yo-Yo Frame for Down Smash Snap to Palm", 7)
-ness.get_attribute("Yo-Yo Frame for Down Smash Snap to Palm").integer = True
+ness.add_attribute(yoyo_data, 0x00, "YoYo Number of String Segments", 7)
+ness.get_attribute("YoYo Number of String Segments").integer = True
+ness.add_attribute(yoyo_data, 0x04, "YoYo Number of Up Smash String Segments", 7)
+ness.get_attribute("YoYo Number of Up Smash String Segments").integer = True
+ness.add_attribute(yoyo_data, 0x08, "YoYo Number of Down Smash String Segments", 7)
+ness.get_attribute("YoYo Number of Down Smash String Segments").integer = True
+ness.add_attribute(yoyo_data, 0x0C, "YoYo String Size", 7)
+ness.add_attribute(yoyo_data, 0x18, "YoYo Spin Animation Speed", 7)
+ness.add_attribute(yoyo_data, 0x1C, "YoYo Charge Spin Animation Speed", 7)
+ness.add_attribute(yoyo_data, 0x20, "YoYo Charge Spin Animation Speed Modifier", 7)
+ness.add_attribute(yoyo_data, 0x24, "YoYo Charge Horizontal Release Velocity", 7)
+ness.add_attribute(yoyo_data, 0x28, "YoYo Charge Pull Acceleration", 7)
+ness.add_attribute(yoyo_data, 0x2C, "YoYo Max Charge Horizontal Velocity", 7)
+ness.add_attribute(yoyo_data, 0x30, "YoYo Charge Vertical Release Velocity", 7)
+ness.add_attribute(yoyo_data, 0x34, "YoYo Charge Base Gravity", 7)
+ness.add_attribute(yoyo_data, 0x38, "YoYo Charge Terminal Velocity", 7)
+ness.add_attribute(yoyo_data, 0x3C, "YoYo Charge Horizontal Pull Strength", 7)
+ness.add_attribute(yoyo_data, 0x40, "YoYo Frame for Up Smash Model Rotation Change", 7)
+ness.get_attribute("YoYo Frame for Up Smash Model Rotation Change").integer = True
+ness.add_attribute(yoyo_data, 0x44, "YoYo Frame for Up Smash Snap to Palm", 7)
+ness.get_attribute("YoYo Frame for Up Smash Snap to Palm").integer = True
+ness.add_attribute(yoyo_data, 0x48, "YoYo Frame for Down Smash Model Rotation Change", 7)
+ness.get_attribute("YoYo Frame for Down Smash Model Rotation Change").integer = True
+ness.add_attribute(yoyo_data, 0x4C, "YoYo Frame for Down Smash Snap to Palm", 7)
+ness.get_attribute("YoYo Frame for Down Smash Snap to Palm").integer = True

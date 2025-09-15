@@ -17,12 +17,18 @@ fireball_hitbox = hitbox.Hitbox(file_data[offset:offset+20], offset)
 fireball_hitbox.tags.append("projectile")
 mario.projectile_hitboxes.append(fireball_hitbox)
 
-mario.subactions[297].friendly_name = "Cape (Ground)"
-mario.subactions[298].friendly_name = "Cape (Aerial)"
-mario.subactions[299].friendly_name = "Super Jump Punch (Ground)"
-mario.subactions[300].friendly_name = "Super Jump Punch (Aerial)"
-mario.subactions[301].friendly_name = "Tornado (Ground)"
-mario.subactions[302].friendly_name = "Tornado (Aerial)"
+mario.subactions[0x127].friendly_name = "Fireball"
+mario.subactions[0x128].friendly_name = "Fireball"
+mario.subactions[0x129].friendly_name = "Super Cape"
+mario.subactions[0x12A].friendly_name = "Super Cape"
+mario.subactions[0x12B].friendly_name = "Super Jump Punch"
+mario.subactions[0x12C].friendly_name = "Super Jump Punch"
+mario.subactions[0x12D].friendly_name = "Mario Tornado"
+mario.subactions[0x12E].friendly_name = "Mario Tornado"
+
+for action in mario.subactions:
+    if "Nameless" not in action.friendly_name:
+        action.tags.append(action.friendly_name.lower().replace(" ", ""))
 
 attribute_data = mario.dat_file.get_special_attribute_data(mario.special_attribute_block_size)
 mario.add_attribute(attribute_data, 0x00, "Cape Horizontal Momentum", 1)

@@ -18,21 +18,53 @@ laser_hitbox = hitbox.Hitbox(file_data[offset:offset+20], offset)
 laser_hitbox.tags.append("projectile")
 
 offset = fox.projectile_offsets[1]
-Illusion_g_hitbox = hitbox.Hitbox(file_data[offset:offset+20], offset)
-Illusion_g_hitbox.tags.append("projectile")
+illusion_g_hitbox = hitbox.Hitbox(file_data[offset:offset+20], offset)
+illusion_g_hitbox.tags.append("projectile")
 
 offset = fox.projectile_offsets[2]
-Illusion_a_hitbox = hitbox.Hitbox(file_data[offset:offset+20], offset)
-Illusion_a_hitbox.tags.append("projectile")
+illusion_a_hitbox = hitbox.Hitbox(file_data[offset:offset+20], offset)
+illusion_a_hitbox.tags.append("projectile")
 
 fox.projectile_hitboxes.append(laser_hitbox)
-fox.projectile_hitboxes.append(Illusion_g_hitbox)
-fox.projectile_hitboxes.append(Illusion_a_hitbox)
+fox.projectile_hitboxes.append(illusion_g_hitbox)
+fox.projectile_hitboxes.append(illusion_a_hitbox)
 
-fox.subactions[307].friendly_name = "Fire Fox"
-fox.subactions[308].friendly_name = "Fire Fox"
-fox.subactions[309].friendly_name = "Fire Fox"
-fox.subactions[313].friendly_name = "Reflector"
+fox.subactions[0x127].friendly_name = "Blaster"
+fox.subactions[0x128].friendly_name = "Blaster"
+fox.subactions[0x129].friendly_name = "Blaster"
+fox.subactions[0x12A].friendly_name = "Blaster"
+fox.subactions[0x12B].friendly_name = "Blaster"
+fox.subactions[0x12C].friendly_name = "Blaster"
+fox.subactions[0x12D].friendly_name = "Illusion"
+fox.subactions[0x12E].friendly_name = "Illusion"
+fox.subactions[0x12F].friendly_name = "Illusion"
+fox.subactions[0x130].friendly_name = "Illusion"
+fox.subactions[0x131].friendly_name = "Illusion"
+fox.subactions[0x132].friendly_name = "Illusion"
+fox.subactions[0x133].friendly_name = "Fire Fox"
+fox.subactions[0x134].friendly_name = "Fire Fox"
+fox.subactions[0x135].friendly_name = "Fire Fox"
+fox.subactions[0x136].friendly_name = "Fire Fox"
+fox.subactions[0x137].friendly_name = "Fire Fox"
+fox.subactions[0x138].friendly_name = "Fire Fox"
+fox.subactions[0x139].friendly_name = "Reflector"
+fox.subactions[0x13A].friendly_name = "Reflector"
+fox.subactions[0x13B].friendly_name = "Reflector"
+fox.subactions[0x13C].friendly_name = "Reflector"
+fox.subactions[0x13D].friendly_name = "Reflector"
+fox.subactions[0x13E].friendly_name = "Reflector"
+fox.subactions[0x13F].friendly_name = "Reflector"
+fox.subactions[0x140].friendly_name = "Reflector"
+fox.subactions[0x141].friendly_name = "Taunt"
+fox.subactions[0x142].friendly_name = "Taunt"
+fox.subactions[0x143].friendly_name = "Taunt"
+fox.subactions[0x144].friendly_name = "Taunt"
+fox.subactions[0x145].friendly_name = "Taunt"
+fox.subactions[0x146].friendly_name = "Taunt"
+
+for action in fox.subactions:
+    if "Nameless" not in action.friendly_name:
+        action.tags.append(action.friendly_name.lower().replace(" ", ""))
 
 attribute_data = fox.dat_file.get_special_attribute_data(fox.special_attribute_block_size)
 
@@ -62,6 +94,7 @@ fox.add_attribute(attribute_data, 0x94, "Fire Fox Landing Lag After Bounce", 1)
 fox.add_attribute(attribute_data, 0x98, "Reflector Release Frames", 1)
 fox.add_attribute(attribute_data, 0x9C, "Reflector Turn Animation Frames", 1)
 fox.add_attribute(attribute_data, 0xA4, "Reflector Gravity Frame Delay", 1)
+fox.get_attribute("Reflector Gravity Frame Delay").integer = True
 fox.add_attribute(attribute_data, 0xA8, "Reflector Momentum Preservation", 1)
 fox.add_attribute(attribute_data, 0xAC, "Reflector Fall Acceleration", 1)
 fox.add_attribute(attribute_data, 0xB0, "Reflector Max Damage Reflectable", 1)

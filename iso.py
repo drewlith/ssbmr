@@ -1,16 +1,22 @@
-from utility import to_word, get_value
+from utility import to_word, set_word, get_value
 from structs.subaction import Subaction
+import subprocess, gc
 
 MAX_CAPACITY = 1459978240
 CHUNK_SIZE = 5703040 # 256 Chunks
-iso_path = "melee.iso"
-output_path = "randomized.iso"
-source = open(iso_path, 'rb')
-melee = open(output_path, 'wb+')
-melee.write(source.read())
-source.close()
 
-# ISO
+melee = None
+fst = None
+
+def init(iso_path, output_path):
+    global melee
+    global fst
+    source = open(iso_path, 'rb')
+    melee = open(output_path, 'wb+')
+    melee.write(source.read())
+    source.close()
+    fst = FST(get_fst())
+
 def seek_and_read(offset, size):
     melee.seek(offset)
     return bytearray(melee.read(size))
@@ -69,6 +75,16 @@ def magic_word():
 def write_dol(new_dol):
     seek_and_write(dol_offset(), new_dol)
 
+def patch_dol():
+    patched_dol_file = open("Data/patched.dol", "rb")
+    patched_dol_data = patched_dol_file.read()
+    patched_dol_file.close()
+    write_dol(patched_dol_data)
+
+def make_xdelta(code):
+    print("Making Patch...", code)
+    subprocess.run(['xdelta3', '-S', '-e', '-B 1430679552', '-s', "melee.iso", "output.iso", "seeds/" + code + ".xdelta"])
+
 ### FST/game.toc 
 # Modifies ISO file, retrieves and replaces files, and creates new ISO.
 STRING_TABLE_OFFSET = 0x38D0 # Is there a way to calculate this offset?
@@ -103,6 +119,9 @@ class FST:
     def write_file_entries(self):
        for file in self.entries:
            self.fst_data[file.fst_offset:file.fst_offset + ENTRY_SIZE] = file.entry_data
+
+    def clear(self):
+       del self
 
 class MeleeFile: # Contains FST data, and File data
     def __init__(self, data, offset):
@@ -166,7 +185,7 @@ def replace_file(name, new_file_path):
     file = find_file(name)
     if file != 0: # Overwrite file data  
         new_file = open(new_file_path, "rb") # Get data from new file
-        new_file_data = new_file.read()
+        new_file_data = bytearray(new_file.read())
         new_file.close()
 
         old_size = file.size 
@@ -181,6 +200,36 @@ def replace_file(name, new_file_path):
 
         file.file_data = new_file_data
 
+def replace_file_data(name, new_file_data):
+    file = find_file(name)
+    if file != 0: # Overwrite file data  
+        old_size = file.size 
+        old_offset = file.offset
+        file.size = len(new_file_data)
+
+        offset_adjustment = old_size - file.size # Calculate offset adjustment
+
+        for _file in fst.entries: # Update offsets for the rest of the files after this file, since they should remain adjacent and now there's a gap.
+            if _file.offset > old_offset:
+                _file.offset = _file.offset - offset_adjustment
+
+        file.file_data = new_file_data
+
+def extend_file(name, data):
+    file = find_file(name)
+    if file != 0:
+        old_size = file.size 
+        old_offset = file.offset
+        file.size = file.size + len(data)
+
+        offset_adjustment = old_size - file.size # Calculate offset adjustment
+
+        for _file in fst.entries: # Update offsets for the rest of the files after this file, since they should remain adjacent and now there's a gap.
+            if _file.offset > old_offset:
+                _file.offset = _file.offset - offset_adjustment
+
+        file.file_data.extend(data)
+
 def write_files_to_disk(): # Debug/Utility
     for file in fst.entries:
         for name in WHITELIST:
@@ -189,10 +238,11 @@ def write_files_to_disk(): # Debug/Utility
                 file_to_write.write(file.file_data)
                 file_to_write.close()
 
-def build_iso():
-    replace_file(b'MvHowto.mth', "blank.mth") # Delete Movies
-    replace_file(b'MvOmake15.mth', "blank.mth")
-    replace_file(b'GmTtAll.usd', "Textures/Title Screen/GmTtAll-ssbmr.usd") # Add custom title screen
+def build_iso(code):
+    global melee
+    global fst
+    replace_file(b'MvHowto.mth', "Data/blank.mth") # Delete Movies
+    replace_file(b'MvOmake15.mth', "Data/blank.mth")
     fst.write_file_entries()
     seek_and_write(fst_offset(), fst.fst_data)
     for file in fst.entries:
@@ -204,6 +254,12 @@ def build_iso():
             break
     melee.truncate()
     melee.close()
+    melee = None
+    fst.clear()
+    fst = None
+    gc.collect()
+    if len(code) > 0:
+        make_xdelta(code)
 
 class Node(): # Used by DAT
     def __init__(self, dat, data_offset, string_offset):
@@ -221,15 +277,24 @@ class DAT:
         self.data_block = self.file_data[0x20:0x20+self.data_block_size()]
 
     # Basic Stuff
-    def data_block_size(self):
-        return to_word(self.header, 6)
-
     def file_size(self):
-        return to_word(self.header, 7)
+        return int.from_bytes(self.file_data[0x0:0x4], "big")
+    
+    def set_file_size(self, value):
+        self.file_data[0x0:0x4] = value.to_bytes(4, "big")
+
+    def data_block_size(self):
+        return int.from_bytes(self.file_data[0x4:0x8], "big")
+    
+    def set_data_block_size(self, value):
+        self.file_data[0x4:0x8] = value.to_bytes(4, "big")
 
     # Relocation Table Stuff
     def relocation_count(self):
-        return to_word(self.header, 5)
+        return int.from_bytes(self.file_data[0x8:0xC], "big")
+    
+    def set_relocation_count(self, value):
+        self.file_data[0x8:0xC] = value.to_bytes(4, "big")
 
     def relocation_table_offset(self):
         return 0x20 + self.data_block_size()
@@ -238,27 +303,45 @@ class DAT:
         offsets = []
         table_offset = self.relocation_table_offset()
         table = self.file_data[table_offset:table_offset + self.relocation_count()*4]
-        table_word_length = len(table)//4 - 1
         for i in range(self.relocation_count()):
-            offsets.append(to_word(table, table_word_length - i))
+            offsets.append(int.from_bytes(table[i*4:i*4+4], "big"))
         return offsets
+    
+    def adjust_relocation_table_offsets(self, value, offset):
+        table_offset = self.relocation_table_offset()
+        for i in range(self.relocation_count()):
+            entry_offset = int.from_bytes(self.file_data[table_offset + (i * 4):table_offset + (i * 4) + 4], "big")
+            if entry_offset >= offset:
+                new_value = entry_offset + value
+                self.file_data[table_offset + (i * 4):table_offset + (i * 4) + 4] = new_value.to_bytes(4, "big") 
 
     def get_relocation_table_data_offsets(self):
         table_offsets = self.get_relocation_table_offsets()
         offsets = []
-        data = self.data_block
+        data = self.file_data
         for i in range(len(table_offsets)):
             offset = table_offsets[i]
-            offsets.append(data[offset:offset + 4])
+            offsets.append(data[offset+0x20:offset + 4 + 0x20])
         return offsets
+    
+    def adjust_relocation_table_data_offsets(self, value, offset):
+        table_offsets = self.get_relocation_table_offsets()
+        for i in range(len(table_offsets)):
+            data_offset = table_offsets[i]+0x20
+            data = self.file_data[data_offset:data_offset+4]
+            data_value = int.from_bytes(data)
+            if data_value >= offset:
+                data_value += value
+                new_data = data_value.to_bytes(4, "big")
+                self.file_data[data_offset:data_offset+4] = new_data
 
     # Root Node, Node, and string stuff
     def get_string(self, offset):
         name = bytearray()
         i = 0
         while True:
-            if self.data_block[offset+i] != 0:
-                name.append(self.data_block[offset+i])
+            if self.file_data[offset+i+0x20] != 0:
+                name.append(self.file_data[offset+i+0x20])
                 i += 1
             else:
                 return name
@@ -312,6 +395,31 @@ class DAT:
             string_offset = data[4:8]
             nodes.append(Node(self, data_offset, string_offset))
         return nodes
+    
+    def adjust_nodes_offsets(self, value, inject_offset):
+        for i in range(self.root_counts()[0]):
+            offset = self.root_offsets()[0] + (i*8)
+            data = self.file_data[offset:offset + 8]
+            data_offset = data[0:4]
+            #string_offset = data[4:8]
+
+            data_offset_value = int.from_bytes(data_offset)
+            if data_offset_value >= inject_offset:
+                data_offset_value += value
+            new_data_offset = data_offset_value.to_bytes(4, "big")    
+            self.file_data[offset:offset+4] = new_data_offset
+
+        for i in range(self.root_counts()[1]):
+            offset = self.root_offsets()[1] + (i*8)
+            data = self.file_data[offset:offset + 8]
+            data_offset = data[0:4]
+            #string_offset = data[4:8]
+
+            data_offset_value = int.from_bytes(data_offset)
+            if data_offset_value >= inject_offset:
+                data_offset_value += value
+            new_data_offset = data_offset_value.to_bytes(4, "big")    
+            self.file_data[offset:offset+4] = new_data_offset
 
     def string_table_offset(self):
         return self.root_offsets()[1] + self.root_counts()[1] * 8
@@ -327,20 +435,29 @@ class DAT:
         return to_word(self.ft_node().data_offset)
 
     def ft_header(self):
-        offset = self.ft_start_offset()
-        return self.data_block[offset:offset + 24]
+        offset = self.ft_start_offset() + 0x20
+        return self.file_data[offset:offset + 24]
 
     def ft_attributes_offset(self):
         return to_word(self.ft_header(), 5)
 
     def ft_attributes_end(self):
         return to_word(self.ft_header(), 4)
+    
+    def unknown_a(self):
+        return to_word(self.ft_header(), 3)
 
     def ft_subactions_offset(self):
         return to_word(self.ft_header(), 2)
+    
+    def unknown_b(self):
+        return to_word(self.ft_header(), 1)
 
     def ft_subactions_end(self):
         return to_word(self.ft_header(), 0)
+    
+    def write_subaction_end(self, new_end):
+        self.data_block[20:24] = new_end.to_bytes(4, "big")
 
     def get_attribute_data(self):
         return self.data_block[self.ft_attributes_offset():self.ft_attributes_end()]
@@ -383,6 +500,17 @@ class DAT:
             subactions.append(subaction)
         return subactions
     
+    def insert_data(self, data, offset):
+        if offset <= 0x0:
+            return
+        adjustment = len(data)
+        self.file_data[offset:offset] = data
+        self.set_file_size(self.file_size() + adjustment)
+        self.set_data_block_size(self.data_block_size() + adjustment)
+        #self.adjust_relocation_table_offsets(adjustment, offset)
+        #self.adjust_relocation_table_data_offsets(adjustment, offset)
+        #self.adjust_nodes_offsets(adjustment, offset)
+        
     # Texture DAT File Stuff
 
     def joint_node(self):
@@ -485,4 +613,4 @@ class DAT:
     def palette_data(self):
         return self.data_block[self.palette_data_offset():self.palette_end()]
     
-fst = FST(get_fst())
+

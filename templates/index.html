@@ -1,31 +1,28 @@
-<!DOCTYPE html>
-<html>
+{% extends "base.html" %}
+{% block content %}
+<h1>Welcome to Melee Randomizer!</h1>
+<br>
+<div class="centered">
+    
+    <h6>An epic video showcasing the randomizer will be placed here, once it's ready.</h6>
+    <br><br>
+    <h6>
+        Melee Randomizer is an application that lets you create a unique and randomly modded version of Melee in just a few clicks. 
+        There are also many customization options to let you play Melee the way you want to! The goal is for the standard settings
+        to remain balanced enough that any seed could be played in a competitive tournament. Players who load the same seed up into an
+        emulator are able to play together online. Sharing a seed is as simple as copying the link of the seed page and pasting it somewhere
+        where people can see it. On the desktop version, one simply copys the flagset and has their friends paste it into their app.
+        Melee Randomizer supports a Discord server community with weekly tournaments where players study a seed in advance to discover the
+        meta and use their knowledge to crush the competition! Join in on the fun today!
+    </h6>
+    <br>
+    <a href = "/download">Click here to download the windows version!</a>
+    <br><br>
+    <a href = "/onlineseed">Click here to generate a seed online!</a>
+    <br><br>
+    <a href = "https://discord.com/invite/48SQfvcvVY">Click here to join the discord server!</a>
+    <br><br>
+    <h6>There have been {{content}}+ seeds generated so far!</h6>
+</div>
 
-<head>
-    <title>Seed Generator</title>
-    <script>
-        function send() {
-            let flags = document.getElementById("flags").value;
-          
-              const json = {
-                  flags: flags
-            };
-
-            fetch("/generate", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(json),
-            });
-        }
-    </script>
-</head>
-
-<body>
-    <h1>Welcome to SSBM Randomizer</h1>
-    <input type="text" id="flags"/>
-    <button onclick="send()">Generate</button>
-</body>
-
-</html>
+{% endblock %}

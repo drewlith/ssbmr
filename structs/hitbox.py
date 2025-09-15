@@ -3,6 +3,8 @@ from random import randint as rng
 
 all_hitboxes = []
 
+GOOD_SFX = [1, 2, 3, 5, 6, 7, 8, 9, 11, 12, 33, 34, 35, 36, 37, 38, 39, 40, 42, 43, 44, 65, 66, 67, 68, 69, 70, 71, 72, 74, 76, 77]
+
 ELEMENTS = ["Normal", "Fire", "Electric", "Slash", "Coin", "Ice", "Sleep", "Hibernate",
             "??????", "Grounded", "Cape", "Special", "Disable", "Dark", "Screw Attack",
             "Flower", "None"]
@@ -160,10 +162,10 @@ class Hitbox():
 def determine_power_ratings():
     for hitbox in all_hitboxes:
         power_rating = 0
-        power_rating += hitbox.damage * 10
-        power_rating += hitbox.growth
-        power_rating += hitbox.base * 4
-        power_rating += hitbox.size // 20
+        power_rating += hitbox.damage * 20
+        power_rating += hitbox.growth * 1
+        power_rating += hitbox.base * 2
+        power_rating += hitbox.size // 30
         power_rating += hitbox.shielddamage * 5
         power_rating += hitbox.setkb
         hitbox.power_rating = power_rating

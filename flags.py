@@ -3,9 +3,9 @@ from fighters import (ft_bowser, ft_boy, ft_captain_falcon, ft_crazy_hand, ft_dk
                       ft_pikachu, ft_popo, ft_roy, ft_samus, ft_sheik, ft_yoshi, ft_young_link, ft_zelda)
 from random import randint as rng
 from random import uniform as rng_f
-from structs import hitbox, aura, sfx
+from structs import hitbox, aura, sfx, gfx, fsm
 from utility import percent_chance
-import gecko, fsm, re, custom_flags
+import gecko, re, custom_flags, pl_common, normalize
 
 # Convention: No underscores since key phrase system use them as delimiters. Variable name will be key phrase name, as in what the user types into the flag
 # The ":=" just lets you set a variable name within the ()s
@@ -44,6 +44,8 @@ all_fighters.append(younglink := ft_young_link.young_link)
 all_fighters.append(zelda := ft_zelda.zelda)
 
 property_keys = ["damage", "angle", "growth", "setkb", "element", "shielddamage", "sfx", "size", "zoffset", "yoffset", "xoffset", "bone"]
+
+plCo = pl_common.PlCo()
 
 def get_all_substrings(string, start_delim, end_delim):
     pattern = re.escape(start_delim) + "(.*?)" + re.escape(end_delim)
@@ -115,7 +117,21 @@ def get_custom_flags(_flags):
 
 def parse_flags(_flags):
     _flags = get_custom_flags(_flags)
-    print(_flags)
+    # Step Zero change some words into values for various flags
+    _flags = _flags.replace("Normal", "0")
+    _flags = _flags.replace("Fire", "1")
+    _flags = _flags.replace("Electric", "2")
+    _flags = _flags.replace("Slash", "3")
+    _flags = _flags.replace("Coin", "4")
+    _flags = _flags.replace("Ice", "5")
+    _flags = _flags.replace("Sleep", "6")
+    _flags = _flags.replace("Hibernate", "7")
+    _flags = _flags.replace("Grounded", "9")
+    _flags = _flags.replace("Cape", "10")
+    _flags = _flags.replace("Disable", "12")
+    _flags = _flags.replace("Dark", "13")
+    _flags = _flags.replace("Screw Attack", "14")
+    _flags = _flags.replace("Flower", "15")
     # Step one, separate all the flags, into variable "flags"
     all_flags = get_all_substrings(_flags, "|", "|")
     flags = []
@@ -127,7 +143,7 @@ def parse_flags(_flags):
         if len(special_instructions) > 0:
             special_instructions = special_instructions[0]
             special_instructions.replace(" ", "")
-            flag.text = flag.text.replace(special_instructions, "")
+            flag.text = flag.text.replace(special_instructions, "", 1)
             flag.text = flag.text.replace(" [", "")
             flag.text = flag.text.replace("] ", " ")
 
@@ -174,7 +190,10 @@ def parse_flags(_flags):
                 if "%" in p:
                     p = p.replace("%", "")
                     flag.percents = True
-                flag.parameters.append(int(p))
+                if "." in p: # is it a float?
+                    flag.parameters.append(float(p))
+                else:
+                    flag.parameters.append(int(p))
             # Step Five, is there more than one parameter?
             if len(flag.parameters) > 1: # This flag should have a ":"
                 flag.separator = True
@@ -257,8 +276,6 @@ def compare_tags(object, tags):
     return True
 
 def hitbox_throw_changes(hitbox, flag):
-    if hitbox.check_tags("exclude"):
-        return
     if flag.property_index < 0: # Probably an attribute flag or bugged flag
         return
     # Special Instructions
@@ -306,6 +323,30 @@ def hitbox_throw_changes(hitbox, flag):
         return
     
 def attribute_changes(attribute, flag):
+    # Special Instructions
+    value = attribute.value
+    if flag.greater_than:
+        if value <= flag.greater_than:
+            return
+    if flag.less_than:
+        if value >= flag.less_than:
+            return
+    if len(flag.not_equals) > 0:
+        for exclusion in flag.not_equals:
+            if value == exclusion:
+                return
+    if len(flag.equals) > 0:
+        its_fine = False
+        for inclusion in flag.equals:
+            if value == inclusion:
+                its_fine = True
+        if not its_fine:
+            return
+    if flag.chance:
+        inverse = 100 - flag.chance
+        if percent_chance(inverse):
+            return
+    ###########################
     if len(flag.parameters) == 1: # Hard set the value if only one parameter given
         attribute.value = flag.parameters[0]
         return
@@ -330,6 +371,44 @@ def attribute_changes(attribute, flag):
                         break
             attribute.value = new_value
             return
+        
+def common_change(flag):
+    command_string = ""
+    for key_phrase in flag.key_phrases:
+        if "common" not in key_phrase:
+            command_string += key_phrase + "_"
+    command_string = command_string[:-1]
+    if len(flag.parameters) == 1:
+        setattr(plCo, command_string, flag.parameters[0])
+        return
+    if flag.percents and flag.separator:
+        old_value = getattr(plCo, command_string)
+        new_value = percent_range(old_value, flag.parameters[0], flag.parameters[1])
+        setattr(plCo, command_string, new_value)
+        return
+    if flag.separator: # If it doesn't have a percentage, randomize within a fixed range
+        if type(flag.parameters[0]) == float or type(flag.parameters[1]) == float:
+            new_value = rng_f(flag.parameters[0], flag.parameters[1])
+            setattr(plCo, command_string, new_value)
+            return
+        else:
+            new_value = rng(flag.parameters[0], flag.parameters[1])
+            setattr(plCo, command_string, new_value)
+
+def animation_change(flag):
+    tags = []
+    for phrase in flag.key_phrases:
+        if "animation" not in phrase:
+            tags.append(phrase)
+    for _fighter in all_fighters:
+        for subaction in _fighter.subactions:
+            if compare_tags(subaction, tags) and len(subaction.subroutine_events) < 1 and len(subaction.goto_events) < 1:
+                subaction.custom = True
+                if flag.separator:
+                    multiplier = rng_f(flag.parameters[0], flag.parameters[1])
+                else:
+                    multiplier = flag.parameters[0]
+                subaction.fsm_multiplier = multiplier
 
 def apply_changes(fighter, flag):
     tags = get_tag_keys(flag)
@@ -350,31 +429,36 @@ def apply_changes(fighter, flag):
 def activate_flags(flagset):
     hitbox.determine_power_ratings()
     for flag in flagset.flags:
-        if "animations" in flag.key_phrases[0]:
-            fsm.randomize_all()
-        if "gecko" in flag.key_phrases[0]:
-            if "shinebros" in flag.key_phrases[1]:
-                gecko.activate_gecko_code("codes/Super Shine Bros - Uncle Punch.txt")
-        if "exclude" in flag.key_phrases[0]: # Exclude Flag detected
+        if "normalize" == flag.key_phrases[0]:
+            normalize.normalize_hitboxes()
+        elif "animation" == flag.key_phrases[0]:
+            animation_change(flag)
+        elif "gecko" in flag.key_phrases[0]:
+            gecko.activate_gecko_code(flag.key_phrases[1])
+        elif "common" in flag.key_phrases[0]:
+            common_change(flag)
+        elif "exclude" in flag.key_phrases[0]: # Exclude Flag detected
             hitbox.exclude_hitboxes(flag.key_phrases[1])
-        if "shuffle" in flag.key_phrases[0]: # Shuffle Flag detected
+        elif "shuffle" in flag.key_phrases[0]: # Shuffle Flag detected
             if "hitboxes" in flag.key_phrases[1]: # Hitboxes
-                if "balanced" in flag.key_phrases[2]:
-                    hitbox.balanced_shuffle_all(flag.parameters[0])
+                if len(flag.key_phrases) > 2:
+                    if "balanced" in flag.key_phrases[2]:
+                        hitbox.balanced_shuffle_all(flag.parameters[0])
                 else:
                     hitbox.unbalanced_shuffle_all(flag.parameters[0])
             if "auras" in flag.key_phrases[1]: # Auras
                 aura.shuffle(flag.parameters[0])
-            
-        if "randomize" in flag.key_phrases[0]: # Randomize Flag detected
+        elif "random" in flag.key_phrases[0]: # Randomize Flag detected
             if "auras" in flag.key_phrases[1]:
                 aura.randomize(flag.parameters[0])
             if "sfx" in flag.key_phrases[1]:
                 sfx.randomize(flag.parameters[0])
-        if not fighter_key(flag.key_phrases[0]): # Global Flag detected
+            if "gfx" in flag.key_phrases[1]:
+                gfx.randomize(flag.parameters[0])
+        elif not fighter_key(flag.key_phrases[0]): # Global Flag detected
             for fighter in all_fighters:
                 apply_changes(fighter, flag)
-        if fighter_key(flag.key_phrases[0]): # Fighter-specific Flag detected
+        elif fighter_key(flag.key_phrases[0]): # Fighter-specific Flag detected
             fighter = get_fighter(flag.key_phrases[0])
             apply_changes(fighter, flag)
         

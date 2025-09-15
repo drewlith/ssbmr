@@ -10,14 +10,38 @@ falcon.articles_sizes = []
 falcon.articles_offsets = []
 falcon.projectile_offsets = []
 
-falcon.subactions[301].friendly_name = "Falcon Punch (Ground)"
-falcon.subactions[302].friendly_name = "Falcon Punch (Aerial)"
-falcon.subactions[304].friendly_name = "Raptor Boost (Ground)"
-falcon.subactions[306].friendly_name = "Raptor Boost (Aerial)"
-falcon.subactions[309].friendly_name = "Falcon Dive"
-falcon.subactions[311].friendly_name = "Falcon Kick (Ground)"
-falcon.subactions[313].friendly_name = "Falcon Kick (Aerial)"
-falcon.subactions[314].friendly_name = "Falcon Kick (Landing)"
+falcon.subactions[0x106].friendly_name = "Falcon Dive Throw"
+falcon.subactions[0x107].friendly_name = "Falcon Dive Throw"
+falcon.subactions[0x108].friendly_name = "Falcon Dive Throw"
+falcon.subactions[0x109].friendly_name = "Falcon Dive Throw"
+falcon.subactions[0x114].friendly_name = "Falcon Dive"
+falcon.subactions[0x127].friendly_name = "Smash Item Swing"
+falcon.subactions[0x128].friendly_name = "Smash Item Swing"
+falcon.subactions[0x129].friendly_name = "Smash Item Swing"
+falcon.subactions[0x12A].friendly_name = "Smash Item Swing"
+falcon.subactions[0x12B].friendly_name = "Smash Item Swing"
+falcon.subactions[0x12C].friendly_name = "Smash Item Swing"
+falcon.subactions[0x12D].friendly_name = "Falcon Punch"
+falcon.subactions[0x12E].friendly_name = "Falcon Punch"
+falcon.subactions[0x12F].friendly_name = "Raptor Boost"
+falcon.subactions[0x130].friendly_name = "Raptor Boost"
+falcon.subactions[0x131].friendly_name = "Raptor Boost"
+falcon.subactions[0x132].friendly_name = "Raptor Boost"
+falcon.subactions[0x133].friendly_name = "Falcon Dive"
+falcon.subactions[0x134].friendly_name = "Falcon Dive"
+falcon.subactions[0x135].friendly_name = "Falcon Dive"
+falcon.subactions[0x136].friendly_name = "Falcon Dive"
+falcon.subactions[0x137].friendly_name = "Falcon Kick"
+falcon.subactions[0x138].friendly_name = "Falcon Kick"
+falcon.subactions[0x139].friendly_name = "Falcon Kick"
+falcon.subactions[0x13A].friendly_name = "Falcon Kick"
+falcon.subactions[0x13B].friendly_name = "Falcon Kick"
+falcon.subactions[0x13C].friendly_name = "Falcon Kick"
+falcon.subactions[0x13D].friendly_name = "Falcon Dive"
+
+for action in falcon.subactions:
+    if "Nameless" not in action.friendly_name:
+        action.tags.append(action.friendly_name.lower().replace(" ", ""))
 
 attribute_data = falcon.dat_file.get_special_attribute_data(falcon.special_attribute_block_size)
 falcon.add_attribute(attribute_data, 0x08, "Falcon Punch Momentum", 1)

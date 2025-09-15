@@ -47,7 +47,7 @@ class Fighter():
         self.add_attribute(attribute_data, 0x0054, "Double Jump Momentum")
         self.add_attribute(attribute_data, 0x0058, "Number of Jumps") # Integer
         self.add_attribute(attribute_data, 0x005C, "Gravity Scale")
-        self.add_attribute(attribute_data, 0x0060, "Terminal Velocity")
+        self.add_attribute(attribute_data, 0x0060, "Base Terminal Velocity")
         self.add_attribute(attribute_data, 0x0064, "Air Mobility A")
         self.add_attribute(attribute_data, 0x0068, "Air Mobility B")
         self.add_attribute(attribute_data, 0x006C, "Aerial Horizontal Max Velocity")
@@ -150,30 +150,30 @@ class Fighter():
         self.get_attribute("Run Animation Scaling").tags.extend(["run", "animation"])
         self.get_attribute("Run Acceleration").tags.extend(["run", "acceleration"])
         self.get_attribute("Unknown Attribute 0x34").tags.extend(["unknown"])
-        self.get_attribute("Jumpsquat Frames").tags.extend(["jumpsquat", "frame_data"])
+        self.get_attribute("Jumpsquat Frames").tags.extend(["jumpsquat", "framedata"])
         self.get_attribute("Jump Horizontal Velocity").tags.extend(["jump", "horizontal", "velocity"])
         self.get_attribute("Jump Vertical Velocity").tags.extend(["jump", "vertical", "velocity"])
         self.get_attribute("Jump Momentum Multiplier").tags.extend(["jump", "momentum", "multiplier"])
         self.get_attribute("Jump Horizontal Max Velocity").tags.extend(["jump", "horizontal", "velocity"])
-        self.get_attribute("Shorthop Vertical Velocity").tags.extend(["shorthop", "vertical", "velocity"])
-        self.get_attribute("Air Jump Multiplier").tags.extend(["jump", "air_movement"])
+        self.get_attribute("Shorthop Vertical Velocity").tags.extend(["shorthop", "jump", "vertical", "velocity"])
+        self.get_attribute("Air Jump Multiplier").tags.extend(["jump", "airmovement"])
         self.get_attribute("Double Jump Momentum").tags.extend(["jump", "momentum"])
         self.get_attribute("Number of Jumps").tags.extend(["unknown"]) # Integer
         self.get_attribute("Gravity Scale").tags.extend(["gravity"])
-        self.get_attribute("Terminal Velocity").tags.extend(["velocity", "terminal"])
-        self.get_attribute("Air Mobility A").tags.extend(["air_movement"])
-        self.get_attribute("Air Mobility B").tags.extend(["air_movement"])
-        self.get_attribute("Aerial Horizontal Max Velocity").tags.extend(["air_movement", "horizontal", "velocity"])
-        self.get_attribute("Air Friction").tags.extend(["air_movement", "friction"])
+        self.get_attribute("Base Terminal Velocity").tags.extend(["velocity", "terminal"])
+        self.get_attribute("Air Mobility A").tags.extend(["airmovement"])
+        self.get_attribute("Air Mobility B").tags.extend(["airmovement"])
+        self.get_attribute("Aerial Horizontal Max Velocity").tags.extend(["airmovement", "horizontal", "velocity"])
+        self.get_attribute("Air Friction").tags.extend(["airmovement", "friction"])
         self.get_attribute("Fast Fall Terminal Velocity").tags.extend(["fall", "velocity", "terminal"])
         self.get_attribute("Unknown Attribute 0x78").tags.extend(["unknown"])
-        self.get_attribute("Jab 2 Frame Window").tags.extend(["frame_data"])
-        self.get_attribute("Jab 3 Frame Window").tags.extend(["frame_data"])
-        self.get_attribute("Turnaround Frames").tags.extend(["frame_data"])
+        self.get_attribute("Jab 2 Frame Window").tags.extend(["framedata"])
+        self.get_attribute("Jab 3 Frame Window").tags.extend(["framedata"])
+        self.get_attribute("Turnaround Frames").tags.extend(["framedata"])
         self.get_attribute("Weight").tags.extend(["weight"])
-        self.get_attribute("Model Scale").tags.extend(["model_size"])
-        self.get_attribute("Shield Break Velocity").tags.extend(["shield", "model_size"])
-        self.get_attribute("Rapid Jab Window (Frames)").tags.extend(["frame_data"])
+        self.get_attribute("Model Scale").tags.extend(["modelsize"])
+        self.get_attribute("Shield Break Velocity").tags.extend(["shield"])
+        self.get_attribute("Rapid Jab Window (Frames)").tags.extend(["framedata"])
         self.get_attribute("Unknown Attribute 0x9C").tags.extend(["unknown"])
         self.get_attribute("Unknown Attribute 0xA0").tags.extend(["unknown"])
         self.get_attribute("Unknown Attribute 0xA4").tags.extend(["unknown"])
@@ -192,13 +192,13 @@ class Fighter():
         self.get_attribute("Unknown Attribute 0xD8").tags.extend(["unknown"])
         self.get_attribute("Unknown Attribute 0xDC").tags.extend(["unknown"])
         self.get_attribute("Kirby Star Damage").tags.extend(["attribute_damage"])
-        self.get_attribute("Landing Lag Frames: Empty").tags.extend(["landing_lag", "frame_data"])
-        self.get_attribute("Landing Lag Frames: Neutral Aerial").tags.extend(["landing_lag", "frame_data"])
-        self.get_attribute("Landing Lag Frames: Forward Aerial").tags.extend(["landing_lag", "frame_data"])
-        self.get_attribute("Landing Lag Frames: Back Aerial").tags.extend(["landing_lag", "frame_data"])
-        self.get_attribute("Landing Lag Frames: Up Aerial").tags.extend(["landing_lag", "frame_data"])
-        self.get_attribute("Landing Lag Frames: Down Aerial").tags.extend(["landing_lag", "frame_data"])
-        self.get_attribute("Victory Screen Window Model Scale").tags.extend(["model_size"])
+        self.get_attribute("Landing Lag Frames: Empty").tags.extend(["landinglag", "frame_data"])
+        self.get_attribute("Landing Lag Frames: Neutral Aerial").tags.extend(["landinglag", "frame_data"])
+        self.get_attribute("Landing Lag Frames: Forward Aerial").tags.extend(["landinglag", "frame_data"])
+        self.get_attribute("Landing Lag Frames: Back Aerial").tags.extend(["landinglag", "frame_data"])
+        self.get_attribute("Landing Lag Frames: Up Aerial").tags.extend(["landinglag", "frame_data"])
+        self.get_attribute("Landing Lag Frames: Down Aerial").tags.extend(["landinglag", "frame_data"])
+        #self.get_attribute("Victory Screen Window Model Scale").tags.extend(["model_size"])
         self.get_attribute("Unknown Attribute 0x100").tags.extend(["unknown"])
         self.get_attribute("Wall Jump Horizontal Velocity").tags.extend(["wall", "jump", "horizontal", "velocity"])
         self.get_attribute("Wall Jump Vertical Velocity").tags.extend(["wall", "jump", "vertical", "velocity"])
@@ -234,7 +234,7 @@ class Fighter():
 
     def get_attribute(self, name):
         for attribute in self.attributes:
-            if name in attribute.name:
+            if name == attribute.name:
                 return attribute
         print("No attribute found with name: ", name)
 
@@ -246,23 +246,168 @@ class Fighter():
 
     def name_subactions(self):
         actions = self.subactions
+        actions[0x00].friendly_name = "Wall Damage"
+        actions[0x01].friendly_name = "Damage Fall 1"
+        actions[0x02].friendly_name = "Wait 1"
+        actions[0x03].friendly_name = "Wait 2"
+        actions[0x04].friendly_name = "Wait 3"
+        actions[0x06].friendly_name = "Wait Item"
+        actions[0x07].friendly_name = "Walk Slow"
+        actions[0x08].friendly_name = "Walk Middle"
+        actions[0x09].friendly_name = "Wait Fast"
+        actions[0x0A].friendly_name = "Turn"
+        actions[0x0B].friendly_name = "Turn Run"
+        actions[0x0C].friendly_name = "Dash"
+        actions[0x0D].friendly_name = "Run"
+        actions[0x0E].friendly_name = "Run Brake"
+        actions[0x0F].friendly_name = "Landing 1"
+        actions[0x10].friendly_name = "Jump Forward"
+        actions[0x11].friendly_name = "Jump Back"
+        actions[0x12].friendly_name = "Aerial Jump Forward"
+        actions[0x13].friendly_name = "Aerial Jump Back"
+        actions[0x14].friendly_name = "Fall"
+        actions[0x15].friendly_name = "Fall Forward"
+        actions[0x16].friendly_name = "Fall Back"
+        actions[0x17].friendly_name = "Aerial Fall"
+        actions[0x18].friendly_name = "Aerial Fall Forward"
+        actions[0x19].friendly_name = "Aerial Fall Back"
+        actions[0x1A].friendly_name = "Fall Special"
+        actions[0x1B].friendly_name = "Fall Special Forward"
+        actions[0x1C].friendly_name = "Fall Special Back"
+        actions[0x1D].friendly_name = "Damage Fall 2"
+        actions[0x1E].friendly_name = "Squat"
+        actions[0x1F].friendly_name = "Squat Wait"
+        actions[0x21].friendly_name = "Squat Wait Item"
+        actions[0x22].friendly_name = "Squat Reverse"
+        actions[0x23].friendly_name = "Landing 2"
+        actions[0x24].friendly_name = "Landing 3"
+        actions[0x25].friendly_name = "Guard On"
+        actions[0x26].friendly_name = "Guard"
+        actions[0x27].friendly_name = "Guard Off"
+        actions[0x28].friendly_name = "Guard Damage"
+        actions[0x29].friendly_name = "Spot Dodge"
+        actions[0x2A].friendly_name = "Forward Roll"
+        actions[0x2B].friendly_name = "Back Roll"
+        actions[0x2C].friendly_name = "Air Dodge"
+        actions[0x2D].friendly_name = "Rebound"
+        actions[0x49].friendly_name = "Neutral Aerial Landing"
+        actions[0x4A].friendly_name = "Forward Aerial Landing"
+        actions[0x4B].friendly_name = "Back Aerial Landing"
+        actions[0x4C].friendly_name = "Up Aerial Landing"
+        actions[0x4D].friendly_name = "Down Aerial Landing"
+        actions[0x4E].friendly_name = "Light Item Pickup"
+        actions[0x4F].friendly_name = "Light Item Forward Throw"
+        actions[0x50].friendly_name = "Light Item Back Throw"
+        actions[0x51].friendly_name = "Light Item Up Throw"
+        actions[0x52].friendly_name = "Light Item Down Throw"
+        actions[0x53].friendly_name = "Light Item Dashing Throw"
+        actions[0x54].friendly_name = "Light Item Throw Drop"
+        actions[0x55].friendly_name = "Light Item Aerial Forward Throw"
+        actions[0x56].friendly_name = "Light Item Aerial Back Throw"
+        actions[0x57].friendly_name = "Light Item Aerial Up Throw"
+        actions[0x58].friendly_name = "Light Item Aerial Down Throw"
+        actions[0x59].friendly_name = "Heavy Item Pickup"
+        actions[0x5A].friendly_name = "Heavy Item Walk 1"
+        actions[0x5B].friendly_name = "Heavy Item Walk 2"
+        actions[0x5C].friendly_name = "Heavy Item Forward Throw"
+        actions[0x5D].friendly_name = "Heavy Item Back Throw"
+        actions[0x5E].friendly_name = "Heavy Item Up Throw"
+        actions[0x5F].friendly_name = "Heavy Item Down Throw"
+        actions[0x60].friendly_name = "Light Item Forward Throw Alt"
+        actions[0x61].friendly_name = "Light Item Back Throw Alt"
+        actions[0x62].friendly_name = "Light Item Up Throw Alt"
+        actions[0x63].friendly_name = "Light Item Down Throw Alt"
+        actions[0x64].friendly_name = "Light Item Aerial Forward Throw Alt"
+        actions[0x65].friendly_name = "Light Item Aerial Back Throw Alt"
+        actions[0x66].friendly_name = "Light Item Aerial Up Throw Alt"
+        actions[0x67].friendly_name = "Light Item Aerial Down Throw Alt"
+        actions[0x68].friendly_name = "Heavy Item Forward Throw Alt"
+        actions[0x69].friendly_name = "Heavy Item Back Throw Alt"
+        actions[0x6A].friendly_name = "Heavy Item Up Throw Alt"
+        actions[0x6B].friendly_name = "Heavy Item Down Throw Alt"
+        actions[0x84].friendly_name = "Hammer Item Wait"
+        actions[0x85].friendly_name = "Hammer Item Move"
+        actions[0x86].friendly_name = "Parasol Item Open"
+        actions[0x87].friendly_name = "Parasol Item Fall 1"
+        actions[0x88].friendly_name = "Parasol Item Fall 2"
+        actions[0x89].friendly_name = "Damage Fall 3"
+        actions[0x8A].friendly_name = "Item Shoot 1"
+        actions[0x8B].friendly_name = "Aerial Item Shoot 1"
+        actions[0x8C].friendly_name = "Item Shoot 2"
+        actions[0x8D].friendly_name = "Aerial Item Shoot 2"
+        actions[0x8E].friendly_name = "Item Shoot 3"
+        actions[0x8F].friendly_name = "Aerial Item Shoot 3"
+        actions[0x92].friendly_name = "Screw Attack"
+        actions[0x93].friendly_name = "Screw Attack"
+        actions[0x94].friendly_name = "Item Blind"
+        actions[0x95].friendly_name = "Super Scope Start 1"
+        actions[0x96].friendly_name = "Super Scope Rapid Fire 1"
+        actions[0x97].friendly_name = "Super Scope Charge Shot 1"
+        actions[0x98].friendly_name = "Super Scope End 1"
+        actions[0x99].friendly_name = "Aerial Super Scope Start 1"
+        actions[0x9A].friendly_name = "Aerial Super Scope Rapid Fire 1"
+        actions[0x9B].friendly_name = "Aerial Super Scope Charge Shot 1"
+        actions[0x9C].friendly_name = "Aerial Super Scope End 1"
+        actions[0x9D].friendly_name = "Super Scope Start 2"
+        actions[0x9E].friendly_name = "Super Scope Rapid Fire 2"
+        actions[0x9F].friendly_name = "Super Scope Charge Shot 2"
+        actions[0xA0].friendly_name = "Super Scope End 2"
+        actions[0xA1].friendly_name = "Aerial Super Scope Start 2"
+        actions[0xA2].friendly_name = "Aerial Super Scope Rapid Fire 2"
+        actions[0xA3].friendly_name = "Aerial Super Scope Charge Shot 2"
+        actions[0xA4].friendly_name = "Aerial Super Scope End 2"
+        actions[0xB7].friendly_name = "Knockdown Rebound 1"
+        actions[0xB8].friendly_name = "Knockdown Wait 1"
+        actions[0xB9].friendly_name = "Knockdown Got Hit 1"
+        actions[0xBA].friendly_name = "Knockdown Stand 1"
+        actions[0xBC].friendly_name = "Knockdown Roll Forward 1"
+        actions[0xBD].friendly_name = "Knockdown Roll Back 1"
+        actions[0xBF].friendly_name = "Knockdown Rebound 2"
+        actions[0xC0].friendly_name = "Knockdown Wait 2"
+        actions[0xC1].friendly_name = "Knockdown Got Hit 2"
+        actions[0xC2].friendly_name = "Knockdown Stand 2"
+        actions[0xC4].friendly_name = "Knockdown Roll Forward 2"
+        actions[0xC5].friendly_name = "Knockdown Roll Back 2"
+        actions[0xCD].friendly_name = "Stunned"
+        actions[0xCE].friendly_name = "Sleep Start"
+        actions[0xCF].friendly_name = "Sleeping"
+        actions[0xD0].friendly_name = "Sleep End"
+        actions[0xD4].friendly_name = "Wall Tech Missed"
+        actions[0xD5].friendly_name = "Wall Tech"
+        actions[0xD6].friendly_name = "Ceiling Tech"
+        actions[0xD8].friendly_name = "Ledge Grab"
+        actions[0xD9].friendly_name = "Ledge Wait"
+        actions[0xDB].friendly_name = "Ledge Get Up Slow"
+        actions[0xDC].friendly_name = "Ledge Get Up Fast"
+        actions[0xDF].friendly_name = "Ledge Roll Slow"
+        actions[0xE0].friendly_name = "Ledge Roll Fast"
+        actions[0xE1].friendly_name = "Ledge Jump Slow 1"
+        actions[0xE2].friendly_name = "Ledge Jump Slow 2"
+        actions[0xE3].friendly_name = "Ledge Jump Fast 1"
+        actions[0xE4].friendly_name = "Ledge Jump Fast 2"
+        actions[0xEF].friendly_name = "Taunt"
+        actions[0xF2].friendly_name = "Grab"
+        actions[0xF3].friendly_name = "Dash Grab"
+        actions[0xF4].friendly_name = "Grab Hold"
+        actions[0xF6].friendly_name = "Grab Release"
+        actions[0x11E].friendly_name = "Star KO"
         # Normals
         actions[46].friendly_name = "Jab 1"
         actions[47].friendly_name = "Jab 2"
         actions[48].friendly_name = "Jab 3"
         actions[52].friendly_name = "Dash Attack"
-        actions[53].friendly_name = "Forward Tilt (Highest)"
-        actions[54].friendly_name = "Forward Tilt (Mid-High)"
-        actions[55].friendly_name = "Forward Tilt (Middle)"
-        actions[56].friendly_name = "Forward Tilt (Mid-Low)"
-        actions[57].friendly_name = "Forward Tilt (Lowest)"
+        actions[53].friendly_name = "Forward Tilt Highest"
+        actions[54].friendly_name = "Forward Tilt Mid-High"
+        actions[55].friendly_name = "Forward Tilt Middle"
+        actions[56].friendly_name = "Forward Tilt Mid-Low"
+        actions[57].friendly_name = "Forward Tilt Lowest"
         actions[58].friendly_name = "Up Tilt"
         actions[59].friendly_name = "Down Tilt"
-        actions[60].friendly_name = "Forward Smash (Highest)"
-        actions[61].friendly_name = "Forward Smash (Mid-High)"
-        actions[62].friendly_name = "Forward Smash (Middle)"
-        actions[63].friendly_name = "Forward Smash (Mid-Low)"
-        actions[64].friendly_name = "Forward Smash (Lowest)"
+        actions[60].friendly_name = "Forward Smash Highest"
+        actions[61].friendly_name = "Forward Smash Mid-High"
+        actions[62].friendly_name = "Forward Smash Middle"
+        actions[63].friendly_name = "Forward Smash Mid-Low"
+        actions[64].friendly_name = "Forward Smash Lowest"
         actions[66].friendly_name = "Up Smash"
         actions[67].friendly_name = "Down Smash"
         actions[68].friendly_name = "Neutral Aerial"
@@ -270,8 +415,8 @@ class Fighter():
         actions[70].friendly_name = "Back Aerial"
         actions[71].friendly_name = "Up Aerial"
         actions[72].friendly_name = "Down Aerial"
-        actions[187].friendly_name = "Get-Up Attack (Up)"
-        actions[195].friendly_name = "Get-Up Attack (Down)"
+        actions[187].friendly_name = "Get-Up Attack Up"
+        actions[195].friendly_name = "Get-Up Attack Down"
         actions[221].friendly_name = "Ledge Attack Slow"
         actions[222].friendly_name = "Ledge Attack Fast"
         actions[245].friendly_name = "Pummel"
@@ -307,6 +452,7 @@ class Fighter():
         actions[131].friendly_name = "Lip's Stick Dash Attack"
         actions[144].friendly_name = "Screw Attack 1"
         actions[145].friendly_name = "Screw Attack 2"
+        
 
     def tag_subactions(self):
         actions = self.subactions
@@ -314,7 +460,7 @@ class Fighter():
         actions[46].add_hitbox_tags(["normal", "jab", "jab1"]) #Jab 1#
         actions[47].add_hitbox_tags(["normal", "jab", "jab2"]) #Jab 2#
         actions[48].add_hitbox_tags(["normal", "jab", "jab3"]) #Jab 3#
-        actions[52].add_hitbox_tags(["normal", "dash"]) #Dash Attack#
+        actions[52].add_hitbox_tags(["normal", "dashattack"]) #Dash Attack#
         actions[53].add_hitbox_tags(["normal", "tilt", "ftilt", "angled"]) #Forward Tilt (Highest)#
         actions[54].add_hitbox_tags(["normal", "tilt", "ftilt", "angled"]) #Forward Tilt (Mid-High)#
         actions[55].add_hitbox_tags(["normal", "tilt", "ftilt"]) #Forward Tilt (Middle)#
@@ -369,6 +515,20 @@ class Fighter():
         actions[131].add_hitbox_tags(["item", "lipsstick", "dash"]) #Lip's Stick Dash Attack#
         actions[144].add_hitbox_tags(["item", "screwattack"]) #Screw Attack 1#
         actions[145].add_hitbox_tags(["item", "screwattack"]) #Screw Attack 2#
+
+
+        for action in actions:  # Add tags to subactions to mirror their hitboxes/throws
+            action.tags.append(action.friendly_name.replace(" ", "").lower())
+            action.tags.append(self.name.replace(" ", "").lower())
+            if len(action.hitboxes) > 0:
+                for tag in action.hitboxes[0].tags:
+                    action.tags.append(tag)
+            if len(action.throws) > 0:
+                for tag in action.throws[0].tags:
+                    action.tags.append(tag)
+
+            if action.index >= 0x102: # Tag specials
+                action.tags.append("special")
 
         for action in actions:
             i = 0
@@ -482,7 +642,8 @@ def write_fighter_data():
         subaction_data = bytearray()
         for subaction in _fighter.subactions:
             subaction_data.extend(subaction.data)
-            subaction.write_events()
+            if not subaction.custom:
+                subaction.write_events()
         _fighter.dat_file.write_subaction_data(subaction_data)
         for attribute in _fighter.attributes:
             _fighter.dat_file.write_attribute_data(attribute, _fighter)
@@ -491,3 +652,5 @@ def write_fighter_data():
             _fighter.dat_file.file_data[offset:offset+20] = projectile.data
 
     iso.find_file(_fighter.dat_file.file_name).file_data = _fighter.dat_file.file_data
+
+

@@ -145,6 +145,8 @@ class Aura():
 
     @id.setter
     def id(self, _id):
+        if _id == 0x0134:
+            _id = 0x0194
         self.data = set_value(self.data, 15, 9, _id)
 
     def __str__(self):

@@ -193,7 +193,7 @@ IDS = {
     0xB9:"Staryu",
     0xBA:"Chansey",
     0xBB:"Porygon",
-    0xBC:"Cyndaquill",
+    0xBC:"Cyndaquil",
     0xBD:"Marill",
     0xBE:"Venusaur",
     0xBF:"Chicorita's Leaf",
@@ -246,9 +246,3 @@ IDS = {
     0xEC:"Birdo's Egg"
 }
 
-num = 51
-string = ""
-while num < 161:
-    string += "$" + str(num) + " "
-    num += 1
-print(string)

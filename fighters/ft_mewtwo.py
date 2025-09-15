@@ -8,7 +8,7 @@ mewtwo.fighter_id = 0x0A
 
 mewtwo.special_attribute_block_size = 0x88
 mewtwo.articles_sizes = [0x8, 0x30]
-mewtwo.articles_offsets = [0x3390, 0x3CD8]
+mewtwo.articles_offsets = [0x3CD8, 0x3D80]
 mewtwo.projectile_offsets = [0x3DD4, 0x3E0C, 0x3E44, 0x3E98, 0x3D00]
 
 file_data = mewtwo.dat_file.file_data
@@ -19,26 +19,47 @@ mewtwo.projectile_hitboxes.append(shadowball_a_hitbox)
 
 offset = mewtwo.projectile_offsets[1]
 shadowball_b_hitbox = hitbox.Hitbox(file_data[offset:offset+20], offset)
-shadowball_b_hitbox.tags.append("projectile")
+#shadowball_b_hitbox.tags.append("projectile")
 mewtwo.projectile_hitboxes.append(shadowball_b_hitbox)
 
 offset = mewtwo.projectile_offsets[2]
 shadowball_c_hitbox = hitbox.Hitbox(file_data[offset:offset+20], offset)
-shadowball_c_hitbox.tags.append("projectile")
+#shadowball_c_hitbox.tags.append("projectile")
 mewtwo.projectile_hitboxes.append(shadowball_c_hitbox)
 
 offset = mewtwo.projectile_offsets[3]
 shadowball_d_hitbox = hitbox.Hitbox(file_data[offset:offset+20], offset)
-shadowball_d_hitbox.tags.append("projectile")
+#shadowball_d_hitbox.tags.append("projectile")
 mewtwo.projectile_hitboxes.append(shadowball_d_hitbox)
 
 offset = mewtwo.projectile_offsets[4]
 disable_hitbox = hitbox.Hitbox(file_data[offset:offset+20], offset)
-disable_hitbox.tags.append("projectile")
+#disable_hitbox.tags.append("projectile")
 mewtwo.projectile_hitboxes.append(disable_hitbox)
 
-mewtwo.subactions[296].friendly_name = "Shadow Ball"
-mewtwo.subactions[297].friendly_name = "Shadow Ball"
+mewtwo.subactions[0x127].friendly_name = "Shadow Ball"
+#mewtwo.subactions[0x128].friendly_name = "Shadow Ball"
+#mewtwo.subactions[0x129].friendly_name = "Shadow Ball"
+mewtwo.subactions[0x12A].friendly_name = "Shadow Ball"
+mewtwo.subactions[0x12B].friendly_name = "Shadow Ball"
+mewtwo.subactions[0x12C].friendly_name = "Shadow Ball"
+#mewtwo.subactions[0x12D].friendly_name = "Shadow Ball"
+#mewtwo.subactions[0x12E].friendly_name = "Shadow Ball"
+mewtwo.subactions[0x12F].friendly_name = "Shadow Ball"
+mewtwo.subactions[0x130].friendly_name = "Shadow Ball"
+mewtwo.subactions[0x131].friendly_name = "Confusion"
+mewtwo.subactions[0x132].friendly_name = "Confusion"
+mewtwo.subactions[0x133].friendly_name = "Teleport"
+mewtwo.subactions[0x134].friendly_name = "Teleport"
+mewtwo.subactions[0x135].friendly_name = "Teleport"
+mewtwo.subactions[0x136].friendly_name = "Teleport"
+mewtwo.subactions[0x137].friendly_name = "Teleport"
+mewtwo.subactions[0x138].friendly_name = "Disable"
+mewtwo.subactions[0x139].friendly_name = "Disable"
+
+for action in mewtwo.subactions:
+    if "Nameless" not in action.friendly_name:
+        action.tags.append(action.friendly_name.lower().replace(" ", ""))
 
 attribute_data = mewtwo.dat_file.get_special_attribute_data(mewtwo.special_attribute_block_size)
 mewtwo.add_attribute(attribute_data, 0x0, "Shadow Ball Charge Increment", 1)

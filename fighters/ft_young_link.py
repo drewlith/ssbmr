@@ -2,7 +2,7 @@ import fighter
 from iso import DAT
 from structs import hitbox
 
-young_link = fighter.Fighter("Young young_link", DAT(b'PlCl.dat'))
+young_link = fighter.Fighter("Young Link", DAT(b'PlCl.dat'))
 fighter.fighters.append(young_link)
 young_link.fighter_id = 0x15
 
@@ -11,10 +11,29 @@ young_link.articles_sizes = [0x34, 0x64, 0x64, 0x2C]
 young_link.articles_offsets = [0x43E0, 0x429C, 0x4034, 0x4124]
 young_link.projectile_offsets = [0x4190, 0x4434, 0x445C]
 
-young_link.subactions[295].friendly_name = "Forward Smash (Second Hit)"
-young_link.subactions[308].friendly_name = "Spin Attack (Ground)"
-young_link.subactions[309].friendly_name = "Spin Attack (Aerial)"
-young_link.subactions[312].friendly_name = "Hookshot (Aerial)"
+young_link.subactions[0x127].friendly_name = "Forward Smash Second Hit"
+young_link.subactions[0x128].friendly_name = "Hero Bow"
+young_link.subactions[0x129].friendly_name = "Hero Bow"
+young_link.subactions[0x12A].friendly_name = "Hero Bow"
+young_link.subactions[0x12B].friendly_name = "Hero Bow"
+young_link.subactions[0x12C].friendly_name = "Hero Bow"
+young_link.subactions[0x12D].friendly_name = "Hero Bow"
+young_link.subactions[0x12E].friendly_name = "Boomerang"
+young_link.subactions[0x12F].friendly_name = "Boomerang"
+young_link.subactions[0x130].friendly_name = "Boomerang"
+young_link.subactions[0x131].friendly_name = "Boomerang"
+young_link.subactions[0x132].friendly_name = "Boomerang"
+young_link.subactions[0x133].friendly_name = "Boomerang"
+young_link.subactions[0x134].friendly_name = "Spin Attack"
+young_link.subactions[0x135].friendly_name = "Spin Attack"
+young_link.subactions[0x136].friendly_name = "Link Bombs"
+young_link.subactions[0x137].friendly_name = "Link Bombs"
+young_link.subactions[0x138].friendly_name = "Hookshot"
+young_link.subactions[0x139].friendly_name = "Hookshot"
+
+for action in young_link.subactions:
+    if "Nameless" not in action.friendly_name:
+        action.tags.append(action.friendly_name.lower().replace(" ", ""))
 
 file_data = young_link.dat_file.file_data
 
@@ -34,9 +53,9 @@ young_link.projectile_hitboxes.append(bomb_explosion_hitbox)
 
 
 attribute_data = young_link.dat_file.get_special_attribute_data(young_link.special_attribute_block_size)
-young_link.add_attribute(attribute_data, 0x00, "Bow Frames For Max Charge", 1)
-young_link.add_attribute(attribute_data, 0x04, "Bow Charge Speed", 1)
-young_link.add_attribute(attribute_data, 0x08, "Bow Landing Lag", 1)
+young_link.add_attribute(attribute_data, 0x00, "Hero Bow Frames For Max Charge", 1)
+young_link.add_attribute(attribute_data, 0x04, "Hero Bow Charge Speed", 1)
+young_link.add_attribute(attribute_data, 0x08, "Hero Bow Landing Lag", 1)
 young_link.add_attribute(attribute_data, 0x18, "Boomerang Launch Angle", 1)
 young_link.add_attribute(attribute_data, 0x20, "Boomerang Smash Launch Velocity", 1)
 young_link.add_attribute(attribute_data, 0x24, "Boomerang Tilt Launch Velocity", 1)
@@ -134,11 +153,11 @@ young_link.add_attribute(hookshot_data, 0x50, "Hookshot Air Length Modifier", 4)
 
 young_link.article_datas = young_link.dat_file.get_article_data(young_link)
 arrow_data = young_link.article_datas[3]
-young_link.add_attribute(arrow_data, 0x00, "Arrow Duration (Air)", 5)
-young_link.add_attribute(arrow_data, 0x04, "Arrow Uncharged Velocity", 5)
-young_link.add_attribute(arrow_data, 0x08, "Arrow Charged Velocity Multiplier", 5)
-young_link.add_attribute(arrow_data, 0x0C, "Arrow Uncharged Damage", 5)
-young_link.add_attribute(arrow_data, 0x10, "Arrow Full Charge Damage", 5)
-young_link.add_attribute(arrow_data, 0x18, "Arrow Duration (Ground)", 5)
-young_link.add_attribute(arrow_data, 0x1C, "Arrow Gravity", 5)
-young_link.add_attribute(arrow_data, 0x20, "Arrow Arc Modifier (Cosmetic only)", 5)
+young_link.add_attribute(arrow_data, 0x00, "Flame Arrow Duration (Air)", 5)
+young_link.add_attribute(arrow_data, 0x04, "Flame Arrow Uncharged Velocity", 5)
+young_link.add_attribute(arrow_data, 0x08, "Flame Arrow Charged Velocity Multiplier", 5)
+young_link.add_attribute(arrow_data, 0x0C, "Flame Arrow Uncharged Damage", 5)
+young_link.add_attribute(arrow_data, 0x10, "Flame Arrow Full Charge Damage", 5)
+young_link.add_attribute(arrow_data, 0x18, "Flame Arrow Duration (Ground)", 5)
+young_link.add_attribute(arrow_data, 0x1C, "Flame Arrow Gravity", 5)
+young_link.add_attribute(arrow_data, 0x20, "Flame Arrow Arc Modifier (Cosmetic only)", 5)

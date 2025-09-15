@@ -14,19 +14,37 @@ yoshi.projectile_offsets = [0x3A90, 0x3B74]
 file_data = yoshi.dat_file.file_data
 offset = yoshi.projectile_offsets[0]
 egg_hitbox = hitbox.Hitbox(file_data[offset:offset+20], offset)
-egg_hitbox.tags.append("projectile")
+#egg_hitbox.tags.append("projectile")
 yoshi.projectile_hitboxes.append(egg_hitbox)
 
 offset = yoshi.projectile_offsets[1]
 stars_hitbox = hitbox.Hitbox(file_data[offset:offset+20], offset)
-stars_hitbox.tags.append("projectile")
+#stars_hitbox.tags.append("projectile")
 yoshi.projectile_hitboxes.append(stars_hitbox)
 
-yoshi.subactions[302].friendly_name = "Egg Roll"
-yoshi.subactions[307].friendly_name = "Egg Roll"
-yoshi.subactions[310].friendly_name = "Ground Pound"
-yoshi.subactions[311].friendly_name = "Ground Pound"
-yoshi.subactions[313].friendly_name = "Ground Pound"
+yoshi.subactions[0x127].friendly_name = "Egg Lay"
+yoshi.subactions[0x128].friendly_name = "Egg Lay"
+yoshi.subactions[0x129].friendly_name = "Egg Lay"
+yoshi.subactions[0x12A].friendly_name = "Egg Lay"
+yoshi.subactions[0x12B].friendly_name = "Egg Lay"
+yoshi.subactions[0x12C].friendly_name = "Egg Lay"
+yoshi.subactions[0x12D].friendly_name = "Egg Roll"
+yoshi.subactions[0x12E].friendly_name = "Egg Roll"
+yoshi.subactions[0x12F].friendly_name = "Egg Roll"
+yoshi.subactions[0x130].friendly_name = "Egg Roll"
+yoshi.subactions[0x131].friendly_name = "Egg Roll"
+yoshi.subactions[0x132].friendly_name = "Egg Roll"
+yoshi.subactions[0x133].friendly_name = "Egg Roll"
+yoshi.subactions[0x134].friendly_name = "Egg Roll"
+yoshi.subactions[0x135].friendly_name = "Egg Throw"
+yoshi.subactions[0x136].friendly_name = "Egg Throw"
+yoshi.subactions[0x137].friendly_name = "Ground Pound"
+yoshi.subactions[0x138].friendly_name = "Ground Pound"
+yoshi.subactions[0x139].friendly_name = "Ground Pound"
+
+for action in yoshi.subactions:
+    if "Nameless" not in action.friendly_name:
+        action.tags.append(action.friendly_name.lower().replace(" ", ""))
 
 attribute_data = yoshi.dat_file.get_special_attribute_data(yoshi.special_attribute_block_size)
 yoshi.add_attribute(attribute_data, 0x0, "Flutter Jump Turn Duration", 1)

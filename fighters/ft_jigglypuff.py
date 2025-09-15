@@ -10,19 +10,42 @@ jigglypuff.articles_sizes = []
 jigglypuff.articles_offsets = []
 jigglypuff.projectile_offsets = []
 
-jigglypuff.subactions[302].friendly_name = "Rollout 1 (Ground)"
-jigglypuff.subactions[303].friendly_name = "Rollout 2 (Ground)"
-jigglypuff.subactions[304].friendly_name = "Rollout 3 (Ground)"
-jigglypuff.subactions[310].friendly_name = "Rollout 1 (Aerial)"
-jigglypuff.subactions[311].friendly_name = "Rollout 2 (Aerial)"
-jigglypuff.subactions[312].friendly_name = "Rollout 3 (Aerial)"
-jigglypuff.subactions[317].friendly_name = "Pound"
-jigglypuff.subactions[319].friendly_name = "Sing (Ground)"
-jigglypuff.subactions[321].friendly_name = "Sing (Aerial)"
-jigglypuff.subactions[320].friendly_name = "Rest 1 (Ground)"
-jigglypuff.subactions[322].friendly_name = "Rest 2 (Ground)"
-jigglypuff.subactions[323].friendly_name = "Rest 1 (Aerial)"
-jigglypuff.subactions[325].friendly_name = "Rest 2 (Aerial)"
+jigglypuff.subactions[0x127].friendly_name = "Aerial Jump 1"
+jigglypuff.subactions[0x128].friendly_name = "Aerial Jump 2"
+jigglypuff.subactions[0x129].friendly_name = "Aerial Jump 3"
+jigglypuff.subactions[0x12A].friendly_name = "Aerial Jump 4"
+jigglypuff.subactions[0x12B].friendly_name = "Aerial Jump 5"
+jigglypuff.subactions[0x12C].friendly_name = "Rollout"
+jigglypuff.subactions[0x12D].friendly_name = "Rollout"
+jigglypuff.subactions[0x12E].friendly_name = "Rollout"
+jigglypuff.subactions[0x12F].friendly_name = "Rollout"
+jigglypuff.subactions[0x130].friendly_name = "Rollout"
+jigglypuff.subactions[0x131].friendly_name = "Rollout"
+jigglypuff.subactions[0x132].friendly_name = "Rollout"
+jigglypuff.subactions[0x133].friendly_name = "Rollout"
+jigglypuff.subactions[0x134].friendly_name = "Rollout"
+jigglypuff.subactions[0x135].friendly_name = "Rollout"
+jigglypuff.subactions[0x136].friendly_name = "Rollout"
+jigglypuff.subactions[0x137].friendly_name = "Rollout"
+jigglypuff.subactions[0x138].friendly_name = "Rollout"
+jigglypuff.subactions[0x139].friendly_name = "Rollout"
+jigglypuff.subactions[0x13A].friendly_name = "Rollout"
+jigglypuff.subactions[0x13B].friendly_name = "Rollout"
+jigglypuff.subactions[0x13C].friendly_name = "Rollout"
+jigglypuff.subactions[0x13D].friendly_name = "Pound"
+jigglypuff.subactions[0x13E].friendly_name = "Pound"
+jigglypuff.subactions[0x13F].friendly_name = "Sing"
+jigglypuff.subactions[0x140].friendly_name = "Sing"
+jigglypuff.subactions[0x141].friendly_name = "Sing"
+jigglypuff.subactions[0x142].friendly_name = "Sing"
+jigglypuff.subactions[0x143].friendly_name = "Rest"
+jigglypuff.subactions[0x144].friendly_name = "Rest"
+jigglypuff.subactions[0x145].friendly_name = "Rest"
+jigglypuff.subactions[0x146].friendly_name = "Rest"
+
+for action in jigglypuff.subactions:
+    if "Nameless" not in action.friendly_name:
+        action.tags.append(action.friendly_name.lower().replace(" ", ""))
 
 attribute_data = jigglypuff.dat_file.get_special_attribute_data(jigglypuff.special_attribute_block_size)
 jigglypuff.add_attribute(attribute_data, 0x0, "Jumps Turn Duration", 1)
@@ -36,12 +59,12 @@ jigglypuff.add_attribute(attribute_data, 0x18, "Jump 2 Vertical Momentum", 1)
 jigglypuff.add_attribute(attribute_data, 0x1C, "Jump 3 Vertical Momentum", 1)
 jigglypuff.add_attribute(attribute_data, 0x20, "Jump 4 Vertical Momentum", 1)
 jigglypuff.add_attribute(attribute_data, 0x24, "Jump 5 Vertical Momentum", 1)
-jigglypuff.add_attribute(attribute_data, 0x28, "Number of Jumps", 1)
-jigglypuff.get_attribute("Number of Jumps").integer = True
+jigglypuff.add_attribute(attribute_data, 0x28, "Number of Jigglypuff Jumps", 1)
+jigglypuff.get_attribute("Number of Jigglypuff Jumps").integer = True
 jigglypuff.add_attribute(attribute_data, 0x34, "Rollout Duration", 1)
 jigglypuff.get_attribute("Rollout Duration").integer = True
 jigglypuff.add_attribute(attribute_data, 0x3C, "Rollout Start Air Height Offset", 1)
-jigglypuff.add_attribute(attribute_data, 0x40, "Rollout Bounciness", 1)
+jigglypuff.add_attribute(attribute_data, 0x40, "Rollout Base Bounciness", 1)
 jigglypuff.add_attribute(attribute_data, 0x48, "Rollout Gravity During Roll", 1)
 jigglypuff.add_attribute(attribute_data, 0x4C, "Rollout Base Rolling Speed", 1)
 jigglypuff.add_attribute(attribute_data, 0x50, "Rollout Max Rolling Speed", 1)

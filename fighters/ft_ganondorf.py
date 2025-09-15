@@ -10,15 +10,27 @@ ganondorf.articles_sizes = []
 ganondorf.articles_offsets = []
 ganondorf.projectile_offsets = []
 
-ganondorf.subactions[301].friendly_name = "Warlock Punch (Ground)"
-ganondorf.subactions[302].friendly_name = "Warlock Punch (Aerial)"
-ganondorf.subactions[304].friendly_name = "Gerudo Dragon (Ground)"
-ganondorf.subactions[306].friendly_name = "Gerudo Dragon (Aerial)"
-ganondorf.subactions[309].friendly_name = "Dark Dive"
-ganondorf.subactions[311].friendly_name = "Wizard's Foot (Ground)"
-ganondorf.subactions[313].friendly_name = "Wizard's Foot (Aerial)"
-ganondorf.subactions[314].friendly_name = "Wizard's Foot (Landing)"
+ganondorf.subactions[0x12D].friendly_name = "Warlock Punch"
+ganondorf.subactions[0x12E].friendly_name = "Warlock Punch"
+ganondorf.subactions[0x12F].friendly_name = "Gerudo Dragon"
+ganondorf.subactions[0x130].friendly_name = "Gerudo Dragon"
+ganondorf.subactions[0x131].friendly_name = "Gerudo Dragon"
+ganondorf.subactions[0x132].friendly_name = "Gerudo Dragon"
+ganondorf.subactions[0x133].friendly_name = "Dark Dive"
+ganondorf.subactions[0x134].friendly_name = "Dark Dive"
+ganondorf.subactions[0x135].friendly_name = "Dark Dive"
+ganondorf.subactions[0x136].friendly_name = "Dark Dive"
+ganondorf.subactions[0x137].friendly_name = "Wizards Foot"
+ganondorf.subactions[0x138].friendly_name = "Wizards Foot"
+ganondorf.subactions[0x139].friendly_name = "Wizards Foot"
+ganondorf.subactions[0x13A].friendly_name = "Wizards Foot"
+ganondorf.subactions[0x13B].friendly_name = "Wizards Foot"
+ganondorf.subactions[0x13C].friendly_name = "Wizards Foot"
+ganondorf.subactions[0x13D].friendly_name = "Dark Dive"
 
+for action in ganondorf.subactions:
+    if "Nameless" not in action.friendly_name:
+        action.tags.append(action.friendly_name.lower().replace(" ", ""))
 
 attribute_data = ganondorf.dat_file.get_special_attribute_data(ganondorf.special_attribute_block_size)
 ganondorf.add_attribute(attribute_data, 0x08, "Warlock Punch Momentum", 1)
@@ -34,8 +46,8 @@ ganondorf.add_attribute(attribute_data, 0x44, "Dark Dive Horizontal Momentum", 1
 ganondorf.add_attribute(attribute_data, 0x48, "Dark Dive Freefall Speed Multiplier", 1)
 ganondorf.add_attribute(attribute_data, 0x4C, "Dark Dive Landing Lag", 1)
 ganondorf.add_attribute(attribute_data, 0x60, "Dark Dive Gravity During Throw", 1)
-ganondorf.add_attribute(attribute_data, 0x74, "Wizard's Foot Speed Modifier After Hit", 1)
-ganondorf.add_attribute(attribute_data, 0x7C, "Wizard's Foot Ground Lag Multiplier", 1)
-ganondorf.add_attribute(attribute_data, 0x80, "Wizard's Foot Landing Lag Multiplier", 1)
-ganondorf.add_attribute(attribute_data, 0x84, "Wizard's Foot Ground Traction", 1)
-ganondorf.add_attribute(attribute_data, 0x88, "Wizard's Foot Landing Traction", 1)
+ganondorf.add_attribute(attribute_data, 0x74, "Wizards Foot Speed Modifier After Hit", 1)
+ganondorf.add_attribute(attribute_data, 0x7C, "Wizards Foot Ground Lag Multiplier", 1)
+ganondorf.add_attribute(attribute_data, 0x80, "Wizards Foot Landing Lag Multiplier", 1)
+ganondorf.add_attribute(attribute_data, 0x84, "Wizards Foot Ground Traction", 1)
+ganondorf.add_attribute(attribute_data, 0x88, "Wizards Foot Landing Traction", 1)

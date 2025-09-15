@@ -1,0 +1,32 @@
+{
+    "Shuffle Balanced 20%": {
+        "Commands": "|shuffle_hitboxes_balanced 20| |exclude_item| |exclude_boss|",
+        "Description": "Puts all hitboxes into a pool, shuffles them, and redistributes them. This could turn Jigglypuff's Rest into Captain Falcon's knee, for example. The percentage dictates the chance a hitbox will be added to the pool. Balanced will create tiered pools where hitboxes are grouped based on their relative power level, making it so really strong moves only shuffle with other really strong moves, or weak moves only shuffle with weak moves, etc...",
+        "Credit": "drewlith"
+    },
+    "Shuffle Balanced 50%": {
+        "Commands": "|shuffle_hitboxes_balanced 50| |exclude_item| |exclude_boss|",
+        "Description": "Puts all hitboxes into a pool, shuffles them, and redistributes them. This could turn Jigglypuff's Rest into Captain Falcon's knee, for example. The percentage dictates the chance a hitbox will be added to the pool. Balanced will create tiered pools where hitboxes are grouped based on their relative power level, making it so really strong moves only shuffle with other really strong moves, or weak moves only shuffle with weak moves, etc...",
+        "Credit": "drewlith"
+    },
+    "Shuffle Balanced 100%": {
+        "Commands": "|shuffle_hitboxes_balanced 100| |exclude_item| |exclude_boss|",
+        "Description": "Puts all hitboxes into a pool, shuffles them, and redistributes them. This could turn Jigglypuff's Rest into Captain Falcon's knee, for example. The percentage dictates the chance a hitbox will be added to the pool. Balanced will create tiered pools where hitboxes are grouped based on their relative power level, making it so really strong moves only shuffle with other really strong moves, or weak moves only shuffle with weak moves, etc...",
+        "Credit": "drewlith"
+    },
+    "Shuffle Unbalanced 20%": {
+        "Commands": "|shuffle_hitboxes 20| |exclude_item| |exclude_boss|",
+        "Description": "Puts all hitboxes into a pool, shuffles them, and redistributes them. This could turn Jigglypuff's Rest into Captain Falcon's knee, for example. The percentage dictates the chance a hitbox will be added to the pool. Balanced will create tiered pools where hitboxes are grouped based on their relative power level, making it so really strong moves only shuffle with other really strong moves, or weak moves only shuffle with weak moves, etc...",
+        "Credit": "drewlith"
+    },
+    "Shuffle Unbalanced 50%": {
+        "Commands": "|shuffle_hitboxes 20| |exclude_item| |exclude_boss|",
+        "Description": "Puts all hitboxes into a pool, shuffles them, and redistributes them. This could turn Jigglypuff's Rest into Captain Falcon's knee, for example. The percentage dictates the chance a hitbox will be added to the pool. Balanced will create tiered pools where hitboxes are grouped based on their relative power level, making it so really strong moves only shuffle with other really strong moves, or weak moves only shuffle with weak moves, etc...",
+        "Credit": "drewlith"
+    },
+    "Shuffle Unbalanced 100%": {
+        "Commands": "|shuffle_hitboxes 20| |exclude_item| |exclude_boss|",
+        "Description": "Puts all hitboxes into a pool, shuffles them, and redistributes them. This could turn Jigglypuff's Rest into Captain Falcon's knee, for example. The percentage dictates the chance a hitbox will be added to the pool. Balanced will create tiered pools where hitboxes are grouped based on their relative power level, making it so really strong moves only shuffle with other really strong moves, or weak moves only shuffle with weak moves, etc...",
+        "Credit": "drewlith"
+    }
+}

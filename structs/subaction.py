@@ -1,4 +1,4 @@
-from utility import to_word
+from utility import to_word, set_word
 from random import randint as rng
 from structs.allow_iasa import AllowIASA
 from structs.async_timer import AsyncTimer
@@ -40,8 +40,11 @@ class Subaction():
     def __init__(self, subaction_data, dat_file, index):
         self.dat_file = dat_file
         self.data = subaction_data
+        self.custom = False # If any events are modified set this to true
+        self.fsm_multiplier = 1
         self.index = index
         self.friendly_name = "Nameless"
+        self.tags = ["subaction"]
         self.multiple_hits = False
         self.name = self.get_name()
         self.script = []
@@ -50,9 +53,11 @@ class Subaction():
         self.async_timers = []
         self.set_loops = []
         self.execute_loops = []
-        self.gotos = []
+        self.goto_events = []
+        self.goto_scripts = []
         self.returns = []
-        self.subroutines = []
+        self.subroutine_events = []
+        self.subroutine = []
         self.gfx = []
         self.hitboxes = []
         self.specific_hurtbox_invincibilities = []
@@ -94,14 +99,23 @@ class Subaction():
     def name_offset(self):
         return to_word(self.data, 5)
     
+    def write_name_offset(self, value):
+        self.data = set_word(self.data, value, 5)
+    
     def animation_offset(self):
         return to_word(self.data, 4)
+    
+    def write_animation_offset(self, value):
+        self.data = set_word(self.data, value, 4)
 
     def animation_size(self):
         return to_word(self.data, 3)
 
     def events_offset(self):
         return to_word(self.data, 2)
+    
+    def write_events_offset(self, value):
+        self.data = set_word(self.data, value, 2)
 
     def position_flags(self):
         return to_word(self.data, 1)
@@ -111,7 +125,7 @@ class Subaction():
 
     def get_name(self):
         return self.dat_file.get_string(self.name_offset())
-
+    
     def get_events(self, offset):
         file_data = self.dat_file.data_block
         command = file_data[offset]
@@ -119,7 +133,7 @@ class Subaction():
         command = command << 2
         size = 0x04
         match command: # This pattern could probably be implemented better but not a huge deal
-            case 0x00: #?
+            case 0x00: # End of Script
                 size = 0x04
                 unk = Unknown(file_data[offset:offset+size], offset)
                 self.unknowns.append(unk)
@@ -148,7 +162,7 @@ class Subaction():
             case 0x14: # Go To 
                 size = 0x08
                 goto = GoTo(file_data[offset:offset+size], offset)
-                self.gotos.append(goto)
+                self.goto_events.append(goto)
                 self.script.append(goto)
             case 0x18: # Return
                 size = 0x04
@@ -158,8 +172,9 @@ class Subaction():
             case 0x1C: # Call Subroutine
                 size = 0x08
                 subroutine = Subroutine(file_data[offset:offset+size], offset)
-                self.subroutines.append(subroutine)
+                self.subroutine_events.append(subroutine)
                 self.script.append(subroutine)
+                return
             case 0x28: # GFX
                 size = 0x14
                 gfx = GFX(file_data[offset:offset+size], offset)
@@ -304,10 +319,16 @@ class Subaction():
 
         self.get_events(offset+size)
 
+    def add_event(self, index, event):
+        self.script.insert(index, event)
+
+    def remove_event(self, event):
+        self.script.remove(event)
+
     def write_events(self):
         for event in self.script:
             self.dat_file.file_data[event.offset+0x20:event.offset+len(event.data)+0x20] = event.data
-
+        
     def add_hitbox_tags(self, tags):
         for hitbox in self.hitboxes:
             for tag in tags:
@@ -320,3 +341,7 @@ class Subaction():
 
 def swap_subactions(sub_a, sub_b):
     sub_a.data, sub_b.data = sub_b.data, sub_a.data
+
+
+
+

@@ -4,6 +4,10 @@ import fighter
 
 all_sfx = []
 
+BLACKLIST = [0x0C3, 0x0C4, 0x0C5, 0x0C6, 0x0C7, 0x0C8, 0x0C9, 0x0CA, 0x0CB, 0x0CC, 0x0CD, 0x0CE, 0x0CF,
+             0x0D0, 0x0D1, 0x0D2, 0x0D3, 0x0D4, 0x0D5, 0x0D6, 0x0D7, 0x0D8, 0x0D9, 0x0DA, 0x05F, 0x084,
+             0x085, 0x12D]
+
 class SFX():
     def __init__(self, data, offset):
         self.offset = offset
@@ -30,7 +34,10 @@ def randomize(chance):
     for _sfx in all_sfx:
         if percent_chance(chance):
             if _sfx.common_sfx:
-                _sfx.id = rng(0,0xFFF)
+                index = rng(0,0x20F)
+                while index in BLACKLIST:
+                    index = rng(0,0x20F)
+                _sfx.id = index
     for _fighter in fighter.fighters:
         good_sfx = []
         for subaction in _fighter.subactions:
@@ -40,5 +47,6 @@ def randomize(chance):
                         good_sfx.append(_sfx.id)
         for subaction in _fighter.subactions:
             for _sfx in subaction.sfx:
-                if not _sfx.common_sfx:
-                    _sfx.id = good_sfx[rng(0,len(good_sfx)-1)]
+                if not _sfx.common_sfx and "Dash" not in subaction.friendly_name:
+                    if percent_chance(chance):
+                        _sfx.id = good_sfx[rng(0,len(good_sfx)-1)]

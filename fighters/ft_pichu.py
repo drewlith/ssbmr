@@ -22,9 +22,35 @@ thunder_hitbox = hitbox.Hitbox(file_data[offset:offset+20], offset)
 thunder_hitbox.tags.append("projectile")
 pichu.projectile_hitboxes.append(thunder_hitbox)
 
-pichu.subactions[298].friendly_name = "Skull Bash"
-pichu.subactions[299].friendly_name = "Skull Bash"
-pichu.subactions[314].friendly_name = "Thunder"
+pichu.subactions[0x127].friendly_name = "Thunder Jolt"
+pichu.subactions[0x128].friendly_name = "Thunder Jolt"
+pichu.subactions[0x129].friendly_name = "Skull Bash"
+pichu.subactions[0x12A].friendly_name = "Skull Bash"
+pichu.subactions[0x12B].friendly_name = "Skull Bash"
+pichu.subactions[0x12C].friendly_name = "Skull Bash"
+pichu.subactions[0x12D].friendly_name = "Skull Bash"
+pichu.subactions[0x12E].friendly_name = "Skull Bash"
+pichu.subactions[0x12F].friendly_name = "Skull Bash"
+pichu.subactions[0x130].friendly_name = "Skull Bash"
+pichu.subactions[0x131].friendly_name = "Skull Bash"
+pichu.subactions[0x132].friendly_name = "Agility"
+pichu.subactions[0x133].friendly_name = "Agility"
+pichu.subactions[0x134].friendly_name = "Agility"
+pichu.subactions[0x135].friendly_name = "Agility"
+pichu.subactions[0x136].friendly_name = "Agility"
+pichu.subactions[0x137].friendly_name = "Agility"
+pichu.subactions[0x138].friendly_name = "Thunder!"
+pichu.subactions[0x139].friendly_name = "Thunder!"
+pichu.subactions[0x13A].friendly_name = "Thunder!"
+pichu.subactions[0x13B].friendly_name = "Thunder!"
+pichu.subactions[0x13C].friendly_name = "Thunder!"
+pichu.subactions[0x13D].friendly_name = "Thunder!"
+pichu.subactions[0x13E].friendly_name = "Thunder!"
+pichu.subactions[0x13F].friendly_name = "Thunder!"
+
+for action in pichu.subactions:
+    if "Nameless" not in action.friendly_name:
+        action.tags.append(action.friendly_name.lower().replace(" ", ""))
 
 attribute_data = pichu.dat_file.get_special_attribute_data(pichu.special_attribute_block_size)
 pichu.add_attribute(attribute_data, 0x0, "Thunder Jolt Ground Spawn X-Offset", 1)

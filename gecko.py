@@ -35,7 +35,6 @@ def find_free_space(space_needed):
             return free_space.pop(i)[0]
     print("Not enough free space! Abort")
 
-
 def to_dol_offset(address): # RAM > DOL
     if address <= 0x5520: # Text 0
         return address - 0x3000
@@ -56,7 +55,7 @@ def to_ram_offset(address): # DOL > RAM
     if address <= 0x100: # Text 0
         return address + 0x3000
     if address <= 0x3B3E20: # Text 1
-        return address + 0x3420
+        return address + 0x3000
     if address <= 0x3B3FC0: # Data 0&1
         return address - 0x3AE900
     if address <= 0x42E6C0: # Data 2&3&4&5
@@ -71,14 +70,11 @@ def to_ram_offset(address): # DOL > RAM
 def determine_branch_address(start, destination):
     return (destination - start) // 4
 
-def code_from_text(code_path):
-    code_file = open(code_path, 'r')
-    code = code_file.read()
-    code_file.seek(0)
-    number_of_bytes = len(code_file.readlines()*8)
-    code_file.close()
-    code = code.replace(" ", "")
-    code = code.replace("\n", "")
+def code_from_text(code):
+    #code = code.replace(" ", "")
+    #code = code.replace("\n", "")
+    number_of_bytes = len(code) // 2
+    #print(number_of_bytes)
     code = "0x" + code
     code = code.lower()
     code = int(code, 0)
@@ -93,12 +89,12 @@ def branch(address): # Branch
     instruction = set_value(instruction, 2, 24, address)
     return instruction
 
-def activate_gecko_code(code_path):
-    print(code_path)
+def activate_gecko_code(_code):
     dol = iso.get_dol()
-    code = code_from_text(code_path)
+    code = code_from_text(_code)
     last_instruction_count = 0
     inject_offset = find_free_space(len(code*4))
+    #print(inject_offset)
     if inject_offset == None:
         return
     i = 0
@@ -123,6 +119,7 @@ def activate_gecko_code(code_path):
 
             k = 2 # 2 To jump ahead two lines in the code to get instructions.
             num_of_lines = get_value(code[i+1], 0, 32) # This line in the code contains number of code lines
+            #print("Number of Lines:", num_of_lines)
             instructions = []
             while True:
                 if get_value(code[i+k], 0, 32) == 0x00000000 and len(instructions) >= (num_of_lines * 2) -1:

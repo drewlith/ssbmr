@@ -4,7 +4,7 @@ class Throw():
         self.data = data
         self.offset = offset
         self.name = ""
-        self.tags = []
+        self.tags = ["throw"]
         self.original_values = []
         self.log_notes = []
 
@@ -36,11 +36,11 @@ class Throw():
         self.data = set_value(self.data, 46, 9, value)
 
     @property
-    def set_kb(self): #b6 and b7 xxWWWWWW WWWxxxxx
+    def setkb(self): #b6 and b7 xxWWWWWW WWWxxxxx
         return get_value(self.data, 37, 9)
 
-    @set_kb.setter
-    def set_kb(self, value):
+    @setkb.setter
+    def setkb(self, value):
         self.data = set_value(self.data, 37, 9, value)
 
     @property
@@ -59,12 +59,18 @@ class Throw():
     def element(self, value):
         self.data = set_value(self.data, 19, 4, value)
 
+    def check_tags(self, searching_for):
+        for tag in self.tags:
+            if tag.lower() in searching_for.lower():
+                return True
+        return False
+
     def __str__(self):
         string = "Throw Event at offset " + str(self.offset) + " with command: " + hex(self.data[0])
         string += "\n Damage: " + str(self.damage)
         string += "\n Angle: " + str(self.angle)
         string += "\n Growth: " + str(self.growth)
         string += "\n Base: " + str(self.base)
-        string += "\n Set KB: " + str(self.set_kb)
+        string += "\n Set KB: " + str(self.setkb)
         string += "\n Element: " + str(self.element)
         return string

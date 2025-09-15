@@ -1,34 +1,41 @@
-import iso, fighter, music, flags, gecko
-
-# iso and fighter scripts initialize when imported, might change cuz seems like bad practice
-
-def generate_seed(_flagset, code=""):
+import iso, random, sys, log, utility
+def generate_seed(_flagset, iso_path, output_path, seed, generate_log=False, code=""):
+    utility.set_seed(seed)
+    random.seed(seed)
+    if len(code) > 0:
+        output_path = "output.iso"
+    iso.init(iso_path, output_path)
+    import flags, fighter, music, gecko, banner
+    from structs import fsm, colors
     flagset = flags.parse_flags(_flagset)
-    # Aesthetic Mods First
-    #music.custom_music()
-    # Base Gecko mods (These always activate no matter the flagset)
+    iso.patch_dol()
     gecko.expand_dol()
-    gecko.activate_gecko_code("codes/C-Stick in Single Player - Zauron.txt")
-    gecko.activate_gecko_code("codes/Disable CSS BG Anim - UnclePunch.txt")
-    gecko.activate_gecko_code("codes/Unlock All - standardtoaster, Achilles.txt")
-    #gecko.activate_gecko_code("codes/Tournament to Debug - Magus, donny2112.txt")
-    gecko.activate_gecko_code("codes/UCF v084 - Altimor, Practical TAS, CarVac, Krohnos.txt")
-    # Apply mods from flags
+    iso.set_game_name(b'Melee Randomizer v1.0 by drewlith')
+    banner.set_name(seed)
+    iso.replace_file(b'opening.bnr', "Data/opening.bnr")
+    iso.replace_file(b'GmTtAll.usd', "Textures/Title Screen/GmTtAll-ssbmr.usd") # Add custom title screen
+    iso.replace_file(b'MnSlChr.usd', "Textures/CSS/MnSlChr-rando.usd") # Add custom CSS
+    iso.replace_file(b'GrPs.usd', "Data/GrPs-patched.usd") # Better Pokemon Stadium
+    colors.color_mod(seed)
+    music.custom_music()
     flags.activate_flags(flagset)
-    # Character Specific Data Mods
-    # Write Data to new ISO
-    #output_debug_log()
+    fsm.write_all()
     fighter.write_fighter_data()
-    iso.build_iso()
+    if generate_log:
+        log.make_log(output_path, seed)
+    f = open("ssbmr_debug.txt", "w")
+    f.write(str(len(fighter.fighters)))
+    f.close()
+    iso.build_iso(code)
 
-def output_debug_log():
-    debug = open("debug.txt", "w")
-    debug_text = ""
-    for _fighter in fighter.fighters:
-        for subaction in _fighter.subactions:
-            debug_text += subaction.__str__()
-            debug_text += "\n\n"
-    debug.write(debug_text)
-    debug.close()
-
-generate_seed("|hitbox_damage [>20 !25] 18:30| |hitbox_damage [<3 !20 !30 !40] 1:4| |hitbox_angle 75%:150%| /chaos_turnips/")
+if __name__ == "__main__":
+    if len(sys.argv) > 1:
+        iso_path = sys.argv[1]
+        out_path = sys.argv[2]
+        seed = sys.argv[3]
+        flags = sys.argv[4]
+        code = ""
+        if len(sys.argv) > 5:
+            code = sys.argv[5]
+        
+        generate_seed(flags, iso_path, out_path, seed, False, code)

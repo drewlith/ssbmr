@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+<body>
+  <form method=post enctype=multipart/form-data>
+    <label for="NA">North America Seed of the Week</label>
+    <input type="text" id="NA" name="NA"><br><br>
+    <label for="EU">Europe Seed of the Week:</label>
+    <input type="text" id="EU" name="EU"><br><br>
+    <label for="EU">Password:</label>
+    <input type="text" id="Password" name="Password"><br><br>
+    <input type="submit" value="Submit">
+  </form>
+</body>
+{% endblock %}

@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% block content %}
+<br>
+<script>
+    var standardJson = JSON.parse('{{json_data[0] | tojson | safe}}');
+    var shuffleJson = JSON.parse('{{json_data[1] | tojson | safe}}');
+    var specialJson = JSON.parse('{{json_data[2] | tojson | safe}}');
+    var geckoJson = JSON.parse('{{json_data[3] | tojson | safe}}');
+</script>
+<div class="centered">
+  <div class = "seed-entry">
+    <label style="padding-right: 8px;">Seed</label>
+    <input type="text" id="seed" name="seed" maxlength="40">
+  </div>
+  
+  <br>
+  <div class="tooltips" id="tooltips">
+    <p>Welcome to Melee Randomizer! Created by drewlith.</p>
+  </div>
+  <div class="ui-divide">
+    <div>
+      <div class="menu-options">
+        <input type="radio" id="standard-menu" name="menu" value="standard" checked />
+        <label for="standard-menu">Standard Flags</label>
+      </div>
+        <div class="menu-options">
+        <input type="radio" id="shuffle-menu" name="menu" value="shuffle" />
+        <label for="shuffle-menu">Shuffle</label>
+      </div>
+      <div class="menu-options">
+        <input type="radio" id="special-menu" name="menu" value="special" />
+        <label for="special-menu">Special Flags</label>
+      </div>
+      <div class="menu-options">
+        <input type="radio" id="gecko-menu" name="menu" value="gecko" />
+        <label for="gecko-menu">Gecko Codes</label>
+      </div>
+      <!--<div class="menu-options">
+        <input type="radio" id="custom-menu" name="menu" value="custom" />
+        <label for="custom-menu">Custom Flags</label>
+      </div>-->
+    </div>
+    <div>
+      <div class="ui-grid" id="standard-grid">
+        <div class = "flag-entry" data="data" id="entry" style="display: none;">
+          <input type="checkbox" checked>
+          <label style="width:60%;">Flag Name</label>
+          <!--<select id="mod" name="mod">
+            <option value="lite">Lite</option>
+            <option value="medium" selected>Medium</option>
+            <option value="crazy">Intense</option>
+            <option value="chaos">Chaos</option>
+          </select>-->
+        </div>
+      </div>
+      <div class="ui-grid" id="shuffle-grid" style="display: none;"></div>
+      <div class="ui-grid" id="special-grid" style="display: none;"></div>
+      <div class="ui-grid" id="gecko-grid" style="display: none;"></div>
+      <!--<div class="ui-grid" id="custom-grid" style="display: none;"></div>-->
+    </div>
+    
+  </div>
+<br>
+
+<div class=flagset-label>Flagset</div>
+  <textarea id="flags" class="flags" name="flags"></textarea>
+</div>
+
+<script src="{{url_for('static', filename='simple.js')}}"></script>
+<button onclick="send()" class="generate-button">CREATE SEED</button>
+<!-- API Send -->
+<br><br><br>
+<div id="overlay">
+  <h1 style="margin-top:20%">Seed is generating - Please Wait</h1>
+</div>
+{% endblock %}
