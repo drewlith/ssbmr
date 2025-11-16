@@ -6,6 +6,8 @@ game_and_watch = fighter.Fighter("Mr. Game & Watch", DAT(b'PlGw.dat'))
 fighter.fighters.append(game_and_watch)
 game_and_watch.fighter_id = 0x03
 
+game_and_watch.good_sfx = [0x46cfa, 0x46cee, 0x46cd6, 0x46ce2, 0x46cdc, 0x46d0f, 0x46d15]
+
 game_and_watch.special_attribute_block_size = 0x94
 game_and_watch.articles_sizes = [0x74]
 game_and_watch.articles_offsets = [0x4378]

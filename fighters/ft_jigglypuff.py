@@ -10,6 +10,8 @@ jigglypuff.articles_sizes = []
 jigglypuff.articles_offsets = []
 jigglypuff.projectile_offsets = []
 
+jigglypuff.good_sfx = [0x3d0b5, 0x3d0a9, 0x3d0c7, 0x3d091, 0x3d0c4, 0x3d094, 0x3d0bb, 0x3d0be, 0x3d0ca, 0x3d0dc, 0x3d0cd]
+
 jigglypuff.subactions[0x127].friendly_name = "Aerial Jump 1"
 jigglypuff.subactions[0x128].friendly_name = "Aerial Jump 2"
 jigglypuff.subactions[0x129].friendly_name = "Aerial Jump 3"

@@ -6,6 +6,8 @@ bowser = fighter.Fighter("Bowser", DAT(b'PlKp.dat'))
 fighter.fighters.append(bowser)
 bowser.fighter_id = 0x05
 
+bowser.good_sfx = [0x24a3d, 0x249fe, 0x24a37, 0x24a0a, 0x24a16, 0x24a04, 0x24a01, 0x24a22, 0x24a34, 0x24a31, 0x24a1f, 0x249f8, 0x24a2e]
+
 bowser.special_attribute_block_size = 0xA0
 bowser.articles_sizes = [0x18]
 bowser.articles_offsets = [0x40D8]

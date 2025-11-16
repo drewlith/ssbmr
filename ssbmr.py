@@ -5,7 +5,7 @@ def generate_seed(_flagset, iso_path, output_path, seed, generate_log=False, cod
     if len(code) > 0:
         output_path = "output.iso"
     iso.init(iso_path, output_path)
-    import flags, fighter, music, gecko, banner
+    import flags, fighter, gecko, banner
     from structs import fsm, colors
     flagset = flags.parse_flags(_flagset)
     iso.patch_dol()
@@ -13,11 +13,10 @@ def generate_seed(_flagset, iso_path, output_path, seed, generate_log=False, cod
     iso.set_game_name(b'Melee Randomizer v1.0 by drewlith')
     banner.set_name(seed)
     iso.replace_file(b'opening.bnr', "Data/opening.bnr")
-    iso.replace_file(b'GmTtAll.usd', "Textures/Title Screen/GmTtAll-ssbmr.usd") # Add custom title screen
-    iso.replace_file(b'MnSlChr.usd', "Textures/CSS/MnSlChr-rando.usd") # Add custom CSS
+    iso.replace_file(b'GmTtAll.usd', "Data/GmTtAll-ssbmr.usd") # Add custom title screen
+    iso.replace_file(b'MnSlChr.usd', "Data/MnSlChr-rando.usd") # Add custom CSS
     iso.replace_file(b'GrPs.usd', "Data/GrPs-patched.usd") # Better Pokemon Stadium
     colors.color_mod(seed)
-    music.custom_music()
     flags.activate_flags(flagset)
     fsm.write_all()
     fighter.write_fighter_data()

@@ -11,6 +11,8 @@ dr_mario.articles_sizes = [0x14]
 dr_mario.articles_offsets = [0x3BD4]
 dr_mario.projectile_offsets = [0x3C08]
 
+dr_mario.good_sfx = [0x15fd2, 0x15fb7, 0x15fcf, 0x15fde, 0x15fe1, 0x15fc9, 0x15fb4, 0x15f9c, 0x15fab, 0x15fa2, 0x15fa5]
+
 file_data = dr_mario.dat_file.file_data
 offset = dr_mario.projectile_offsets[0]
 vitamin_hitbox = hitbox.Hitbox(file_data[offset:offset+20], offset)

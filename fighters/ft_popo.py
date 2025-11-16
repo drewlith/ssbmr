@@ -11,6 +11,8 @@ popo.articles_sizes = [0x34, 0x18, 0x24]
 popo.articles_offsets = [0x3ADC, 0x3BB0, 0x3CA0]
 popo.projectile_offsets = [0x3B30]
 
+popo.good_sfx = [0x1fbd9, 0x1fbdf, 0x1fc57, 0x1fbf4, 0x1fc48, 0x1fc54, 0x1fbfa, 0x1fc30, 0x1fc3f, 0x1fc33, 0x1fbf1, 0x1fc00]
+
 file_data = popo.dat_file.file_data
 offset = popo.projectile_offsets[0]
 iceshot_hitbox = hitbox.Hitbox(file_data[offset:offset+20], offset)

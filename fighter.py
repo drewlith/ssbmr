@@ -15,6 +15,7 @@ class Fighter():
         self.articles_sizes = []
         self.articles_offsets = []
         self.fighter_id = -1
+        self.good_sfx = []
         self.name_subactions()
         self.tag_subactions()
 

@@ -11,6 +11,8 @@ pichu.articles_sizes = [0xC, 0xC]
 pichu.articles_offsets = [0x3CBC, 0x3B34]
 pichu.projectile_offsets = [0x3B64, 0x3CE8]
 
+pichu.good_sfx = [0x382cb, 0x382c8, 0x38292, 0x382a1, 0x38271, 0x38274, 0x38283, 0x382a7, 0x382bf, 0x382aa, 0x382c5, 0x38286, 0x382bc, 0x38289, 0x3829b, 0x382b9]
+
 file_data = pichu.dat_file.file_data
 offset = pichu.projectile_offsets[0]
 jolt_hitbox = hitbox.Hitbox(file_data[offset:offset+20], offset)

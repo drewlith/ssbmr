@@ -11,6 +11,8 @@ sheik.articles_sizes = [0xC, 0x6C]
 sheik.articles_offsets = [0x3994, 0x3C1C]
 sheik.projectile_offsets = [0x39C0]
 
+sheik.good_sfx = [0x41f21, 0x41f0c, 0x41f1e, 0x41eee, 0x41f27, 0x41f3f, 0x41f42, 0x41f30, 0x41f2a, 0x41f33, 0x41f00, 0x41f4e]
+
 file_data = sheik.dat_file.file_data
 offset = sheik.projectile_offsets[0]
 needle_hitbox = hitbox.Hitbox(file_data[offset:offset+20], offset)

@@ -1,1 +1,0 @@
-pyinstaller --onefile --icon="Data/logo.ico" --noconsole gui.py

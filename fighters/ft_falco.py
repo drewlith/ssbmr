@@ -11,6 +11,8 @@ falco.articles_sizes = [0x28, 0x8]
 falco.articles_offsets = [0x3F50, 0x4140]
 falco.projectile_offsets = [0x3F98, 0x4168, 0x4184]
 
+falco.good_sfx = [0x186e2, 0x186cd, 0x186df, 0x186d6, 0x186f7, 0x186f4, 0x186ee, 0x186fa, 0x186fd]
+
 file_data = falco.dat_file.file_data
 
 offset = falco.projectile_offsets[0]

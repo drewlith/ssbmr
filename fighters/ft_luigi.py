@@ -11,6 +11,8 @@ luigi.articles_sizes = [0x84, 0x10]
 luigi.articles_offsets = [0x3A3C, 0x3A74]
 luigi.projectile_offsets = [0x3AA4]
 
+luigi.good_sfx = [0x29854, 0x29839, 0x2983f, 0x29851, 0x29860, 0x29863, 0x2982d, 0x29818, 0x29830, 0x29833, 0x29836, 0x2981e, 0x2984b]
+
 luigi.subactions[0x127].friendly_name = "Fireball"
 luigi.subactions[0x128].friendly_name = "Fireball"
 luigi.subactions[0x129].friendly_name = "Green Missile"

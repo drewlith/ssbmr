@@ -11,6 +11,8 @@ samus.articles_sizes = [0x10, 0x20, 0x38, 0x7C]
 samus.articles_offsets = [0x4124, 0x3E90, 0x4018, 0x4210]
 samus.projectile_offsets = [0x3ED4, 0x4070, 0x408C, 0x4170]
 
+samus.good_sfx = [0x3f7c1, 0x3f7e8, 0x3f7df, 0x3f7cd, 0x3f7c7, 0x3f7ca, 0x3f7b5, 0x3f7b8, 0x3f7be, 0x3f7bb]
+
 file_data = samus.dat_file.file_data
 offset = samus.projectile_offsets[0]
 chargeshot_hitbox = hitbox.Hitbox(file_data[offset:offset+20], offset)

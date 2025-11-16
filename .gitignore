@@ -178,3 +178,4 @@ cython_debug/
 .dol
 .hps
 .dat
+*.iso

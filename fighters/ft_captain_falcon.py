@@ -10,6 +10,8 @@ falcon.articles_sizes = []
 falcon.articles_offsets = []
 falcon.projectile_offsets = []
 
+falcon.good_sfx = [0xea6a, 0xea7f, 0xea73, 0xea85, 0xea9a, 0xea9d, 0xea8e, 0xea79, 0xea94, 0xeaaf, 0xea6d, 0xeab2, 0xeaa6, 0xea7c, 0xeaac, 0xeaa9]
+
 falcon.subactions[0x106].friendly_name = "Falcon Dive Throw"
 falcon.subactions[0x107].friendly_name = "Falcon Dive Throw"
 falcon.subactions[0x108].friendly_name = "Falcon Dive Throw"

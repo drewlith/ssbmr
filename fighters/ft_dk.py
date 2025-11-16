@@ -5,6 +5,8 @@ dk = fighter.Fighter("Donkey Kong", DAT(b'PlDk.dat'))
 fighter.fighters.append(dk)
 dk.fighter_id = 0x01
 
+dk.good_sfx = [0x13899, 0x138a2, 0x138b1, 0x138bd, 0x1389f, 0x1389c, 0x13887, 0x1388a, 0x138a8, 0x1388d, 0x13890, 0x13893]
+
 dk.special_attribute_block_size = 0x74
 
 dk.subactions[0x106].friendly_name = "Cargo Throw"

@@ -162,12 +162,12 @@ class Hitbox():
 def determine_power_ratings():
     for hitbox in all_hitboxes:
         power_rating = 0
-        power_rating += hitbox.damage * 20
+        power_rating += hitbox.damage * 25
         power_rating += hitbox.growth * 1
         power_rating += hitbox.base * 2
-        power_rating += hitbox.size // 30
+        power_rating += hitbox.size // 50
         power_rating += hitbox.shielddamage * 5
-        power_rating += hitbox.setkb
+        power_rating += hitbox.setkb * 2
         hitbox.power_rating = power_rating
 
 def shuffle_hitboxes(hitbox, target):
@@ -201,11 +201,15 @@ def balanced_shuffle_all(chance):
     number_of_tiers = 10
     tiers = []
     setkb_tiers = []
+    huge_hitbox_tiers = []
     for i in range(number_of_tiers):
         tiers.append([])
         setkb_tiers.append([])
+        huge_hitbox_tiers.append([])
 
     def add_to_tier(hitbox, tier_number):
+        if hitbox.size > 2500:
+            huge_hitbox_tiers[tier_number].append(hitbox)
         if hitbox.setkb > 0:
             setkb_tiers[tier_number].append(hitbox)
             return
@@ -245,3 +249,10 @@ def balanced_shuffle_all(chance):
             if percent_chance(chance):
                 target = tier[rng(0, len(tier) - 1)]
                 shuffle_hitboxes(hitbox, target)
+    for tier in huge_hitbox_tiers:
+        for hitbox in tier:
+            if percent_chance(chance):
+                target = tier[rng(0, len(tier) - 1)]
+                shuffle_hitboxes(hitbox, target)
+    
+

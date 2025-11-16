@@ -1,6 +1,14 @@
 from utility import bidict, get_value, set_value, percent_chance
+import fighter
 
 all_auras = []
+
+ACTION_WHITELIST = ["Spot Dodge", "Air Dodge", "Forward Roll", "Back Roll", "Taunt", "Grab", "Dash Grab", "Star KO", "Jab 1", 
+                    "Jab 2", "Jab 3", "Dash Attack", "Forward Tilt Highest", "Forward Tilt Mid-High", "Forward Tilt Middle", 
+                    "Forward Tilt Mid-Low", "Forward Tilt Lowest", "Up Tilt", "Down Tilt", "Forward Smash Highest", "Forward Smash Mid-High", 
+                    "Forward Smash Middle", "Forward Smash Mid-Low", "Forward Smash Lowest", "Up Smash", "Down Smash", "Neutral Aerial", 
+                    "Forward Aerial", "Back Aerial", "Up Aerial", "Down Aerial", "Get-Up Attack Up", "Get-Up Attack Down", "Ledge Attack Slow", 
+                    "Ledge Attack Fast", "Pummel", "Forward Throw", "Back Throw", "Up Throw", "Down Throw"]
 
 from random import randint as rng
 
@@ -153,15 +161,19 @@ class Aura():
         string = "Aura Event at offset " + str(self.offset) + " with command: " + hex(self.data[0]) + " | RAW HEX: " + self.data.hex()
         string += " The Aura type is: " + self.id
         return string
-    
+"""
 def shuffle(chance):
     for _aura in all_auras:
         if percent_chance(chance):
             target = all_auras[rng(0,len(all_auras)-1)]
             _aura.data, target.data = target.data, _aura.data
+"""    
 
 def randomize(chance):
-    for _aura in all_auras:
-        if percent_chance(chance):
-            random_number = rng(0,len(AURAS)-1) * 0x04
-            _aura.id = random_number
+    for _fighter in fighter.all_fighters:
+        for subaction in _fighter.subactions:
+            if subaction.friendly_name in ACTION_WHITELIST:
+                for _aura in subaction.auras:
+                    if percent_chance(chance):
+                        random_number = rng(0,len(AURAS)-1) * 0x04
+                        _aura.id = random_number

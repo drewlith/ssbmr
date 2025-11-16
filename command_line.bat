@@ -1,1 +1,1 @@
-ssbmr.py melee.iso "C:\Users\Drew\Desktop\ssbmr_v10\test.iso" test "|hitbox_damage 30|" "test"
+ssbmr.py melee.iso "C:\Users\Drew\Documents\GitHub\ssbmr\test.iso" test "|random_sfx 100| |random_gfx 100| |random_aura 100| |shuffle_hitboxes_balanced 100|"

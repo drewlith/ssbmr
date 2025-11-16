@@ -5,7 +5,7 @@ from random import randint as rng
 from random import uniform as rng_f
 from structs import hitbox, aura, sfx, gfx, fsm
 from utility import percent_chance
-import gecko, re, custom_flags, pl_common, normalize
+import gecko, re, pl_common, normalize
 
 # Convention: No underscores since key phrase system use them as delimiters. Variable name will be key phrase name, as in what the user types into the flag
 # The ":=" just lets you set a variable name within the ()s
@@ -111,8 +111,6 @@ def get_custom_flags(_flags):
     for c_flag in c_flags:
         _flags = _flags.replace(c_flag, "")
     _flags = _flags.replace("/", "")
-    _flags += custom_flags.standard(c_flags)
-    _flags += custom_flags.custom(c_flags)
     return _flags
 
 def parse_flags(_flags):

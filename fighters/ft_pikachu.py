@@ -11,6 +11,8 @@ pikachu.articles_sizes = [0xC, 0xC]
 pikachu.articles_offsets = [0x3E1C, 0x3C74]
 pikachu.projectile_offsets = [0x3CA4, 0x3E28]
 
+pikachu.good_sfx = [0x3a9e4, 0x3a9e1, 0x3a9a8, 0x3a9b7, 0x3a987, 0x3a98a, 0x3a999, 0x3a9c0, 0x3a9d8, 0x3a9c3, 0x3a9de, 0x3a99c, 0x3a9d5, 0x3a99f, 0x3a9b1, 0x3a9d2]
+
 file_data = pikachu.dat_file.file_data
 offset = pikachu.projectile_offsets[0]
 jolt_hitbox = hitbox.Hitbox(file_data[offset:offset+20], offset)

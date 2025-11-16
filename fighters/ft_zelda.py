@@ -11,6 +11,8 @@ zelda.articles_sizes = [0x30, 0x14]
 zelda.articles_offsets = [0x3EC8, 0x3FA0]
 zelda.projectile_offsets = [0x3FE4]
 
+zelda.good_sfx = [0x41f72, 0x41f5a, 0x41f57, 0x41f51, 0x41f54, 0x41ed0, 0x41edc, 0x41f5d, 0x41edf, 0x41f75, 0x41f6f, 0x41f69, 0x41ec4, 0x41ec7, 0x41f63, 0x41ec1, 0x41f4e]
+
 file_data = zelda.dat_file.file_data
 offset = zelda.projectile_offsets[0]
 dins_hitbox = hitbox.Hitbox(file_data[offset:offset+20], offset)

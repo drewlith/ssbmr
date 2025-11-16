@@ -12,6 +12,8 @@ peach.articles_sizes = [0x48, 0x10]
 peach.articles_offsets = [0x40E8, 0x42E0]
 peach.projectile_offsets = [0x4310]
 
+peach.good_sfx = [0x35ba0, 0x35b7c, 0x35b88, 0x35b61, 0x35ba6, 0x35b76, 0x35bac, 0x35ba3, 0x35b9d]
+
 file_data = peach.dat_file.file_data
 offset = peach.projectile_offsets[0]
 turnip_hitbox = hitbox.Hitbox(file_data[offset:offset+20], offset)

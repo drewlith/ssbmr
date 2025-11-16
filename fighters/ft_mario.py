@@ -11,6 +11,8 @@ mario.articles_sizes = [0x14]
 mario.articles_offsets = [0x3A98]
 mario.projectile_offsets = [0x3ACC]
 
+mario.good_sfx = [0x2bf5a, 0x2bf3f, 0x2bf45, 0x2bf33, 0x2bf57, 0x2bf66, 0x2bf69, 0x2bf21, 0x2bf24, 0x2bf51, 0x2bf3c, 0x2bf27, 0x2bf36, 0x2bf2d, 0x2bf30]
+
 file_data = mario.dat_file.file_data
 offset = mario.projectile_offsets[0]
 fireball_hitbox = hitbox.Hitbox(file_data[offset:offset+20], offset)

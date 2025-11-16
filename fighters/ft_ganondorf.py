@@ -10,6 +10,8 @@ ganondorf.articles_sizes = []
 ganondorf.articles_offsets = []
 ganondorf.projectile_offsets = []
 
+ganondorf.good_sfx = [0x493ea, 0x493f0, 0x493ff, 0x49411, 0x49414, 0x49405, 0x493e7, 0x49420, 0x4940e, 0x49429, 0x49438, 0x49432, 0x4942f]
+
 ganondorf.subactions[0x12D].friendly_name = "Warlock Punch"
 ganondorf.subactions[0x12E].friendly_name = "Warlock Punch"
 ganondorf.subactions[0x12F].friendly_name = "Gerudo Dragon"

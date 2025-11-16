@@ -11,6 +11,8 @@ yoshi.articles_sizes = [0x8, 0x8]
 yoshi.articles_offsets = [0x3A68, 0x3B4C]
 yoshi.projectile_offsets = [0x3A90, 0x3B74]
 
+yoshi.good_sfx = [0x445c7, 0x445e5, 0x445dc, 0x445c4, 0x445c1, 0x445d3, 0x4461e, 0x44600, 0x445df, 0x44609, 0x4460c, 0x44612, 0x44618, 0x445f7, 0x445fa, 0x44615]
+
 file_data = yoshi.dat_file.file_data
 offset = yoshi.projectile_offsets[0]
 egg_hitbox = hitbox.Hitbox(file_data[offset:offset+20], offset)

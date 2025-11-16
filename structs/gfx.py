@@ -2,6 +2,42 @@ from utility import get_value, set_value, percent_chance
 from random import randrange as rng
 import fighter
 
+ACTION_WHITELIST = ["Spot Dodge", "Air Dodge", "Forward Roll", "Back Roll", "Taunt", "Grab", "Dash Grab", "Star KO", "Jab 1", 
+                    "Jab 2", "Jab 3", "Dash Attack", "Forward Tilt Highest", "Forward Tilt Mid-High", "Forward Tilt Middle", 
+                    "Forward Tilt Mid-Low", "Forward Tilt Lowest", "Up Tilt", "Down Tilt", "Forward Smash Highest", "Forward Smash Mid-High", 
+                    "Forward Smash Middle", "Forward Smash Mid-Low", "Forward Smash Lowest", "Up Smash", "Down Smash", "Neutral Aerial", 
+                    "Forward Aerial", "Back Aerial", "Up Aerial", "Down Aerial", "Get-Up Attack Up", "Get-Up Attack Down", "Ledge Attack Slow", 
+                    "Ledge Attack Fast", "Pummel", "Forward Throw", "Back Throw", "Up Throw", "Down Throw",
+                    "Koopa Klaw", "Flame Breath", "Whirling Fortress", "Bowser Bomb",
+                    "Falcon Dive Throw", "Falcon Dive", "Falcon Punch", "Raptor Boost", "Falcon Kick"
+                    "Cargo Throw", "Giant Punch", "Headbutt", "Spinning Kong", "Hand Slap",
+                    "Megavitamin", "Super Sheet", "Super Jump Punch", "Dr Tornado",
+                    "Blaster", "Phantasm", "Fire Bird", "Reflector",
+                    "Illusion", "Fire Fox",
+                    "Sausage", "Fire!", "Oil Panic",
+                    "Warlock Punch", "Gerudo Dragon", "Dark Dive", "Wizards Foot",
+                    "Rollout", "Pound", "Sing", "Rest",
+                    "Hammer", "Final Cutter", "Stone", "Copy Mario", "Copy Link", "Copy Samus", 
+                    "Copy Yoshi", "Copy Fox", "Copy Pikachu", "Copy Luigi", "Copy Captain Falcon", 
+                    "Copy Ness", "Copy Bowser", "Copy Peach" , "Copy DK", "Copy Zelda", "Copy Rollout",
+                    "Forward Smash Second Hit", "Fairy Bow", "Boomerang", "Spin Attack", "Link Bombs", "Hookshot",
+                    "Fireball", "Green Missile", "Cyclone",
+                    "Super Cape", "Mario Tornado",
+                    "Shield Breaker", "Dancing Blade", "Dolphin Slash", "Counter",
+                    "Shadow Ball", "Confusion", "Teleport", "Disable",
+                    "Ice Shot", "Squall Hammer", "Belay", "Blizzard",
+                    "Up Smash YoYo", "PK Flash", "PK Fire", "PK Thunder", "PK Magnet",
+                    "Tennis Racket", "Golf Club", "Frying Pan", "Toad", "Peach Bomber", "Parasol", "Vegetable",
+                    "Thunder Jolt", "Skull Bash", "Agility", "Thunder!",
+                    "Quick Attack",
+                    "Flare Blade", "Double Edge Dance", "Blazer",
+                    "Morph Ball Bomb", "Charge Shot", "Missile", "Screw Attack", "Grapple Beam",
+                    "Needle", "Chain Dance", "Vanish", "Transform",
+                    "Egg Lay", "Egg Roll", "Egg Throw", "Ground Pound",
+                    "Hero Bow",
+                    "Nayrus Love", "Dins Fire", "Farores Wind"
+                    ]
+
 class GFX():
     def __init__(self, data, offset): # 5 Bytes XXXXXXXX BBBBXXXX XXXXXXXX XXXXXXXX XXXXXXXX
         self.offset = offset
@@ -28,7 +64,7 @@ def randomize(chance):
             chosen = GOODLIST[rng(0, good_size)]
             if percent_chance(5) and ("smash" in subaction.tags or "special" in subaction.tags):
                 chosen = RARE[rng(0, rare_size)]
-            if percent_chance(chance) and (subaction.index > 0x2D):
+            if percent_chance(chance) and subaction.friendly_name in ACTION_WHITELIST:
                 for _gfx in subaction.gfx:
                     _gfx.id = chosen
 
