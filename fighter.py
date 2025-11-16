@@ -637,6 +637,13 @@ def get_fighter(name):
             return _fighter
     print("No fighter found with name", name)
 
+def add_tags_to_special_hitboxes():
+    for _fighter in fighters:
+        for action in _fighter.subactions:
+            for hitbox in action.hitboxes:
+                if "Nameless" not in action.friendly_name and action.index > 0xFF:
+                    hitbox.tags.append(action.friendly_name.lower().replace(" ", ""))
+
 def write_fighter_data():
     fst = iso.fst
     for _fighter in fighters:

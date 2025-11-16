@@ -17,6 +17,7 @@ def generate_seed(_flagset, iso_path, output_path, seed, generate_log=False, cod
     iso.replace_file(b'MnSlChr.usd', "Data/MnSlChr-rando.usd") # Add custom CSS
     iso.replace_file(b'GrPs.usd', "Data/GrPs-patched.usd") # Better Pokemon Stadium
     colors.color_mod(seed)
+    fighter.add_tags_to_special_hitboxes()
     flags.activate_flags(flagset)
     fsm.write_all()
     fighter.write_fighter_data()
