@@ -170,7 +170,7 @@ def shuffle(chance):
 """    
 
 def randomize(chance):
-    for _fighter in fighter.all_fighters:
+    for _fighter in fighter.fighters:
         for subaction in _fighter.subactions:
             if subaction.friendly_name in ACTION_WHITELIST:
                 for _aura in subaction.auras:
