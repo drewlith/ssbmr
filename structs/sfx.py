@@ -76,8 +76,8 @@ def randomize(chance):
                             index = rng(0,0x20F)
                             while index in SFX_BLACKLIST:
                                 index = rng(0,0x20F)
-                            if percent_chance(10):
+                            if percent_chance(10) and len(fighter.good_sfx > 0):
                                 _sfx.id = _fighter.good_sfx[rng(0,len(_fighter.good_sfx)-1)]
                             _sfx.id = index
-                        else: # Fighter Specific
+                        elif len(fighter.good_sfx > 0): # Fighter Specific
                             _sfx.id = _fighter.good_sfx[rng(0,len(_fighter.good_sfx)-1)]
