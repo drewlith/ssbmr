@@ -210,6 +210,7 @@ def balanced_shuffle_all(chance):
     def add_to_tier(hitbox, tier_number):
         if hitbox.size > 2500:
             huge_hitbox_tiers[tier_number].append(hitbox)
+            return
         if hitbox.setkb > 0:
             setkb_tiers[tier_number].append(hitbox)
             return
